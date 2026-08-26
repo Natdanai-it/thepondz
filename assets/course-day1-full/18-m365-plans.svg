@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>Microsoft 365 plan comparison</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<text x="600" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#dceaff">MICROSOFT 365: PLAN MATTERS</text>
+<g filter="url(#shadow)"><rect x="80" y="165" width="325" height="350" rx="32" fill="#0a1d3c"/><rect x="438" y="135" width="325" height="380" rx="32" fill="#0b244a" stroke="#4f8cff"/><rect x="795" y="165" width="325" height="350" rx="32" fill="#0a1d3c"/></g>
+<text x="242" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#86b8ff">Business Basic</text><text x="600" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#72e0bd">Business Standard</text><text x="958" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#ffc857">Business Premium</text>
+<g stroke="#7f97b8" stroke-width="11" stroke-linecap="round"><path d="M135 300h215M135 350h180M135 400h200"/><path d="M490 275h215M490 325h190M490 375h210M490 425h175"/><path d="M850 300h215M850 350h180M850 400h200"/></g>
+</svg>

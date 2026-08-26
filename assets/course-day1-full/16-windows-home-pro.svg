@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>Windows 11 Home and Pro features</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<text x="600" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#dceaff">WINDOWS 11 HOME vs PRO</text>
+<g filter="url(#shadow)"><rect x="100" y="160" width="460" height="350" rx="32" fill="#0a1d3c"/><rect x="640" y="160" width="460" height="350" rx="32" fill="#0a1d3c"/></g>
+<text x="330" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#86b8ff">HOME</text><text x="870" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#72e0bd">PRO</text>
+<g fill="#567eaf"><circle cx="220" cy="310" r="18"/><circle cx="220" cy="370" r="18"/><circle cx="220" cy="430" r="18"/></g><g stroke="#88a7cc" stroke-width="12" stroke-linecap="round"><path d="M260 310h200"/><path d="M260 370h165"/><path d="M260 430h190"/></g>
+<g fill="#72e0bd"><circle cx="760" cy="290" r="18"/><circle cx="760" cy="350" r="18"/><circle cx="760" cy="410" r="18"/><circle cx="760" cy="470" r="18"/></g><g stroke="#a4bbd8" stroke-width="12" stroke-linecap="round"><path d="M800 290h200"/><path d="M800 350h165"/><path d="M800 410h190"/><path d="M800 470h145"/></g>
+<text x="870" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#8fb4df">Domain • BitLocker • RDP Host</text>
+</svg>

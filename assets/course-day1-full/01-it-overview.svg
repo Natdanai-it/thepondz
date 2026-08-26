@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>IT organization overview</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<g filter="url(#shadow)">
+ <rect x="70" y="145" width="245" height="330" rx="28" fill="#0b1d3a" stroke="#6ea9ff" stroke-opacity=".5"/>
+ <rect x="345" y="145" width="245" height="330" rx="28" fill="#0b1d3a" stroke="#6ea9ff" stroke-opacity=".5"/>
+ <rect x="620" y="145" width="245" height="330" rx="28" fill="#0b1d3a" stroke="#6ea9ff" stroke-opacity=".5"/>
+ <rect x="895" y="145" width="235" height="330" rx="28" fill="#0b1d3a" stroke="#6ea9ff" stroke-opacity=".5"/>
+</g>
+<text x="192" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#8ec0ff">HARDWARE</text><text x="467" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#8ec0ff">SOFTWARE</text><text x="742" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#8ec0ff">LICENSE</text><text x="1012" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#8ec0ff">SERVICE</text>
+<g transform="translate(112 245)"><rect width="160" height="100" rx="12" fill="#102b56" stroke="#86b8ff"/><rect x="18" y="16" width="124" height="62" rx="6" fill="#031226"/><path d="M38 100h84l25 35H13z" fill="#a6b4c7"/></g>
+<g transform="translate(392 235)"><rect width="150" height="150" rx="24" fill="#f4f8ff"/><path d="M30 30h90v90H30z" fill="#2e72ff"/><path d="M30 75h90M75 30v90" stroke="#eaf4ff" stroke-width="7"/></g>
+<g transform="translate(682 235)"><rect width="120" height="150" rx="18" fill="#f4f8ff"/><path d="M26 38h68M26 70h52M26 102h64" stroke="#8294aa" stroke-width="10" stroke-linecap="round"/><circle cx="92" cy="124" r="24" fill="#ffc857"/></g>
+<g transform="translate(946 245)"><path d="M35 65c18-46 82-46 102 0 39-12 72 37 43 72H5c-28-36-6-80 30-72z" fill="#0d3b73" stroke="#86b8ff" stroke-width="4"/><path d="M44 105h92" stroke="#86b8ff" stroke-width="9" stroke-linecap="round"/></g>
+<rect x="94" y="405" width="196" height="48" rx="24" fill="#123769" stroke="#4f8cff" stroke-opacity=".55"/><text x="192.0" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#eaf3ff">Notebook / Server</text><rect x="373" y="405" width="188" height="48" rx="24" fill="#123769" stroke="#4f8cff" stroke-opacity=".55"/><text x="467.0" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#eaf3ff">Windows / ERP</text><rect x="648" y="405" width="188" height="48" rx="24" fill="#123769" stroke="#4f8cff" stroke-opacity=".55"/><text x="742.0" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#eaf3ff">User / Device</text><rect x="922" y="405" width="180" height="48" rx="24" fill="#123769" stroke="#4f8cff" stroke-opacity=".55"/><text x="1012.0" y="437" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#eaf3ff">Cloud / Support</text>
+</svg>

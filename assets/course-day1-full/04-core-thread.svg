@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>CPU cores and logical threads</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<text x="600" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#dceaff">CORE &amp; THREAD</text>
+<g filter="url(#shadow)" transform="translate(250 155)"><rect width="700" height="350" rx="42" fill="#101d32" stroke="#96c4ff" stroke-opacity=".5" stroke-width="4"/><rect x="75" y="65" width="550" height="220" rx="28" fill="url(#metal)"/><g fill="#0a2a57"><rect x="110" y="100" width="95" height="75" rx="15"/><rect x="235" y="100" width="95" height="75" rx="15"/><rect x="360" y="100" width="95" height="75" rx="15"/><rect x="485" y="100" width="95" height="75" rx="15"/><rect x="110" y="205" width="95" height="75" rx="15"/><rect x="235" y="205" width="95" height="75" rx="15"/><rect x="360" y="205" width="95" height="75" rx="15"/><rect x="485" y="205" width="95" height="75" rx="15"/></g></g>
+<text x="600" y="542" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#8fc0ff">8 Cores  •  16 Logical Threads</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>Notebook procurement checklist</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<g filter="url(#shadow)" transform="translate(95 160)"><rect width="470" height="285" rx="22" fill="#0b244a" stroke="#86b8ff" stroke-width="4"/><rect x="28" y="28" width="414" height="210" rx="12" fill="#04142d"/><path d="M0 300h470l80 70H-80z" fill="#abb9cc"/></g>
+<g transform="translate(690 110)"><rect width="400" height="430" rx="30" fill="#f5f9ff"/><rect x="130" y="-25" width="140" height="70" rx="24" fill="#91a4bb"/><g fill="#4f8cff"><rect x="45" y="85" width="34" height="34" rx="9"/><rect x="45" y="155" width="34" height="34" rx="9"/><rect x="45" y="225" width="34" height="34" rx="9"/><rect x="45" y="295" width="34" height="34" rx="9"/></g><g stroke="#8193a9" stroke-width="11" stroke-linecap="round"><path d="M105 102h230"/><path d="M105 172h200"/><path d="M105 242h250"/><path d="M105 312h180"/></g></g>
+<text x="325" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#9cb2d0">Performance • Ports • Display • Warranty</text>
+</svg>

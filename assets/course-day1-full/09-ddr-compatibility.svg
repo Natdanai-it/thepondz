@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>DDR4 and DDR5 physical compatibility</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<text x="600" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#ffda88">NEWER ≠ COMPATIBLE</text>
+<g transform="translate(90 190)" filter="url(#shadow)"><rect width="400" height="150" rx="26" fill="#0d3c2f" stroke="#72e0bd"/><g fill="#13253e"><rect x="35" y="38" width="52" height="60" rx="8"/><rect x="107" y="38" width="52" height="60" rx="8"/><rect x="179" y="38" width="52" height="60" rx="8"/><rect x="251" y="38" width="52" height="60" rx="8"/><rect x="323" y="38" width="52" height="60" rx="8"/></g><path d="M45 150h310" stroke="#ffc857" stroke-width="18"/></g>
+<g transform="translate(710 190)" filter="url(#shadow)"><rect width="400" height="150" rx="26" fill="#0d3c2f" stroke="#72e0bd"/><g fill="#13253e"><rect x="35" y="38" width="52" height="60" rx="8"/><rect x="107" y="38" width="52" height="60" rx="8"/><rect x="179" y="38" width="52" height="60" rx="8"/><rect x="251" y="38" width="52" height="60" rx="8"/><rect x="323" y="38" width="52" height="60" rx="8"/></g><path d="M45 150h135m45 0h130" stroke="#ffc857" stroke-width="18"/></g>
+<text x="290" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#86b8ff">DDR4</text><text x="910" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#86b8ff">DDR5</text>
+<path d="M500 265h200" stroke="#ff7f88" stroke-width="10" stroke-linecap="round"/><path d="M575 225l50 80M625 225l-50 80" stroke="#ff7f88" stroke-width="12" stroke-linecap="round"/>
+</svg>

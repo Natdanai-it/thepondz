@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640"><title>How computer components work together</title>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06152f"/><stop offset=".55" stop-color="#0b2b5c"/><stop offset="1" stop-color="#041027"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#35d7ff"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+ <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#26b98b"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+ <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#dda12a"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+ <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce7f5"/><stop offset=".5" stop-color="#7f91aa"/><stop offset="1" stop-color="#f3f8ff"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c9ff" stroke-opacity=".07"/></pattern>
+</defs>
+<rect width="1200" height="640" rx="34" fill="url(#bg)"/><rect width="1200" height="640" rx="34" fill="url(#grid)"/>
+<circle cx="1050" cy="80" r="245" fill="#2e72ff" opacity=".10"/><circle cx="110" cy="590" r="240" fill="#35d7ff" opacity=".055"/>
+
+<g filter="url(#shadow)"><rect x="370" y="180" width="460" height="270" rx="36" fill="#0a1d3b" stroke="#78afff" stroke-opacity=".5"/><rect x="430" y="235" width="340" height="160" rx="24" fill="#06142c"/></g>
+<g stroke="#63a6ff" stroke-width="7" stroke-linecap="round"><path d="M220 170L430 255"/><path d="M220 470L430 375"/><path d="M980 170L770 255"/><path d="M980 470L770 375"/></g>
+<g fill="#75adff"><circle cx="220" cy="170" r="58"/><circle cx="980" cy="170" r="58"/></g><g fill="#50d7ad"><circle cx="220" cy="470" r="58"/><circle cx="980" cy="470" r="58"/></g>
+<text x="220" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#051328">CPU</text><text x="980" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#051328">RAM</text><text x="220" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#051328">STORAGE</text><text x="980" y="478" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#051328">GPU</text>
+<text x="600" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#dceaff">OPERATING</text><text x="600" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#dceaff">SYSTEM</text><text x="600" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#8fbaff">+ SOFTWARE</text>
+</svg>

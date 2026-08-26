@@ -1,110 +1,1335 @@
-<!doctype html>
-<!DOCTYPE html>
-
-<html lang="th">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>IT Procurement Intensive — Day 1 | Pond Natdanai</title>
-<meta content="บทเรียน IT Procurement Day 1: Hardware, Software, Licensing, Specification และ Quotation โดย Pond Natdanai" name="description"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Noto+Sans+Thai:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IT & Hardware / Software — Day 1 | Pond Natdanai</title><meta name="description" content="คอร์ส IT Procurement: Hardware, CPU, GPU, RAM, Storage, Server, OS, Microsoft, Licensing, Specification และ Quotation"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#020817;--bg2:#061229;--panel:#07182f;--panel2:#0b2042;--line:rgba(132,179,255,.16);--line2:rgba(132,179,255,.34);--blue:#4f8cff;--blue2:#86b8ff;--text:#f4f8ff;--muted:#9fb0cd;--faint:#6f83a8;--good:#72e0bd;--gold:#ffc857;--radius:22px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:radial-gradient(900px 520px at 10% -5%,rgba(29,91,255,.18),transparent 62%),radial-gradient(700px 500px at 90% 18%,rgba(0,174,255,.08),transparent 60%),linear-gradient(180deg,#020817 0%,#041027 48%,#020817 100%);color:var(--text);font-family:'Noto Sans Thai','Sora',sans-serif;line-height:1.7}a{color:inherit;text-decoration:none}.topbar{position:sticky;top:0;z-index:50;background:rgba(2,8,23,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1240px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;font-family:Sora;font-weight:800}.brand-dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,#2e72ff,#79b0ff);box-shadow:0 0 22px 5px rgba(56,126,255,.35)}.brand small{display:block;font-weight:400;color:var(--faint);font-size:10px;letter-spacing:.12em}.top-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;border:1px solid var(--line2);font-size:13px;font-weight:700;background:rgba(10,26,57,.58)}.btn.primary{background:linear-gradient(135deg,#1744ad,#2567ed 55%,#5e9cff);border-color:rgba(132,182,255,.32)}
-.progressbar{height:3px;position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(255,255,255,.04)}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2e72ff,#8ec0ff);box-shadow:0 0 16px rgba(79,140,255,.7)}
-.hero{max-width:1240px;margin:auto;padding:72px 24px 42px;display:grid;grid-template-columns:1.25fr .75fr;gap:36px;align-items:end}.eyebrow{font-family:JetBrains Mono;font-size:12px;letter-spacing:.14em;color:var(--blue2);text-transform:uppercase}h1,h2,h3{font-family:'Sora','Noto Sans Thai',sans-serif;letter-spacing:-.02em}.hero h1{font-size:clamp(37px,6vw,68px);line-height:1.08;margin:14px 0 18px}.hero h1 span{background:linear-gradient(90deg,#90c3ff,#4f8cff 50%,#a7d0ff);-webkit-background-clip:text;background-clip:text;color:transparent}.hero .lead{max-width:760px;color:var(--muted);font-size:17px}.hero-badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.hero-badges span{padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:#cfe1ff;background:rgba(65,126,235,.07);font-size:12px;font-family:JetBrains Mono}.hero-side{background:linear-gradient(145deg,rgba(10,30,65,.88),rgba(4,16,37,.76));border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 25px 70px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.06)}.hero-side .mini{font:600 11px JetBrains Mono;color:var(--blue2);letter-spacing:.1em}.hero-side strong{display:block;font-size:30px;margin:5px 0}.hero-side p{margin:0;color:var(--muted);font-size:13px}.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.stat{padding:13px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}.stat b{display:block;color:#fff;font-size:18px}.stat span{font-size:11px;color:var(--faint)}
-.layout{max-width:1240px;margin:auto;padding:10px 24px 90px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}.sidebar{position:sticky;top:88px;background:linear-gradient(145deg,rgba(9,28,61,.82),rgba(3,14,32,.72));border:1px solid var(--line);border-radius:18px;padding:14px;max-height:calc(100vh - 110px);overflow:auto}.sidebar-title{font:700 11px JetBrains Mono;letter-spacing:.12em;color:var(--faint);padding:8px 9px 11px}.sidebar a{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:10px;color:#9fb0cd;font-size:12px;line-height:1.35;transition:.2s}.sidebar a:hover,.sidebar a.active{background:rgba(66,126,238,.12);color:#fff}.sidebar a span{font:600 9px JetBrains Mono;color:#6f99e5;margin-top:3px}.main{min-width:0}.lesson-card{background:linear-gradient(145deg,rgba(8,25,55,.76),rgba(3,14,32,.70));border:1px solid var(--line);border-radius:var(--radius);padding:34px;margin-bottom:20px;box-shadow:0 18px 55px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.05)}.section-kicker{font:700 10px JetBrains Mono;letter-spacing:.14em;color:var(--blue2)}.lesson-card h2{font-size:clamp(24px,3vw,33px);margin:8px 0 25px;color:#f5f9ff}.lesson-content{max-width:900px}.lesson-sub{font-size:18px;margin:28px 0 10px;color:#dceaff;padding-left:12px;border-left:3px solid var(--blue)}.lesson-line{margin:5px 0;color:#b7c6dc;font-size:15px}.spacer{height:7px}.duration{display:inline-flex;margin:0 0 18px;padding:6px 10px;border-radius:999px;border:1px solid rgba(101,161,255,.25);color:#8abaff;background:rgba(57,116,223,.08);font:600 11px JetBrains Mono}blockquote{margin:14px 0;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(255,200,87,.055);border-radius:0 14px 14px 0;color:#fff;font-weight:600}.question{margin:13px 0;padding:13px 15px;border-radius:13px;border:1px solid rgba(117,174,255,.22);background:rgba(42,102,209,.09);color:#dbeaff;font-weight:600}.key-point{margin:13px 0;padding:14px 16px;border-radius:14px;border:1px solid rgba(114,224,189,.24);background:rgba(39,164,132,.07);color:#c9f5e8;font-weight:650}.answer-label{display:inline-block;margin-top:10px;padding:4px 9px;border-radius:999px;background:rgba(114,224,189,.12);color:var(--good);font:700 10px JetBrains Mono;letter-spacing:.08em}.mindset-pill{display:inline-flex;margin:7px 7px 7px 0;padding:8px 11px;border:1px solid rgba(91,151,255,.28);border-radius:11px;color:#cfe0ff;background:rgba(62,120,230,.08);font-weight:700}.numbered{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:center;margin:15px 0 5px}.numbered span,.summary-num{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:linear-gradient(135deg,#1744ad,#397bf1);font:700 11px JetBrains Mono}.numbered strong{color:#e9f2ff}.summary-num{margin-top:20px}.quiz-q{margin-top:24px;font-size:17px;color:#fff}.timeline{display:grid;gap:8px;margin:14px 0 22px}.time-row{display:grid;grid-template-columns:125px 1fr;gap:12px;padding:11px 13px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}.time-row span{font:600 11px JetBrains Mono;color:#7eb0ff}.time-row strong{font-size:13px;color:#dce8fb}.table-wrap{overflow:auto;margin:14px 0 24px;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}th{color:#8fbbff;background:rgba(79,140,255,.08);font:700 11px JetBrains Mono}td{color:#b9c8df}tr:last-child td{border-bottom:0}.course-end{text-align:center;padding:42px 24px 80px;color:var(--muted)}.course-end h2{color:#fff}
-.mobile-toc{display:none;margin:0 24px 22px}.mobile-toc select{width:100%;background:#071a38;color:#eaf2ff;border:1px solid var(--line2);border-radius:12px;padding:11px}
-@media(max-width:920px){.hero{grid-template-columns:1fr;padding-top:50px}.layout{grid-template-columns:1fr}.sidebar{display:none}.mobile-toc{display:block}.lesson-card{padding:25px 20px}}@media(max-width:620px){.topbar-inner{padding:12px 16px}.brand small{display:none}.top-actions .btn:first-child{display:none}.hero{padding:42px 18px 28px}.hero h1{font-size:37px}.hero-side{padding:18px}.layout{padding:0 14px 70px}.mobile-toc{margin:0 14px 18px}.lesson-card{border-radius:17px}.time-row{grid-template-columns:1fr;gap:3px}}
-
-/* Course visual aids */
-.lesson-visual{margin:4px 0 28px;border:1px solid rgba(126,176,255,.23);border-radius:19px;overflow:hidden;background:linear-gradient(145deg,rgba(6,25,54,.92),rgba(4,15,34,.9));box-shadow:0 22px 55px rgba(0,0,0,.24)}
-.lesson-visual img{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover}
-.lesson-visual figcaption{padding:12px 15px 14px;border-top:1px solid rgba(126,176,255,.14);font-size:12px;color:#91a7c8;background:rgba(4,15,34,.66)}
-.lesson-visual figcaption strong{color:#dceaff}
-.hero-side .course-hero-art{margin:-22px -22px 18px;border-radius:21px 21px 15px 15px;overflow:hidden;border-bottom:1px solid rgba(126,176,255,.18)}
-.hero-side .course-hero-art img{display:block;width:100%;aspect-ratio:2/1;object-fit:cover}
-@media(max-width:620px){.lesson-visual{margin-left:-6px;margin-right:-6px;border-radius:15px}.lesson-visual img{aspect-ratio:16/9}.hero-side .course-hero-art{margin:-18px -18px 16px}}
-</style>
-</head>
-<body>
-<div class="progressbar"><span id="readProgress"></span></div>
-<header class="topbar"><div class="topbar-inner">
-<a class="brand" href="index.html"><span class="brand-dot"></span><span>Pond Natdanai<small>IT Professional · Freelance · Tutor</small></span></a>
-<div class="top-actions"><a class="btn" href="index.html#courses">← คอร์สทั้งหมด</a><a class="btn primary" href="index.html#contact">สอบถาม / จองเรียน</a></div>
-</div></header>
-<main>
-<section class="hero">
-<div><div class="eyebrow">IT PROCUREMENT · INTENSIVE COURSE · DAY 1</div><h1>IT &amp; Hardware / <span>Software</span></h1><p class="lead">หลักสูตร Intensive สำหรับงาน IT Procurement — 2 ชั่วโมง ครอบคลุม CPU / GPU / RAM / Storage / Notebook / Desktop / Server / OS / Microsoft / Software / License และการอ่านสเปคกับใบเสนอราคา</p><div class="hero-badges"><span>2 HOURS</span><span>PROCUREMENT MINDSET</span><span>SPEC &amp; QUOTATION</span><span>MINI WORKSHOP</span></div></div>
-<aside class="hero-side"><div class="course-hero-art"><img alt="IT Procurement Day 1" decoding="async" loading="eager" src="assets/course-day1/01-overview.svg"/></div><div class="mini">COURSE SNAPSHOT</div><strong>Day 1 · 120 min</strong><p>เป้าหมายคืออ่าน Requirement และ Quotation ได้เป็นระบบ ไม่ตัดสินจากชื่อรุ่นหรือราคาเพียงอย่างเดียว</p><div class="hero-stats"><div class="stat"><b>10</b><span>บทหลัก</span></div><div class="stat"><b>5</b><span>Workshop questions</span></div><div class="stat"><b>3</b><span>Checklist groups</span></div><div class="stat"><b>100%</b><span>เนื้อหาตามหลักสูตร</span></div></div></aside>
-</section>
-<div class="mobile-toc"><select aria-label="เลือกบทเรียน" id="mobileToc"><option value="#section-0">ภาพรวมคอร์ส</option><option value="#section-1">บท 2 · CPU</option><option value="#section-2">บท 3 · GPU</option><option value="#section-3">บท 4 · RAM</option><option value="#section-4">บท 5 · STORAGE</option><option value="#section-5">บท 7 · OPERATING SYSTEM</option><option value="#section-6">บท 8 · SOFTWARE &amp; MICROSOFT</option><option value="#section-7">บท 9 · SOFTWARE LICENSING</option><option value="#section-8">บท 10 · วิธีอ่าน SPECIFICATION &amp; QUOTATION</option><option value="#section-9">Mini Workshop</option><option value="#section-10">Checklist หลังเรียน</option><option value="#section-11">5 ประโยคต้องจำ</option><option value="#section-12">ผลลัพธ์หลังเรียน</option></select></div>
-<div class="layout">
-<aside class="sidebar"><div class="sidebar-title">COURSE CONTENT</div><a href="#section-0"><span>01</span>ภาพรวมคอร์ส</a><a href="#section-1"><span>02</span>บท 2 · CPU</a><a href="#section-2"><span>03</span>บท 3 · GPU</a><a href="#section-3"><span>04</span>บท 4 · RAM</a><a href="#section-4"><span>05</span>บท 5 · STORAGE</a><a href="#section-5"><span>06</span>บท 7 · OPERATING SYSTEM</a><a href="#section-6"><span>07</span>บท 8 · SOFTWARE &amp; MICROSOFT</a><a href="#section-7"><span>08</span>บท 9 · SOFTWARE LICENSING</a><a href="#section-8"><span>09</span>บท 10 · วิธีอ่าน SPECIFICATION &amp; QUOTATION</a><a href="#section-9"><span>10</span>Mini Workshop</a><a href="#section-10"><span>11</span>Checklist หลังเรียน</a><a href="#section-11"><span>12</span>5 ประโยคต้องจำ</a><a href="#section-12"><span>13</span>ผลลัพธ์หลังเรียน</a></aside>
-<div class="main"><section class="lesson-card" data-progress-section="" id="section-0">
-<div class="section-kicker">OVERVIEW</div>
-<h2>ภาพรวมหลักสูตรและเป้าหมาย</h2><figure class="lesson-visual"><img alt="ภาพประกอบระบบ IT สำหรับงานจัดซื้อ มีคอมพิวเตอร์ เซิร์ฟเวอร์ คลาวด์ และเอกสารใบเสนอราคา" decoding="async" loading="lazy" src="assets/course-day1/01-overview.svg"/><figcaption><strong>ภาพรวมงาน Procurement:</strong> ต้องมองทั้งอุปกรณ์ ระบบ สิทธิ์การใช้งาน และบริการ ไม่ใช่มองแค่ชื่อรุ่นกับราคา</figcaption></figure>
-<div class="lesson-content"><p class="lesson-line">วันที่ 1 — IT &amp; Hardware / Software</p><p class="lesson-line">หลักสูตร Intensive สำหรับงาน IT Procurement — 2 ชั่วโมง</p><p class="lesson-line">หัวข้อ: CPU / GPU / RAM / Storage / Notebook / Desktop / Server / OS / Microsoft / Software / License / การอ่านสเปคและใบเสนอราคา</p><h3 class="lesson-sub">เป้าหมายหลังเรียน 2 ชั่วโมง</h3><p class="lesson-line">ผู้เรียนไม่จำเป็นต้องจำรุ่นอุปกรณ์ทั้งหมด แต่ควรสามารถ:</p><div class="spacer"></div><p class="lesson-line">อธิบายได้ว่า CPU / GPU / RAM / Storage ทำหน้าที่อะไร</p><p class="lesson-line">อ่านสเปค Notebook / Desktop / Server เบื้องต้นได้</p><p class="lesson-line">แยกได้ว่าสเปคไหนมีผลต่อประสิทธิภาพและสเปคไหนเกี่ยวกับ Compatibility</p><p class="lesson-line">เข้าใจความแตกต่างของ Windows / Microsoft 365 / Office / Software License</p><p class="lesson-line">อ่าน Model / Part Number / SKU / Warranty / License ในใบเสนอราคาได้</p><p class="lesson-line">รู้ว่าก่อนสั่งซื้อควรถามฝ่าย IT หรือ Vendor อะไรเพิ่มเติม</p><h3 class="lesson-sub">ตารางเวลา 2 ชั่วโมง</h3><div class="timeline"><div class="time-row"><span>0–10 นาที</span><strong>ภาพรวมระบบ IT สำหรับ Procurement</strong></div><div class="time-row"><span>10–40 นาที</span><strong>CPU / GPU / RAM / Storage</strong></div><div class="time-row"><span>40–60 นาที</span><strong>Notebook / Desktop / Workstation / Server</strong></div><div class="time-row"><span>60–85 นาที</span><strong>OS / Software / Microsoft</strong></div><div class="time-row"><span>85–105 นาที</span><strong>Software Licensing</strong></div><div class="time-row"><span>105–115 นาที</span><strong>อ่าน Specification และ Quotation จริง</strong></div><div class="time-row"><span>115–120 นาที</span><strong>Mini Workshop + สรุป</strong></div></div><div class="duration">⏱ เวลา 0–10 นาที</div><h3 class="lesson-sub">เริ่มต้นด้วยคำถามกับผู้เรียน:</h3><div class="spacer"></div><p class="lesson-line">เวลา IT ส่ง Requirement มาว่า</p><blockquote>“Core Ultra 7 / RAM 32GB / SSD 1TB / Windows 11 Pro”</blockquote><div class="question">❓ ตอนนี้เราเข้าใจแต่ละคำประมาณไหน?</div><p class="lesson-line">จากนั้นอธิบายว่าเวลาจัดซื้อ IT เราจะเจอของประมาณ 4 กลุ่มหลัก</p><div class="spacer"></div><div class="numbered"><span>1</span><strong>Hardware</strong></div><p class="lesson-line">สิ่งที่จับต้องได้ เช่น</p><div class="spacer"></div><h3 class="lesson-sub">Notebook</h3><h3 class="lesson-sub">Desktop</h3><h3 class="lesson-sub">Server</h3><p class="lesson-line">Monitor</p><p class="lesson-line">CPU</p><p class="lesson-line">GPU</p><p class="lesson-line">RAM</p><h3 class="lesson-sub">SSD</h3><p class="lesson-line">Firewall</p><p class="lesson-line">Switch</p><div class="numbered"><span>2</span><strong>Software</strong></div><p class="lesson-line">โปรแกรมหรือระบบที่ใช้บน Hardware เช่น</p><div class="spacer"></div><p class="lesson-line">Windows</p><p class="lesson-line">Microsoft Office</p><p class="lesson-line">Adobe</p><p class="lesson-line">Antivirus</p><p class="lesson-line">ERP</p><p class="lesson-line">Accounting Software</p><div class="numbered"><span>3</span><strong>License</strong></div><p class="lesson-line">สิทธิ์ในการใช้งาน Software หรือ Service</p><p class="lesson-line">เช่น</p><div class="spacer"></div><p class="lesson-line">Microsoft 365 จำนวน 30 Users / 1 Year</p><p class="lesson-line">Antivirus 100 Devices / 1 Year</p><p class="lesson-line">Windows Server License</p><p class="lesson-line">FortiGuard Subscription</p><div class="numbered"><span>4</span><strong>Service</strong></div><p class="lesson-line">บริการที่ไม่จำเป็นต้องเป็นอุปกรณ์จับต้องได้ เช่น</p><div class="spacer"></div><p class="lesson-line">Cloud</p><p class="lesson-line">Backup</p><p class="lesson-line">Hosting</p><p class="lesson-line">Support</p><p class="lesson-line">Maintenance</p><p class="lesson-line">Installation</p><p class="lesson-line">Configuration</p><p class="lesson-line">Managed Service</p><h3 class="lesson-sub">สิ่งสำคัญที่สุดของ Procurement</h3><p class="lesson-line">เวลารับ Requirement อย่าถามเพียงว่า</p><div class="spacer"></div><blockquote>“รุ่นอะไร ราคาเท่าไร?”</blockquote><p class="lesson-line">แต่ควรคิดเป็น 4 คำถาม</p><div class="spacer"></div><div class="question">❓ WHAT — มันคืออะไร?</div><p class="lesson-line">Hardware / Software / License / Service</p><div class="spacer"></div><div class="question">❓ WHY — เอาไปใช้ทำอะไร?</div><p class="lesson-line">Office / Graphic / AI / Server / Network / Database</p><div class="spacer"></div><div class="question">❓ REQUIREMENT — อะไรคือเงื่อนไขสำคัญ?</div><p class="lesson-line">RAM เท่าไร</p><p class="lesson-line">CPU ระดับไหน</p><p class="lesson-line">Windows รุ่นอะไร</p><p class="lesson-line">Warranty กี่ปี</p><div class="question">❓ COMPATIBILITY — ใช้กับของเดิมได้ไหม?</div><p class="lesson-line">นี่เป็นเรื่องสำคัญมาก เพราะ</p><div class="spacer"></div><blockquote>“สเปคสูงกว่า” ไม่ได้หมายความว่า “ใช้แทนได้เสมอ”</blockquote></div>
-</section><section class="lesson-card" data-progress-section="" id="section-1">
-<div class="section-kicker">SECTION 01</div>
-<h2>PART 2 — CPU</h2><figure class="lesson-visual"><img alt="ภาพประกอบ CPU และแกนประมวลผล" decoding="async" loading="lazy" src="assets/course-day1/02-cpu.svg"/><figcaption><strong>CPU:</strong> ต้องเทียบ Model เต็ม, Generation, Core/Thread, Performance และลักษณะงาน</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 10–20 นาที</div><h3 class="lesson-sub">CPU คืออะไร?</h3><p class="lesson-line">CPU = Central Processing Unit</p><p class="lesson-line">เปรียบง่าย ๆ ว่าเป็น ตัวประมวลผลหลักของคอมพิวเตอร์</p><p class="lesson-line">CPU รับคำสั่งจาก Software แล้วประมวลผล</p><p class="lesson-line">ตัวอย่างงานที่ CPU มีผลมาก:</p><div class="spacer"></div><p class="lesson-line">Excel ขนาดใหญ่</p><p class="lesson-line">โปรแกรมบัญชี</p><p class="lesson-line">โปรแกรมเขียน Code</p><p class="lesson-line">Database</p><p class="lesson-line">CAD</p><p class="lesson-line">Rendering บางประเภท</p><p class="lesson-line">Virtual Machine</p><h3 class="lesson-sub">ยี่ห้อ CPU ที่พบบ่อย</h3><h3 class="lesson-sub">Intel</h3><p class="lesson-line">กลุ่มทั่วไป เช่น</p><div class="spacer"></div><p class="lesson-line">Intel Core</p><p class="lesson-line">Intel Core Ultra</p><p class="lesson-line">กลุ่ม Server / Workstation เช่น</p><div class="spacer"></div><p class="lesson-line">Intel Xeon</p><h3 class="lesson-sub">AMD</h3><p class="lesson-line">กลุ่มทั่วไป เช่น</p><div class="spacer"></div><p class="lesson-line">Ryzen</p><p class="lesson-line">กลุ่ม Server เช่น</p><div class="spacer"></div><p class="lesson-line">EPYC</p><h3 class="lesson-sub">Core คืออะไร?</h3><p class="lesson-line">CPU 1 ตัวมีหน่วยประมวลผลหลาย Core ได้</p><p class="lesson-line">ตัวอย่าง</p><div class="spacer"></div><p class="lesson-line">4 Core</p><p class="lesson-line">6 Core</p><p class="lesson-line">8 Core</p><p class="lesson-line">16 Core</p><p class="lesson-line">โดยทั่วไป Core มากขึ้นช่วยให้ทำหลายงานพร้อมกันได้ดีขึ้น</p><p class="lesson-line">แต่ต้องเน้นผู้เรียนว่า</p><div class="spacer"></div><div class="key-point">★ Core มากกว่า ไม่ได้แปลว่าเร็วกว่าเสมอ</div><p class="lesson-line">เพราะยังมีเรื่อง Architecture / Generation / Clock / Power Limit / Software ที่ใช้</p><h3 class="lesson-sub">Thread คืออะไร?</h3><p class="lesson-line">Thread คือจำนวนชุดงานที่ CPU สามารถจัดการพร้อมกันในเชิง Logical</p><p class="lesson-line">เช่น</p><p class="lesson-line">8 Core / 16 Thread</p><p class="lesson-line">ไม่จำเป็นต้องลง Technical มากกว่านี้สำหรับ Procurement</p><p class="lesson-line">สิ่งที่ต้องรู้คือ:</p><div class="spacer"></div><p class="lesson-line">ถ้าเป็นงาน Multitasking / VM / Rendering / Server จำนวน Core และ Thread จะเริ่มมีความสำคัญมากขึ้น</p><h3 class="lesson-sub">Clock Speed</h3><p class="lesson-line">เช่น</p><p class="lesson-line">3.5 GHz</p><p class="lesson-line">5.0 GHz</p><p class="lesson-line">คือความถี่การทำงานของ CPU</p><p class="lesson-line">แต่ห้ามใช้ Clock อย่างเดียวตัดสินว่า CPU ตัวไหนเร็วกว่า</p><p class="lesson-line">เช่น CPU รุ่นใหม่ 4.5 GHz อาจเร็วกว่า CPU รุ่นเก่า 5.0 GHz ได้</p><h3 class="lesson-sub">Generation สำคัญมาก</h3><p class="lesson-line">ตัวอย่างที่ควรสอน:</p><div class="spacer"></div><div class="key-point">★ Core i7 ไม่ได้แรงกว่า Core i5 ทุกกรณี</div><p class="lesson-line">Core i5 รุ่นใหม่สามารถแรงกว่า Core i7 รุ่นเก่าบางรุ่นได้</p><p class="lesson-line">ดังนั้นเวลาจัดซื้อ ต้องดู Model เต็ม</p><p class="lesson-line">ไม่ควรรับ Requirement เพียง</p><div class="spacer"></div><blockquote>“ขอ i7”</blockquote><p class="lesson-line">ควรให้ IT ระบุ เช่น</p><div class="spacer"></div><p class="lesson-line">CPU รุ่นใด หรือ Performance ระดับใด</p><h3 class="lesson-sub">CPU Suffix</h3><p class="lesson-line">ชื่อท้าย CPU บางรุ่นบอกลักษณะการใช้งาน</p><p class="lesson-line">ตัวอย่างที่อาจพบใน Notebook:</p><div class="spacer"></div><p class="lesson-line">U — เน้นประหยัดพลังงาน</p><p class="lesson-line">H — กลุ่มประสิทธิภาพสูง</p><p class="lesson-line">HX — กลุ่มประสิทธิภาพสูงมาก</p><p class="lesson-line">ไม่จำเป็นต้องให้ผู้เรียนจำทุกตัว</p><p class="lesson-line">ให้จำว่า:</p><div class="spacer"></div><p class="lesson-line">CPU ชื่อคล้ายกัน แต่ตัวอักษรท้ายต่างกัน อาจมี Performance และการใช้พลังงานต่างกันมาก</p><h3 class="lesson-sub">เวลา Procurement เปรียบเทียบ CPU ให้ดู</h3><p class="lesson-line">รุ่นเต็ม</p><p class="lesson-line">Generation</p><p class="lesson-line">Core / Thread</p><p class="lesson-line">Performance</p><p class="lesson-line">การใช้พลังงาน</p><p class="lesson-line">งานที่จะนำไปใช้</p><h3 class="lesson-sub">ตัวอย่างถามผู้เรียน</h3><p class="lesson-line">มีเครื่อง 2 ตัว</p><div class="spacer"></div><p class="lesson-line">เครื่อง A</p><p class="lesson-line">Core i7 รุ่นเก่า</p><p class="lesson-line">RAM 16GB</p><p class="lesson-line">เครื่อง B</p><p class="lesson-line">Core i5 รุ่นใหม่</p><p class="lesson-line">RAM 16GB</p><p class="lesson-line">ถามว่า:</p><div class="spacer"></div><div class="question">❓ เครื่อง A ดีกว่าแน่นอนหรือไม่?</div><div class="answer-label">คำตอบ</div><div class="spacer"></div><div class="key-point">★ ยังตอบไม่ได้</div><p class="lesson-line">ต้องรู้ Model เต็มและ Performance ก่อน</p><p class="lesson-line">นี่คือ Mindset ที่ต้องการ</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-2">
-<div class="section-kicker">SECTION 02</div>
-<h2>PART 3 — GPU</h2><figure class="lesson-visual"><img alt="ภาพประกอบ GPU สำหรับกราฟิก วิดีโอ สามมิติ และ AI" decoding="async" loading="lazy" src="assets/course-day1/03-gpu.svg"/><figcaption><strong>GPU:</strong> อย่าดูเพียงชื่อรุ่น ต้องดู VRAM, Power Limit และ Software Compatibility</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 20–27 นาที</div><h3 class="lesson-sub">GPU คืออะไร?</h3><p class="lesson-line">GPU = Graphics Processing Unit</p><p class="lesson-line">ใช้ประมวลผลด้าน</p><div class="spacer"></div><p class="lesson-line">ภาพ</p><p class="lesson-line">3D</p><p class="lesson-line">Video</p><p class="lesson-line">CAD</p><p class="lesson-line">AI</p><p class="lesson-line">Machine Learning</p><p class="lesson-line">Rendering</p><h3 class="lesson-sub">GPU มี 2 กลุ่มหลัก</h3><h3 class="lesson-sub">Integrated GPU</h3><p class="lesson-line">อยู่รวมกับ CPU หรือระบบหลัก</p><p class="lesson-line">เหมาะกับ</p><div class="spacer"></div><p class="lesson-line">Word</p><p class="lesson-line">Excel</p><p class="lesson-line">Web</p><p class="lesson-line">Email</p><p class="lesson-line">Video Conference</p><p class="lesson-line">งานสำนักงานทั่วไป</p><p class="lesson-line">ข้อดี</p><div class="spacer"></div><p class="lesson-line">ประหยัดไฟ</p><p class="lesson-line">ราคาถูกกว่า</p><p class="lesson-line">เครื่องเบากว่า</p><h3 class="lesson-sub">Dedicated GPU</h3><p class="lesson-line">มี GPU แยก</p><p class="lesson-line">เช่น</p><div class="spacer"></div><p class="lesson-line">NVIDIA GeForce RTX</p><p class="lesson-line">NVIDIA RTX Professional</p><p class="lesson-line">AMD Radeon</p><p class="lesson-line">เหมาะกับ</p><div class="spacer"></div><p class="lesson-line">Graphic</p><p class="lesson-line">Video Editing</p><p class="lesson-line">CAD</p><p class="lesson-line">Engineering</p><p class="lesson-line">3D</p><p class="lesson-line">AI</p><h3 class="lesson-sub">VRAM คืออะไร?</h3><p class="lesson-line">เป็น Memory ของ GPU</p><p class="lesson-line">เช่น</p><div class="spacer"></div><p class="lesson-line">4GB</p><p class="lesson-line">8GB</p><p class="lesson-line">12GB</p><p class="lesson-line">16GB</p><p class="lesson-line">งานบางประเภท โดยเฉพาะ</p><div class="spacer"></div><p class="lesson-line">3D</p><p class="lesson-line">AI</p><p class="lesson-line">Video</p><p class="lesson-line">Model ขนาดใหญ่</p><p class="lesson-line">ต้องใช้ VRAM มากขึ้น</p><h3 class="lesson-sub">จุดที่ Procurement มักพลาด</h3><p class="lesson-line">อย่าดูแค่ชื่อ RTX</p><p class="lesson-line">เช่น</p><p class="lesson-line">RTX รุ่นเดียวกันใน Notebook และ Desktop</p><div class="key-point">★ Performance อาจไม่เท่ากัน</div><p class="lesson-line">เพราะ Power Limit และระบบระบายความร้อนต่างกัน</p><h3 class="lesson-sub">กรณี AI</h3><p class="lesson-line">ถ้าฝ่าย IT บอก</p><div class="spacer"></div><p class="lesson-line">ต้องการ GPU สำหรับ AI</p><p class="lesson-line">อย่าหยุดที่คำว่า</p><div class="spacer"></div><blockquote>“ต้องการ RTX”</blockquote><p class="lesson-line">ควรถาม</p><div class="spacer"></div><div class="question">❓ ใช้ AI แบบไหน?</div><div class="question">❓ Training หรือ Inference?</div><div class="question">❓ ต้องการ VRAM เท่าไร?</div><div class="question">❓ Software รองรับ GPU ตัวใด?</div><div class="question">❓ ต้องการ NVIDIA CUDA หรือไม่?</div><p class="lesson-line">Procurement ไม่ต้องตอบเอง แต่ต้องรู้ว่า คำถามเหล่านี้สำคัญ</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-3">
-<div class="section-kicker">SECTION 03</div>
-<h2>PART 4 — RAM</h2><figure class="lesson-visual"><img alt="ภาพประกอบ RAM และโมดูลหน่วยความจำ" decoding="async" loading="lazy" src="assets/course-day1/04-ram.svg"/><figcaption><strong>RAM:</strong> Capacity อย่างเดียวไม่พอ ต้องดู DDR, ECC/Non-ECC, Form Factor, Slot และการอัปเกรด</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 27–33 นาที</div><h3 class="lesson-sub">RAM คืออะไร?</h3><p class="lesson-line">RAM คือ Memory ชั่วคราวที่โปรแกรมใช้ระหว่างทำงาน</p><p class="lesson-line">เปรียบเทียบง่าย ๆ</p><p class="lesson-line">CPU = คนทำงาน</p><p class="lesson-line">RAM = โต๊ะทำงาน</p><p class="lesson-line">Storage = ตู้เก็บเอกสาร</p><p class="lesson-line">ถ้าโต๊ะเล็กมาก ถึงคนทำงานจะเร็ว ก็ต้องคอยเก็บและหยิบของตลอด</p><h3 class="lesson-sub">Capacity</h3><p class="lesson-line">ตัวอย่าง</p><div class="spacer"></div><p class="lesson-line">8GB</p><p class="lesson-line">งานพื้นฐาน</p><div class="spacer"></div><p class="lesson-line">16GB</p><p class="lesson-line">เหมาะกับงานสำนักงานทั่วไป</p><div class="spacer"></div><p class="lesson-line">32GB</p><p class="lesson-line">งานหนักขึ้น เช่น</p><div class="spacer"></div><p class="lesson-line">Programming</p><p class="lesson-line">Graphic</p><p class="lesson-line">Data</p><p class="lesson-line">VM</p><p class="lesson-line">Engineering</p><p class="lesson-line">64GB+</p><p class="lesson-line">พบใน</p><div class="spacer"></div><h3 class="lesson-sub">Workstation</h3><h3 class="lesson-sub">Server</h3><p class="lesson-line">Virtualization</p><p class="lesson-line">งาน Data / AI บางประเภท</p><h3 class="lesson-sub">DDR4 / DDR5</h3><p class="lesson-line">เป็น Generation ของ RAM</p><p class="lesson-line">DDR5 ใหม่กว่า DDR4</p><p class="lesson-line">แต่ประเด็น Procurement ที่สำคัญกว่าความเร็วคือ</p><div class="spacer"></div><p class="lesson-line">Compatibility</p><p class="lesson-line">Mainboard ที่รองรับ DDR4 ไม่สามารถเอา DDR5 ไปใส่แทนได้ตรง ๆ</p><h3 class="lesson-sub">DIMM / SO-DIMM</h3><h3 class="lesson-sub">DIMM</h3><p class="lesson-line">พบใน Desktop / Server</p><div class="spacer"></div><h3 class="lesson-sub">SO-DIMM</h3><p class="lesson-line">ขนาดเล็กกว่า พบใน Notebook หลายรุ่น</p><h3 class="lesson-sub">ECC RAM</h3><p class="lesson-line">พบใน Server / Workstation</p><p class="lesson-line">ECC สามารถช่วยตรวจและแก้ Memory Error บางประเภทได้</p><p class="lesson-line">เหมาะกับระบบที่ต้องการ Reliability สูง</p><h3 class="lesson-sub">จุดที่ต้องถามเพิ่ม</h3><p class="lesson-line">Requirement:</p><div class="spacer"></div><p class="lesson-line">RAM 32GB</p><p class="lesson-line">ยังไม่ครบเสมอไป</p><p class="lesson-line">อาจต้องรู้ว่า</p><div class="spacer"></div><p class="lesson-line">DDR4 หรือ DDR5</p><p class="lesson-line">ECC หรือ Non-ECC</p><p class="lesson-line">จำนวน Slot</p><p class="lesson-line">16GB × 2 หรือ 32GB × 1</p><p class="lesson-line">สามารถ Upgrade ต่อได้หรือไม่</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-4">
-<div class="section-kicker">SECTION 04</div>
-<h2>PART 5 — STORAGE</h2><figure class="lesson-visual"><img alt="ภาพเปรียบเทียบ HDD SATA SSD และ NVMe SSD" decoding="async" loading="lazy" src="assets/course-day1/05-storage.svg"/><figcaption><strong>Storage:</strong> ความจุเท่ากันไม่ได้แปลว่าเทียบเท่ากัน เพราะ Technology, Interface และ Performance ต่างกัน</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 33–40 นาที</div><h3 class="lesson-sub">HDD</h3><p class="lesson-line">ใช้จานหมุน</p><p class="lesson-line">ข้อดี</p><div class="spacer"></div><p class="lesson-line">ราคาต่อ TB ต่ำ</p><p class="lesson-line">เหมาะกับเก็บข้อมูลจำนวนมาก</p><p class="lesson-line">ข้อเสีย</p><div class="spacer"></div><p class="lesson-line">ช้ากว่า SSD</p><p class="lesson-line">มีชิ้นส่วนเคลื่อนไหว</p><p class="lesson-line">เหมาะกับ</p><div class="spacer"></div><p class="lesson-line">Archive</p><p class="lesson-line">Backup</p><p class="lesson-line">File Storage</p><h3 class="lesson-sub">SSD</h3><p class="lesson-line">ไม่มีจานหมุน</p><p class="lesson-line">ข้อดี</p><div class="spacer"></div><p class="lesson-line">เร็ว</p><p class="lesson-line">เปิดเครื่องเร็ว</p><p class="lesson-line">เปิดโปรแกรมเร็ว</p><h3 class="lesson-sub">SATA SSD</h3><p class="lesson-line">ใช้ Interface SATA</p><p class="lesson-line">ความเร็วต่ำกว่า NVMe แต่ยังเร็วกว่า HDD มาก</p><h3 class="lesson-sub">NVMe SSD</h3><p class="lesson-line">ใช้ PCIe/NVMe</p><p class="lesson-line">เร็วกว่า SATA SSD ในหลายสถานการณ์</p><p class="lesson-line">พบมากใน Notebook / Desktop รุ่นใหม่</p><h3 class="lesson-sub">Capacity</h3><p class="lesson-line">เช่น</p><div class="spacer"></div><p class="lesson-line">256GB</p><p class="lesson-line">512GB</p><p class="lesson-line">1TB</p><p class="lesson-line">2TB</p><p class="lesson-line">4TB</p><h3 class="lesson-sub">สิ่งที่ต้องระวัง</h3><p class="lesson-line">Requirement เขียน</p><div class="spacer"></div><p class="lesson-line">SSD 1TB</p><p class="lesson-line">Vendor เสนอ</p><div class="spacer"></div><p class="lesson-line">HDD 1TB</p><p class="lesson-line">ความจุเท่ากัน แต่สินค้าไม่เทียบเท่า</p><p class="lesson-line">เพราะ Technology และ Performance ต่างกัน</p><p class="lesson-line">อีกตัวอย่าง:</p><p class="lesson-line">Requirement</p><div class="spacer"></div><p class="lesson-line">1TB NVMe SSD</p><p class="lesson-line">เสนอ</p><div class="spacer"></div><p class="lesson-line">1TB SATA SSD</p><p class="lesson-line">ความจุเท่ากัน แต่ Interface และ Performance ต่าง</p><p class="lesson-line">อาจไม่ Equivalent</p><h3 class="lesson-sub">สรุป Hardware แบบจำง่าย</h3><p class="lesson-line">ให้ผู้เรียนจำตารางนี้</p><div class="table-wrap"><table><thead><tr><th>ส่วนประกอบ</th><th>หน้าที่</th><th>เวลาจัดซื้อดูอะไร</th></tr></thead><tbody><tr><td>CPU</td><td>ประมวลผล</td><td>Model / Gen / Core / Performance</td></tr><tr><td>GPU</td><td>กราฟิก / AI</td><td>Model / VRAM / Compatibility</td></tr><tr><td>RAM</td><td>Memory ขณะทำงาน</td><td>Capacity / DDR / ECC</td></tr><tr><td>Storage</td><td>เก็บข้อมูล</td><td>SSD/HDD / NVMe/SATA / Capacity</td></tr></tbody></table></div><div class="duration">⏱ เวลา 40–60 นาที</div><figure class="lesson-visual"><img alt="ภาพเปรียบเทียบ Notebook Desktop Workstation และ Server" decoding="async" loading="lazy" src="assets/course-day1/06-device-types.svg"/><figcaption><strong>ประเภทเครื่อง:</strong> Notebook, Desktop, Workstation และ Server ออกแบบมาคนละวัตถุประสงค์ แม้สเปคหลักจะดูใกล้กัน</figcaption></figure><h3 class="lesson-sub">Notebook</h3><p class="lesson-line">เหมาะกับ</p><div class="spacer"></div><p class="lesson-line">พนักงานทั่วไป</p><p class="lesson-line">Sales</p><p class="lesson-line">Management</p><p class="lesson-line">Hybrid Work</p><p class="lesson-line">WFH</p><p class="lesson-line">เวลาจัดซื้อควรดู</p><div class="spacer"></div><p class="lesson-line">Performance</p><p class="lesson-line">CPU</p><p class="lesson-line">RAM</p><p class="lesson-line">Storage</p><p class="lesson-line">Display</p><p class="lesson-line">ขนาด</p><p class="lesson-line">Resolution</p><p class="lesson-line">Connectivity</p><p class="lesson-line">USB</p><p class="lesson-line">USB-C</p><p class="lesson-line">HDMI</p><p class="lesson-line">LAN</p><p class="lesson-line">Wi-Fi</p><p class="lesson-line">Bluetooth</p><p class="lesson-line">Mobility</p><p class="lesson-line">น้ำหนัก</p><p class="lesson-line">Battery</p><p class="lesson-line">OS</p><p class="lesson-line">Windows Home / Pro</p><p class="lesson-line">Warranty</p><p class="lesson-line">1 ปี</p><p class="lesson-line">3 ปี</p><p class="lesson-line">On-site</p><p class="lesson-line">Carry-in</p><h3 class="lesson-sub">Business Notebook vs Consumer Notebook</h3><p class="lesson-line">จุดนี้มีประโยชน์กับ Procurement มาก</p><p class="lesson-line">Notebook Business อาจแพงกว่าสเปค CPU/RAM ใกล้กัน เพราะราคาไม่ได้มาจาก Performance อย่างเดียว</p><p class="lesson-line">อาจต่างกันเรื่อง</p><div class="spacer"></div><p class="lesson-line">Warranty</p><p class="lesson-line">On-site Support</p><p class="lesson-line">Chassis</p><p class="lesson-line">Security</p><p class="lesson-line">Docking</p><p class="lesson-line">Spare Part Availability</p><p class="lesson-line">Product Lifecycle</p><p class="lesson-line">Management Features</p><p class="lesson-line">ดังนั้น</p><div class="spacer"></div><p class="lesson-line">Notebook 30,000 บาท กับ 40,000 บาท ที่ CPU/RAM เท่ากัน ไม่ได้แปลว่าเครื่อง 40,000 แพงเกินเหตุเสมอไป</p><h3 class="lesson-sub">Desktop</h3><p class="lesson-line">ข้อดี</p><div class="spacer"></div><p class="lesson-line">Upgrade ง่ายกว่า</p><p class="lesson-line">Performance ต่อราคาดี</p><p class="lesson-line">Cooling ดีกว่า</p><p class="lesson-line">Maintenance ง่าย</p><p class="lesson-line">เหมาะกับ</p><div class="spacer"></div><p class="lesson-line">Office ประจำโต๊ะ</p><p class="lesson-line">Graphic</p><p class="lesson-line">Engineering</p><h3 class="lesson-sub">Workstation</h3><p class="lesson-line">คอมพิวเตอร์ระดับ Professional</p><p class="lesson-line">อาจใช้</p><div class="spacer"></div><p class="lesson-line">CPU ระดับสูง</p><p class="lesson-line">Professional GPU</p><h3 class="lesson-sub">ECC RAM</h3><p class="lesson-line">Certification จาก Software Vendor</p><p class="lesson-line">ใช้กับ</p><div class="spacer"></div><p class="lesson-line">CAD</p><p class="lesson-line">Engineering</p><p class="lesson-line">Architecture</p><p class="lesson-line">3D</p><p class="lesson-line">Scientific Work</p><h3 class="lesson-sub">Server</h3><p class="lesson-line">Server ไม่ใช่แค่ Desktop ที่แรงกว่า</p><p class="lesson-line">ออกแบบมาเพื่อ</p><div class="spacer"></div><p class="lesson-line">ทำงานต่อเนื่อง</p><p class="lesson-line">รองรับ User หลายคน</p><p class="lesson-line">Reliability</p><p class="lesson-line">Serviceability</p><p class="lesson-line">อาจมี</p><div class="spacer"></div><p class="lesson-line">Xeon / EPYC</p><h3 class="lesson-sub">ECC RAM</h3><p class="lesson-line">RAID Controller</p><p class="lesson-line">Hot Swap Disk</p><h3 class="lesson-sub">Redundant PSU</h3><p class="lesson-line">Remote Management</p><h3 class="lesson-sub">Hot Swap</h3><p class="lesson-line">เปลี่ยนอุปกรณ์บางชนิด เช่น Disk โดยไม่ต้อง Shutdown ระบบในบาง Configuration</p><h3 class="lesson-sub">Redundant PSU</h3><p class="lesson-line">มี Power Supply มากกว่า 1 ตัว</p><p class="lesson-line">ถ้าตัวหนึ่งเสีย อีกตัวสามารถช่วยให้ Server ทำงานต่อได้ตามการออกแบบ</p><h3 class="lesson-sub">ตัวอย่างคำถาม</h3><p class="lesson-line">Vendor เสนอ</p><div class="spacer"></div><p class="lesson-line">CPU เท่ากัน</p><p class="lesson-line">RAM เท่ากัน</p><p class="lesson-line">SSD เท่ากัน</p><div class="question">❓ เครื่อง 2 รุ่นถือว่าเหมือนกันหรือไม่?</div><div class="answer-label">คำตอบ</div><div class="spacer"></div><p class="lesson-line">ยังไม่พอ</p><p class="lesson-line">ต้องดูเพิ่ม</p><div class="spacer"></div><p class="lesson-line">Port</p><p class="lesson-line">Screen</p><p class="lesson-line">Battery</p><p class="lesson-line">Warranty</p><p class="lesson-line">Upgrade</p><p class="lesson-line">OS</p><p class="lesson-line">Business Feature</p><p class="lesson-line">Support</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-5">
-<div class="section-kicker">SECTION 05</div>
-<h2>PART 7 — OPERATING SYSTEM</h2><figure class="lesson-visual"><img alt="ภาพประกอบระบบปฏิบัติการและซอฟต์แวร์" decoding="async" loading="lazy" src="assets/course-day1/07-os-software.svg"/><figcaption><strong>Operating System:</strong> Home, Pro และ Server มีฟีเจอร์และเงื่อนไขใช้งานต่างกัน</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 60–70 นาที</div><h3 class="lesson-sub">OS คืออะไร?</h3><p class="lesson-line">Operating System คือ Software หลักที่ควบคุม Hardware และ Application</p><p class="lesson-line">ตัวอย่าง</p><div class="spacer"></div><p class="lesson-line">Windows</p><h3 class="lesson-sub">Windows Server</h3><h3 class="lesson-sub">Linux</h3><h3 class="lesson-sub">macOS</h3><h3 class="lesson-sub">Windows 11 Home</h3><p class="lesson-line">เหมาะกับผู้ใช้ทั่วไป</p><div class="spacer"></div><h3 class="lesson-sub">Windows 11 Pro</h3><p class="lesson-line">มี Feature สำหรับ Business เพิ่มขึ้น</p><p class="lesson-line">เช่น</p><div class="spacer"></div><p class="lesson-line">Domain Join</p><p class="lesson-line">BitLocker</p><p class="lesson-line">Remote Desktop Host</p><p class="lesson-line">Business Management Features บางส่วน</p><p class="lesson-line">ดังนั้นถ้า Requirement ระบุ</p><div class="spacer"></div><h3 class="lesson-sub">Windows 11 Pro</h3><p class="lesson-line">เครื่องที่มาพร้อม Windows Home</p><p class="lesson-line">ไม่ควรถูกมองว่า Equivalent โดยอัตโนมัติ</p><h3 class="lesson-sub">Windows Server</h3><p class="lesson-line">ออกแบบสำหรับ Server</p><p class="lesson-line">ใช้กับระบบ เช่น</p><div class="spacer"></div><p class="lesson-line">Active Directory</p><p class="lesson-line">File Server</p><p class="lesson-line">Application</p><p class="lesson-line">Database</p><p class="lesson-line">Infrastructure Service</p><p class="lesson-line">Windows 11 Pro กับ Windows Server ไม่ใช่ของแทนกัน</p><h3 class="lesson-sub">Linux</h3><p class="lesson-line">เป็น OS ที่นิยมใน</p><div class="spacer"></div><h3 class="lesson-sub">Server</h3><p class="lesson-line">Cloud</p><p class="lesson-line">Web Server</p><p class="lesson-line">Development</p><p class="lesson-line">Infrastructure</p><p class="lesson-line">ตัวอย่าง Distribution</p><div class="spacer"></div><p class="lesson-line">Ubuntu</p><p class="lesson-line">Red Hat</p><p class="lesson-line">Debian</p><p class="lesson-line">บางตัวฟรี บางตัวมี Subscription / Support</p><p class="lesson-line">ดังนั้นคำว่า</p><div class="spacer"></div><blockquote>“Linux ฟรี”</blockquote><p class="lesson-line">ไม่ถูกต้องในทุกสถานการณ์</p><h3 class="lesson-sub">macOS</h3><p class="lesson-line">ใช้กับเครื่อง Apple</p><p class="lesson-line">Licensing และ Hardware Model แตกต่างจาก Windows PC</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-6">
-<div class="section-kicker">SECTION 06</div>
-<h2>PART 8 — SOFTWARE &amp; MICROSOFT</h2><figure class="lesson-visual"><img alt="ภาพประกอบ Software Microsoft และ Cloud Service" decoding="async" loading="lazy" src="assets/course-day1/07-os-software.svg"/><figcaption><strong>Software &amp; Microsoft:</strong> ต้องดู Product/Plan, จำนวน User, ระยะเวลา และบริการที่รวมอยู่</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 70–85 นาที</div><h3 class="lesson-sub">Software มีหลายแบบ</h3><h3 class="lesson-sub">Installed Software</h3><p class="lesson-line">ติดตั้งในเครื่อง</p><p class="lesson-line">เช่น</p><div class="spacer"></div><p class="lesson-line">Office</p><p class="lesson-line">AutoCAD</p><p class="lesson-line">Photoshop</p><h3 class="lesson-sub">Web Application</h3><p class="lesson-line">ใช้งานผ่าน Browser</p><div class="spacer"></div><h3 class="lesson-sub">SaaS</h3><p class="lesson-line">Software as a Service</p><p class="lesson-line">เช่น Software ที่คิดค่าบริการราย User / Month</p><h3 class="lesson-sub">Microsoft Office แบบซื้อขาด</h3><p class="lesson-line">เช่น Office รุ่นที่ขายแบบ Perpetual</p><p class="lesson-line">ผู้ซื้อได้สิทธิ์ใช้ Version ที่ซื้อ ตามเงื่อนไข License</p><p class="lesson-line">ไม่ได้หมายความว่าจะได้รับ Version ใหม่ตลอด</p><h3 class="lesson-sub">Microsoft 365</h3><p class="lesson-line">เป็น Subscription Service</p><p class="lesson-line">คิดเป็น</p><div class="spacer"></div><p class="lesson-line">รายเดือน</p><p class="lesson-line">รายปี</p><p class="lesson-line">ขึ้นอยู่กับ Plan / Agreement</p><p class="lesson-line">อาจประกอบด้วย</p><div class="spacer"></div><p class="lesson-line">Word</p><p class="lesson-line">Excel</p><p class="lesson-line">PowerPoint</p><p class="lesson-line">Outlook</p><h3 class="lesson-sub">Exchange Online</h3><h3 class="lesson-sub">OneDrive</h3><h3 class="lesson-sub">SharePoint</h3><h3 class="lesson-sub">Teams</h3><p class="lesson-line">แต่</p><div class="spacer"></div><p class="lesson-line">Microsoft 365 ทุก Plan ไม่ได้มี Feature เหมือนกัน</p><p class="lesson-line">ตัวอย่างที่เจอในการจัดซื้อ</p><p class="lesson-line">Vendor A</p><div class="spacer"></div><p class="lesson-line">Microsoft 365 Business Basic</p><p class="lesson-line">Vendor B</p><div class="spacer"></div><p class="lesson-line">Microsoft 365 Business Standard</p><div class="key-point">★ ราคาไม่เท่ากัน</div><p class="lesson-line">อย่าเทียบแค่</p><div class="spacer"></div><blockquote>“Microsoft 365 เหมือนกัน”</blockquote><p class="lesson-line">เพราะ Plan ต่างกัน Feature ต่างกัน</p><h3 class="lesson-sub">Exchange Online</h3><p class="lesson-line">Email Service ของ Microsoft</p><h3 class="lesson-sub">OneDrive</h3><p class="lesson-line">Cloud Storage สำหรับ User</p><h3 class="lesson-sub">SharePoint</h3><p class="lesson-line">ใช้จัดเก็บและทำงานร่วมกันภายในองค์กร</p><h3 class="lesson-sub">Teams</h3><p class="lesson-line">Communication / Collaboration</p><h3 class="lesson-sub">สิ่งที่ Procurement ต้องจำ</h3><p class="lesson-line">เวลาเจอ Microsoft ให้ถาม:</p><div class="spacer"></div><div class="question">❓ Product/Plan อะไร?</div><div class="question">❓ จำนวนกี่ User?</div><div class="question">❓ License กี่ปี?</div><div class="question">❓ New Subscription หรือ Renewal?</div><div class="question">❓ รวม Service อะไร?</div><div class="question">❓ Tax / Support / Migration รวมไหม?</div></div>
-</section><section class="lesson-card" data-progress-section="" id="section-7">
-<div class="section-kicker">SECTION 07</div>
-<h2>PART 9 — SOFTWARE LICENSING</h2><figure class="lesson-visual"><img alt="ภาพประกอบรูปแบบ Software License" decoding="async" loading="lazy" src="assets/course-day1/08-licensing.svg"/><figcaption><strong>Software Licensing:</strong> แยก Subscription, Perpetual, User, Device, Concurrent และ Server/Core ให้ถูก</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 85–105 นาที</div><p class="lesson-line">นี่เป็นจุดที่ Procurement ควรเข้าใจให้ดี</p><div class="spacer"></div><div class="key-point">★ License ≠ Software File</div><p class="lesson-line">License คือ สิทธิ์ในการใช้งาน</p><h3 class="lesson-sub">Subscription</h3><p class="lesson-line">จ่ายตามระยะเวลา</p><p class="lesson-line">เช่น</p><p class="lesson-line">1 Year</p><p class="lesson-line">หมดอายุแล้วต้อง Renewal หากต้องการใช้งาน Service ต่อ</p><h3 class="lesson-sub">Perpetual</h3><p class="lesson-line">สิทธิ์ใช้งาน Version ที่ซื้อแบบไม่มีวันหมดอายุตามข้อตกลงของ Product นั้น</p><p class="lesson-line">แต่อาจไม่ได้รวม</p><div class="spacer"></div><p class="lesson-line">Upgrade Version</p><p class="lesson-line">Support ตลอดไป</p><p class="lesson-line">Cloud Service</p><h3 class="lesson-sub">OEM</h3><p class="lesson-line">Software ที่มากับ Hardware</p><p class="lesson-line">ตัวอย่างที่พบง่าย</p><p class="lesson-line">Windows OEM ที่มากับ Notebook</p><p class="lesson-line">โดยทั่วไปผูกกับ Hardware ตามเงื่อนไขของ Product</p><h3 class="lesson-sub">Retail</h3><p class="lesson-line">ซื้อ License แยกจาก Hardware</p><p class="lesson-line">รายละเอียดสิทธิ์ในการย้ายเครื่องต้องตรวจสอบตาม Product Terms</p><h3 class="lesson-sub">User License</h3><p class="lesson-line">คิดตามจำนวนผู้ใช้</p><p class="lesson-line">เช่น</p><p class="lesson-line">100 Users</p><h3 class="lesson-sub">Device License</h3><p class="lesson-line">คิดตามจำนวน Device</p><p class="lesson-line">เช่น</p><p class="lesson-line">100 Computers</p><h3 class="lesson-sub">Concurrent License</h3><p class="lesson-line">คิดตามจำนวนคนที่ใช้งานพร้อมกัน</p><p class="lesson-line">ตัวอย่าง:</p><p class="lesson-line">องค์กรมีพนักงาน 100 คน</p><p class="lesson-line">แต่ Software อนุญาต Concurrent 20 Users</p><p class="lesson-line">หมายความว่ามีผู้ใช้พร้อมกันได้ตามจำนวน License ที่กำหนด</p><h3 class="lesson-sub">Server / Core Licensing</h3><p class="lesson-line">Software Enterprise บางประเภทคิดจาก</p><div class="spacer"></div><h3 class="lesson-sub">Server</h3><p class="lesson-line">CPU</p><p class="lesson-line">Core</p><p class="lesson-line">ตรงนี้ไม่ต้องให้ผู้เรียนคำนวณเอง</p><p class="lesson-line">แต่ต้องรู้ว่า</p><div class="spacer"></div><blockquote>“จำนวน User” ไม่ใช่ Metric เดียวของ Software License</blockquote><h3 class="lesson-sub">CAL</h3><p class="lesson-line">CAL = Client Access License</p><p class="lesson-line">พบใน Microsoft Server Products บางประเภท</p><p class="lesson-line">เป็นสิทธิ์สำหรับ User หรือ Device ในการเข้าถึง Server Service ตาม Licensing Rule ของ Product นั้น</p><p class="lesson-line">สำหรับ Procurement ให้รู้ Concept ก่อน</p><p class="lesson-line">ไม่จำเป็นต้องลงสูตร Licensing ลึกในคลาสแรก</p><h3 class="lesson-sub">Maintenance / Support</h3><p class="lesson-line">Software บางตัวมี</p><div class="spacer"></div><p class="lesson-line">License</p><p class="lesson-line">Maintenance</p><p class="lesson-line">Support</p><p class="lesson-line">แยกกัน</p><p class="lesson-line">เช่น</p><p class="lesson-line">License 100,000</p><p class="lesson-line">Annual Support 20,000</p><p class="lesson-line">ดังนั้นต้องถามว่า</p><div class="spacer"></div><div class="question">❓ ราคานี้รวม Support ปีถัดไปหรือไม่?</div><h3 class="lesson-sub">Renewal</h3><p class="lesson-line">คือการต่ออายุ</p><p class="lesson-line">Procurement ควรเก็บข้อมูล</p><div class="spacer"></div><p class="lesson-line">วันเริ่ม</p><p class="lesson-line">วันหมดอายุ</p><p class="lesson-line">จำนวน License</p><p class="lesson-line">Contract</p><p class="lesson-line">Vendor</p><p class="lesson-line">Renewal Date</p><p class="lesson-line">เพราะ License หมดอายุสามารถกระทบระบบงานได้</p><h3 class="lesson-sub">ตัวอย่างใบเสนอราคา</h3><p class="lesson-line">Microsoft 365 Business Standard</p><p class="lesson-line">Qty: 50 Users</p><p class="lesson-line">Term: 12 Months</p><p class="lesson-line">ตีความว่า</p><div class="spacer"></div><p class="lesson-line">Product</p><p class="lesson-line">Microsoft 365 Business Standard</p><div class="spacer"></div><p class="lesson-line">Quantity</p><p class="lesson-line">50 Users</p><div class="spacer"></div><p class="lesson-line">Term</p><p class="lesson-line">12 เดือน</p><p class="lesson-line">แล้วต้องตรวจเพิ่มว่า</p><div class="spacer"></div><p class="lesson-line">New หรือ Renewal</p><p class="lesson-line">Start Date</p><p class="lesson-line">Tax</p><p class="lesson-line">Support</p><p class="lesson-line">Implementation</p><p class="lesson-line">Migration</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-8">
-<div class="section-kicker">SECTION 08</div>
-<h2>PART 10 — วิธีอ่าน SPECIFICATION &amp; QUOTATION</h2><figure class="lesson-visual"><img alt="ภาพประกอบ Requirement และการเทียบ Quotation" decoding="async" loading="lazy" src="assets/course-day1/09-quotation.svg"/><figcaption><strong>Specification &amp; Quotation:</strong> เทียบ Model/SKU, Spec, Warranty, License, Service, Lead Time และ EOL/EOS ทีละข้อ</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 105–115 นาที</div><h3 class="lesson-sub">เวลารับ Quotation ให้ไล่ตามนี้</h3><div class="spacer"></div><div class="numbered"><span>1</span><strong>Brand</strong></div><p class="lesson-line">เช่น</p><p class="lesson-line">Dell / HP / Lenovo</p><div class="numbered"><span>2</span><strong>Model</strong></div><p class="lesson-line">ชื่อรุ่นสินค้า</p><p class="lesson-line">แต่ยังไม่พอ</p><div class="numbered"><span>3</span><strong>Part Number / SKU</strong></div><p class="lesson-line">สำคัญมาก</p><p class="lesson-line">เพราะ Model เดียวกันอาจมีหลาย Configuration</p><p class="lesson-line">ตัวอย่าง</p><p class="lesson-line">Notebook ชื่อรุ่นเดียวกัน</p><p class="lesson-line">แต่ SKU A</p><div class="spacer"></div><p class="lesson-line">RAM 16GB</p><p class="lesson-line">SSD 512GB</p><p class="lesson-line">Windows Home</p><p class="lesson-line">SKU B</p><div class="spacer"></div><p class="lesson-line">RAM 32GB</p><p class="lesson-line">SSD 1TB</p><p class="lesson-line">Windows Pro</p><p class="lesson-line">ดังนั้น</p><div class="spacer"></div><div class="key-point">★ ชื่อ Model เหมือนกัน ไม่ได้แปลว่า Spec เหมือนกัน</div><div class="numbered"><span>4</span><strong>Specification</strong></div><p class="lesson-line">ตรวจทีละรายการ</p><div class="spacer"></div><p class="lesson-line">CPU</p><p class="lesson-line">GPU</p><p class="lesson-line">RAM</p><p class="lesson-line">Storage</p><p class="lesson-line">Display</p><p class="lesson-line">Network</p><p class="lesson-line">Port</p><p class="lesson-line">OS</p><div class="numbered"><span>5</span><strong>Quantity</strong></div><p class="lesson-line">จำนวนตรงกับ Requirement หรือไม่</p><div class="numbered"><span>6</span><strong>Warranty</strong></div><p class="lesson-line">ดูว่า</p><div class="spacer"></div><p class="lesson-line">กี่ปี</p><p class="lesson-line">On-site หรือ Carry-in</p><p class="lesson-line">Next Business Day หรือไม่</p><p class="lesson-line">Parts + Labor หรือไม่</p><div class="numbered"><span>7</span><strong>License</strong></div><p class="lesson-line">ถ้ามี Software</p><p class="lesson-line">ดู</p><div class="spacer"></div><p class="lesson-line">Product</p><p class="lesson-line">Edition</p><p class="lesson-line">User/Device</p><p class="lesson-line">Quantity</p><p class="lesson-line">Term</p><div class="numbered"><span>8</span><strong>Service</strong></div><p class="lesson-line">ดูว่าราคารวม</p><div class="spacer"></div><p class="lesson-line">Installation</p><p class="lesson-line">Configuration</p><p class="lesson-line">Delivery</p><p class="lesson-line">Training</p><p class="lesson-line">Migration</p><p class="lesson-line">หรือไม่</p><div class="numbered"><span>9</span><strong>Lead Time</strong></div><div class="question">❓ ของส่งเมื่อไร?</div><p class="lesson-line">IT Hardware บางรายการต้องรอหลายสัปดาห์</p><div class="numbered"><span>10</span><strong>EOL / EOS</strong></div><p class="lesson-line">ถ้าเป็นขององค์กรหรือ Network/Server</p><p class="lesson-line">ควรเช็กว่าสินค้าใกล้เลิกผลิตหรือหมด Support หรือไม่</p><h3 class="lesson-sub">ตัวอย่าง Workshop จริง</h3><p class="lesson-line">ฝ่าย IT ส่ง Requirement:</p><div class="spacer"></div><p class="lesson-line">Business Notebook</p><p class="lesson-line">Intel Core i7</p><p class="lesson-line">RAM 16GB</p><p class="lesson-line">SSD 512GB NVMe</p><h3 class="lesson-sub">Windows 11 Pro</h3><p class="lesson-line">Wi-Fi 6</p><p class="lesson-line">Warranty 3 Years</p><p class="lesson-line">Vendor A เสนอ:</p><div class="spacer"></div><p class="lesson-line">Core i7</p><p class="lesson-line">RAM 16GB</p><p class="lesson-line">SSD 512GB</p><h3 class="lesson-sub">Windows 11 Home</h3><p class="lesson-line">Wi-Fi 6</p><p class="lesson-line">Warranty 3 Years</p><p class="lesson-line">ราคา 31,000</p><p class="lesson-line">Vendor B เสนอ:</p><div class="spacer"></div><p class="lesson-line">Core Ultra 5</p><p class="lesson-line">RAM 16GB</p><p class="lesson-line">SSD 1TB NVMe</p><h3 class="lesson-sub">Windows 11 Pro</h3><p class="lesson-line">Wi-Fi 6E</p><p class="lesson-line">Warranty 3 Years</p><p class="lesson-line">ราคา 33,000</p><p class="lesson-line">ถามผู้เรียน:</p><div class="spacer"></div><div class="question">❓ ตัวไหนเลือกได้ทันที?</div><h3 class="lesson-sub">วิเคราะห์ Vendor A</h3><p class="lesson-line">CPU ดูเหมือนตรง</p><p class="lesson-line">RAM ตรง</p><p class="lesson-line">SSD ต้องเช็กว่าเป็น NVMe หรือไม่</p><p class="lesson-line">Windows Home ไม่ตรง Requirement</p><p class="lesson-line">ดังนั้นยังไม่ผ่าน</p><h3 class="lesson-sub">วิเคราะห์ Vendor B</h3><p class="lesson-line">RAM ผ่าน</p><p class="lesson-line">SSD สูงกว่า</p><p class="lesson-line">Windows ผ่าน</p><p class="lesson-line">Wi-Fi ผ่านหรือสูงกว่า</p><p class="lesson-line">Warranty ผ่าน</p><p class="lesson-line">แต่ CPU:</p><div class="spacer"></div><div class="question">❓ Core Ultra 5 เทียบกับ Core i7 ได้หรือไม่?</div><p class="lesson-line">ยังต้องเช็ก Model เต็ม + Performance</p><p class="lesson-line">ดังนั้นยังไม่ควรสรุปจากชื่อ CPU</p><h3 class="lesson-sub">คำตอบที่ต้องการจากผู้เรียน</h3><p class="lesson-line">ไม่เลือกจาก</p><div class="spacer"></div><blockquote>“i7 ดีกว่า Ultra 5”</blockquote><p class="lesson-line">และไม่เลือกจาก</p><div class="spacer"></div><blockquote>“ตัว B แพงกว่าเลยน่าจะดีกว่า”</blockquote><p class="lesson-line">แต่ต้องเทียบ Requirement ทีละข้อ</p><div class="key-point">★ นี่คือ Procurement Mindset ที่ถูกต้อง</div></div>
-</section><section class="lesson-card" data-progress-section="" id="section-9">
-<div class="section-kicker">SECTION 09</div>
-<h2>MINI WORKSHOP ปิดคลาส</h2><figure class="lesson-visual"><img alt="ภาพประกอบ Mini Workshop การเปรียบเทียบสเปค" decoding="async" loading="lazy" src="assets/course-day1/10-workshop.svg"/><figcaption><strong>Mini Workshop:</strong> ตอบให้ได้ว่าผ่าน ไม่ผ่าน หรือยังต้องตรวจข้อมูลเพิ่ม พร้อมเหตุผล</figcaption></figure>
-<div class="lesson-content"><div class="duration">⏱ เวลา 115–120 นาที</div><p class="lesson-line">ให้ผู้เรียนตอบเร็ว ๆ</p><div class="spacer"></div><h3 class="quiz-q">ข้อ 1</h3><p class="lesson-line">RAM 32GB DDR4</p><p class="lesson-line">สามารถแทน</p><p class="lesson-line">RAM 16GB DDR5</p><div class="question">❓ ได้หรือไม่?</div><div class="answer-label">คำตอบ</div><div class="key-point">★ ยังตอบไม่ได้</div><p class="lesson-line">Capacity สูงกว่า แต่ Technology / Compatibility ต่างกัน</p><h3 class="quiz-q">ข้อ 2</h3><p class="lesson-line">SSD 1TB SATA</p><p class="lesson-line">กับ</p><p class="lesson-line">SSD 1TB NVMe</p><div class="question">❓ เท่ากันหรือไม่?</div><div class="answer-label">คำตอบ</div><div class="key-point">★ ไม่เท่ากัน</div><p class="lesson-line">Capacity เท่ากัน แต่ Interface และ Performance ต่างกัน</p><h3 class="quiz-q">ข้อ 3</h3><h3 class="lesson-sub">Windows 11 Home</h3><div class="question">❓ ใช้แทน Requirement Windows 11 Pro ได้หรือไม่?</div><div class="answer-label">คำตอบ</div><div class="key-point">★ ไม่ควรถือว่า Equivalent</div><h3 class="quiz-q">ข้อ 4</h3><div class="question">❓ Core i7 ดีกว่า Core i5 เสมอหรือไม่?</div><div class="answer-label">คำตอบ</div><div class="key-point">★ ไม่เสมอ</div><p class="lesson-line">ต้องดู Generation และ Model เต็ม</p><h3 class="quiz-q">ข้อ 5</h3><div class="question">❓ Model Notebook เหมือนกัน เท่ากับ Spec เหมือนกันหรือไม่?</div><div class="answer-label">คำตอบ</div><div class="key-point">★ ไม่เสมอ</div><p class="lesson-line">ต้องดู Part Number / SKU</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-10">
-<div class="section-kicker">SECTION 10</div>
-<h2>Checklist ที่ให้ผู้เรียนใช้หลังคลาส</h2><figure class="lesson-visual"><img alt="ภาพประกอบ Checklist ก่อนสั่งซื้อ" decoding="async" loading="lazy" src="assets/course-day1/11-checklist.svg"/><figcaption><strong>Checklist หลังเรียน:</strong> ใช้ตรวจซ้ำก่อนออก PO หรือตัดสินใจเลือกสินค้า</figcaption></figure>
-<div class="lesson-content"><p class="lesson-line">เวลาได้รับสินค้า IT ให้ถามตามนี้</p><div class="spacer"></div><h3 class="lesson-sub">Hardware</h3><p class="lesson-line">Brand อะไร</p><p class="lesson-line">Model อะไร</p><p class="lesson-line">Part Number / SKU อะไร</p><p class="lesson-line">CPU รุ่นเต็มอะไร</p><p class="lesson-line">GPU มีหรือไม่ / รุ่นอะไร</p><p class="lesson-line">RAM เท่าไร / DDR อะไร</p><p class="lesson-line">Storage ชนิดอะไร / ความจุเท่าไร</p><p class="lesson-line">Port ที่ต้องใช้ครบหรือไม่</p><p class="lesson-line">OS Edition ถูกหรือไม่</p><p class="lesson-line">Warranty กี่ปี</p><h3 class="lesson-sub">Software</h3><p class="lesson-line">Product อะไร</p><p class="lesson-line">Edition / Plan อะไร</p><p class="lesson-line">License แบบ User หรือ Device</p><p class="lesson-line">จำนวนเท่าไร</p><p class="lesson-line">Subscription หรือ Perpetual</p><p class="lesson-line">กี่เดือน / กี่ปี</p><p class="lesson-line">New หรือ Renewal</p><p class="lesson-line">Support รวมไหม</p><h3 class="lesson-sub">Quotation</h3><p class="lesson-line">Model ถูก</p><p class="lesson-line">SKU ถูก</p><p class="lesson-line">Spec ตรง Requirement</p><p class="lesson-line">Quantity ถูก</p><p class="lesson-line">Warranty ถูก</p><p class="lesson-line">License ถูก</p><p class="lesson-line">Service รวมอะไรบ้าง</p><p class="lesson-line">Lead Time เท่าไร</p><p class="lesson-line">มีค่าใช้จ่ายต่ออายุหรือไม่</p></div>
-</section><section class="lesson-card" data-progress-section="" id="section-11">
-<div class="section-kicker">SECTION 11</div>
-<h2>สรุป 5 ประโยคที่ต้องจำจากวันที่ 1</h2><figure class="lesson-visual"><img alt="ภาพสรุป Procurement Mindset" decoding="async" loading="lazy" src="assets/course-day1/09-quotation.svg"/><figcaption><strong>Mindset สำคัญ:</strong> เปรียบเทียบจาก Requirement ทีละข้อ ไม่ตัดสินจากชื่อรุ่น ราคา หรือ Capacity เพียงอย่างเดียว</figcaption></figure>
-<div class="lesson-content"><div class="summary-num">1.</div><p class="lesson-line">ชื่อรุ่นสูงกว่า ไม่ได้แปลว่า Performance สูงกว่าเสมอ</p><div class="spacer"></div><div class="summary-num">2.</div><p class="lesson-line">Capacity เท่ากัน ไม่ได้แปลว่า Specification เท่ากัน</p><p class="lesson-line">ตัวอย่าง 1TB HDD ≠ 1TB NVMe SSD</p><div class="spacer"></div><div class="summary-num">3.</div><p class="lesson-line">สเปคสูงกว่า ไม่ได้แปลว่า Compatible</p><div class="spacer"></div><div class="summary-num">4.</div><p class="lesson-line">Software ต้องดูทั้ง Product + Edition + Quantity + License Model + Term</p><div class="spacer"></div><div class="summary-num">5.</div><div class="key-point">★ Model อย่างเดียวไม่พอ — งานจัดซื้อควรตรวจ Part Number / SKU / Datasheet ด้วย</div></div>
-</section><section class="lesson-card" data-progress-section="" id="section-12">
-<div class="section-kicker">SECTION 12</div>
-<h2>สิ่งที่ผู้เรียนควรทำได้เมื่อจบวันที่ 1</h2><figure class="lesson-visual"><img alt="ภาพประกอบการอ่าน Requirement และตรวจเงื่อนไขก่อนสั่งซื้อ" decoding="async" loading="lazy" src="assets/course-day1/12-final-requirement.svg"/><figcaption><strong>ผลลัพธ์หลังเรียน:</strong> อ่าน Requirement เป็นระบบ รู้จุดที่ต้องยืนยันกับ IT/Vendor และไม่เดาเมื่อข้อมูลไม่ครบ</figcaption></figure>
-<div class="lesson-content"><p class="lesson-line">เมื่อได้รับ Requirement แบบนี้:</p><div class="spacer"></div><p class="lesson-line">Lenovo / Dell / HP Business Notebook</p><p class="lesson-line">Intel Core Ultra 7</p><p class="lesson-line">RAM 32GB DDR5</p><p class="lesson-line">SSD 1TB NVMe</p><h3 class="lesson-sub">Windows 11 Pro</h3><p class="lesson-line">Wi-Fi 6E</p><p class="lesson-line">3 Years On-site Warranty</p><h3 class="lesson-sub">ผู้เรียนควรสามารถอ่านออกว่า:</h3><div class="spacer"></div><p class="lesson-line">Brand อาจยืดหยุ่นหรือไม่ ต้องถาม IT</p><p class="lesson-line">CPU ต้องตรวจ Model เต็ม</p><p class="lesson-line">RAM ต้อง 32GB และ DDR5</p><p class="lesson-line">SSD ต้องอย่างน้อย 1TB และเป็น NVMe</p><p class="lesson-line">Windows ต้องเป็น Pro</p><p class="lesson-line">Wi-Fi ต้องรองรับตาม Requirement</p><p class="lesson-line">Warranty ต้อง 3 ปี และต้องตรวจประเภท On-site</p><p class="lesson-line">ต้องตรวจ SKU ก่อนสั่งซื้อ</p><p class="lesson-line">และที่สำคัญที่สุดคือรู้ว่า</p><div class="spacer"></div><div class="key-point">★ ถ้ามีข้อมูลไม่ครบ ต้องถามเพิ่มก่อนสั่งซื้อ ไม่ควรเดาเอง</div><p class="lesson-line">นี่คือพื้นฐานที่จะต่อยอดไปวันที่ 2 เรื่อง Network / Server / Cloud / Security และวันที่ 3 เรื่อง การเทียบสเปคและหารุ่นทดแทนจริง</p><div class="spacer"></div></div>
-</section></div>
-</div>
-<section class="course-end"><div class="eyebrow">NEXT STEP</div><h2>ต่อยอดไป Day 2 และ Day 3</h2><p>Day 2: Network / Server / Cloud / Security · Day 3: การเทียบสเปคและหารุ่นทดแทนจริง</p><div style="margin-top:20px"><a class="btn" href="index.html#courses">← กลับหน้าคอร์ส</a> <a class="btn primary" href="index.html#contact">สอบถามคอร์ส</a></div></section>
-</main>
+:root{--bg:#020817;--bg2:#061229;--panel:#07182f;--panel2:#0b2042;--line:rgba(132,179,255,.16);--line2:rgba(132,179,255,.34);--blue:#4f8cff;--blue2:#86b8ff;--text:#f4f8ff;--muted:#a3b4cf;--faint:#7185a7;--good:#72e0bd;--gold:#ffc857;--danger:#ff8790;--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:radial-gradient(900px 520px at 8% -5%,rgba(29,91,255,.18),transparent 62%),radial-gradient(800px 500px at 92% 18%,rgba(0,174,255,.08),transparent 60%),linear-gradient(180deg,#020817 0%,#041027 48%,#020817 100%);color:var(--text);font-family:'Noto Sans Thai','Sora',sans-serif;line-height:1.72;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}.progressbar{height:3px;position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.04)}.progressbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2e72ff,#8ec0ff);box-shadow:0 0 16px rgba(79,140,255,.7)}
+.topbar{position:sticky;top:0;z-index:90;background:rgba(2,8,23,.80);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1320px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;font-family:Sora;font-weight:800}.brand-dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,#2e72ff,#79b0ff);box-shadow:0 0 22px 5px rgba(56,126,255,.35)}.brand small{display:block;font-weight:400;color:var(--faint);font-size:10px;letter-spacing:.12em}.top-actions{display:flex;gap:9px}.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;border:1px solid var(--line2);font-size:13px;font-weight:700;background:rgba(10,26,57,.58)}.btn.primary{background:linear-gradient(135deg,#1744ad,#2567ed 55%,#5e9cff);border-color:rgba(132,182,255,.32)}
+.hero{max-width:1320px;margin:auto;padding:60px 24px 42px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}.eyebrow{font:600 11px JetBrains Mono;letter-spacing:.14em;color:var(--blue2);text-transform:uppercase}.hero h1{font-family:Sora,'Noto Sans Thai';font-size:clamp(39px,5.8vw,68px);line-height:1.07;margin:13px 0 18px;letter-spacing:-.035em}.hero h1 span{background:linear-gradient(90deg,#9ac8ff,#4f8cff 50%,#b0d6ff);-webkit-background-clip:text;background-clip:text;color:transparent}.hero .lead{max-width:780px;color:var(--muted);font-size:16px}.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.hero-badges span{padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:#cfe1ff;background:rgba(65,126,235,.07);font:500 11px JetBrains Mono}.hero-visual{border:1px solid var(--line2);border-radius:24px;overflow:hidden;box-shadow:0 28px 75px rgba(0,0,0,.3);position:relative;background:#06142c}.hero-visual img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}.hero-visual button{all:unset;display:block;cursor:zoom-in;width:100%}.hero-visual .zoom-hint{position:absolute;right:13px;bottom:13px;background:rgba(2,8,23,.82);border:1px solid var(--line2);padding:7px 10px;border-radius:999px;font-size:11px;color:#d6e6ff}
+.course-meta{max-width:1320px;margin:0 auto 30px;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.meta-box{padding:15px 17px;border:1px solid var(--line);border-radius:16px;background:rgba(8,25,55,.66)}.meta-box b{display:block;font:800 20px Sora;color:#fff}.meta-box span{font-size:11px;color:var(--faint)}
+.mobile-toc{display:none;max-width:1320px;margin:0 auto 18px;padding:0 16px}.mobile-toc select{width:100%;background:#071a38;color:#eaf2ff;border:1px solid var(--line2);border-radius:13px;padding:12px}.layout{max-width:1320px;margin:auto;padding:0 24px 90px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;align-items:start}.sidebar{position:sticky;top:84px;background:linear-gradient(145deg,rgba(9,28,61,.84),rgba(3,14,32,.76));border:1px solid var(--line);border-radius:19px;padding:14px;max-height:calc(100vh - 105px);overflow:auto}.sidebar-title{font:700 11px JetBrains Mono;letter-spacing:.12em;color:var(--faint);padding:8px 9px 11px}.sidebar a{display:flex;gap:10px;padding:10px;border-radius:11px;color:#9fb0cd;transition:.2s}.sidebar a:hover,.sidebar a.active{background:rgba(66,126,238,.13);color:#fff}.sidebar a>span{font:700 9px JetBrains Mono;color:#6f99e5;margin-top:4px}.sidebar b{display:block;font-size:12px}.sidebar small{display:block;color:#60799f;font:500 9px JetBrains Mono;margin-top:2px}
+.main{min-width:0}.module-card{background:linear-gradient(145deg,rgba(8,25,55,.78),rgba(3,14,32,.72));border:1px solid var(--line);border-radius:24px;padding:33px;margin-bottom:22px;box-shadow:0 18px 55px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.045)}.module-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;padding-bottom:23px;border-bottom:1px solid var(--line);margin-bottom:8px}.module-kicker{font:700 10px JetBrains Mono;letter-spacing:.14em;color:var(--blue2)}.module-head h2{font-family:Sora,'Noto Sans Thai';font-size:clamp(24px,3vw,34px);margin:8px 0 0;letter-spacing:-.025em}.module-count{flex:none;padding:6px 10px;border:1px solid var(--line);border-radius:999px;font:600 10px JetBrains Mono;color:#8fbaff}
+.topic{display:grid;grid-template-columns:46px minmax(0,1fr);gap:17px;padding:28px 0;border-bottom:1px solid rgba(132,179,255,.10)}.topic:last-child{border-bottom:0;padding-bottom:4px}.topic-no{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#1744ad,#397bf1);box-shadow:0 8px 25px rgba(47,106,225,.25);font:800 12px JetBrains Mono}.topic-body h3{font-family:Sora,'Noto Sans Thai';font-size:22px;line-height:1.35;margin:3px 0 16px;color:#f5f9ff;letter-spacing:-.015em}.rich-content{color:#bdcbe0;font-size:14.5px;max-width:940px}.rich-content p{margin:8px 0}.content-subhead{font-family:Sora,'Noto Sans Thai';font-size:16px;color:#dceaff;margin:22px 0 8px;padding-left:11px;border-left:3px solid var(--blue)}.course-list{margin:9px 0 16px;padding-left:23px}.course-list li{margin:6px 0;padding-left:3px}.numbered-list li::marker{color:#76aaff;font-weight:700}.mini-label{display:inline-block;margin:14px 0 5px!important;padding:4px 9px;border-radius:999px;background:rgba(79,140,255,.09);border:1px solid rgba(79,140,255,.17);color:#9ec6ff;font:700 10px JetBrains Mono}.lesson-quote{margin:14px 0;padding:15px 18px;border-left:3px solid var(--gold);background:rgba(255,200,87,.055);border-radius:0 14px 14px 0;color:#fff;font-weight:650}.flow-arrow{font-size:26px;text-align:center;color:#6ea9ff;line-height:1;margin:3px 0!important}strong{color:#edf5ff}.table-wrap{overflow:auto;margin:14px 0 20px;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}th{color:#8fbbff;background:rgba(79,140,255,.08);font:700 11px JetBrains Mono}td{color:#b9c8df}tr:last-child td{border-bottom:0}
+.lesson-visual{margin:16px 0 20px;border:1px solid rgba(126,176,255,.24);border-radius:19px;overflow:hidden;background:#06152f;box-shadow:0 20px 55px rgba(0,0,0,.24)}.image-open{all:unset;display:block;width:100%;position:relative;cursor:zoom-in;overflow:hidden}.lesson-visual img{display:block;width:100%;height:auto;aspect-ratio:15/8;object-fit:cover;transition:transform .35s ease}.image-open:hover img{transform:scale(1.012)}.zoom-hint{position:absolute;right:12px;bottom:12px;background:rgba(2,8,23,.84);border:1px solid rgba(126,176,255,.28);padding:7px 10px;border-radius:999px;color:#d9e9ff;font-size:10px;backdrop-filter:blur(8px)}.lesson-visual figcaption{padding:11px 14px 13px;border-top:1px solid rgba(126,176,255,.13);font-size:11.5px;color:#8fa5c6}
+.viewer{position:fixed;inset:0;z-index:200;display:none;background:rgba(0,4,13,.96);backdrop-filter:blur(12px)}.viewer.open{display:flex;flex-direction:column}.viewer-top{height:62px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 18px;border-bottom:1px solid var(--line)}.viewer-caption{min-width:0;color:#dceaff;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.viewer-controls{display:flex;gap:7px;flex:none}.viewer-controls button{width:38px;height:38px;border-radius:11px;border:1px solid var(--line2);background:#071a38;color:#fff;cursor:pointer}.viewer-stage{flex:1;overflow:hidden;display:grid;place-items:center;position:relative;cursor:grab}.viewer-stage.dragging{cursor:grabbing}.viewer-stage img{max-width:92vw;max-height:calc(100vh - 88px);transform-origin:center;user-select:none;pointer-events:none;will-change:transform}.viewer-help{position:absolute;left:50%;bottom:15px;transform:translateX(-50%);padding:6px 10px;border-radius:999px;background:rgba(5,19,42,.78);border:1px solid var(--line);font-size:10px;color:#7189ad;pointer-events:none}
+.course-end{max-width:850px;margin:36px auto 0;padding:35px;text-align:center;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(10,34,72,.7),rgba(4,16,37,.7))}.course-end h2{font-family:Sora,'Noto Sans Thai';margin:0 0 8px}.course-end p{color:var(--muted)}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.course-meta{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.sidebar{display:none}.mobile-toc{display:block}}@media(max-width:640px){.topbar-inner{padding:11px 15px}.brand small{display:none}.top-actions .btn:first-child{display:none}.hero{padding:42px 16px 25px}.hero h1{font-size:38px}.course-meta{padding:0 16px;grid-template-columns:1fr 1fr}.layout{padding:0 12px 65px}.module-card{padding:23px 17px;border-radius:18px}.module-head{display:block}.module-count{display:inline-block;margin-top:12px}.topic{grid-template-columns:36px minmax(0,1fr);gap:11px}.topic-no{width:34px;height:34px;border-radius:10px;font-size:10px}.topic-body h3{font-size:19px}.lesson-visual{margin-left:-2px;margin-right:-2px}.lesson-visual img{aspect-ratio:16/9}.zoom-hint{font-size:9px}}
+</style></head><body><div class="progressbar"><span id="readProgress"></span></div>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="index.html"><span class="brand-dot"></span><span>Pond Natdanai<small>IT PROFESSIONAL · FREELANCE · TUTOR</small></span></a><div class="top-actions"><a class="btn" href="index.html#courses">← คอร์สเรียน</a><a class="btn primary" href="index.html#contact">สอบถาม / จองเรียน</a></div></div></header>
+<section class="hero"><div><div class="eyebrow">IT PROCUREMENT · DAY 1 · COMPLETE TEACHING VERSION</div><h1><span>IT & Hardware</span><br>/ Software</h1><p class="lead">บทเรียนสำหรับอ่าน Requirement และเปรียบเทียบสินค้า IT อย่างเป็นระบบ ตั้งแต่ Hardware, CPU, GPU, RAM, Storage, Notebook, Server, Operating System, Microsoft, Software License ไปจนถึง Specification, SKU, Warranty และ Quotation จริง</p><div class="hero-badges"><span>65 Topics</span><span>10 Modules</span><span>Procurement Focus</span><span>Interactive Fullscreen Images</span></div></div><div class="hero-visual"><button type="button" data-full="assets/course-day1-full/01-it-overview.svg" data-caption="ภาพรวมระบบ IT: Hardware, Software, License และ Service"><img src="assets/course-day1-full/01-it-overview.svg" alt="ภาพรวมระบบ IT"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button></div></section>
+<div class="course-meta"><div class="meta-box"><b>65</b><span>หัวข้อสอนครบตามเนื้อหา</span></div><div class="meta-box"><b>24</b><span>ภาพประกอบแบบกดขยายได้</span></div><div class="meta-box"><b>10</b><span>Modules เรียงตามความเข้าใจ</span></div><div class="meta-box"><b>1</b><span>เป้าหมาย: ซื้อให้ตรง Requirement</span></div></div>
+<div class="mobile-toc"><select id="mobileToc"><option value="">เลือก Module...</option><option value="module-1">1. IT Foundation</option><option value="module-2">2. CPU</option><option value="module-3">3. GPU</option><option value="module-4">4. Memory</option><option value="module-5">5. Storage</option><option value="module-6">6. Computer Types</option><option value="module-7">7. OS &amp; Software</option><option value="module-8">8. Licensing</option><option value="module-9">9. Procurement Practice</option><option value="module-10">10. Summary</option></select></div>
+<div class="layout"><aside class="sidebar"><div class="sidebar-title">COURSE MODULES</div><a href="#module-1" data-nav="module-1"><span>01</span><div><b>IT Foundation</b><small>1–2</small></div></a><a href="#module-2" data-nav="module-2"><span>02</span><div><b>CPU</b><small>3–11</small></div></a><a href="#module-3" data-nav="module-3"><span>03</span><div><b>GPU</b><small>12–16</small></div></a><a href="#module-4" data-nav="module-4"><span>04</span><div><b>Memory</b><small>17–21</small></div></a><a href="#module-5" data-nav="module-5"><span>05</span><div><b>Storage</b><small>22–27</small></div></a><a href="#module-6" data-nav="module-6"><span>06</span><div><b>Computer Types</b><small>28–36</small></div></a><a href="#module-7" data-nav="module-7"><span>07</span><div><b>OS &amp; Software</b><small>37–45</small></div></a><a href="#module-8" data-nav="module-8"><span>08</span><div><b>Licensing</b><small>46–53</small></div></a><a href="#module-9" data-nav="module-9"><span>09</span><div><b>Procurement Practice</b><small>54–63</small></div></a><a href="#module-10" data-nav="module-10"><span>10</span><div><b>Summary</b><small>64–65</small></div></a></aside><main class="main"><section class="module-card" id="module-1" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 01 · TOPIC 01–02</span><h2>พื้นฐานระบบ IT &amp; การทำงานของ Computer</h2></div><span class="module-count">2 หัวข้อ</span></header><article class="topic" id="topic-1"><div class="topic-no">01</div><div class="topic-body"><h3>ภาพรวมระบบ IT</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/01-it-overview.svg" data-caption="ระบบ IT ในองค์กรมองเป็น 4 ส่วน: Hardware, Software, License และ Service" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/01-it-overview.svg" alt="ระบบ IT ในองค์กรมองเป็น 4 ส่วน: Hardware, Software, License และ Service" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ระบบ IT ในองค์กรมองเป็น 4 ส่วน: Hardware, Software, License และ Service</figcaption></figure><div class="rich-content"><p>ระบบ IT ในองค์กรประกอบด้วย 4 ส่วนหลัก</p>
+<h4 class="content-subhead">Hardware</h4>
+<p>อุปกรณ์ที่สามารถจับต้องได้ เช่น</p>
+<ul class="course-list">
+<li>Notebook</li>
+<li>Desktop Computer</li>
+<li>Workstation</li>
+<li>Server</li>
+<li>Monitor</li>
+<li>CPU</li>
+<li>GPU</li>
+<li>RAM</li>
+<li>HDD / SSD</li>
+<li>Router</li>
+<li>Switch</li>
+<li>Firewall</li>
+<li>Access Point</li>
+</ul>
+<p class="mini-label"><strong>ตัวอย่าง</strong></p>
+<p>บริษัทซื้อ Notebook 20 เครื่องให้พนักงานบัญชี</p>
+<p>Notebook ทั้ง 20 เครื่องถือเป็น Hardware</p>
+<hr/>
+<h4 class="content-subhead">Software</h4>
+<p>โปรแกรมหรือระบบที่ทำงานอยู่บน Hardware เช่น</p>
+<ul class="course-list">
+<li>Windows</li>
+<li>Microsoft Office</li>
+<li>Microsoft 365</li>
+<li>Adobe Photoshop</li>
+<li>AutoCAD</li>
+<li>Antivirus</li>
+<li>ERP</li>
+<li>โปรแกรมบัญชี</li>
+</ul>
+<p class="mini-label"><strong>ตัวอย่าง</strong></p>
+<p>Notebook เป็น Hardware</p>
+<p>Windows 11 เป็น Operating System</p>
+<p>Microsoft Excel เป็น Software</p>
+<p>ทั้ง 3 อย่างเป็นคนละส่วนกัน</p>
+<hr/>
+<h4 class="content-subhead">License</h4>
+<p>License คือ <strong>สิทธิ์ในการใช้ Software หรือ Service</strong></p>
+<p>การมีไฟล์ติดตั้ง Software ไม่ได้หมายความว่าเรามีสิทธิ์ใช้งานอย่างถูกต้องเสมอไป</p>
+<p class="mini-label">ตัวอย่าง</p>
+<blockquote class="lesson-quote">
+<p>Microsoft 365 Business Standard</p>
+<p>50 Users</p>
+<p>1 Year</p>
+</blockquote>
+<p>หมายความว่าองค์กรซื้อสิทธิ์ Microsoft 365 สำหรับผู้ใช้งาน 50 คน เป็นระยะเวลา 1 ปี</p>
+<hr/>
+<h4 class="content-subhead">Service</h4>
+<p>บริการ IT ที่บริษัทซื้อโดยอาจไม่มีอุปกรณ์ส่งมาให้จับต้อง เช่น</p>
+<ul class="course-list">
+<li>Cloud</li>
+<li>Backup Service</li>
+<li>Email Service</li>
+<li>Hosting</li>
+<li>Support</li>
+<li>Maintenance</li>
+<li>Installation</li>
+<li>Configuration</li>
+<li>Managed Service</li>
+</ul>
+<p class="mini-label"><strong>ตัวอย่าง</strong></p>
+<p>บริษัทจ่าย Microsoft Azure เดือนละ 20,000 บาท</p>
+<p>บริษัทไม่ได้ซื้อ Server กลับมาไว้ที่บริษัท แต่เช่าทรัพยากร Server บน Cloud</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-2"><div class="topic-no">02</div><div class="topic-body"><h3>Computer ทำงานอย่างไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/02-computer-components.svg" data-caption="ภาพความสัมพันธ์ของ CPU, RAM, Storage, GPU, Operating System และ Software" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/02-computer-components.svg" alt="ภาพความสัมพันธ์ของ CPU, RAM, Storage, GPU, Operating System และ Software" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ภาพความสัมพันธ์ของ CPU, RAM, Storage, GPU, Operating System และ Software</figcaption></figure><div class="rich-content"><p>Computer หนึ่งเครื่องไม่ได้มีแค่ CPU</p>
+<p>องค์ประกอบหลักได้แก่</p>
+<h4 class="content-subhead">CPU</h4>
+<p>ประมวลผลคำสั่ง</p>
+<h4 class="content-subhead">RAM</h4>
+<p>เก็บข้อมูลชั่วคราวที่กำลังใช้งาน</p>
+<h4 class="content-subhead">Storage</h4>
+<p>เก็บข้อมูลระยะยาว</p>
+<h4 class="content-subhead">GPU</h4>
+<p>ประมวลผลภาพ กราฟิก และงานเฉพาะทาง</p>
+<h4 class="content-subhead">Operating System</h4>
+<p>ควบคุม Hardware และเป็นพื้นฐานให้ Software ทำงาน</p>
+<h4 class="content-subhead">Software</h4>
+<p>โปรแกรมที่ผู้ใช้ต้องการใช้งาน</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่างเปรียบเทียบกับโต๊ะทำงาน</h4>
+<p>ให้คิดว่าคอมพิวเตอร์เป็นสำนักงานหนึ่งโต๊ะ</p>
+<h4 class="content-subhead">CPU = พนักงาน</h4>
+<p>เป็นคนที่ทำงานและคำนวณข้อมูล</p>
+<p>พนักงานทำงานเร็ว งานก็เสร็จเร็วขึ้น</p>
+<hr/>
+<h4 class="content-subhead">RAM = โต๊ะทำงาน</h4>
+<p>โต๊ะยิ่งใหญ่ ยิ่งสามารถวางเอกสารหลายชุดเพื่อทำงานพร้อมกันได้</p>
+<p>ถ้าโต๊ะเล็กมาก ต้องคอยเก็บเอกสารเข้าออกตลอด ทำให้งานช้าลง</p>
+<hr/>
+<h4 class="content-subhead">Storage = ตู้เก็บเอกสาร</h4>
+<p>ใช้เก็บข้อมูลที่ยังต้องอยู่แม้ปิดเครื่องแล้ว</p>
+<p class="mini-label">เช่น</p>
+<ul class="course-list">
+<li>Word</li>
+<li>Excel</li>
+<li>รูปภาพ</li>
+<li>Video</li>
+<li>Database</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">GPU = ผู้เชี่ยวชาญด้านงานภาพ</h4>
+<p>ถ้ามีงานเอกสารทั่วไป อาจไม่จำเป็นต้องมีผู้เชี่ยวชาญ</p>
+<p>แต่ถ้าเป็น</p>
+<ul class="course-list">
+<li>3D</li>
+<li>Video</li>
+<li>AI</li>
+<li>CAD</li>
+</ul>
+<p>การมี GPU ที่เหมาะสมจะช่วยงานได้มาก</p>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-2" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 02 · TOPIC 03–11</span><h2>CPU — อ่านรุ่นและเปรียบเทียบให้ถูก</h2></div><span class="module-count">9 หัวข้อ</span></header><article class="topic" id="topic-3"><div class="topic-no">03</div><div class="topic-body"><h3>CPU คืออะไร</h3><div class="rich-content"><p>CPU ย่อมาจาก</p>
+<p><strong>Central Processing Unit</strong></p>
+<p>เป็นหน่วยประมวลผลหลักของ Computer</p>
+<p>หน้าที่ของ CPU คือรับคำสั่งจาก Software แล้วประมวลผล</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>เมื่อเปิด Excel แล้วคำนวณสูตรจำนวนมาก</p>
+<p>Excel</p>
+<p class="flow-arrow">↓</p>
+<p>ส่งคำสั่งให้ CPU</p>
+<p class="flow-arrow">↓</p>
+<p>CPU คำนวณ</p>
+<p class="flow-arrow">↓</p>
+<p>แสดงผลลัพธ์กลับมา</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-4"><div class="topic-no">04</div><div class="topic-body"><h3>CPU ที่พบในตลาด</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/03-cpu-family-generation.svg" data-caption="ชื่อระดับ i3/i5/i7/i9 ต้องอ่านร่วมกับ Generation และ Model เต็ม" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/03-cpu-family-generation.svg" alt="ชื่อระดับ i3/i5/i7/i9 ต้องอ่านร่วมกับ Generation และ Model เต็ม" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ชื่อระดับ i3/i5/i7/i9 ต้องอ่านร่วมกับ Generation และ Model เต็ม</figcaption></figure><div class="rich-content"><p>CPU ที่พบได้บ่อยแบ่งตามผู้ผลิตได้เป็น 2 กลุ่มใหญ่</p>
+<h4 class="content-subhead">Intel</h4>
+<p>กลุ่มที่พบใน Notebook และ Desktop เช่น</p>
+<ul class="course-list">
+<li>Intel Core</li>
+<li>Intel Core Ultra</li>
+</ul>
+<p>กลุ่ม Server / Workstation เช่น</p>
+<ul class="course-list">
+<li>Intel Xeon</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">AMD</h4>
+<p>กลุ่ม Notebook / Desktop เช่น</p>
+<ul class="course-list">
+<li>AMD Ryzen</li>
+</ul>
+<p>กลุ่ม Server เช่น</p>
+<ul class="course-list">
+<li>AMD EPYC</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-5"><div class="topic-no">05</div><div class="topic-body"><h3>Intel Core i3 / i5 / i7 / i9 คืออะไร</h3><div class="rich-content"><p>ชื่อเหล่านี้ใช้แบ่งระดับของ CPU ในแต่ละตระกูล</p>
+<p class="mini-label">โดยทั่วไป</p>
+<p>i3</p>
+<p class="flow-arrow">↓</p>
+<p>i5</p>
+<p class="flow-arrow">↓</p>
+<p>i7</p>
+<p class="flow-arrow">↓</p>
+<p>i9</p>
+<p>จากระดับพื้นฐานไปจนถึงประสิทธิภาพสูง</p>
+<p>แต่มีข้อสำคัญคือ</p>
+<blockquote class="lesson-quote">
+<p>i7 ไม่ได้แรงกว่า i5 ทุกกรณี</p>
+</blockquote>
+<p>เพราะต้องดู Generation และ Model ด้วย</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<h4 class="content-subhead">CPU A</h4>
+<p>Intel Core i7 รุ่นเก่า</p>
+<h4 class="content-subhead">CPU B</h4>
+<p>Intel Core i5 รุ่นใหม่</p>
+<p>CPU B อาจมี Performance สูงกว่า CPU A ได้</p>
+<p>ดังนั้นเวลาจัดซื้อ ไม่ควรเปรียบเทียบแค่คำว่า</p>
+<blockquote class="lesson-quote">
+<p>i5 กับ i7</p>
+</blockquote>
+<p>แต่ต้องดู <strong>ชื่อ CPU เต็ม</strong></p>
+<hr/>
+</div></div></article><article class="topic" id="topic-6"><div class="topic-no">06</div><div class="topic-body"><h3>Generation คืออะไร</h3><div class="rich-content"><p>Generation คือรุ่นหรือยุคของ CPU</p>
+<p>CPU รุ่นใหม่มักได้รับการพัฒนาเรื่อง</p>
+<ul class="course-list">
+<li>Performance</li>
+<li>ประสิทธิภาพต่อพลังงาน</li>
+<li>Integrated GPU</li>
+<li>AI Processing</li>
+<li>Memory Support</li>
+<li>Technology ใหม่</li>
+</ul>
+<p>ดังนั้น</p>
+<blockquote class="lesson-quote">
+<p>CPU ระดับสูงของเมื่อหลายปีก่อน</p>
+</blockquote>
+<p>อาจแพ้</p>
+<blockquote class="lesson-quote">
+<p>CPU ระดับกลางของ Generation ใหม่</p>
+</blockquote>
+<p>ได้</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-7"><div class="topic-no">07</div><div class="topic-body"><h3>Core คืออะไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/04-core-thread.svg" data-caption="ภาพแนวคิดหลาย Core และ Logical Threads ภายใน CPU" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/04-core-thread.svg" alt="ภาพแนวคิดหลาย Core และ Logical Threads ภายใน CPU" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ภาพแนวคิดหลาย Core และ Logical Threads ภายใน CPU</figcaption></figure><div class="rich-content"><p>CPU ปัจจุบันมีหน่วยประมวลผลหลายหน่วยอยู่ภายใน CPU ตัวเดียว</p>
+<p>เรียกว่า</p>
+<p><strong>Core</strong></p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>4 Core</li>
+<li>6 Core</li>
+<li>8 Core</li>
+<li>16 Core</li>
+<li>32 Core</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">Core มากช่วยอะไร</h4>
+<p>งานบางประเภทสามารถแบ่งงานออกเป็นหลายส่วนแล้วให้หลาย Core ทำพร้อมกันได้</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>CPU 8 Core</p>
+<p>เปรียบเหมือนมีพนักงาน 8 คนช่วยกันทำงาน</p>
+<p>แทนที่จะมีเพียงคนเดียว</p>
+<p>เหมาะกับงาน เช่น</p>
+<ul class="course-list">
+<li>Rendering</li>
+<li>Video</li>
+<li>Virtual Machine</li>
+<li>Data Processing</li>
+<li>Server</li>
+</ul>
+<p>แต่ Core มากกว่าไม่ได้แปลว่าเร็วกว่าเสมอ เพราะประสิทธิภาพของแต่ละ Core ก็ต่างกัน</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-8"><div class="topic-no">08</div><div class="topic-body"><h3>Thread คืออะไร</h3><div class="rich-content"><p>Thread คือจำนวนชุดคำสั่งที่ CPU สามารถจัดการพร้อมกันในเชิง Logical</p>
+<p class="mini-label">ตัวอย่าง</p>
+<blockquote class="lesson-quote">
+<p>8 Core / 16 Threads</p>
+</blockquote>
+<p>หมายความว่า CPU มี 8 Core และสามารถจัดการชุดงานได้สูงสุด 16 Logical Threads ตามสถาปัตยกรรมของ CPU นั้น</p>
+<p>สำหรับงานจัดซื้อ ไม่จำเป็นต้องลงลึกถึงวิธีทำงานภายใน</p>
+<p>ให้เข้าใจเพียงว่า</p>
+<blockquote class="lesson-quote">
+<p>งานหลายอย่างพร้อมกัน มักได้ประโยชน์จากจำนวน Core / Thread ที่มากขึ้น</p>
+</blockquote>
+<hr/>
+</div></div></article><article class="topic" id="topic-9"><div class="topic-no">09</div><div class="topic-body"><h3>Clock Speed คืออะไร</h3><div class="rich-content"><p>Clock Speed วัดเป็น GHz</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>2.4 GHz</li>
+<li>3.5 GHz</li>
+<li>5.0 GHz</li>
+</ul>
+<p>เป็นค่าที่เกี่ยวข้องกับความถี่ในการทำงานของ CPU</p>
+<p>แต่ไม่ควรใช้ GHz เพียงอย่างเดียวในการตัดสิน Performance</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>CPU A</p>
+<blockquote class="lesson-quote">
+<p>รุ่นเก่า 5.0 GHz</p>
+</blockquote>
+<p>CPU B</p>
+<blockquote class="lesson-quote">
+<p>รุ่นใหม่ 4.5 GHz</p>
+</blockquote>
+<p>CPU B อาจเร็วกว่าได้ เพราะโครงสร้าง CPU มีประสิทธิภาพสูงกว่า</p>
+<p>ดังนั้น</p>
+<blockquote class="lesson-quote">
+<p>GHz สูงกว่า ≠ CPU ดีกว่าเสมอ</p>
+</blockquote>
+<hr/>
+</div></div></article><article class="topic" id="topic-10"><div class="topic-no">10</div><div class="topic-body"><h3>ตัวอักษรท้าย CPU</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/05-cpu-suffix.svg" data-caption="กลุ่ม CPU Notebook แบบ U, H และ HX เน้นการออกแบบต่างกัน" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/05-cpu-suffix.svg" alt="กลุ่ม CPU Notebook แบบ U, H และ HX เน้นการออกแบบต่างกัน" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>กลุ่ม CPU Notebook แบบ U, H และ HX เน้นการออกแบบต่างกัน</figcaption></figure><div class="rich-content"><p>CPU Notebook มักมีตัวอักษรท้าย Model</p>
+<p class="mini-label">เช่น</p>
+<ul class="course-list">
+<li>U</li>
+<li>H</li>
+<li>HX</li>
+</ul>
+<p>โดยทั่วไปใช้บอกกลุ่มการออกแบบของ CPU</p>
+<h4 class="content-subhead">U</h4>
+<p>มักเน้นประหยัดพลังงาน</p>
+<p>เหมาะกับ Notebook ที่ต้องการ Battery และการพกพา</p>
+<h4 class="content-subhead">H</h4>
+<p>เน้นประสิทธิภาพมากขึ้น</p>
+<p>มักพบใน Notebook สำหรับ</p>
+<ul class="course-list">
+<li>งานหนัก</li>
+<li>Gaming</li>
+<li>Content Creation</li>
+</ul>
+<h4 class="content-subhead">HX</h4>
+<p>เน้น Performance สูงมากใน Notebook ระดับสูงบางกลุ่ม</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Notebook 2 เครื่องใช้คำว่า</p>
+<blockquote class="lesson-quote">
+<p>Core Ultra 7</p>
+</blockquote>
+<p>เหมือนกัน</p>
+<p>แต่เครื่องหนึ่งเป็น CPU กลุ่มประหยัดไฟ</p>
+<p>อีกเครื่องเป็น CPU กลุ่ม Performance</p>
+<p>จึงอาจให้ประสิทธิภาพต่างกันมาก</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-11"><div class="topic-no">11</div><div class="topic-body"><h3>เวลาเปรียบเทียบ CPU ต้องดูอะไร</h3><div class="rich-content"><p>อย่าดูเพียง</p>
+<blockquote class="lesson-quote">
+<p>i5 / i7 / Ultra 5 / Ultra 7</p>
+</blockquote>
+<p>ควรดูอย่างน้อย</p>
+<ol class="course-list numbered-list">
+<li>ชื่อ Model เต็ม</li>
+<li>Generation</li>
+<li>Core / Thread</li>
+<li>กลุ่ม CPU</li>
+<li>Performance</li>
+<li>Power Class</li>
+<li>งานที่จะนำไปใช้</li>
+</ol>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Requirement ระบุเพียง</p>
+<blockquote class="lesson-quote">
+<p>Intel Core i7</p>
+</blockquote>
+<p>ควรถามเพิ่มเติมว่า</p>
+<ul class="course-list">
+<li>รุ่นใด?</li>
+<li>Generation ใด?</li>
+<li>Notebook หรือ Desktop?</li>
+<li>มี Minimum Performance หรือไม่?</li>
+</ul>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-3" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 03 · TOPIC 12–16</span><h2>GPU — Graphics, VRAM และ AI Compatibility</h2></div><span class="module-count">5 หัวข้อ</span></header><article class="topic" id="topic-12"><div class="topic-no">12</div><div class="topic-body"><h3>GPU คืออะไร</h3><div class="rich-content"><p>GPU ย่อมาจาก</p>
+<p><strong>Graphics Processing Unit</strong></p>
+<p>เดิมออกแบบมาสำหรับประมวลผลภาพและกราฟิก</p>
+<p>ปัจจุบันใช้กับงานอื่นจำนวนมาก เช่น</p>
+<ul class="course-list">
+<li>Graphic Design</li>
+<li>Video Editing</li>
+<li>3D</li>
+<li>CAD</li>
+<li>AI</li>
+<li>Machine Learning</li>
+<li>Scientific Computing</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-13"><div class="topic-no">13</div><div class="topic-body"><h3>Integrated GPU</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/06-gpu-integrated-dedicated.svg" data-caption="Integrated GPU เหมาะกับงานทั่วไป ส่วน Dedicated GPU เหมาะกับงานกราฟิกและงานเฉพาะทาง" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/06-gpu-integrated-dedicated.svg" alt="Integrated GPU เหมาะกับงานทั่วไป ส่วน Dedicated GPU เหมาะกับงานกราฟิกและงานเฉพาะทาง" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Integrated GPU เหมาะกับงานทั่วไป ส่วน Dedicated GPU เหมาะกับงานกราฟิกและงานเฉพาะทาง</figcaption></figure><div class="rich-content"><p>Integrated GPU คือ GPU ที่รวมอยู่กับ CPU หรือระบบหลัก</p>
+<p>เหมาะกับงานทั่วไป เช่น</p>
+<ul class="course-list">
+<li>Microsoft Word</li>
+<li>Excel</li>
+<li>Email</li>
+<li>Web Browser</li>
+<li>YouTube</li>
+<li>Microsoft Teams</li>
+<li>Zoom</li>
+</ul>
+<p class="mini-label">ข้อดี</p>
+<ul class="course-list">
+<li>ราคาถูกกว่า</li>
+<li>ประหยัดไฟ</li>
+<li>Notebook เบากว่า</li>
+<li>Battery ใช้งานได้นานกว่า</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-14"><div class="topic-no">14</div><div class="topic-body"><h3>Dedicated GPU</h3><div class="rich-content"><p>Dedicated GPU คือ GPU แยกที่มีทรัพยากรของตัวเอง</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>NVIDIA GeForce RTX</li>
+<li>NVIDIA RTX Professional</li>
+<li>AMD Radeon</li>
+</ul>
+<p>เหมาะกับงาน</p>
+<ul class="course-list">
+<li>Video Editing</li>
+<li>CAD</li>
+<li>3D</li>
+<li>Engineering</li>
+<li>AI</li>
+<li>Rendering</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-15"><div class="topic-no">15</div><div class="topic-body"><h3>VRAM คืออะไร</h3><div class="rich-content"><p>VRAM คือ Memory ที่ GPU ใช้งาน</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>4GB</li>
+<li>6GB</li>
+<li>8GB</li>
+<li>12GB</li>
+<li>16GB</li>
+<li>24GB</li>
+</ul>
+<p>งานที่มีข้อมูลภาพหรือ AI Model ขนาดใหญ่ต้องการ VRAM มากขึ้น</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>GPU A</p>
+<blockquote class="lesson-quote">
+<p>VRAM 4GB</p>
+</blockquote>
+<p>GPU B</p>
+<blockquote class="lesson-quote">
+<p>VRAM 12GB</p>
+</blockquote>
+<p>สำหรับงาน AI บางประเภท GPU B อาจสามารถโหลด Model ที่ GPU A ไม่สามารถโหลดได้</p>
+<p>แต่</p>
+<blockquote class="lesson-quote">
+<p>VRAM มากกว่า ≠ GPU เร็วกว่าเสมอ</p>
+</blockquote>
+<p>ยังต้องดู GPU Model และ Architecture</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-16"><div class="topic-no">16</div><div class="topic-body"><h3>GPU สำหรับ AI</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/07-vram-ai.svg" data-caption="การเลือก GPU สำหรับ AI ต้องดูทั้ง GPU Model, VRAM และ Software/CUDA Compatibility" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/07-vram-ai.svg" alt="การเลือก GPU สำหรับ AI ต้องดูทั้ง GPU Model, VRAM และ Software/CUDA Compatibility" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>การเลือก GPU สำหรับ AI ต้องดูทั้ง GPU Model, VRAM และ Software/CUDA Compatibility</figcaption></figure><div class="rich-content"><p>ถ้า Requirement ระบุ</p>
+<blockquote class="lesson-quote">
+<p>ต้องการ GPU สำหรับ AI</p>
+</blockquote>
+<p>ข้อมูลนี้ยังไม่เพียงพอ</p>
+<p>ควรถามต่อว่า</p>
+<h4 class="content-subhead">ใช้ทำอะไร</h4>
+<ul class="course-list">
+<li>Training</li>
+<li>Inference</li>
+<li>Generative AI</li>
+<li>Computer Vision</li>
+</ul>
+<h4 class="content-subhead">ต้องการ VRAM เท่าไร</h4>
+<h4 class="content-subhead">Software ใช้อะไร</h4>
+<h4 class="content-subhead">รองรับ NVIDIA CUDA หรือไม่</h4>
+<h4 class="content-subhead">ใช้บน</h4>
+<ul class="course-list">
+<li>Notebook</li>
+<li>Workstation</li>
+<li>Server</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Vendor เสนอ GPU AMD ที่แรงมาก</p>
+<p>แต่ Software ที่บริษัทใช้รองรับเฉพาะ NVIDIA CUDA</p>
+<p>แม้ Performance จะดี</p>
+<p>ก็อาจ <strong>ไม่ Compatible</strong></p>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-4" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 04 · TOPIC 17–21</span><h2>RAM — Capacity, DDR และ ECC</h2></div><span class="module-count">5 หัวข้อ</span></header><article class="topic" id="topic-17"><div class="topic-no">17</div><div class="topic-body"><h3>RAM คืออะไร</h3><div class="rich-content"><p>RAM ย่อมาจาก</p>
+<p><strong>Random Access Memory</strong></p>
+<p>เป็นหน่วยความจำที่ Computer ใช้เก็บข้อมูลที่กำลังทำงานอยู่</p>
+<p>เมื่อปิดเครื่อง ข้อมูลใน RAM จะหายไป</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>เปิดพร้อมกัน</p>
+<ul class="course-list">
+<li>Chrome 30 Tabs</li>
+<li>Excel</li>
+<li>Outlook</li>
+<li>Teams</li>
+<li>ERP</li>
+</ul>
+<p>ข้อมูลจำนวนมากต้องถูกเก็บใน RAM</p>
+<p>ถ้า RAM ไม่เพียงพอ</p>
+<p>เครื่องจะเริ่มช้าและต้องใช้ Storage ช่วย</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-18"><div class="topic-no">18</div><div class="topic-body"><h3>RAM 8 / 16 / 32 / 64GB ต่างกันอย่างไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/08-ram-capacity.svg" data-caption="แนวทางมอง RAM 8GB, 16GB, 32GB และ 64GB+ ตามลักษณะงาน" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/08-ram-capacity.svg" alt="แนวทางมอง RAM 8GB, 16GB, 32GB และ 64GB+ ตามลักษณะงาน" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>แนวทางมอง RAM 8GB, 16GB, 32GB และ 64GB+ ตามลักษณะงาน</figcaption></figure><div class="rich-content"><p>ตัวอย่างการใช้งานทั่วไป</p>
+<h4 class="content-subhead">8GB</h4>
+<p>เหมาะกับงานพื้นฐาน</p>
+<ul class="course-list">
+<li>Word</li>
+<li>Web</li>
+<li>Email</li>
+</ul>
+<h4 class="content-subhead">16GB</h4>
+<p>เหมาะกับ Business User ทั่วไป</p>
+<ul class="course-list">
+<li>Office</li>
+<li>Teams</li>
+<li>Browser หลาย Tab</li>
+<li>ERP</li>
+</ul>
+<h4 class="content-subhead">32GB</h4>
+<p>เหมาะกับงานมากขึ้น เช่น</p>
+<ul class="course-list">
+<li>Development</li>
+<li>Graphic</li>
+<li>Data</li>
+<li>Virtual Machine</li>
+</ul>
+<h4 class="content-subhead">64GB+</h4>
+<p>พบใน</p>
+<ul class="course-list">
+<li>Workstation</li>
+<li>Server</li>
+<li>Virtualization</li>
+<li>Data Processing</li>
+</ul>
+<p>ตัวเลขเหล่านี้เป็นเพียงแนวทาง ไม่ใช่กฎตายตัว</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-19"><div class="topic-no">19</div><div class="topic-body"><h3>DDR4 และ DDR5</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/09-ddr-compatibility.svg" data-caption="DDR4 และ DDR5 เป็นคนละ Generation และไม่สามารถสลับใส่กันได้โดยอัตโนมัติ" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/09-ddr-compatibility.svg" alt="DDR4 และ DDR5 เป็นคนละ Generation และไม่สามารถสลับใส่กันได้โดยอัตโนมัติ" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>DDR4 และ DDR5 เป็นคนละ Generation และไม่สามารถสลับใส่กันได้โดยอัตโนมัติ</figcaption></figure><div class="rich-content"><p>DDR คือมาตรฐานของ RAM</p>
+<p>รุ่นที่พบทั่วไป เช่น</p>
+<ul class="course-list">
+<li>DDR4</li>
+<li>DDR5</li>
+</ul>
+<p>DDR5 เป็น Generation ใหม่กว่า</p>
+<p>แต่ไม่ได้หมายความว่าสามารถใส่แทน DDR4 ได้ทันที</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง Compatibility</h4>
+<p>Notebook A</p>
+<p>รองรับ DDR4</p>
+<p>RAM ที่ต้องการซื้อ</p>
+<p>DDR5</p>
+<p>ถึงแม้ DDR5 ใหม่กว่าและเร็วกว่า</p>
+<p>ก็ไม่สามารถใส่แทนได้ เพราะ Hardware ไม่รองรับ</p>
+<p>นี่คือตัวอย่างของ</p>
+<blockquote class="lesson-quote">
+<p>Better Specification ≠ Compatible</p>
+</blockquote>
+<hr/>
+</div></div></article><article class="topic" id="topic-20"><div class="topic-no">20</div><div class="topic-body"><h3>RAM แบบ ECC</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/10-ecc-ram.svg" data-caption="ECC RAM เน้น Reliability และพบมากใน Server/Workstation" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/10-ecc-ram.svg" alt="ECC RAM เน้น Reliability และพบมากใน Server/Workstation" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ECC RAM เน้น Reliability และพบมากใน Server/Workstation</figcaption></figure><div class="rich-content"><p>ECC ย่อมาจาก</p>
+<p><strong>Error Correcting Code</strong></p>
+<p>สามารถตรวจและแก้ Memory Error บางประเภทได้</p>
+<p>นิยมใช้ใน</p>
+<ul class="course-list">
+<li>Server</li>
+<li>Workstation</li>
+<li>ระบบสำคัญ</li>
+</ul>
+<p>เพราะระบบเหล่านี้ต้องการ Reliability สูง</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Server เดิมใช้</p>
+<blockquote class="lesson-quote">
+<p>ECC RAM</p>
+</blockquote>
+<p>Vendor เสนอ RAM Desktop ปกติ</p>
+<p>แม้</p>
+<ul class="course-list">
+<li>Capacity เท่ากัน</li>
+<li>DDR เท่ากัน</li>
+<li>Speed ใกล้กัน</li>
+</ul>
+<p>ก็อาจใช้แทนไม่ได้</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-21"><div class="topic-no">21</div><div class="topic-body"><h3>RAM ต้องดูมากกว่าความจุ</h3><div class="rich-content"><p>Requirement</p>
+<blockquote class="lesson-quote">
+<p>RAM 32GB</p>
+</blockquote>
+<p>อาจยังไม่พอ</p>
+<p>อาจต้องรู้</p>
+<ul class="course-list">
+<li>DDR4 หรือ DDR5</li>
+<li>ECC หรือ Non-ECC</li>
+<li>Speed</li>
+<li>Form Factor</li>
+<li>จำนวน Module</li>
+<li>จำนวน Slot</li>
+<li>Compatibility</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<h4 class="content-subhead">Option A</h4>
+<p>16GB × 2 = 32GB</p>
+<h4 class="content-subhead">Option B</h4>
+<p>32GB × 1 = 32GB</p>
+<p>Capacity เท่ากัน</p>
+<p>แต่ Option B อาจเหลือ Slot สำหรับ Upgrade มากกว่า</p>
+<p>ในขณะที่ Option A อาจได้ประโยชน์จาก Memory Configuration บางแบบ</p>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-5" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 05 · TOPIC 22–27</span><h2>Storage — HDD, SSD, SATA และ NVMe</h2></div><span class="module-count">6 หัวข้อ</span></header><article class="topic" id="topic-22"><div class="topic-no">22</div><div class="topic-body"><h3>Storage คืออะไร</h3><div class="rich-content"><p>Storage ใช้สำหรับเก็บข้อมูลระยะยาว</p>
+<p>ข้อมูลยังอยู่แม้ปิดเครื่อง</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>Windows</li>
+<li>Word</li>
+<li>Excel</li>
+<li>Database</li>
+<li>Image</li>
+<li>Video</li>
+</ul>
+<p>ประเภทที่พบมากคือ</p>
+<ul class="course-list">
+<li>HDD</li>
+<li>SSD</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-23"><div class="topic-no">23</div><div class="topic-body"><h3>HDD คืออะไร</h3><div class="rich-content"><p>HDD ย่อมาจาก</p>
+<p><strong>Hard Disk Drive</strong></p>
+<p>ใช้จานแม่เหล็กหมุนเพื่อจัดเก็บข้อมูล</p>
+<p class="mini-label">ข้อดี</p>
+<ul class="course-list">
+<li>ความจุสูง</li>
+<li>ราคาต่อ TB ต่ำ</li>
+</ul>
+<p class="mini-label">ข้อเสีย</p>
+<ul class="course-list">
+<li>ช้ากว่า SSD</li>
+<li>มีชิ้นส่วนเคลื่อนไหว</li>
+</ul>
+<p class="mini-label">เหมาะกับ</p>
+<ul class="course-list">
+<li>Archive</li>
+<li>Backup</li>
+<li>File Storage</li>
+<li>CCTV Storage</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-24"><div class="topic-no">24</div><div class="topic-body"><h3>SSD คืออะไร</h3><div class="rich-content"><p>SSD ย่อมาจาก</p>
+<p><strong>Solid State Drive</strong></p>
+<p>ใช้ Flash Memory ไม่มีจานหมุน</p>
+<p class="mini-label">ข้อดี</p>
+<ul class="course-list">
+<li>เร็วกว่า HDD</li>
+<li>Latency ต่ำกว่า</li>
+<li>ไม่มีชิ้นส่วนหมุน</li>
+<li>Notebook ตอบสนองเร็วขึ้นมาก</li>
+</ul>
+<p class="mini-label">เหมาะกับ</p>
+<ul class="course-list">
+<li>Operating System</li>
+<li>Application</li>
+<li>Notebook</li>
+<li>Desktop</li>
+<li>Server</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-25"><div class="topic-no">25</div><div class="topic-body"><h3>SATA SSD กับ NVMe SSD</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/11-storage-comparison.svg" data-caption="HDD, SATA SSD และ NVMe SSD อาจมี Capacity เท่ากันแต่ Performance และ Interface ต่างกัน" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/11-storage-comparison.svg" alt="HDD, SATA SSD และ NVMe SSD อาจมี Capacity เท่ากันแต่ Performance และ Interface ต่างกัน" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>HDD, SATA SSD และ NVMe SSD อาจมี Capacity เท่ากันแต่ Performance และ Interface ต่างกัน</figcaption></figure><div class="rich-content"><p>SSD ไม่ได้เหมือนกันทั้งหมด</p>
+<h4 class="content-subhead">SATA SSD</h4>
+<p>ใช้ SATA Interface</p>
+<p>ความเร็วถูกจำกัดโดยมาตรฐาน SATA</p>
+<h4 class="content-subhead">NVMe SSD</h4>
+<p>ใช้ PCIe และ NVMe Protocol</p>
+<p>สามารถทำความเร็วได้สูงกว่า SATA SSD มากในหลายรุ่น</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Requirement</p>
+<blockquote class="lesson-quote">
+<p>1TB NVMe SSD</p>
+</blockquote>
+<p>Vendor เสนอ</p>
+<blockquote class="lesson-quote">
+<p>1TB SATA SSD</p>
+</blockquote>
+<p>ทั้งคู่มีความจุ 1TB</p>
+<p>แต่ไม่ใช่สเปคเดียวกัน</p>
+<p class="mini-label">เพราะ</p>
+<ul class="course-list">
+<li>Interface ต่างกัน</li>
+<li>Performance ต่างกัน</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-26"><div class="topic-no">26</div><div class="topic-body"><h3>Capacity ไม่เท่ากับ Performance</h3><div class="rich-content"><p class="mini-label">ตัวอย่าง</p>
+<h4 class="content-subhead">HDD 1TB</h4>
+<h4 class="content-subhead">SATA SSD 1TB</h4>
+<h4 class="content-subhead">NVMe SSD 1TB</h4>
+<p>ทั้งหมดเก็บข้อมูลได้ประมาณ 1TB</p>
+<p>แต่ความเร็วแตกต่างกันมาก</p>
+<p>ดังนั้นเวลาเปรียบเทียบ Storage ต้องดูทั้ง</p>
+<ul class="course-list">
+<li>Capacity</li>
+<li>Technology</li>
+<li>Interface</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-27"><div class="topic-no">27</div><div class="topic-body"><h3>สรุปส่วนประกอบ Computer</h3><div class="rich-content"><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>อุปกรณ์หน้าที่หลักสิ่งที่ต้องดู</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>ประมวลผล</td>
+<td>Model / Generation / Core / Performance</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>กราฟิก / AI</td>
+<td>Model / VRAM / Compatibility</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>พื้นที่ทำงาน</td>
+<td>Capacity / DDR / ECC</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>เก็บข้อมูล</td>
+<td>HDD/SSD / SATA/NVMe / Capacity</td>
+</tr>
+</tbody>
+</table></div>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-6" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 06 · TOPIC 28–36</span><h2>Notebook, Desktop, Workstation &amp; Server</h2></div><span class="module-count">9 หัวข้อ</span></header><article class="topic" id="topic-28"><div class="topic-no">28</div><div class="topic-body"><h3>Notebook คืออะไร</h3><div class="rich-content"><p>Notebook เป็น Computer แบบพกพา</p>
+<p>รวมส่วนประกอบต่าง ๆ ไว้ในเครื่องเดียว</p>
+<ul class="course-list">
+<li>Display</li>
+<li>Keyboard</li>
+<li>Battery</li>
+<li>CPU</li>
+<li>RAM</li>
+<li>Storage</li>
+<li>Wi-Fi</li>
+</ul>
+<p class="mini-label">เหมาะกับ</p>
+<ul class="course-list">
+<li>Office</li>
+<li>Sales</li>
+<li>Management</li>
+<li>WFH</li>
+<li>Hybrid Work</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-29"><div class="topic-no">29</div><div class="topic-body"><h3>เวลาเลือก Notebook ต้องดูอะไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/12-notebook-checklist.svg" data-caption="การเลือก Notebook ต้องดูมากกว่า CPU/RAM/SSD เช่น Display, Port, Wireless, OS และ Warranty" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/12-notebook-checklist.svg" alt="การเลือก Notebook ต้องดูมากกว่า CPU/RAM/SSD เช่น Display, Port, Wireless, OS และ Warranty" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>การเลือก Notebook ต้องดูมากกว่า CPU/RAM/SSD เช่น Display, Port, Wireless, OS และ Warranty</figcaption></figure><div class="rich-content"><p>ไม่ควรดูเพียง CPU / RAM / SSD</p>
+<p class="mini-label">ควรดู</p>
+<h4 class="content-subhead">Performance</h4>
+<ul class="course-list">
+<li>CPU</li>
+<li>RAM</li>
+<li>GPU</li>
+<li>Storage</li>
+</ul>
+<h4 class="content-subhead">Display</h4>
+<ul class="course-list">
+<li>ขนาด</li>
+<li>Resolution</li>
+</ul>
+<h4 class="content-subhead">Connection</h4>
+<ul class="course-list">
+<li>USB</li>
+<li>USB-C</li>
+<li>HDMI</li>
+<li>LAN</li>
+<li>Thunderbolt</li>
+</ul>
+<h4 class="content-subhead">Wireless</h4>
+<ul class="course-list">
+<li>Wi-Fi</li>
+<li>Bluetooth</li>
+</ul>
+<h4 class="content-subhead">Mobility</h4>
+<ul class="course-list">
+<li>Weight</li>
+<li>Battery</li>
+</ul>
+<h4 class="content-subhead">OS</h4>
+<ul class="course-list">
+<li>Home</li>
+<li>Pro</li>
+</ul>
+<h4 class="content-subhead">Warranty</h4>
+<ul class="course-list">
+<li>1 Year</li>
+<li>3 Years</li>
+<li>On-site</li>
+<li>Carry-in</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-30"><div class="topic-no">30</div><div class="topic-body"><h3>Consumer Notebook และ Business Notebook</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/13-consumer-business.svg" data-caption="Business Notebook อาจมีต้นทุนเพิ่มจาก Warranty, Security, Support และ Product Lifecycle" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/13-consumer-business.svg" alt="Business Notebook อาจมีต้นทุนเพิ่มจาก Warranty, Security, Support และ Product Lifecycle" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Business Notebook อาจมีต้นทุนเพิ่มจาก Warranty, Security, Support และ Product Lifecycle</figcaption></figure><div class="rich-content"><p>Notebook ที่สเปคใกล้กันอาจราคาต่างกันมาก</p>
+<p>เพราะ Business Notebook อาจเพิ่มเรื่อง</p>
+<ul class="course-list">
+<li>Security</li>
+<li>Build Quality</li>
+<li>Warranty</li>
+<li>On-site Service</li>
+<li>Spare Parts</li>
+<li>Docking</li>
+<li>Management</li>
+<li>Product Lifecycle</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<h4 class="content-subhead">Notebook A — Consumer</h4>
+<p>Core i7</p>
+<p>RAM 16GB</p>
+<p>SSD 512GB</p>
+<p>ราคา 28,000 บาท</p>
+<h4 class="content-subhead">Notebook B — Business</h4>
+<p>Core i7</p>
+<p>RAM 16GB</p>
+<p>SSD 512GB</p>
+<p>ราคา 38,000 บาท</p>
+<p>ไม่ได้หมายความว่า B แพงเกินไปทันที</p>
+<p>เพราะ B อาจมี</p>
+<ul class="course-list">
+<li>Windows Pro</li>
+<li>Warranty 3 Years On-site</li>
+<li>Business Support</li>
+<li>Thunderbolt</li>
+<li>Docking</li>
+<li>Enterprise Security</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-31"><div class="topic-no">31</div><div class="topic-body"><h3>Desktop Computer</h3><div class="rich-content"><p>Desktop เป็น Computer ที่ใช้งานประจำที่</p>
+<p class="mini-label">ข้อดี</p>
+<ul class="course-list">
+<li>Upgrade ง่าย</li>
+<li>Cooling ดีกว่า Notebook</li>
+<li>Performance ต่อราคาดี</li>
+<li>Repair ง่ายกว่า</li>
+</ul>
+<p class="mini-label">เหมาะกับ</p>
+<ul class="course-list">
+<li>Office</li>
+<li>Graphic</li>
+<li>Engineering</li>
+<li>งานที่ไม่ต้องพกพา</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-32"><div class="topic-no">32</div><div class="topic-body"><h3>Workstation</h3><div class="rich-content"><p>Workstation คือ Computer ที่ออกแบบมาสำหรับงาน Professional</p>
+<p class="mini-label">เช่น</p>
+<ul class="course-list">
+<li>CAD</li>
+<li>Engineering</li>
+<li>3D</li>
+<li>Simulation</li>
+<li>Scientific Computing</li>
+<li>AI</li>
+</ul>
+<p>อาจมี</p>
+<ul class="course-list">
+<li>CPU ระดับสูง</li>
+<li>Professional GPU</li>
+<li>ECC RAM</li>
+<li>ISV Certification</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-33"><div class="topic-no">33</div><div class="topic-body"><h3>Server คืออะไร</h3><div class="rich-content"><p>Server คือ Computer หรือระบบที่ทำหน้าที่ให้บริการ Computer อื่น</p>
+<p class="mini-label">ตัวอย่าง</p>
+<h4 class="content-subhead">File Server</h4>
+<p>เก็บไฟล์ส่วนกลาง</p>
+<h4 class="content-subhead">Database Server</h4>
+<p>เก็บ Database</p>
+<h4 class="content-subhead">Application Server</h4>
+<p>รันระบบธุรกิจ</p>
+<h4 class="content-subhead">Domain Server</h4>
+<p>จัดการ User / Computer</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-34"><div class="topic-no">34</div><div class="topic-body"><h3>Server ต่างจาก Desktop อย่างไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/14-server-reliability.svg" data-caption="Server เน้น Reliability พร้อมแนวคิด Hot Swap และ Redundant Power Supply" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/14-server-reliability.svg" alt="Server เน้น Reliability พร้อมแนวคิด Hot Swap และ Redundant Power Supply" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Server เน้น Reliability พร้อมแนวคิด Hot Swap และ Redundant Power Supply</figcaption></figure><div class="rich-content"><p>Server ออกแบบมาเพื่อ</p>
+<ul class="course-list">
+<li>ทำงานตลอดเวลา</li>
+<li>รองรับ User จำนวนมาก</li>
+<li>มี Reliability สูง</li>
+<li>บำรุงรักษาได้ง่าย</li>
+<li>ลด Downtime</li>
+</ul>
+<p>มักมี</p>
+<ul class="course-list">
+<li>Xeon / EPYC</li>
+<li>ECC RAM</li>
+<li>RAID</li>
+<li>Hot Swap</li>
+<li>Redundant PSU</li>
+<li>Remote Management</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-35"><div class="topic-no">35</div><div class="topic-body"><h3>Hot Swap คืออะไร</h3><div class="rich-content"><p>Hot Swap คือความสามารถในการเปลี่ยนอุปกรณ์บางชนิดขณะที่ระบบยังทำงาน</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>Server มี HDD หลายลูก</p>
+<p>HDD หนึ่งลูกเสีย</p>
+<p>ถ้าระบบรองรับ Hot Swap สามารถเปลี่ยนลูกที่เสียได้โดยไม่ต้อง Shutdown Server ใน Configuration ที่รองรับ</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-36"><div class="topic-no">36</div><div class="topic-body"><h3>Redundant PSU</h3><div class="rich-content"><p>Server บางรุ่นมี Power Supply 2 ตัว</p>
+<p>เรียกว่า</p>
+<p><strong>Redundant Power Supply</strong></p>
+<p>ถ้า PSU ตัวหนึ่งเสีย</p>
+<p>อีกตัวสามารถจ่ายไฟต่อได้ตาม Configuration</p>
+<p>ช่วยลดความเสี่ยงที่ Server หยุดทำงาน</p>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-7" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 07 · TOPIC 37–45</span><h2>Operating System, Software &amp; Microsoft</h2></div><span class="module-count">9 หัวข้อ</span></header><article class="topic" id="topic-37"><div class="topic-no">37</div><div class="topic-body"><h3>Operating System คืออะไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/15-operating-systems.svg" data-caption="ตัวอย่าง Operating System ที่พบในองค์กร: Windows, Windows Server, Linux และ macOS" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/15-operating-systems.svg" alt="ตัวอย่าง Operating System ที่พบในองค์กร: Windows, Windows Server, Linux และ macOS" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ตัวอย่าง Operating System ที่พบในองค์กร: Windows, Windows Server, Linux และ macOS</figcaption></figure><div class="rich-content"><p>Operating System หรือ OS</p>
+<p>คือ Software หลักที่ทำหน้าที่ควบคุม Hardware และเป็นพื้นฐานให้ Application ทำงาน</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>Windows</li>
+<li>Windows Server</li>
+<li>Linux</li>
+<li>macOS</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-38"><div class="topic-no">38</div><div class="topic-body"><h3>Windows 11 Home และ Pro</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/16-windows-home-pro.svg" data-caption="Windows 11 Home และ Pro มี Business Features แตกต่างกัน" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/16-windows-home-pro.svg" alt="Windows 11 Home และ Pro มี Business Features แตกต่างกัน" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Windows 11 Home และ Pro มี Business Features แตกต่างกัน</figcaption></figure><div class="rich-content"><h4 class="content-subhead">Windows 11 Home</h4>
+<p>ออกแบบสำหรับผู้ใช้ทั่วไป</p>
+<h4 class="content-subhead">Windows 11 Pro</h4>
+<p>เพิ่ม Feature สำหรับ Business เช่น</p>
+<ul class="course-list">
+<li>Domain Join</li>
+<li>BitLocker</li>
+<li>Remote Desktop Host</li>
+<li>Business Management</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Requirement</p>
+<blockquote class="lesson-quote">
+<p>Windows 11 Pro</p>
+</blockquote>
+<p>Vendor เสนอ Notebook ราคาถูกกว่าแต่เป็น</p>
+<blockquote class="lesson-quote">
+<p>Windows 11 Home</p>
+</blockquote>
+<p>แม้ Hardware เหมือนกัน</p>
+<p>ก็ยัง <strong>ไม่ตรง Requirement</strong></p>
+<hr/>
+</div></div></article><article class="topic" id="topic-39"><div class="topic-no">39</div><div class="topic-body"><h3>Windows Server</h3><div class="rich-content"><p>Windows Server เป็น OS ที่ออกแบบสำหรับ Server</p>
+<p>สามารถใช้กับระบบ เช่น</p>
+<ul class="course-list">
+<li>Active Directory</li>
+<li>File Server</li>
+<li>Application Server</li>
+<li>Infrastructure Services</li>
+</ul>
+<p>Windows 11 Pro กับ Windows Server ไม่ใช่ Software ประเภทเดียวกันและใช้แทนกันไม่ได้</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-40"><div class="topic-no">40</div><div class="topic-body"><h3>Linux</h3><div class="rich-content"><p>Linux เป็น Operating System ที่นิยมมากใน</p>
+<ul class="course-list">
+<li>Server</li>
+<li>Cloud</li>
+<li>Web Server</li>
+<li>Database</li>
+<li>Development</li>
+</ul>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>Ubuntu</li>
+<li>Red Hat Enterprise Linux</li>
+<li>Debian</li>
+</ul>
+<p>บาง Distribution สามารถใช้งานฟรี</p>
+<p>บางระบบมีค่า</p>
+<ul class="course-list">
+<li>Subscription</li>
+<li>Support</li>
+<li>Enterprise Service</li>
+</ul>
+<p>ดังนั้น</p>
+<blockquote class="lesson-quote">
+<p>Linux = ฟรีทั้งหมด</p>
+</blockquote>
+<p>ไม่ถูกต้องเสมอไป</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-41"><div class="topic-no">41</div><div class="topic-body"><h3>Software คืออะไร</h3><div class="rich-content"><p>Software คือโปรแกรมที่ผู้ใช้หรือระบบใช้งาน</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>Microsoft Office</li>
+<li>Adobe Photoshop</li>
+<li>AutoCAD</li>
+<li>Antivirus</li>
+<li>ERP</li>
+<li>Accounting Software</li>
+</ul>
+<p>Software สามารถติดตั้งอยู่ในเครื่อง หรือใช้งานผ่าน Cloud ก็ได้</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-42"><div class="topic-no">42</div><div class="topic-body"><h3>Microsoft Office</h3><div class="rich-content"><p>Microsoft Office เป็นชุดโปรแกรม Productivity</p>
+<p class="mini-label">เช่น</p>
+<ul class="course-list">
+<li>Word</li>
+<li>Excel</li>
+<li>PowerPoint</li>
+</ul>
+<p>Office บางผลิตภัณฑ์สามารถซื้อแบบ</p>
+<p><strong>Perpetual</strong></p>
+<p>เช่นซื้อ Version หนึ่งแล้วใช้ Version นั้นตามสิทธิ์</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-43"><div class="topic-no">43</div><div class="topic-body"><h3>Microsoft 365</h3><div class="rich-content"><p>Microsoft 365 เป็นบริการแบบ Subscription</p>
+<p>โดยขึ้นอยู่กับ Plan อาจประกอบด้วย</p>
+<ul class="course-list">
+<li>Word</li>
+<li>Excel</li>
+<li>PowerPoint</li>
+<li>Outlook</li>
+<li>Exchange Online</li>
+<li>OneDrive</li>
+<li>SharePoint</li>
+<li>Teams</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-44"><div class="topic-no">44</div><div class="topic-body"><h3>Office กับ Microsoft 365 ต่างกันอย่างไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/17-office-m365.svg" data-caption="Office แบบซื้อ Version และ Microsoft 365 แบบ Subscription มีรูปแบบสิทธิ์ต่างกัน" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/17-office-m365.svg" alt="Office แบบซื้อ Version และ Microsoft 365 แบบ Subscription มีรูปแบบสิทธิ์ต่างกัน" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Office แบบซื้อ Version และ Microsoft 365 แบบ Subscription มีรูปแบบสิทธิ์ต่างกัน</figcaption></figure><div class="rich-content"><h4 class="content-subhead">Office แบบซื้อขาด</h4>
+<p>ซื้อสิทธิ์ Version นั้น</p>
+<p class="mini-label">ตัวอย่าง</p>
+<blockquote class="lesson-quote">
+<p>Office 2024</p>
+</blockquote>
+<p>ไม่ได้หมายความว่าจะได้รับ Office Version ใหม่ฟรีตลอดไป</p>
+<hr/>
+<h4 class="content-subhead">Microsoft 365</h4>
+<p>จ่าย Subscription</p>
+<p class="mini-label">เช่น</p>
+<blockquote class="lesson-quote">
+<p>1 Year</p>
+</blockquote>
+<p>เมื่อหมดอายุ ต้อง Renewal เพื่อใช้งาน Service ต่อ ตามเงื่อนไขของ Plan</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-45"><div class="topic-no">45</div><div class="topic-body"><h3>Microsoft 365 มีหลาย Plan</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/18-m365-plans.svg" data-caption="Microsoft 365 มีหลาย Plan และ Feature ไม่เหมือนกัน จึงไม่ควรเทียบจากชื่อ Microsoft 365 อย่างเดียว" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/18-m365-plans.svg" alt="Microsoft 365 มีหลาย Plan และ Feature ไม่เหมือนกัน จึงไม่ควรเทียบจากชื่อ Microsoft 365 อย่างเดียว" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Microsoft 365 มีหลาย Plan และ Feature ไม่เหมือนกัน จึงไม่ควรเทียบจากชื่อ Microsoft 365 อย่างเดียว</figcaption></figure><div class="rich-content"><p>คำว่า</p>
+<blockquote class="lesson-quote">
+<p>Microsoft 365</p>
+</blockquote>
+<p>อย่างเดียวไม่เพียงพอในการจัดซื้อ</p>
+<p>ตัวอย่าง Plan เช่น</p>
+<ul class="course-list">
+<li>Business Basic</li>
+<li>Business Standard</li>
+<li>Business Premium</li>
+</ul>
+<p>แต่ละ Plan มี</p>
+<ul class="course-list">
+<li>Feature</li>
+<li>Application</li>
+<li>Security</li>
+<li>Management</li>
+</ul>
+<p>แตกต่างกัน</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Vendor A</p>
+<blockquote class="lesson-quote">
+<p>Microsoft 365 Business Basic</p>
+</blockquote>
+<p>Vendor B</p>
+<blockquote class="lesson-quote">
+<p>Microsoft 365 Business Standard</p>
+</blockquote>
+<p>ไม่สามารถเทียบราคาแล้วเลือกตัวถูกได้ทันที</p>
+<p>เพราะ Feature ไม่เหมือนกัน</p>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-8" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 08 · TOPIC 46–53</span><h2>Software Licensing &amp; Renewal</h2></div><span class="module-count">8 หัวข้อ</span></header><article class="topic" id="topic-46"><div class="topic-no">46</div><div class="topic-body"><h3>License คืออะไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/19-license-models.svg" data-caption="ภาพรวม License Model ที่พบบ่อย: User, Device, Concurrent, Subscription, Perpetual และ OEM" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/19-license-models.svg" alt="ภาพรวม License Model ที่พบบ่อย: User, Device, Concurrent, Subscription, Perpetual และ OEM" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ภาพรวม License Model ที่พบบ่อย: User, Device, Concurrent, Subscription, Perpetual และ OEM</figcaption></figure><div class="rich-content"><p>License คือสิทธิ์ที่อนุญาตให้ใช้ Software หรือ Service</p>
+<p>License อาจคิดตาม</p>
+<ul class="course-list">
+<li>User</li>
+<li>Device</li>
+<li>Server</li>
+<li>CPU</li>
+<li>Core</li>
+<li>Concurrent User</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-47"><div class="topic-no">47</div><div class="topic-body"><h3>User License</h3><div class="rich-content"><p>คิดตามจำนวนผู้ใช้งาน</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>บริษัทมีพนักงาน 50 คน</p>
+<p>ต้องการ Microsoft 365 ให้พนักงานทุกคน</p>
+<p>อาจต้องซื้อ</p>
+<blockquote class="lesson-quote">
+<p>50 User Licenses</p>
+</blockquote>
+<p>ตามเงื่อนไข Product</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-48"><div class="topic-no">48</div><div class="topic-body"><h3>Device License</h3><div class="rich-content"><p>License คิดตามจำนวน Device</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>Software หนึ่งตัวคิด License ต่อ Computer</p>
+<p>บริษัทมี Computer 100 เครื่อง</p>
+<p>อาจต้องใช้</p>
+<blockquote class="lesson-quote">
+<p>100 Device Licenses</p>
+</blockquote>
+<hr/>
+</div></div></article><article class="topic" id="topic-49"><div class="topic-no">49</div><div class="topic-body"><h3>Concurrent License</h3><div class="rich-content"><p>คิดตามจำนวน User ที่ใช้งานพร้อมกัน</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>บริษัทมีพนักงาน 100 คน</p>
+<p>แต่ Software มี</p>
+<blockquote class="lesson-quote">
+<p>20 Concurrent Licenses</p>
+</blockquote>
+<p>หมายความว่า ณ เวลาเดียวกันสามารถมีผู้ใช้พร้อมกันตามจำนวนที่ License อนุญาต</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-50"><div class="topic-no">50</div><div class="topic-body"><h3>Subscription License</h3><div class="rich-content"><p>จ่ายค่าบริการตามระยะเวลา</p>
+<p class="mini-label">ตัวอย่าง</p>
+<ul class="course-list">
+<li>Monthly</li>
+<li>1 Year</li>
+<li>3 Years</li>
+</ul>
+<p>เมื่อหมด Subscription ต้อง Renewal หากต้องการใช้ต่อ</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-51"><div class="topic-no">51</div><div class="topic-body"><h3>Perpetual License</h3><div class="rich-content"><p>ซื้อสิทธิ์ใช้ Version นั้นตามเงื่อนไขของผลิตภัณฑ์</p>
+<p>ไม่ได้หมายความว่า</p>
+<ul class="course-list">
+<li>ได้ Upgrade Version ใหม่ฟรีตลอด</li>
+<li>ได้ Support ฟรีตลอด</li>
+<li>ได้ Cloud Service ฟรีตลอด</li>
+</ul>
+<p>สิ่งเหล่านี้อาจต้องซื้อเพิ่ม</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-52"><div class="topic-no">52</div><div class="topic-body"><h3>OEM License</h3><div class="rich-content"><p>OEM License มักมาพร้อมกับ Hardware</p>
+<p class="mini-label">ตัวอย่าง</p>
+<p>Notebook ที่ซื้อมาแล้วมี</p>
+<blockquote class="lesson-quote">
+<p>Windows 11 Pro OEM</p>
+</blockquote>
+<p>License ถูกจำหน่ายมากับเครื่องนั้น</p>
+<p>เงื่อนไขการใช้งานและการโอนต้องตรวจสอบตาม Product Terms</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-53"><div class="topic-no">53</div><div class="topic-body"><h3>Software Renewal</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/20-renewal-timeline.svg" data-caption="งาน Renewal ควรติดตาม Start Date, Expiry Date และเริ่มขอราคาล่วงหน้า" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/20-renewal-timeline.svg" alt="งาน Renewal ควรติดตาม Start Date, Expiry Date และเริ่มขอราคาล่วงหน้า" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>งาน Renewal ควรติดตาม Start Date, Expiry Date และเริ่มขอราคาล่วงหน้า</figcaption></figure><div class="rich-content"><p>Subscription หลายประเภทต้องต่ออายุ</p>
+<p>Procurement ควรเก็บข้อมูล</p>
+<ul class="course-list">
+<li>Product</li>
+<li>จำนวน License</li>
+<li>Vendor</li>
+<li>Start Date</li>
+<li>Expiry Date</li>
+<li>Renewal Date</li>
+<li>Price</li>
+<li>Contract</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Microsoft 365 หมดอายุวันที่</p>
+<blockquote class="lesson-quote">
+<p>31 December</p>
+</blockquote>
+<p>ไม่ควรรอถึงวันที่ 30 December แล้วค่อยเริ่มขอราคา</p>
+<p>ควรมีระบบแจ้ง Renewal ล่วงหน้า</p>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-9" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 09 · TOPIC 54–63</span><h2>Specification, SKU, Warranty &amp; Quotation</h2></div><span class="module-count">10 หัวข้อ</span></header><article class="topic" id="topic-54"><div class="topic-no">54</div><div class="topic-body"><h3>วิธีอ่าน Specification</h3><div class="rich-content"><p>เวลาได้รับ Requirement Hardware ให้แยกข้อมูลเป็นหมวด</p>
+<h4 class="content-subhead">Product</h4>
+<p>อะไร?</p>
+<p>Notebook</p>
+<h4 class="content-subhead">Performance</h4>
+<p>CPU / RAM / GPU</p>
+<h4 class="content-subhead">Storage</h4>
+<p>SSD / Capacity</p>
+<h4 class="content-subhead">Connectivity</h4>
+<p>Wi-Fi / LAN / Port</p>
+<h4 class="content-subhead">OS</h4>
+<p>Windows Edition</p>
+<h4 class="content-subhead">Warranty</h4>
+<p>กี่ปี / แบบใด</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-55"><div class="topic-no">55</div><div class="topic-body"><h3>Part Number / SKU คืออะไร</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/21-sku-configuration.svg" data-caption="Model เดียวกันอาจมีหลาย SKU และ Configuration ต่างกัน" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/21-sku-configuration.svg" alt="Model เดียวกันอาจมีหลาย SKU และ Configuration ต่างกัน" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Model เดียวกันอาจมีหลาย SKU และ Configuration ต่างกัน</figcaption></figure><div class="rich-content"><p>สินค้า Model เดียวกันสามารถมีหลาย Configuration</p>
+<p>จึงมี Part Number หรือ SKU แยก</p>
+<hr/>
+<h4 class="content-subhead">ตัวอย่าง</h4>
+<p>Notebook รุ่น XYZ</p>
+<h4 class="content-subhead">SKU 001</h4>
+<p>RAM 16GB</p>
+<p>SSD 512GB</p>
+<p>Windows Home</p>
+<h4 class="content-subhead">SKU 002</h4>
+<p>RAM 32GB</p>
+<p>SSD 1TB</p>
+<p>Windows Pro</p>
+<p>ชื่อ Series หรือ Model เหมือนกัน</p>
+<p>แต่สินค้าที่ได้รับต่างกัน</p>
+<p>ดังนั้นงานจัดซื้อควรตรวจ</p>
+<blockquote class="lesson-quote">
+<p>Part Number / SKU</p>
+</blockquote>
+<hr/>
+</div></div></article><article class="topic" id="topic-56"><div class="topic-no">56</div><div class="topic-body"><h3>Warranty ไม่ได้ดูแค่จำนวนปี</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/22-warranty.svg" data-caption="Warranty ต้องดูรูปแบบบริการ เช่น Carry-in, On-site และ SLA ไม่ใช่ดูจำนวนปีอย่างเดียว" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/22-warranty.svg" alt="Warranty ต้องดูรูปแบบบริการ เช่น Carry-in, On-site และ SLA ไม่ใช่ดูจำนวนปีอย่างเดียว" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>Warranty ต้องดูรูปแบบบริการ เช่น Carry-in, On-site และ SLA ไม่ใช่ดูจำนวนปีอย่างเดียว</figcaption></figure><div class="rich-content"><p class="mini-label">ตัวอย่าง</p>
+<h4 class="content-subhead">3 Years Carry-in</h4>
+<p>ผู้ใช้ต้องนำเครื่องไปศูนย์บริการ</p>
+<h4 class="content-subhead">3 Years On-site</h4>
+<p>มีบริการถึงสถานที่ตามเงื่อนไข</p>
+<h4 class="content-subhead">Next Business Day</h4>
+<p>มี SLA การตอบสนองตามข้อตกลง</p>
+<p>ดังนั้น</p>
+<blockquote class="lesson-quote">
+<p>Warranty 3 ปี</p>
+</blockquote>
+<p>ไม่ได้หมายความว่าเหมือนกันทุก Vendor</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-57"><div class="topic-no">57</div><div class="topic-body"><h3>ตัวอย่าง Requirement</h3><div class="rich-content"><p>ฝ่าย IT ต้องการ</p>
+<p><strong>Business Notebook</strong></p>
+<ul class="course-list">
+<li>Intel Core i7</li>
+<li>RAM 16GB</li>
+<li>SSD 512GB NVMe</li>
+<li>Windows 11 Pro</li>
+<li>Wi-Fi 6</li>
+<li>Warranty 3 Years</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-58"><div class="topic-no">58</div><div class="topic-body"><h3>Vendor A เสนอ</h3><div class="rich-content"><ul class="course-list">
+<li>Intel Core i7</li>
+<li>RAM 16GB</li>
+<li>SSD 512GB</li>
+<li>Windows 11 Home</li>
+<li>Wi-Fi 6</li>
+<li>Warranty 3 Years</li>
+<li>ราคา 31,000 บาท</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">วิเคราะห์</h4>
+<h4 class="content-subhead">CPU</h4>
+<p>ยังไม่พอ ต้องรู้ Model เต็ม</p>
+<h4 class="content-subhead">RAM</h4>
+<p>ตรง</p>
+<h4 class="content-subhead">SSD</h4>
+<p>ยังต้องตรวจว่าเป็น NVMe หรือไม่</p>
+<h4 class="content-subhead">Windows</h4>
+<p>ไม่ตรง</p>
+<p>Requirement = Pro</p>
+<p>Vendor = Home</p>
+<h4 class="content-subhead">Warranty</h4>
+<p>ต้องดูว่าเป็น Carry-in หรือ On-site</p>
+<p>ดังนั้นยังไม่ควร Approve</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-59"><div class="topic-no">59</div><div class="topic-body"><h3>Vendor B เสนอ</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/23-vendor-comparison.svg" data-caption="การเทียบ Vendor ต้องตรวจ Requirement ทีละรายการก่อนพิจารณาราคา" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/23-vendor-comparison.svg" alt="การเทียบ Vendor ต้องตรวจ Requirement ทีละรายการก่อนพิจารณาราคา" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>การเทียบ Vendor ต้องตรวจ Requirement ทีละรายการก่อนพิจารณาราคา</figcaption></figure><div class="rich-content"><ul class="course-list">
+<li>Intel Core Ultra 5</li>
+<li>RAM 16GB</li>
+<li>SSD 1TB NVMe</li>
+<li>Windows 11 Pro</li>
+<li>Wi-Fi 6E</li>
+<li>Warranty 3 Years On-site</li>
+<li>ราคา 33,000 บาท</li>
+</ul>
+<hr/>
+<h4 class="content-subhead">วิเคราะห์</h4>
+<h4 class="content-subhead">RAM</h4>
+<p>ผ่าน</p>
+<h4 class="content-subhead">Storage</h4>
+<p>1TB สูงกว่า Requirement 512GB และยังเป็น NVMe</p>
+<h4 class="content-subhead">Windows</h4>
+<p>ผ่าน</p>
+<h4 class="content-subhead">Wi-Fi</h4>
+<p>ผ่านหรือสูงกว่า</p>
+<h4 class="content-subhead">Warranty</h4>
+<p>ผ่านถ้า Requirement ต้องการ On-site</p>
+<h4 class="content-subhead">CPU</h4>
+<p>ยังต้องตรวจ</p>
+<blockquote class="lesson-quote">
+<p>Core Ultra 5 เทียบกับ Core i7 ที่ Requirement ต้องการได้หรือไม่</p>
+</blockquote>
+<p>ต้องรู้ Model CPU เต็ม</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-60"><div class="topic-no">60</div><div class="topic-body"><h3>หลักที่ต้องจำเมื่อเปรียบเทียบสินค้า</h3><div class="rich-content"><h4 class="content-subhead">รุ่นใหม่กว่า</h4>
+<p>ไม่ได้แปลว่าเหมาะกว่าเสมอ</p>
+<h4 class="content-subhead">ราคาแพงกว่า</h4>
+<p>ไม่ได้แปลว่าดีกว่าเสมอ</p>
+<h4 class="content-subhead">Capacity มากกว่า</h4>
+<p>ไม่ได้แปลว่า Performance ดีกว่าเสมอ</p>
+<h4 class="content-subhead">Performance สูงกว่า</h4>
+<p>ไม่ได้แปลว่า Compatible</p>
+<h4 class="content-subhead">Model เหมือนกัน</h4>
+<p>ไม่ได้แปลว่า Configuration เหมือนกัน</p>
+<hr/>
+</div></div></article><article class="topic" id="topic-61"><div class="topic-no">61</div><div class="topic-body"><h3>Checklist สำหรับ Hardware</h3><div class="rich-content"><p>ก่อนออก PO ตรวจ</p>
+<ul class="course-list">
+<li>Brand</li>
+<li>Model</li>
+<li>Part Number / SKU</li>
+<li>CPU Model</li>
+<li>GPU</li>
+<li>RAM</li>
+<li>RAM Type</li>
+<li>Storage Type</li>
+<li>Storage Capacity</li>
+<li>Display</li>
+<li>Port</li>
+<li>Network</li>
+<li>Operating System</li>
+<li>Warranty</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-62"><div class="topic-no">62</div><div class="topic-body"><h3>Checklist สำหรับ Software</h3><div class="rich-content"><p>ก่อนซื้อ Software ตรวจ</p>
+<ul class="course-list">
+<li>Product</li>
+<li>Edition</li>
+<li>Plan</li>
+<li>Quantity</li>
+<li>User / Device</li>
+<li>Subscription / Perpetual</li>
+<li>ระยะเวลา</li>
+<li>New / Renewal</li>
+<li>Support</li>
+<li>Start Date</li>
+<li>Expiry Date</li>
+</ul>
+<hr/>
+</div></div></article><article class="topic" id="topic-63"><div class="topic-no">63</div><div class="topic-body"><h3>Checklist สำหรับ Quotation</h3><div class="rich-content"><p>ตรวจว่า Vendor เสนอ</p>
+<h4 class="content-subhead">สินค้าตรงรุ่นหรือไม่</h4>
+<h4 class="content-subhead">Part Number ถูกหรือไม่</h4>
+<h4 class="content-subhead">Specification ตรงหรือไม่</h4>
+<h4 class="content-subhead">Quantity ถูกหรือไม่</h4>
+<h4 class="content-subhead">Warranty ตรงหรือไม่</h4>
+<h4 class="content-subhead">License ตรงหรือไม่</h4>
+<h4 class="content-subhead">Service รวมอะไร</h4>
+<h4 class="content-subhead">Lead Time เท่าไร</h4>
+<h4 class="content-subhead">มี Renewal หรือค่าใช้จ่ายต่อเนื่องหรือไม่</h4>
+<hr/>
+</div></div></article></section><section class="module-card" id="module-10" data-progress-section><header class="module-head"><div><span class="module-kicker">MODULE 10 · TOPIC 64–65</span><h2>สรุป Day 1 &amp; Procurement Mindset</h2></div><span class="module-count">2 หัวข้อ</span></header><article class="topic" id="topic-64"><div class="topic-no">64</div><div class="topic-body"><h3>สรุป Day 1</h3><figure class="lesson-visual zoomable-figure"><button class="image-open" type="button" data-full="assets/course-day1-full/24-procurement-flow.svg" data-caption="ลำดับการคิดของ IT Procurement: สินค้า → Use Case → Spec → Compatibility → SKU/License/Warranty → ราคา" aria-label="เปิดภาพแบบเต็มจอ"><img src="assets/course-day1-full/24-procurement-flow.svg" alt="ลำดับการคิดของ IT Procurement: สินค้า → Use Case → Spec → Compatibility → SKU/License/Warranty → ราคา" loading="lazy" decoding="async"><span class="zoom-hint">⌕ คลิกเพื่อขยายเต็มจอ</span></button><figcaption>ลำดับการคิดของ IT Procurement: สินค้า → Use Case → Spec → Compatibility → SKU/License/Warranty → ราคา</figcaption></figure><div class="rich-content"><p>เมื่อเห็น Requirement IT ให้คิดตามลำดับ</p>
+<p><strong>สินค้าอะไร?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>ใช้ทำอะไร?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>Hardware ประกอบด้วยอะไร?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>CPU / GPU / RAM / Storage ต้องการระดับไหน?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>OS อะไร?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>ต้องมี Software อะไร?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>Software ใช้ License แบบใด?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>Model / SKU ตรงหรือไม่?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>Warranty และ Service ตรงหรือไม่?</strong></p>
+<p class="flow-arrow">↓</p>
+<p><strong>จึงค่อยเปรียบเทียบราคา</strong></p>
+<hr/>
+</div></div></article><article class="topic" id="topic-65"><div class="topic-no">65</div><div class="topic-body"><h3>สิ่งสำคัญที่สุด</h3><div class="rich-content"><p>สำหรับคนทำ Procurement ไม่จำเป็นต้องจำ</p>
+<ul class="course-list">
+<li>CPU ทุกรุ่น</li>
+<li>GPU ทุกตัว</li>
+<li>RAM ทุกประเภท</li>
+<li>Microsoft ทุก License</li>
+</ul>
+<p>สิ่งสำคัญคือสามารถแยกได้ว่า</p>
+<p><strong>ข้อมูลอะไรที่ต้องมี</strong></p>
+<p><strong>ข้อมูลไหนยังไม่พอ</strong></p>
+<p><strong>ข้อมูลไหนต้องตรวจเพิ่ม</strong></p>
+<p><strong>ข้อมูลไหนมีผลต่อ Compatibility</strong></p>
+<p class="mini-label">และ</p>
+<p><strong>ก่อนออก PO มีอะไรที่ต้องให้ฝ่าย IT ยืนยัน</strong></p>
+<p>เพราะเป้าหมายของการจัดซื้อ IT ไม่ใช่เพียง</p>
+<blockquote class="lesson-quote">
+<p>“ซื้อของให้ได้”</p>
+</blockquote>
+<p>แต่คือ</p>
+<blockquote class="lesson-quote">
+<p><strong>ซื้อของให้ตรง Requirement ใช้งานได้จริง และลดความเสี่ยงในการซื้อผิด Specification</strong></p>
+</blockquote>
+</div></div></article></section><div class="course-end"><h2>จบ Day 1</h2><p>หัวใจของงานจัดซื้อ IT คือรู้ว่าข้อมูลอะไรต้องมี ข้อมูลใดยังไม่พอ อะไรต้องตรวจ Compatibility และอะไรต้องให้ฝ่าย IT ยืนยันก่อนออก PO</p><a class="btn primary" href="index.html#contact">สอบถาม / จองเรียนต่อ</a></div></main></div>
+<div class="viewer" id="viewer" aria-hidden="true"><div class="viewer-top"><div class="viewer-caption" id="viewerCaption"></div><div class="viewer-controls"><button id="zoomOut" title="Zoom out">−</button><button id="zoomReset" title="Reset">1:1</button><button id="zoomIn" title="Zoom in">+</button><button id="closeViewer" title="Close">✕</button></div></div><div class="viewer-stage" id="viewerStage"><img id="viewerImg" alt="ภาพประกอบแบบเต็มจอ"><div class="viewer-help">Scroll = Zoom · Drag = เลื่อนภาพ · Esc = ปิด</div></div></div>
 <script>
-const progress=document.getElementById('readProgress');
-const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;const p=max>0?scrollY/max*100:0;progress.style.width=Math.min(100,p)+'%'};
-addEventListener('scroll',updateProgress,{passive:true});updateProgress();
-const links=[...document.querySelectorAll('.sidebar a')];const sections=[...document.querySelectorAll('[data-progress-section]')];
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-20% 0px -68% 0px'});sections.forEach(s=>io.observe(s));
-document.getElementById('mobileToc').addEventListener('change',e=>{location.hash=e.target.value});
-</script>
-</body></html>
+const progress=document.getElementById('readProgress');function setProgress(){const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;progress.style.width=(max?Math.min(100,(h.scrollTop/max)*100):0)+'%'}addEventListener('scroll',setProgress,{passive:true});setProgress();
+const links=[...document.querySelectorAll('.sidebar a')], sections=[...document.querySelectorAll('[data-progress-section]')];const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.dataset.nav===e.target.id))}})},{rootMargin:'-18% 0px -70% 0px'});sections.forEach(s=>io.observe(s));
+document.getElementById('mobileToc').addEventListener('change',e=>{if(e.target.value)document.getElementById(e.target.value)?.scrollIntoView({behavior:'smooth'})});
+const viewer=document.getElementById('viewer'),stage=document.getElementById('viewerStage'),vimg=document.getElementById('viewerImg'),vcap=document.getElementById('viewerCaption');let scale=1,tx=0,ty=0,drag=false,sx=0,sy=0,stx=0,sty=0;function apply(){vimg.style.transform=`translate(${tx}px,${ty}px) scale(${scale})`}function reset(){scale=1;tx=0;ty=0;apply()}function openViewer(src,cap){vimg.src=src;vcap.textContent=cap||'';viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';reset()}function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';vimg.src=''}document.querySelectorAll('[data-full]').forEach(b=>b.addEventListener('click',()=>openViewer(b.dataset.full,b.dataset.caption)));document.getElementById('closeViewer').onclick=closeViewer;document.getElementById('zoomIn').onclick=()=>{scale=Math.min(4,scale+.25);apply()};document.getElementById('zoomOut').onclick=()=>{scale=Math.max(.5,scale-.25);apply()};document.getElementById('zoomReset').onclick=reset;stage.addEventListener('wheel',e=>{e.preventDefault();scale=Math.max(.5,Math.min(4,scale+(e.deltaY<0?.18:-.18)));apply()},{passive:false});stage.addEventListener('pointerdown',e=>{drag=true;stage.setPointerCapture(e.pointerId);stage.classList.add('dragging');sx=e.clientX;sy=e.clientY;stx=tx;sty=ty});stage.addEventListener('pointermove',e=>{if(!drag)return;tx=stx+(e.clientX-sx);ty=sty+(e.clientY-sy);apply()});stage.addEventListener('pointerup',()=>{drag=false;stage.classList.remove('dragging')});viewer.addEventListener('click',e=>{if(e.target===viewer)closeViewer()});addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer();if(!viewer.classList.contains('open'))return;if(e.key==='+')document.getElementById('zoomIn').click();if(e.key==='-')document.getElementById('zoomOut').click()});
+</script></body></html>
