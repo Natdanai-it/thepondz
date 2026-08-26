@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img">
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#071a38"/><stop offset=".55" stop-color="#0b2a59"/><stop offset="1" stop-color="#06152f"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+  <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce8f8"/><stop offset=".45" stop-color="#8294ae"/><stop offset="1" stop-color="#f5f9ff"/></linearGradient>
+  <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#21c88a"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#e9a52d"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#8bb8ff" stroke-opacity=".08"/></pattern>
+</defs>
+<rect width="1200" height="600" rx="34" fill="url(#bg)"/>
+<rect width="1200" height="600" rx="34" fill="url(#grid)"/>
+<circle cx="1060" cy="70" r="230" fill="#2e72ff" opacity=".10"/>
+<circle cx="120" cy="570" r="250" fill="#38bdf8" opacity=".06"/>
+
+<g filter="url(#shadow)">
+  <g transform="translate(60 230)"><rect width="260" height="155" rx="14" fill="#0b244a" stroke="#7eb8ff" stroke-width="4"/><rect x="22" y="22" width="216" height="111" rx="7" fill="#052044"/><path d="M0 170h260l48 52H-48z" fill="#aab8ca"/></g>
+  <g transform="translate(390 190)"><rect width="210" height="150" rx="14" fill="#0b244a" stroke="#7eb8ff" stroke-width="4"/><rect x="24" y="24" width="162" height="102" rx="7" fill="#052044"/><rect x="82" y="150" width="46" height="48" fill="#9aabc0"/><rect x="225" y="-20" width="105" height="270" rx="18" fill="#0a1a34" stroke="#4f8cff" stroke-opacity=".5" stroke-width="4"/></g>
+  <g transform="translate(790 128)"><rect width="250" height="340" rx="24" fill="#081a36" stroke="#7eb8ff" stroke-opacity=".45" stroke-width="4"/><g fill="#102d57" stroke="#4f8cff" stroke-opacity=".45"><rect x="28" y="34" width="194" height="55" rx="8"/><rect x="28" y="102" width="194" height="55" rx="8"/><rect x="28" y="170" width="194" height="55" rx="8"/><rect x="28" y="238" width="194" height="55" rx="8"/></g><g fill="#72e0bd"><circle cx="52" cy="62" r="6"/><circle cx="52" cy="130" r="6"/><circle cx="52" cy="198" r="6"/><circle cx="52" cy="266" r="6"/></g></g>
+</g>
+
+</svg>

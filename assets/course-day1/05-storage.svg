@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img">
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#071a38"/><stop offset=".55" stop-color="#0b2a59"/><stop offset="1" stop-color="#06152f"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+  <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce8f8"/><stop offset=".45" stop-color="#8294ae"/><stop offset="1" stop-color="#f5f9ff"/></linearGradient>
+  <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#21c88a"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#e9a52d"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#8bb8ff" stroke-opacity=".08"/></pattern>
+</defs>
+<rect width="1200" height="600" rx="34" fill="url(#bg)"/>
+<rect width="1200" height="600" rx="34" fill="url(#grid)"/>
+<circle cx="1060" cy="70" r="230" fill="#2e72ff" opacity=".10"/>
+<circle cx="120" cy="570" r="250" fill="#38bdf8" opacity=".06"/>
+
+<g filter="url(#shadow)">
+  <g transform="translate(95 145)"><rect width="280" height="300" rx="32" fill="#e8eef7"/><circle cx="140" cy="135" r="86" fill="#9baabd"/><circle cx="140" cy="135" r="27" fill="#dbe4ef"/><path d="M140 135l80 70" stroke="#44556c" stroke-width="13" stroke-linecap="round"/><rect x="62" y="250" width="156" height="16" rx="8" fill="#71839a"/></g>
+  <g transform="translate(465 185)"><rect width="285" height="220" rx="28" fill="#d8e2f0"/><rect x="30" y="36" width="225" height="148" rx="18" fill="#18283d"/><path d="M55 75h120M55 110h165M55 145h95" stroke="#6d91c2" stroke-width="11" stroke-linecap="round"/></g>
+  <g transform="translate(835 225)"><rect width="270" height="110" rx="18" fill="#0d3c2f" stroke="#72e0bd" stroke-width="4"/><g fill="#152843"><rect x="28" y="24" width="48" height="60" rx="8"/><rect x="88" y="24" width="48" height="60" rx="8"/><rect x="148" y="24" width="48" height="60" rx="8"/></g><circle cx="228" cy="55" r="10" fill="#5fb5ff"/></g>
+</g>
+<g stroke="#7db5ff" stroke-width="7" stroke-linecap="round"><path d="M370 295h75"/><path d="M755 295h60"/></g><g fill="#7db5ff"><path d="M430 280l22 15-22 15z"/><path d="M800 280l22 15-22 15z"/></g>
+
+</svg>

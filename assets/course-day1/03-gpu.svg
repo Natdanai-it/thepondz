@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img">
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0" stop-color="#071a38"/><stop offset=".55" stop-color="#0b2a59"/><stop offset="1" stop-color="#06152f"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#2e72ff"/><stop offset="1" stop-color="#86b8ff"/></linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#4f8cff"/></linearGradient>
+  <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#dce8f8"/><stop offset=".45" stop-color="#8294ae"/><stop offset="1" stop-color="#f5f9ff"/></linearGradient>
+  <linearGradient id="green" x1="0" x2="1"><stop offset="0" stop-color="#21c88a"/><stop offset="1" stop-color="#8cf0cc"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#e9a52d"/><stop offset="1" stop-color="#ffd875"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/></filter>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#8bb8ff" stroke-opacity=".08"/></pattern>
+</defs>
+<rect width="1200" height="600" rx="34" fill="url(#bg)"/>
+<rect width="1200" height="600" rx="34" fill="url(#grid)"/>
+<circle cx="1060" cy="70" r="230" fill="#2e72ff" opacity=".10"/>
+<circle cx="120" cy="570" r="250" fill="#38bdf8" opacity=".06"/>
+
+<g transform="translate(200 175)" filter="url(#shadow)">
+  <rect width="800" height="270" rx="34" fill="#0a1d39" stroke="#7eb8ff" stroke-opacity=".45" stroke-width="4"/>
+  <rect x="38" y="38" width="655" height="194" rx="24" fill="#0d2a55"/>
+  <circle cx="215" cy="135" r="82" fill="#07152d" stroke="#4f8cff" stroke-width="6"/><circle cx="515" cy="135" r="82" fill="#07152d" stroke="#4f8cff" stroke-width="6"/>
+  <g fill="#365f9a"><path d="M215 59l18 56 54-20-40 41 40 39-54-18-18 55-18-55-54 18 40-39-40-41 54 20z"/><path d="M515 59l18 56 54-20-40 41 40 39-54-18-18 55-18-55-54 18 40-39-40-41 54 20z"/></g>
+  <circle cx="215" cy="135" r="19" fill="#8ec0ff"/><circle cx="515" cy="135" r="19" fill="#8ec0ff"/>
+  <rect x="718" y="58" width="44" height="150" rx="8" fill="#d8a838"/>
+</g>
+<g stroke="#4f8cff" stroke-width="7" stroke-linecap="round"><path d="M255 118l-50-54"/><path d="M930 118l55-54"/></g>
+<g stroke="#35d8ac" stroke-width="7" stroke-linecap="round"><path d="M260 478l-60 50"/><path d="M930 478l60 50"/></g>
+
+</svg>
