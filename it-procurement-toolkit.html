@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06152f">
+  <title>IT Procurement Workshop Toolkit | Pond Natdanai</title>
+  <meta name="description" content="แบบฟอร์ม IT Procurement สำหรับ Requirement, Source Log, Comparison Matrix, Deviation, TCO, Recommendation และ Renewal">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#020817;--panel:#07182f;--panel2:#0a2144;--line:rgba(132,179,255,.18);--line2:rgba(132,179,255,.38);--blue:#4f8cff;--green:#72e0bd;--gold:#ffc857;--red:#ff8790;--text:#f4f8ff;--muted:#a6b7d0;--faint:#7085a6}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:radial-gradient(900px 520px at 8% -6%,rgba(45,110,255,.18),transparent 64%),linear-gradient(180deg,#020817,#041027 55%,#020817);color:var(--text);font-family:'Noto Sans Thai',sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:rgba(2,8,23,.88);backdrop-filter:blur(18px)}.brand{font:800 14px Sora}.brand small{display:block;color:var(--faint);font:500 8px JetBrains Mono;letter-spacing:.13em;margin-top:3px}.top-actions{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--line2);border-radius:999px;padding:8px 12px;color:#ddecff;background:rgba(10,29,62,.8);font-size:11px;font-weight:700;cursor:pointer}.btn.primary{background:linear-gradient(135deg,#1744ad,#397bf1);border-color:#5794ff}.btn.green{border-color:rgba(114,224,189,.38);color:#8ce9ce}.btn.danger{border-color:rgba(255,135,144,.25);color:#ffabb1}
+    .hero{max-width:1280px;margin:auto;padding:48px 24px 26px}.eyebrow{color:#80aff9;font:700 10px JetBrains Mono;letter-spacing:.14em}.hero h1{font:800 clamp(34px,5vw,62px)/1.1 Sora,'Noto Sans Thai';letter-spacing:-.04em;margin:12px 0 15px}.hero p{max-width:850px;color:var(--muted);font-size:15px;margin:0}.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.hero-badges span{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:#84a5d5;font:600 9px JetBrains Mono}
+    .workspace{max-width:1280px;margin:auto;padding:0 24px 80px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:start}.toc{position:sticky;top:80px;padding:12px;border:1px solid var(--line);border-radius:17px;background:rgba(6,22,49,.82)}.toc span{display:block;padding:7px 9px 10px;color:var(--faint);font:700 9px JetBrains Mono;letter-spacing:.12em}.toc a{display:flex;gap:9px;padding:9px;border-radius:10px;color:#94a7c4;font-size:11px}.toc a:hover{background:rgba(79,140,255,.09);color:#fff}.toc b{color:#6398ed;font:700 9px JetBrains Mono}.pages{min-width:0}.sheet{margin-bottom:22px;padding:28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(8,26,57,.9),rgba(3,15,34,.86));box-shadow:0 16px 50px rgba(0,0,0,.17)}.sheet-head{display:flex;align-items:flex-start;gap:15px;padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line)}.sheet-no{width:38px;height:38px;display:grid;place-items:center;flex:none;border-radius:12px;background:linear-gradient(135deg,#1744ad,#397bf1);font:800 11px JetBrains Mono}.sheet-head h2{font:700 clamp(20px,2.6vw,30px) Sora,'Noto Sans Thai';margin:0 0 5px}.sheet-head p{color:var(--muted);font-size:12px;margin:0}.field-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.field{display:block}.field span{display:block;color:#7e97bc;font-size:10px;margin:0 0 5px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#06152f;color:#eaf2ff;outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:#4f8cff;box-shadow:0 0 0 3px rgba(79,140,255,.09)}.field.wide{grid-column:1/-1}.field.half{grid-column:span 2}.field textarea{min-height:88px;resize:vertical}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin-top:12px}table{width:100%;border-collapse:collapse;min-width:830px}th,td{padding:10px 11px;border-bottom:1px solid var(--line);border-right:1px solid rgba(132,179,255,.09);text-align:left;vertical-align:top;font-size:11px}th:last-child,td:last-child{border-right:0}tr:last-child td{border-bottom:0}th{background:rgba(79,140,255,.09);color:#8ebaff;font:700 9px JetBrains Mono;letter-spacing:.04em}td{color:#c4d2e5;background:rgba(4,19,43,.44)}td[contenteditable="true"]{min-width:110px;outline:none}td[contenteditable="true"]:focus{background:rgba(79,140,255,.08);box-shadow:inset 0 0 0 1px #4f8cff}td[contenteditable="true"]:empty::before{content:attr(data-placeholder);color:#526b91;pointer-events:none}.status-select,.money{width:100%;min-width:92px;border:1px solid var(--line);border-radius:8px;padding:7px;background:#06152f;color:#dfeaff;outline:none}.money:focus{border-color:#4f8cff;box-shadow:0 0 0 2px rgba(79,140,255,.08)}.hint{margin:13px 0 0;padding:12px 14px;border-left:3px solid var(--gold);border-radius:0 12px 12px 0;background:rgba(255,200,87,.055);color:#cdd9e9;font-size:11px}.hint strong{color:#fff}.hint.green{border-left-color:var(--green);background:rgba(114,224,189,.05)}.hint.red{border-left-color:var(--red);background:rgba(255,135,144,.05)}
+    .tco-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}.tco-box{padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(5,22,49,.72)}.tco-box span{display:block;color:#7d93b4;font:600 9px JetBrains Mono}.tco-box b{display:block;margin-top:4px;color:#fff;font:800 25px Sora}.tco-box small{color:#60799e;font-size:9px}.recommendation-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.approval-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}.signature{min-height:92px;padding:12px;border:1px dashed var(--line2);border-radius:12px;text-align:center;color:#637a9e;font-size:10px}.signature b{display:block;color:#9db3d2;margin-bottom:35px}.save-status{position:fixed;right:18px;bottom:18px;padding:9px 12px;border:1px solid rgba(114,224,189,.28);border-radius:999px;background:rgba(6,37,44,.94);color:#8ce9ce;font:700 9px JetBrains Mono;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.save-status.show{opacity:1;transform:none}
+    @media(max-width:900px){.workspace{grid-template-columns:1fr}.toc{display:none}.field-grid{grid-template-columns:repeat(2,1fr)}.recommendation-grid{grid-template-columns:1fr}.approval-row{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.top-actions{width:100%;margin-left:0}.btn{flex:1;text-align:center}.field.half{grid-column:span 1}}
+    @media(max-width:560px){.hero{padding:34px 14px 20px}.workspace{padding:0 12px 55px}.sheet{padding:19px 14px;border-radius:17px}.field-grid,.tco-summary{grid-template-columns:1fr}.field.wide,.field.half{grid-column:auto}.hero h1{font-size:35px}.topbar{padding:10px 12px}.brand{width:100%}.top-actions .hide-mobile{display:none}}
+    @page{size:A4 landscape;margin:9mm}@media print{body{background:#fff;color:#111}.topbar,.hero,.toc,.save-status{display:none!important}.workspace{display:block;max-width:none;padding:0}.sheet{page-break-after:always;break-after:page;margin:0;border:0;border-radius:0;box-shadow:none;background:#fff;color:#111;padding:0}.sheet:last-child{page-break-after:auto}.sheet-head{border-color:#bbb}.sheet-head h2,.sheet-no{color:#111}.sheet-no{background:#ddd}.sheet-head p,.field span,.hint{color:#333}.field input,.field textarea,.field select,.status-select{background:#fff;color:#111;border-color:#999}table{min-width:0}th{background:#e9eef5!important;color:#111}td{background:#fff!important;color:#111}th,td{border-color:#aaa}.tco-box{background:#fff;border-color:#999}.tco-box b{color:#111}.approval-row{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Pond Natdanai<small>IT PROCUREMENT WORKSHOP TOOLKIT</small></a>
+    <div class="top-actions">
+      <a class="btn hide-mobile" href="course-it-procurement-presentation.html?day=3">← Presentation Day 3</a>
+      <button class="btn green" id="saveButton" type="button">บันทึกในเครื่อง</button>
+      <button class="btn primary" id="printButton" type="button">พิมพ์ / บันทึก PDF</button>
+      <button class="btn danger" id="clearButton" type="button">ล้างแบบฟอร์ม</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">EDITABLE · PRINT-READY · AUTO SAVE</span>
+    <h1>IT Procurement<br>Workshop Toolkit</h1>
+    <p>แบบฟอร์มครบกระบวนการตั้งแต่รับ Requirement จนถึง Recommendation, Approval และ Renewal กรอกได้บนหน้าเว็บ ข้อมูลบันทึกเฉพาะใน Browser เครื่องนี้ และพิมพ์เป็น PDF ได้</p>
+    <div class="hero-badges"><span>REQUIREMENT</span><span>SOURCE LOG</span><span>COMPARISON</span><span>DEVIATION</span><span>TCO</span><span>APPROVAL</span><span>RENEWAL</span></div>
+  </section>
+
+  <div class="workspace">
+    <nav class="toc">
+      <span>WORKSHOP DOCUMENTS</span>
+      <a href="#case"><b>00</b> Case Information</a><a href="#requirements"><b>01</b> Requirement</a><a href="#sources"><b>02</b> Source Log</a><a href="#comparison"><b>03</b> Comparison Matrix</a><a href="#deviation"><b>04</b> Deviation</a><a href="#tco"><b>05</b> TCO</a><a href="#recommendation"><b>06</b> Recommendation</a><a href="#renewal"><b>07</b> Renewal</a>
+    </nav>
+
+    <main class="pages" id="toolkitForm">
+      <section class="sheet" id="case">
+        <header class="sheet-head"><span class="sheet-no">00</span><div><h2>Case Information</h2><p>ระบุเจ้าของงาน เป้าหมาย และกรอบการตัดสินใจก่อนเริ่มค้นสินค้า</p></div></header>
+        <div class="field-grid">
+          <label class="field half"><span>ชื่อโครงการ / รายการจัดซื้อ</span><input data-save="case_title" placeholder="เช่น Business Notebook Replacement"></label>
+          <label class="field"><span>Requester / Department</span><input data-save="requester" placeholder="ฝ่ายที่ร้องขอ"></label>
+          <label class="field"><span>Procurement Owner</span><input data-save="owner" placeholder="ผู้รับผิดชอบ"></label>
+          <label class="field"><span>วันที่รับ Requirement</span><input data-save="request_date" type="date"></label>
+          <label class="field"><span>วันที่ต้องใช้งาน</span><input data-save="required_date" type="date"></label>
+          <label class="field"><span>Budget / Currency</span><input data-save="budget" placeholder="เช่น 500,000 THB"></label>
+          <label class="field"><span>Technical Approver</span><input data-save="approver" placeholder="IT / System Owner"></label>
+          <label class="field wide"><span>Use Case / Business Objective</span><textarea data-save="use_case" placeholder="ใครใช้ ใช้ทำอะไร ปริมาณงานเท่าไร และหากระบบใช้งานไม่ได้จะกระทบอะไร"></textarea></label>
+        </div>
+        <div class="hint"><strong>Decision owner:</strong> Procurement ช่วยตรวจและจัดหลักฐาน แต่ผู้กำหนด Must Have และผู้ยอมรับ Deviation ควรเป็น Requester/IT/System Owner</div>
+      </section>
+
+      <section class="sheet" id="requirements">
+        <header class="sheet-head"><span class="sheet-no">01</span><div><h2>Requirement Clarification</h2><p>เปลี่ยนข้อความกว้างให้เป็นเงื่อนไขที่ตรวจได้ พร้อมเจ้าของคำตอบ</p></div></header>
+        <div class="table-wrap"><table data-editable-table="requirements"><thead><tr><th>#</th><th>Original Requirement</th><th>Clarified / Measurable Requirement</th><th>Priority</th><th>Reason / Use Case</th><th>Owner</th><th>Status</th></tr></thead><tbody>
+          <tr><td>1</td><td contenteditable="true" data-placeholder="ข้อความเดิม"></td><td contenteditable="true" data-placeholder="ค่าที่ตรวจได้"></td><td><select class="status-select" data-cell-save><option>Must</option><option>Should</option><option>Optional</option></select></td><td contenteditable="true" data-placeholder="เหตุผล"></td><td contenteditable="true" data-placeholder="ผู้ยืนยัน"></td><td><select class="status-select" data-cell-save><option>Open</option><option>Confirmed</option><option>Not required</option></select></td></tr>
+          <tr><td>2</td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Must</option><option>Should</option><option>Optional</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Open</option><option>Confirmed</option><option>Not required</option></select></td></tr>
+          <tr><td>3</td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Must</option><option>Should</option><option>Optional</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Open</option><option>Confirmed</option><option>Not required</option></select></td></tr>
+          <tr><td>4</td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Must</option><option>Should</option><option>Optional</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Open</option><option>Confirmed</option><option>Not required</option></select></td></tr>
+          <tr><td>5</td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Must</option><option>Should</option><option>Optional</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Open</option><option>Confirmed</option><option>Not required</option></select></td></tr>
+          <tr><td>6</td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Must</option><option>Should</option><option>Optional</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Open</option><option>Confirmed</option><option>Not required</option></select></td></tr>
+        </tbody></table></div>
+        <div class="hint green"><strong>ตัวอย่าง:</strong> “Server 1TB” → “Usable capacity ≥1TB หลัง RAID, รองรับ Disk failure 1 ลูก, Backup รายวัน Retention 30 วัน”</div>
+      </section>
+
+      <section class="sheet" id="sources">
+        <header class="sheet-head"><span class="sheet-no">02</span><div><h2>Source & Evidence Log</h2><p>เก็บแหล่งข้อมูล Version และวันที่ตรวจ เพื่อให้ Audit และตรวจย้อนหลังได้</p></div></header>
+        <div class="table-wrap"><table data-editable-table="sources"><thead><tr><th>#</th><th>Product / Topic</th><th>Source Type</th><th>URL / Document</th><th>Version / Date</th><th>Fact Confirmed</th><th>Checked by</th></tr></thead><tbody>
+          <tr><td>1</td><td contenteditable="true" data-placeholder="รุ่น/หัวข้อ"></td><td><select class="status-select" data-cell-save><option>Datasheet</option><option>Product page</option><option>Ordering guide</option><option>Compatibility</option><option>Lifecycle</option><option>Vendor quote</option></select></td><td contenteditable="true" data-placeholder="URL / ชื่อไฟล์"></td><td contenteditable="true" data-placeholder="วันที่/เวอร์ชัน"></td><td contenteditable="true" data-placeholder="ข้อมูลที่ยืนยัน"></td><td contenteditable="true"></td></tr>
+          <tr><td>2</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Datasheet</option><option>Product page</option><option>Ordering guide</option><option>Compatibility</option><option>Lifecycle</option><option>Vendor quote</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+          <tr><td>3</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Datasheet</option><option>Product page</option><option>Ordering guide</option><option>Compatibility</option><option>Lifecycle</option><option>Vendor quote</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+          <tr><td>4</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Datasheet</option><option>Product page</option><option>Ordering guide</option><option>Compatibility</option><option>Lifecycle</option><option>Vendor quote</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        </tbody></table></div>
+        <div class="hint"><strong>ลำดับแหล่งข้อมูล:</strong> Manufacturer datasheet/ordering guide/compatibility/lifecycle → Authorized partner evidence → Benchmark → AI summary. อย่าใช้ Google snippet หรือ AI เป็น Source of Truth เพียงแหล่งเดียว</div>
+      </section>
+
+      <section class="sheet" id="comparison">
+        <header class="sheet-head"><span class="sheet-no">03</span><div><h2>Technical Comparison Matrix</h2><p>เทียบ Requirement ทีละข้อก่อนพิจารณาราคา ใช้ PASS / CHECK / FAIL / OPTION</p></div></header>
+        <div class="table-wrap"><table data-editable-table="comparison"><thead><tr><th>#</th><th>Requirement / Metric</th><th>Must?</th><th>Original / Baseline</th><th>Vendor A</th><th>Vendor B</th><th>Source</th><th>Result</th><th>Note / Question</th></tr></thead><tbody>
+          <tr><td>1</td><td contenteditable="true" data-placeholder="เช่น Windows 11 Pro"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>2</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>3</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>4</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>5</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>6</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>7</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+          <tr><td>8</td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Yes</option><option>No</option></select></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>CHECK</option><option>PASS</option><option>FAIL</option><option>OPTION</option></select></td><td contenteditable="true"></td></tr>
+        </tbody></table></div>
+        <div class="hint red"><strong>Decision rule:</strong> Must Have ที่เป็น FAIL = ไม่ผ่าน; CHECK/Unknown สำคัญ = ขอข้อมูลก่อน; Higher spec ต้องตรวจ Compatibility และผลกระทบด้านอื่นเสมอ</div>
+      </section>
+
+      <section class="sheet" id="deviation">
+        <header class="sheet-head"><span class="sheet-no">04</span><div><h2>Deviation & Open Issues</h2><p>เปิดเผยสิ่งที่ไม่ตรง ข้อมูลที่ยังขาด ความเสี่ยง เจ้าของ และการอนุมัติ</p></div></header>
+        <div class="table-wrap"><table data-editable-table="deviation"><thead><tr><th>#</th><th>Requirement</th><th>Candidate / Issue</th><th>Deviation / Unknown</th><th>Impact / Risk</th><th>Owner</th><th>Due date</th><th>Decision / Approval</th></tr></thead><tbody>
+          <tr><td>1</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true" data-placeholder="ต่ำกว่า/ต่าง/ไม่พบข้อมูล"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+          <tr><td>2</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+          <tr><td>3</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+          <tr><td>4</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        </tbody></table></div>
+        <div class="hint"><strong>ไม่ควรซ่อน Deviation:</strong> หากยอมรับได้ ให้บันทึกเหตุผล ผู้อนุมัติ วันที่ และเงื่อนไข ไม่ควรเปลี่ยนสถานะเป็น PASS เพื่อทำให้ตารางดูสวย</div>
+      </section>
+
+      <section class="sheet" id="tco">
+        <header class="sheet-head"><span class="sheet-no">05</span><div><h2>Commercial Comparison & 3-Year TCO</h2><p>กรอกตัวเลข ระบบรวมให้อัตโนมัติ เปรียบเทียบด้วยระยะเวลาและ Assumption เดียวกัน</p></div></header>
+        <div class="table-wrap"><table class="tco-table"><thead><tr><th>Cost item</th><th>Vendor A · Year 1</th><th>Vendor A · Year 2</th><th>Vendor A · Year 3</th><th>Vendor B · Year 1</th><th>Vendor B · Year 2</th><th>Vendor B · Year 3</th><th>Assumption / Included?</th></tr></thead><tbody>
+          <tr><td>Hardware / Initial purchase</td><td><input class="money" data-tco="a" data-save="tco_a_1_1" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_1_2" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_1_3" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_1_1" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_1_2" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_1_3" inputmode="decimal"></td><td contenteditable="true" data-save-cell="tco_note_1"></td></tr>
+          <tr><td>License / Subscription</td><td><input class="money" data-tco="a" data-save="tco_a_2_1" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_2_2" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_2_3" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_2_1" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_2_2" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_2_3" inputmode="decimal"></td><td contenteditable="true" data-save-cell="tco_note_2"></td></tr>
+          <tr><td>Implementation / Migration</td><td><input class="money" data-tco="a" data-save="tco_a_3_1" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_3_2" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_3_3" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_3_1" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_3_2" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_3_3" inputmode="decimal"></td><td contenteditable="true" data-save-cell="tco_note_3"></td></tr>
+          <tr><td>Support / Warranty</td><td><input class="money" data-tco="a" data-save="tco_a_4_1" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_4_2" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_4_3" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_4_1" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_4_2" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_4_3" inputmode="decimal"></td><td contenteditable="true" data-save-cell="tco_note_4"></td></tr>
+          <tr><td>Cloud / Traffic / Backup / Operation</td><td><input class="money" data-tco="a" data-save="tco_a_5_1" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_5_2" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_5_3" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_5_1" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_5_2" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_5_3" inputmode="decimal"></td><td contenteditable="true" data-save-cell="tco_note_5"></td></tr>
+          <tr><td>Other / Exit / Risk allowance</td><td><input class="money" data-tco="a" data-save="tco_a_6_1" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_6_2" inputmode="decimal"></td><td><input class="money" data-tco="a" data-save="tco_a_6_3" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_6_1" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_6_2" inputmode="decimal"></td><td><input class="money" data-tco="b" data-save="tco_b_6_3" inputmode="decimal"></td><td contenteditable="true" data-save-cell="tco_note_6"></td></tr>
+        </tbody></table></div>
+        <div class="tco-summary"><div class="tco-box"><span>VENDOR A · 3-YEAR TCO</span><b id="totalA">0</b><small>กรอกตัวเลขโดยไม่ต้องใส่สัญลักษณ์สกุลเงิน</small></div><div class="tco-box"><span>VENDOR B · 3-YEAR TCO</span><b id="totalB">0</b><small>รวมทุกช่องของ Vendor B</small></div></div>
+        <div class="hint"><strong>อย่าลืม:</strong> VAT, Exchange rate, Data egress, Renewal uplift, Support, Migration, Downtime และ Exit cost ตามลักษณะงาน</div>
+      </section>
+
+      <section class="sheet" id="recommendation">
+        <header class="sheet-head"><span class="sheet-no">06</span><div><h2>Recommendation & Approval</h2><p>สรุปข้อเท็จจริง เหตุผล Deviation และสิ่งที่ต้องอนุมัติก่อนออก PO</p></div></header>
+        <div class="recommendation-grid">
+          <label class="field"><span>Recommended Candidate</span><textarea data-save="recommended_candidate" placeholder="ชื่อรุ่น / Part Number / Vendor"></textarea></label>
+          <label class="field"><span>Technical Rationale</span><textarea data-save="technical_rationale" placeholder="ผ่าน Must Have และ Compatibility อย่างไร"></textarea></label>
+          <label class="field"><span>Commercial / TCO Rationale</span><textarea data-save="commercial_rationale" placeholder="ราคา TCO Lead time Warranty SLA"></textarea></label>
+          <label class="field"><span>Deviation / Risk Accepted</span><textarea data-save="risk_accepted" placeholder="ระบุสิ่งที่ต่าง ผู้ยอมรับ และเงื่อนไข"></textarea></label>
+          <label class="field"><span>Open Items Before PO</span><textarea data-save="open_items" placeholder="ข้อมูล/หลักฐาน/Approval ที่ยังขาด"></textarea></label>
+          <label class="field"><span>Final Recommendation</span><textarea data-save="final_recommendation" placeholder="แนะนำให้ซื้อ/ไม่ซื้อ/ขอข้อมูลเพิ่ม พร้อมเหตุผล"></textarea></label>
+        </div>
+        <div class="approval-row"><div class="signature"><b>Prepared by</b>ชื่อ / วันที่</div><div class="signature"><b>Technical Approval</b>IT / System Owner / วันที่</div><div class="signature"><b>Business Approval</b>Budget Owner / วันที่</div></div>
+        <div class="hint green"><strong>รูปแบบแนะนำ:</strong> “แนะนำ Vendor B รุ่น… เนื่องจากผ่าน Must Have ทุกข้อ TCO 3 ปี… มี Deviation… ซึ่ง IT อนุมัติเมื่อวันที่… ก่อนออก PO ต้องได้รับ…”</div>
+      </section>
+
+      <section class="sheet" id="renewal">
+        <header class="sheet-head"><span class="sheet-no">07</span><div><h2>License, Support & Renewal Calendar</h2><p>ติดตาม Owner, Term, Notice period และวันเริ่มดำเนินการ เพื่อไม่ให้บริการขาดช่วง</p></div></header>
+        <div class="table-wrap"><table data-editable-table="renewal"><thead><tr><th>#</th><th>Product / Contract</th><th>License / Serial / Tenant</th><th>Qty</th><th>Start</th><th>Expiry</th><th>Notice / Start sourcing</th><th>Owner</th><th>Vendor</th><th>Status</th></tr></thead><tbody>
+          <tr><td>1</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Active</option><option>Renewing</option><option>Expired</option><option>Cancelled</option></select></td></tr>
+          <tr><td>2</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Active</option><option>Renewing</option><option>Expired</option><option>Cancelled</option></select></td></tr>
+          <tr><td>3</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Active</option><option>Renewing</option><option>Expired</option><option>Cancelled</option></select></td></tr>
+          <tr><td>4</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td><select class="status-select" data-cell-save><option>Active</option><option>Renewing</option><option>Expired</option><option>Cancelled</option></select></td></tr>
+        </tbody></table></div>
+        <div class="hint red"><strong>ควบคุมความเสี่ยง:</strong> อย่ารอใกล้วันหมดอายุ ให้คำนวณย้อนหลังจากเวลาขอราคา อนุมัติงบ ออก PO และ Provision/Activation</div>
+      </section>
+    </main>
+  </div>
+  <div class="save-status" id="saveStatus">SAVED LOCALLY</div>
+
+  <script>
+    (function(){
+      const key='pond-it-procurement-toolkit-v1';
+      const form=document.getElementById('toolkitForm');
+      const status=document.getElementById('saveStatus');
+      let statusTimer;
+      function collect(){
+        const data={fields:{},cells:{},tables:{}};
+        document.querySelectorAll('[data-save]').forEach(el=>data.fields[el.dataset.save]=el.value);
+        document.querySelectorAll('[data-save-cell]').forEach(el=>data.cells[el.dataset.saveCell]=el.textContent);
+        document.querySelectorAll('[data-editable-table]').forEach(table=>{
+          data.tables[table.dataset.editableTable]=[...table.querySelectorAll('tbody tr')].map(row=>[...row.children].map(cell=>{
+            const select=cell.querySelector('select'); return select?{type:'select',value:select.value}:{type:'text',value:cell.isContentEditable?cell.textContent:null};
+          }));
+        });
+        return data;
+      }
+      function restore(){
+        let data; try{data=JSON.parse(localStorage.getItem(key)||'null')}catch(_){return}
+        if(!data)return;
+        document.querySelectorAll('[data-save]').forEach(el=>{if(data.fields?.[el.dataset.save]!==undefined)el.value=data.fields[el.dataset.save]});
+        document.querySelectorAll('[data-save-cell]').forEach(el=>{if(data.cells?.[el.dataset.saveCell]!==undefined)el.textContent=data.cells[el.dataset.saveCell]});
+        document.querySelectorAll('[data-editable-table]').forEach(table=>{
+          const rows=data.tables?.[table.dataset.editableTable]; if(!rows)return;
+          [...table.querySelectorAll('tbody tr')].forEach((row,r)=>[...row.children].forEach((cell,c)=>{
+            const saved=rows[r]?.[c]; if(!saved)return; const select=cell.querySelector('select');
+            if(select&&saved.type==='select')select.value=saved.value; else if(cell.isContentEditable&&saved.type==='text')cell.textContent=saved.value||'';
+          }));
+        });
+        calculateTco();
+      }
+      function save(show=true){localStorage.setItem(key,JSON.stringify(collect()));if(show){clearTimeout(statusTimer);status.classList.add('show');statusTimer=setTimeout(()=>status.classList.remove('show'),1300)}}
+      function number(value){return Number(String(value||'').replace(/[^0-9.-]/g,''))||0}
+      function calculateTco(){
+        const sum=vendor=>[...document.querySelectorAll(`[data-tco="${vendor}"]`)].reduce((total,input)=>total+number(input.value),0);
+        document.getElementById('totalA').textContent=sum('a').toLocaleString('th-TH',{maximumFractionDigits:2});
+        document.getElementById('totalB').textContent=sum('b').toLocaleString('th-TH',{maximumFractionDigits:2});
+      }
+      let debounce; form.addEventListener('input',()=>{calculateTco();clearTimeout(debounce);debounce=setTimeout(()=>save(false),450)});form.addEventListener('change',()=>save(false));
+      document.getElementById('saveButton').addEventListener('click',()=>save(true));
+      document.getElementById('printButton').addEventListener('click',()=>{save(false);window.print()});
+      document.getElementById('clearButton').addEventListener('click',()=>{if(!confirm('ล้างข้อมูลทั้งหมดใน Toolkit ที่บันทึกไว้ใน Browser เครื่องนี้หรือไม่?'))return;localStorage.removeItem(key);location.reload()});
+      restore();calculateTco();
+    })();
+  </script>
+</body>
+</html>
