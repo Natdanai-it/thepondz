@@ -1171,10 +1171,11 @@ footer{
 
 /* Scroll reveal */
 .reveal{
-  opacity:0;
-  transform:translateY(24px) scale(.985);
-  transition:opacity .75s ease,transform .75s cubic-bezier(.2,.75,.2,1);
+  opacity:1;
+  transform:none;
+  transition:opacity .45s ease,transform .45s ease;
 }
+/* Fail-safe: course/project sections must never become invisible if JS/IntersectionObserver fails. */
 .reveal.is-visible{
   opacity:1;
   transform:none;
@@ -3414,7 +3415,7 @@ section,
 </article>
 <article class="course-card procurement-featured" data-course-category="procurement" data-search-text="it procurement day 4 enterprise products solutions dynamics microsoft 365 power platform server storage network vmware cloud security backup fortigate palo alto zscaler tenable veeam devices ups">
 <a class="course-media" href="course-it-procurement-day4.html" aria-label="เปิดคอร์ส IT Procurement Intensive — Day 4" style="aspect-ratio:16/9;background:#071a3e;display:block;position:relative;overflow:hidden;padding:0;"><img alt="IT Procurement Intensive Day 4 course cover" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iIzA2MTUyZiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMGIyZTY4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMWI1ZWM3Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMTAxMCIgY3k9IjEyMCIgcj0iMjYwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3ZGIyZmYiIHN0cm9rZS1vcGFjaXR5PSIuMiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iNzAiIHk9IjExMCIgZmlsbD0iIzhhYmFmZiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjI0Ij5JVCBQUk9DVVJFTUVOVCDCtyBEQVkgNDwvdGV4dD48dGV4dCB4PSI3MCIgeT0iMjIwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSI4MDAiIGZvbnQtc2l6ZT0iNjIiPkVudGVycHJpc2UgSVQgUHJvZHVjdHM8L3RleHQ+PHRleHQgeD0iNzAiIHk9IjI4NiIgZmlsbD0iI2QwZTRmZiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQ0Ij4mYW1wOyBTb2x1dGlvbnMgTWFwPC90ZXh0Pjx0ZXh0IHg9IjcwIiB5PSIzODUiIGZpbGw9IiNhNmMwZTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCI+RHluYW1pY3MgwrcgTWljcm9zb2Z0IMK3IFNlcnZlciDCtyBTdG9yYWdlIMK3IE5ldHdvcms8L3RleHQ+PHRleHQgeD0iNzAiIHk9IjQyNSIgZmlsbD0iI2E2YzBlNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0Ij5WTXdhcmUgwrcgQ2xvdWQgwrcgU2VjdXJpdHkgwrcgQmFja3VwIMK3IERldmljZXM8L3RleHQ+PC9zdmc+" style="width:100%;height:100%;object-fit:cover;display:block;margin:0;border:0;"/></a>
-<div class="course-body"><div class="course-meta"><span>IT Procurement</span><span>2 ชม.</span></div><h3>IT Procurement Intensive — Day 4</h3><p>Enterprise IT Products & Solutions + Competitive Brand Map: Dynamics 365, Microsoft 365, Server, Storage, Network, VMware, Cloud, Security, Backup, Devices พร้อมตัวอย่างคู่แข่ง/ทางเลือกในแต่ละกลุ่ม</p><a class="mini-link" href="course-it-procurement-day4.html">เริ่มเรียน Day 4 →</a></div></article>
+<div class="course-body"><div class="course-meta"><span>IT Procurement</span><span>2 ชม.</span></div><h3>IT Procurement Intensive — Day 4</h3><p>Enterprise IT Products & Solutions + Popular Model Lab: ตัวอย่างรุ่นที่พบบ่อย เช่น PowerEdge R760, ProLiant DL380 Gen11, ThinkSystem SR650 V3, Catalyst 9300, Aruba CX 6200F, FortiGate 70G/90G, PA-440 และ Business Notebook รุ่นองค์กร</p><a class="mini-link" href="course-it-procurement-day4.html">เริ่มเรียน Day 4 →</a></div></article>
 <article class="course-card" data-course-category="computer" data-search-text="jayler computer digital skills private class 25 parts project based computer fundamentals programs office data search verify ai computational thinking digital safety workflow">
 <a class="course-media" href="course-jayler-digital-power-user.html" aria-label="เปิดหลักสูตร Jayler Computer & Digital Skills"><img alt="Jayler Computer & Digital Skills — Complete Curriculum" loading="lazy" src="assets/jayler-course-cover.svg"/></a>
 <div class="course-body">
