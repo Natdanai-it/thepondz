@@ -1,0 +1,108 @@
+<!doctype html><html lang="th"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DHCP กับ Static IP ใช้ต่างกันอย่างไร? | Pond Natdanai</title><meta name="description" content="อธิบาย DHCP, Static IP, Reservation และการป้องกัน IP Conflict แบบเข้าใจง่าย"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://natdanai-it.github.io/thepondz/article-dhcp-static-ip.html">
+<meta property="og:type" content="article"><meta property="og:title" content="DHCP กับ Static IP ใช้ต่างกันอย่างไร? | Pond Natdanai"><meta property="og:description" content="อธิบาย DHCP, Static IP, Reservation และการป้องกัน IP Conflict แบบเข้าใจง่าย"><meta property="og:url" content="https://natdanai-it.github.io/thepondz/article-dhcp-static-ip.html"><meta property="og:image" content="https://natdanai-it.github.io/thepondz/assets/og-card.png"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#06152f">
+<link href="assets/media/38494532f2044786.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/media/38494532f2044786.svg" rel="shortcut icon"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;family=Noto+Sans+Thai:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="course-enhancements.css">
+
+
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"DHCP กับ Static IP ใช้ต่างกันอย่างไร?","author":{"@type":"Person","name":"Natdanai Sawangsuk"},"datePublished":"2026-09-01","dateModified":"2026-09-01","inLanguage":"th"}</script><link rel="stylesheet" href="assets/css/site.css"></head><body>
+<div aria-hidden="true" class="cursor-glow"></div>
+<div aria-hidden="true" class="motion-particles">
+<span class="motion-particle" style="left:6%;--drift:38px;animation-duration:18s;animation-delay:-4s"></span>
+<span class="motion-particle" style="left:15%;--drift:-24px;animation-duration:24s;animation-delay:-13s"></span>
+<span class="motion-particle" style="left:27%;--drift:52px;animation-duration:21s;animation-delay:-7s"></span>
+<span class="motion-particle" style="left:39%;--drift:-40px;animation-duration:27s;animation-delay:-18s"></span>
+<span class="motion-particle" style="left:51%;--drift:28px;animation-duration:20s;animation-delay:-9s"></span>
+<span class="motion-particle" style="left:63%;--drift:-55px;animation-duration:25s;animation-delay:-16s"></span>
+<span class="motion-particle" style="left:74%;--drift:34px;animation-duration:19s;animation-delay:-6s"></span>
+<span class="motion-particle" style="left:86%;--drift:-30px;animation-duration:23s;animation-delay:-12s"></span>
+<span class="motion-particle" style="left:94%;--drift:48px;animation-duration:28s;animation-delay:-21s"></span>
+</div>
+<header>
+<div class="nav">
+<div class="brand">
+<span class="dot"></span>
+<div>
+        Pond Natdanai
+        <small>the_pondz · IT professional</small>
+</div>
+</div>
+<nav class="links"><a href="index.html">หน้าแรก</a><a href="index.html#services">บริการ</a><a href="courses.html">คอร์สเรียน</a><a href="projects.html">ผลงาน</a><a href="about.html">เกี่ยวกับ</a><a href="articles.html">บทความ</a><a href="private-access.html">Private Access</a></nav>
+<a class="btn btn-primary btn-sm" href="index.html#contact">ติดต่อจ้างงานเลย</a>
+</div>
+</header><nav aria-label="เมนูทางลัด" class="mobile-quick-nav"><a href="index.html#services">บริการ</a><a href="courses.html">คอร์ส</a><a href="projects.html">ผลงาน</a><a href="articles.html">บทความ</a><a href="index.html#contact">ติดต่อ</a></nav>
+<section class="subpage-hero tone-a" id="top"><div class="wrap"><div class="page-breadcrumb"><a href="index.html">หน้าแรก</a> / บทความ</div><div class="eyebrow">PRACTICAL IT ARTICLE</div><h1>DHCP กับ Static IP ใช้ต่างกันอย่างไร?</h1><p>อธิบาย DHCP, Static IP, Reservation และการป้องกัน IP Conflict แบบเข้าใจง่าย</p></div></section><section class="case-section tone-b"><div class="wrap article-shell"><article class="article-content"><h2>DHCP คือการรับค่าอัตโนมัติ</h2><p>Router หรือ DHCP Server แจก IP, Subnet Mask, Gateway และ DNS ให้เครื่องผู้ใช้ เหมาะกับ Notebook, Mobile และอุปกรณ์ที่ย้าย Network บ่อย</p><h2>Static IP คือการกำหนดค่าคงที่</h2><p>เหมาะกับ Server, Printer, NVR หรือ Network Device ที่ต้องถูกเรียกด้วย IP เดิม แต่ต้องวาง IP Plan และไม่ตั้งทับช่วงที่ DHCP แจก</p><h2>ทางเลือกที่ดูแลง่าย: DHCP Reservation</h2><p>จอง IP เดิมตาม MAC Address ที่ Router อุปกรณ์ยังรับค่าอัตโนมัติแต่ได้เลขเดิม เหมาะกับ Printer และอุปกรณ์สำนักงานจำนวนมาก</p><div class="article-note"><strong>ป้องกัน IP ชน:</strong> ตรวจ DHCP Pool, ทำรายการ IP ที่ใช้งาน และอย่าตั้ง Static แบบเดาสุ่ม การ Ping ไม่ตอบไม่ได้ยืนยันว่า IP ว่างเสมอไป</div><h2>สรุปการเลือก</h2><ul><li>เครื่องผู้ใช้ทั่วไป: DHCP</li><li>Printer/NVR: DHCP Reservation หากรองรับ</li><li>Server/Network Device: Static ตาม IP Plan</li><li>ระบบองค์กร: ทำตามมาตรฐานผู้ดูแล</li></ul></article></div></section><section class="cta-band tone-a" id="contact"><figure class="section-visual-art"><img alt="CONTACT visual illustration" decoding="async" loading="lazy" src="assets/media/5a4f6e50b4013636.svg"/></figure>
+<h2>มีงานหรือมีปัญหาด้าน IT ให้ช่วยไหม?</h2>
+<p>ติดต่อได้หลายช่องทาง เลือกช่องทางที่สะดวก แล้วส่งรายละเอียดงานมาให้ประเมินได้เลย</p>
+<div class="contact-grid">
+<a class="contact-card" href="mailto:pondnatdanaip@hotmail.com">
+<div class="contact-icon">✉</div>
+<div><span class="contact-label">EMAIL</span><strong>pondnatdanaip@hotmail.com</strong><small>ส่งรายละเอียดงาน / เอกสาร / นัดหมาย</small></div>
+</a>
+<a class="contact-card" href="https://line.me/ti/p/~pondnatdanai" rel="noopener" target="_blank">
+<div class="contact-icon">LINE</div>
+<div><span class="contact-label">LINE ID</span><strong>pondnatdanai</strong><small>คุยรายละเอียดงานและส่งรูปปัญหา</small></div>
+</a>
+<a class="contact-card" href="https://fastwork.co/user/the_pondz" rel="noopener" target="_blank">
+<div class="contact-icon">FW</div>
+<div><span class="contact-label">FREELANCE PLATFORM</span><strong>Fastwork · @the_pondz</strong><small>สั่งจ้างและชำระเงินผ่านแพลตฟอร์ม</small></div>
+</a>
+</div>
+<div class="hero-ctas">
+<a class="btn btn-primary" href="mailto:pondnatdanaip@hotmail.com">ส่งอีเมล</a>
+<a class="btn btn-ghost" href="#top">กลับขึ้นบนสุด</a>
+</div>
+</section>
+<div class="chat-teaser" id="chatTeaser">
+<button aria-label="ปิด" class="chat-teaser-close" id="chatTeaserClose">×</button>
+<div class="chat-teaser-row"><div class="chat-avatar chat-avatar-sm">P</div><div class="chat-teaser-text">สวัสดีครับ 👋 มีงานอะไรให้ช่วยไหมครับ ทักได้เลย</div></div>
+</div>
+<div class="chat-panel" id="chatPanel">
+<div class="chat-panel-header">
+<div class="chat-avatar">P</div>
+<div>
+<div class="chat-name">Pond Natdanai</div>
+<div class="chat-status"><span class="dot-online"></span>ออนไลน์ · ตอบกลับตามลำดับคิวงาน</div>
+</div>
+<button aria-label="ปิดแชท" class="chat-close" id="chatPanelClose">×</button>
+</div>
+<div class="chat-panel-body">
+<div class="chat-bubble">สวัสดีครับ 👋 มีงานอะไรให้ช่วยไหมครับ เลือกช่องทางที่สะดวก แล้วทักมาได้เลยครับ</div>
+</div>
+<div class="chat-quick-replies">
+<a class="chat-quick-btn" href="https://line.me/ti/p/~pondnatdanai" rel="noopener" target="_blank">💬 ทักผ่าน LINE</a>
+<a class="chat-quick-btn" href="mailto:pondnatdanaip@hotmail.com">✉ ส่ง Email</a>
+<a class="chat-quick-btn" href="https://fastwork.co/user/the_pondz" rel="noopener" target="_blank">⚡ ดูโปรไฟล์ Fastwork</a>
+<a class="chat-quick-btn" href="index.html#contact">📋 ดูช่องทางติดต่อทั้งหมด</a>
+</div>
+</div>
+<div aria-label="ช่องทางติดต่อ" class="floating-contact">
+<button aria-label="เปิดแชท" class="float-btn chat-toggle" id="chatToggle" title="แชทกับ Pond">💬</button>
+<a class="float-btn" href="https://line.me/ti/p/~pondnatdanai" rel="noopener" target="_blank" title="LINE">LINE</a>
+<a class="float-btn" href="mailto:pondnatdanaip@hotmail.com" title="Email">✉</a>
+</div>
+<footer>
+<div class="foot-inner">
+<div class="fbrand">Pond Natdanai · the_pondz</div>
+<div class="foot-links"><a href="index.html">หน้าแรก</a><a href="projects.html">ผลงาน</a><a href="courses.html">คอร์สเรียน</a><a href="about.html">เกี่ยวกับ</a><a href="articles.html">บทความ</a><a href="private-access.html">Private Access</a></div>
+</div>
+</footer>
+
+<div aria-modal="true" class="lightbox" id="lightbox" role="dialog">
+<div class="lightbox-inner">
+<button aria-label="ปิด" class="lightbox-close" id="lightboxClose">×</button>
+<img alt="ภาพตัวอย่าง" id="lightboxImg" src=""/>
+</div>
+</div>
+
+
+
+
+
+<nav aria-label="ทางลัดบนมือถือ" class="mobile-action-bar" id="mobileActionBar"><a class="mab-primary" href="index.html#contact"><span>💬</span><b>สอบถามงาน</b></a><a href="courses.html"><span>🎓</span><b>ดูคอร์ส</b></a></nav>
+<link href="course-enhancements.css" rel="stylesheet"/><script defer="" src="course-enhancements.js"></script><script src="assets/js/site.js" defer></script></body></html>

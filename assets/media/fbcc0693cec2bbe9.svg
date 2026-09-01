@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 310">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#06152f"/>
+    <stop offset=".55" stop-color="#0b2b5c"/>
+    <stop offset="1" stop-color="#041027"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1">
+    <stop offset="0" stop-color="#2f74ff"/>
+    <stop offset="1" stop-color="#86b8ff"/>
+  </linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1">
+    <stop offset="0" stop-color="#32d2ff"/>
+    <stop offset="1" stop-color="#4f8cff"/>
+  </linearGradient>
+  <linearGradient id="green" x1="0" x2="1">
+    <stop offset="0" stop-color="#24b888"/>
+    <stop offset="1" stop-color="#84efd0"/>
+  </linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/>
+  </filter>
+  <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+    <path d="M38 0H0V38" fill="none" stroke="#9ec5ff" stroke-opacity=".07"/>
+  </pattern>
+</defs>
+<rect width="1200" height="310" rx="28" fill="url(#bg)"/><rect width="1200" height="310" rx="28" fill="url(#grid)"/><circle cx="1060" cy="45" r="190" fill="#2e72ff" opacity=".10"/><text x="48" y="58" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="18" font-weight="700" fill="#8db4ff">CLIENT REVIEWS</text><text x="220" y="172" text-anchor="middle" font-family="Arial, Noto Sans Thai, sans-serif" font-size="52" font-weight="800" fill="#ffc857">★★★★★</text><rect x="420" y="95" width="680" height="145" rx="26" fill="#0a2144" stroke="#76afff" stroke-opacity=".38"/><text x="760" y="150" text-anchor="middle" font-family="Arial, Noto Sans Thai, sans-serif" font-size="20" font-weight="700" fill="#edf4ff">“ทำงานดี • รับผิดชอบ • สื่อสารชัด”</text><text x="760" y="195" text-anchor="middle" font-family="Arial, Noto Sans Thai, sans-serif" font-size="15" font-weight="500" fill="#9eb1ca">Fastwork customer feedback</text></svg>

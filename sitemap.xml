@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://natdanai-it.github.io/thepondz/</loc><priority>1.0</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/projects.html</loc><priority>0.8</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/courses.html</loc><priority>0.9</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/about.html</loc><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/articles.html</loc><priority>0.8</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/private-access.html</loc><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-network-path.html</loc><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-dhcp-static-ip.html</loc><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-file-management.html</loc><priority>0.7</priority></url>
+</urlset>

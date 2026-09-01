@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">IT Procurement Intensive Day 1</title>
+  <desc id="desc">Hardware, software and licensing course cover</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06142f"/><stop offset=".55" stop-color="#0b2b62"/><stop offset="1" stop-color="#07142d"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#55d6ff"/><stop offset="1" stop-color="#5b7cff"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+  <circle cx="1030" cy="100" r="280" fill="#2f74ff" opacity=".13"/>
+  <path d="M760 155h300v300H760z" fill="#0b224b" stroke="#7db2ff" stroke-opacity=".34" stroke-width="3"/>
+  <rect x="835" y="230" width="150" height="150" rx="24" fill="#123875" stroke="#7bdcff" stroke-width="4"/>
+  <path d="M805 250h30m-30 55h30m-30 55h30m150-110h30m-30 55h30m-30 55h30M855 200v30m55-30v30m55-30v30m-110 150v30m55-30v30m55-30v30" stroke="#74a9ff" stroke-width="9" stroke-linecap="round"/>
+  <text x="70" y="90" fill="#8fb8ff" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">PRIVATE CLASS · IT PROCUREMENT</text>
+  <text x="70" y="220" fill="#ffffff" font-family="Arial,sans-serif" font-size="72" font-weight="800">IT &amp; HARDWARE</text>
+  <text x="70" y="305" fill="url(#line)" font-family="Arial,sans-serif" font-size="72" font-weight="800">/ SOFTWARE</text>
+  <text x="70" y="390" fill="#adc1df" font-family="Arial,sans-serif" font-size="28">CPU · GPU · RAM · STORAGE · OS · LICENSE</text>
+  <rect x="70" y="475" width="190" height="56" rx="28" fill="#153d7f" stroke="#75a8ff" stroke-opacity=".5"/>
+  <text x="165" y="511" text-anchor="middle" fill="#dbe9ff" font-family="Arial,sans-serif" font-size="21" font-weight="700">DAY 1 · 2 HOURS</text>
+  <text x="70" y="603" fill="#7794bc" font-family="Arial,sans-serif" font-size="18">VIDEO REPLAY · SLIDES · PRIVATE ACCESS</text>
+</svg>

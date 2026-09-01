@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /thepondz/course-it-procurement-presentation.html
+Disallow: /thepondz/it-procurement-toolkit.html
+
+Sitemap: https://natdanai-it.github.io/thepondz/sitemap.xml

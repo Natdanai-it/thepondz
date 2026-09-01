@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#06152f"/>
+    <stop offset=".55" stop-color="#0b2b5c"/>
+    <stop offset="1" stop-color="#041027"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1">
+    <stop offset="0" stop-color="#2f74ff"/>
+    <stop offset="1" stop-color="#86b8ff"/>
+  </linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1">
+    <stop offset="0" stop-color="#32d2ff"/>
+    <stop offset="1" stop-color="#4f8cff"/>
+  </linearGradient>
+  <linearGradient id="green" x1="0" x2="1">
+    <stop offset="0" stop-color="#24b888"/>
+    <stop offset="1" stop-color="#84efd0"/>
+  </linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/>
+  </filter>
+  <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+    <path d="M38 0H0V38" fill="none" stroke="#9ec5ff" stroke-opacity=".07"/>
+  </pattern>
+</defs>
+<rect width="1200" height="675" rx="34" fill="url(#bg)"/><rect width="1200" height="675" rx="34" fill="url(#grid)"/><circle cx="1010" cy="100" r="250" fill="#2e72ff" opacity=".10"/><circle cx="880" cy="555" r="220" fill="#32d2ff" opacity=".055"/><text x="78" y="120" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="19" font-weight="700" fill="#8db4ff">COURSE  •  POND NATDANAI</text><text x="78" y="235" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="48" font-weight="800" fill="#f5f8ff">Computer Basic</text><text x="78" y="300" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="48" font-weight="800" fill="#f5f8ff">&amp; Windows 11</text><text x="78" y="393" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="23" font-weight="500" fill="#adc0dd">Beginner • Practical Computer Skills</text><g transform="translate(720 110)"><rect x="70" y="90" width="330" height="210" rx="24" fill="#0a2449" stroke="#75afff" stroke-width="4"/><rect x="96" y="116" width="278" height="158" rx="12" fill="#061a36"/><path d="M120 230c60-80 100-20 145-75s75-25 90-70" fill="none" stroke="#4f8cff" stroke-width="8" stroke-linecap="round"/><rect x="185" y="302" width="96" height="50" fill="#8fa3bd"/><rect x="120" y="350" width="226" height="20" rx="10" fill="#c0ccdb"/><g transform="translate(398 85)"><rect width="120" height="120" rx="22" fill="#0d376f" stroke="#74b5ff" stroke-width="4"/><path d="M25 25h30v30H25zM65 25h30v30H65zM25 65h30v30H25zM65 65h30v30H65z" fill="#4f8cff"/></g></g></svg>
