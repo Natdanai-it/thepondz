@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://natdanai-it.github.io/thepondz/</loc><priority>1.0</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/projects.html</loc><priority>0.8</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/courses.html</loc><priority>0.9</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/about.html</loc><priority>0.7</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/articles.html</loc><priority>0.8</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/private-access.html</loc><priority>0.7</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/article-network-path.html</loc><priority>0.7</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/article-dhcp-static-ip.html</loc><priority>0.7</priority></url>
-  <url><loc>https://natdanai-it.github.io/thepondz/article-file-management.html</loc><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/</loc><lastmod>2026-09-02</lastmod><priority>1.0</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/projects.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/courses.html</loc><lastmod>2026-09-02</lastmod><priority>0.9</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/about.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/articles.html</loc><lastmod>2026-09-02</lastmod><priority>0.8</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/private-access.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-network-path.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-dhcp-static-ip.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-file-management.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-windows-slow.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-malware-miner-check.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-backup-321.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-wifi-vs-internet.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-router-switch-access-point.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-vpn-cgnat.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-vlan-small-office.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-phishing-checklist.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-password-mfa.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-read-it-spec.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-eol-equivalent-product.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-it-tco.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-github-pages-deploy.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-static-vs-backend.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://natdanai-it.github.io/thepondz/article-dns-ssl-domain.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
 </urlset>

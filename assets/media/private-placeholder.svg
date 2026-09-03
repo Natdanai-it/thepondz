@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="กำลังเตรียมภาพบทเรียน">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071a3e"/><stop offset="1" stop-color="#0c2857"/></linearGradient></defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <g fill="none" stroke="#6fa4ff" stroke-opacity=".22" stroke-width="3"><rect x="610" y="340" width="380" height="220" rx="28"/><path d="M680 505l95-95 75 72 54-49 70 72"/></g>
+  <text x="800" y="625" fill="#87a7d4" font-family="Arial,sans-serif" font-size="28" text-anchor="middle">Preparing private lesson media…</text>
+</svg>
