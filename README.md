@@ -22,7 +22,7 @@ The course shell fetches lesson HTML and media in parallel, derives the PBKDF2 k
 - Passwords are distributed separately and must never be committed to this repository.
 - IT Procurement Day 1–4, Presentation and Toolkit share one course-group password.
 - Jayler Digital Power User uses a separate password.
-- Network for System Engineer / SI uses a separate password and includes eight lessons, progress tracking, labs, troubleshooting scenarios and mock interview questions.
+- Network for System Engineer / SI uses a separate password and includes eight detailed lessons, seven in-course visuals, worked examples, progress tracking, labs, troubleshooting scenarios and mock interview answers.
 - Video replays and customer-specific files should remain in a private storage service with individual permissions.
 
 Because GitHub Pages is static hosting, it cannot provide individual accounts, expiry, revocation or an access log. Use an authentication service if those controls are required. Owner setup notes for analytics and a future account-based migration are consolidated here to keep the upload package below 100 files.
