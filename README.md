@@ -13,7 +13,7 @@ Portfolio and public course catalogue for IT Support, Web Systems and Private IT
 
 ## Private course security
 
-The full IT Procurement and Jayler course pages are stored as AES-256-GCM encrypted payloads under `assets/private/`. The public HTML pages contain only the password form and decrypt the lesson locally after a valid password is entered.
+The full IT Procurement, Jayler and Network for System Engineer / SI course pages are stored as AES-256-GCM encrypted payloads under `assets/private/`. The public HTML pages contain only the password form and decrypt the lesson locally after a valid password is entered.
 
 Large lesson images are removed from the HTML and stored in separate encrypted media bundles under `assets/private-media/`. The unlock flow decrypts those bundles in memory and restores each image with a temporary Blob URL, so the private teaching images are not published as readable static files.
 
@@ -22,9 +22,15 @@ The course shell fetches lesson HTML and media in parallel, derives the PBKDF2 k
 - Passwords are distributed separately and must never be committed to this repository.
 - IT Procurement Day 1–4, Presentation and Toolkit share one course-group password.
 - Jayler Digital Power User uses a separate password.
+- Network for System Engineer / SI uses a separate password and includes eight lessons, progress tracking, labs, troubleshooting scenarios and mock interview questions.
 - Video replays and customer-specific files should remain in a private storage service with individual permissions.
 
-Because GitHub Pages is static hosting, it cannot provide individual accounts, expiry, revocation or an access log. Use an authentication service if those controls are required.
+Because GitHub Pages is static hosting, it cannot provide individual accounts, expiry, revocation or an access log. Use an authentication service if those controls are required. Owner setup notes for analytics and a future account-based migration are consolidated here to keep the upload package below 100 files.
+
+### Owner setup notes
+
+- Analytics is disabled until a privacy-friendly HTTPS endpoint is assigned to `POND_ANALYTICS_ENDPOINT` or a page-level `analytics-endpoint` meta tag. Raw search text is never sent, and Do Not Track / Global Privacy Control are respected.
+- For revocable customer accounts, replace the static password flow with an authentication provider plus server-side authorization, expiring sessions and private object storage. Never place service secrets in front-end JavaScript.
 
 For a GitHub Pages project site, `robots.txt` under the project path cannot control the account-level host root. Private course shells therefore also use `noindex, nofollow`; if the account owns a separate root Pages repository, copy the crawler rules to that repository's root as well.
 
