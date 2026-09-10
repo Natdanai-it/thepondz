@@ -38,7 +38,7 @@ For a GitHub Pages project site, `robots.txt` under the project path cannot cont
 
 - Typography is restored to the original visual system: `Sora` for Latin/display text, `Noto Sans Thai` for Thai text, and `JetBrains Mono` for technical labels. Font connections are preconnected and loaded once per page.
 - The full-page gradient and review background canvases are static. Only the hero network canvas animates on larger screens, with a capped pixel ratio to reduce repaint and GPU load.
-- The hero uses a denser mouse-reactive network with varied blue/cyan nodes and no circular cursor spotlight. Reviews advance one card every 2.2 seconds, pause briefly after touch/drag/wheel input, stop off-screen and include an explicit play/pause control.
+- The hero uses a denser mouse-reactive network with varied blue/cyan nodes and no circular cursor spotlight. Reviews wait 5 seconds after each settled move, then advance one card. The loop uses visually identical copies hidden from assistive technology and keyboard tab order; source links remain usable by pointer. Previous/next and pause/play controls work on mobile and desktop. Dragging pauses temporarily; keyboard focus holds autoplay. Autoplay stops off-screen or in hidden tabs. Reduced-motion starts paused and retains manual controls.
 - The original pricing section is restored with IT Support, Web/System and 1:1 Workshop guidance plus a direct Fastwork call-to-action.
 - Article headers are compact, decorative duplicate badges and repeated heading cards are removed, and the article body now starts close to the hero instead of inheriting the generic section gap.
 - The table of contents remains sticky on desktop and collapses behind an explicit button on smaller screens, so section labels are not repeated above the article unless the reader asks to see the index.
@@ -58,11 +58,25 @@ For a GitHub Pages project site, `robots.txt` under the project path cannot cont
 - Search filters expose `aria-pressed`; show-more controls expose `aria-expanded` and `aria-controls`.
 - Articles include visible publish/update dates, author information, Breadcrumb schema, six category-specific 1200×630 PNG share images, a single downloadable pack containing all 18 checklists, and FAQ schema only where a real FAQ is shown.
 - Article structured data includes `image` and `publisher`. Search/filter state is preserved in the URL for sharing or returning to the same result.
-- Production CSS is consolidated into `assets/css/site.css` to reduce GitHub file count and HTTP requests. Privacy-friendly analytics is integrated into the existing public and course scripts, so no extra analytics file is required.
-- The analytics code integrated into `core.js` and `course-lock.js` sends no data by default. To activate owner analytics, follow `ANALYTICS-SETUP.md`. It never sends the raw search phrase, and Do Not Track plus Global Privacy Control are respected.
+- Production CSS is consolidated into `assets/css/site.css` to reduce GitHub file count and HTTP requests. Privacy-friendly analytics has one shared implementation in `core.js`, loaded by public pages and private course access shells, so no extra analytics file is required.
+- The analytics code in `core.js` sends no data by default. To activate owner analytics, use the Owner setup notes above. It never sends the raw search phrase, and Do Not Track plus Global Privacy Control are respected.
 - The private lesson payloads also include skip links, a main landmark, reduced-motion support and lazy image attributes after decryption.
-- A secure per-customer login is not emulated in front-end JavaScript. The migration plan is documented in `AUTH-MIGRATION.md`.
+- A secure per-customer login is not emulated in front-end JavaScript. The migration direction is covered in Owner setup notes above.
 
 ## GitHub upload
 
-This package contains no development-only scripts or obsolete source assets and stays below GitHub's 100-file web-upload limit. Extract the ZIP, then upload everything inside the extracted folder to the repository root.
+This ZIP contains exactly **99 files**. Extract it into a **new empty folder**, then upload the contents of `thepondz-github-clean-99-files` to the repository root. Do not merge it with a previously extracted folder: Windows would retain obsolete files from that older folder. Keep `index.html` at the repository root and retain the asset directories.
+
+Public pages can be inspected as static HTML. Private lessons require HTTPS (GitHub Pages) or a localhost HTTP server; opening the course shell directly with a `file:` URL cannot fetch the encrypted payload. Passwords and encrypted lesson/media files are unchanged in this update.
+
+
+## Interaction maintenance — 10 September 2026
+
+- Replaced competing review handlers with one native-scroll controller. Added forward/backward wrap, keyboard controls, a position indicator and explicit autoplay state.
+- Shared short button press/focus feedback, selected filters and temporary copy success/failure messages. Repeated copying restores the original label correctly; denied clipboard access has a fallback.
+- Navigation updates while scrolling and clears outdated active states. Kept native anchor history/focus. Search filters restore URL state and still work when History API access is blocked.
+- Removed the unused project discovery configuration, duplicate analytics implementation, obsolete review animation handlers and duplicate scroll listeners.
+- Removed 48 identical CSS declarations, 524 unused selector occurrences and 18 disabled keyframe definitions after checking public pages, private lesson source and scripts. Existing fonts, images, course content and pricing are retained.
+- Fixed image-dialog keyboard focus, the contact teaser opening and immediately closing, and private course access failing when session storage is blocked. Network errors are distinct from incorrect passwords.
+
+Validation: 19 automated controller tests passed using simulated events/timers, JavaScript syntax checked, all 33 public HTML entrypoints and local references checked, and all 12 encrypted lesson/media payloads verified byte-for-byte against the prior ZIP. Real browser rendering and mobile performance were not measured in this maintenance pass.
