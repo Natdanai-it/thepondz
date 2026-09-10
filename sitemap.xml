@@ -24,4 +24,9 @@
   <url><loc>https://natdanai-it.github.io/thepondz/article-github-pages-deploy.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
   <url><loc>https://natdanai-it.github.io/thepondz/article-static-vs-backend.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
   <url><loc>https://natdanai-it.github.io/thepondz/article-dns-ssl-domain.html</loc><lastmod>2026-09-02</lastmod><priority>0.7</priority></url>
+  <url>
+    <loc>https://natdanai-it.github.io/thepondz/course-claude-code-system-building.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

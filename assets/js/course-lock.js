@@ -117,6 +117,11 @@
       passwordInput.focus();
       return;
     }
+    if(button.disabled) return;
+    if(location.protocol === "file:" || !globalThis.crypto?.subtle){
+      setState("กรุณาเปิดเว็บไซต์ผ่าน HTTPS หรือ localhost เพื่อเปิดคอร์ส Private", "error");
+      return;
+    }
     setState("กำลังตรวจสอบรหัสและถอดรหัสเนื้อหา…", "loading", true);
     try {
       const [coursePayload, mediaPayload] = await Promise.all([
@@ -132,17 +137,18 @@
         mediaPayload ? decryptWithKey(mediaPayload, key) : Promise.resolve(null)
       ]);
       let html = preparePrivateMedia(courseHtml, mediaJson ? JSON.parse(mediaJson) : null);
-      sessionStorage.setItem(sessionKey, password);
+      try { sessionStorage.setItem(sessionKey, password); } catch { /* Unlock works when storage is blocked. */ }
       setState("รหัสถูกต้อง กำลังเปิดบทเรียน…", "success", true);
       document.open();
       document.write(html);
       document.close();
     } catch (error) {
-      if (automatic) sessionStorage.removeItem(sessionKey);
+      if (automatic) { try { sessionStorage.removeItem(sessionKey); } catch {} }
       setState(
         error.message === "PAYLOAD_UNAVAILABLE" || error.message === "MEDIA_UNAVAILABLE"
           ? "ไม่พบไฟล์บทเรียน กรุณาตรวจสอบการอัปโหลดหรือติดต่อผู้สอน"
-          : "รหัสไม่ถูกต้อง กรุณาลองใหม่หรือติดต่อผู้สอน",
+          : error.name === "OperationError" ? "รหัสไม่ถูกต้อง กรุณาลองใหม่หรือติดต่อผู้สอน"
+          : "เปิดบทเรียนไม่สำเร็จ กรุณาตรวจสอบการเชื่อมต่อแล้วลองใหม่",
         "error"
       );
       passwordInput.value = "";
@@ -155,54 +161,7 @@
     unlock(passwordInput.value);
   });
 
-  const savedPassword = sessionStorage.getItem(sessionKey);
+  let savedPassword = null;
+  try { savedPassword = sessionStorage.getItem(sessionKey); } catch {}
   if (savedPassword) unlock(savedPassword, true);
-})();
-
-/* ===== integrated analytics.js ===== */
-"use strict";
-(function(){
-  const endpoint = document.querySelector('meta[name="analytics-endpoint"]')?.content?.trim() || window.POND_ANALYTICS_ENDPOINT || "";
-  const privacyEnabled = navigator.globalPrivacyControl === true || navigator.doNotTrack === "1";
-  const page = location.pathname.split("/").pop() || "index.html";
-  const kind = page.startsWith("article-") ? "article" : page.startsWith("course-") ? "course" : "page";
-
-  function track(event,properties={}){
-    if(!endpoint || privacyEnabled) return;
-    const payload = JSON.stringify({version:1,event,page,kind,properties,timestamp:new Date().toISOString()});
-    if(navigator.sendBeacon) navigator.sendBeacon(endpoint,new Blob([payload],{type:"application/json"}));
-    else fetch(endpoint,{method:"POST",headers:{"content-type":"application/json"},body:payload,keepalive:true,credentials:"omit"}).catch(()=>{});
-  }
-  window.pondTrack = track;
-  track("page_view",{title:document.title});
-
-  document.addEventListener("click",event=>{
-    const link = event.target.closest("a[href]");
-    if(link){
-      const href=link.getAttribute("href")||"";
-      if(/line\.me|mailto:|fastwork\.co/.test(href)) track("contact_click",{channel:href.startsWith("mailto:")?"email":href.includes("line.me")?"line":"fastwork"});
-      if(/^course-|^it-procurement-toolkit/.test(href)) track("course_open",{course:href.split("?")[0]});
-    }
-    const filter=event.target.closest("[data-article-filter],[data-course-filter],[data-project-filter]");
-    if(filter) track("filter_change",{filter:filter.dataset.articleFilter||filter.dataset.courseFilter||filter.dataset.projectFilter||"all"});
-  });
-
-  ["articleSearch","courseSearch","projectSearch"].forEach(id=>{
-    const input=document.getElementById(id); if(!input) return;
-    let timer;
-    input.addEventListener("input",()=>{
-      clearTimeout(timer);
-      timer=setTimeout(()=>{
-        const length=input.value.trim().length;
-        if(length<2) return;
-        const countId=id.replace("Search","ResultCount");
-        const visibleCount=parseInt(document.getElementById(countId)?.textContent||"",10);
-        track("search",{
-          scope:id.replace("Search","").toLowerCase(),
-          lengthBucket:length<5?"2-4":length<11?"5-10":"11+",
-          results:Number.isFinite(visibleCount)?visibleCount:null
-        });
-      },800);
-    });
-  });
 })();

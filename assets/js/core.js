@@ -1,14 +1,137 @@
 "use strict";
+(() => {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scrollBehavior = () => motion.matches ? 'instant' : 'smooth';
+  let liveMessage;
+  function announce(message){
+    if(!liveMessage){
+      liveMessage = document.createElement('div');
+      liveMessage.className = 'sr-only';
+      liveMessage.setAttribute('role','status');
+      liveMessage.setAttribute('aria-live','polite');
+      document.body.appendChild(liveMessage);
+    }
+    liveMessage.textContent = message;
+  }
+  async function copyText(text){
+    if(navigator.clipboard?.writeText){
+      try { await navigator.clipboard.writeText(text); return; } catch {}
+    }
+    const focus = document.activeElement;
+    const field = document.createElement('textarea');
+    field.value = text;
+    field.className = 'copy-fallback';
+    field.setAttribute('readonly','');
+    document.body.appendChild(field);
+    field.select();
+    let copied = false;
+    try { copied = document.execCommand('copy'); } finally { field.remove(); focus?.focus({preventScroll:true}); }
+    if(!copied) throw new Error('COPY_UNAVAILABLE');
+  }
+  window.PondUI = {motion, scrollBehavior, announce, copyText};
+
+  function initNavigation(){
+    const links = Array.from(document.querySelectorAll('.links a,.mobile-quick-nav a,.mobile-action-bar a'));
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const isHome = page === 'index.html';
+    const category = page.startsWith('article-') ? 'articles.html' : /^course-|^it-procurement-toolkit/.test(page) ? 'courses.html' : page;
+    const sectionLinks = links.map(link => {
+      const url = new URL(link.href,location.href);
+      let section = null;
+      try { if(url.pathname === location.pathname && url.hash) section = document.getElementById(decodeURIComponent(url.hash.slice(1))); } catch {}
+      return {link,url,section};
+    });
+    const progress = document.createElement('div');
+    progress.className = 'page-progress';
+    progress.setAttribute('aria-hidden','true');
+    const top = document.createElement('button');
+    top.className = 'back-top'; top.type = 'button'; top.textContent = '↑';
+    top.setAttribute('aria-label','กลับขึ้นด้านบน');
+    if(!document.body.hasAttribute('data-course-payload')){ document.body.prepend(progress); document.body.appendChild(top); }
+    top.addEventListener('click', () => window.scrollTo({top:0,behavior:scrollBehavior()}));
+    function update(){
+      const maximum = document.documentElement.scrollHeight - innerHeight;
+      progress.style.transform = `scaleX(${maximum > 0 ? Math.max(0,Math.min(1,scrollY / maximum)) : 0})`;
+      const showTop = window.scrollY > 650;
+      top.classList.toggle('show',showTop);
+      top.tabIndex = showTop ? 0 : -1;
+      top.setAttribute('aria-hidden',String(!showTop));
+      let currentHash = '';
+      if(isHome){
+        let nearest = -Infinity;
+        sectionLinks.forEach(({section,url}) => {
+          if(!section) return;
+          const y = section.getBoundingClientRect().top;
+          if(y <= 150 && y > nearest){nearest = y; currentHash = url.hash;}
+        });
+      }
+      sectionLinks.forEach(({link,url}) => {
+        const linkPage = url.pathname.split('/').pop() || 'index.html';
+        const current = url.origin === location.origin && linkPage === category &&
+          (isHome ? (currentHash ? url.hash === currentHash : !url.hash || url.hash === '#top') : !url.hash);
+        link.classList.toggle('is-current', current);
+        link.classList.remove('active');
+        if(current) link.setAttribute('aria-current',isHome && currentHash && currentHash !== '#top' ? 'location' : 'page');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    let frame = 0;
+    function requestUpdate(){
+      if(frame) return;
+      frame = requestAnimationFrame(() => { frame = 0; update(); });
+    }
+    ['scroll','resize','hashchange','popstate'].forEach(name => window.addEventListener(name,requestUpdate,{passive:true}));
+    document.addEventListener('pond:content-change',requestUpdate);
+    update();
+    // Native hash navigation preserves keyboard focus, history and copyable URLs.
+    // CSS owns smooth scrolling and the reduced-motion override.
+  }
+  initNavigation();
+
+  function initCopyButtons(){
+    const states = new WeakMap();
+    document.addEventListener('click',async event => {
+      const button = event.target.closest('[data-copy-code]');
+      if(!button) return;
+      const code = button.closest('.command-box')?.querySelector('code');
+      if(!code) return;
+      let state = states.get(button);
+      if(!state){ state = {label:button.textContent,timer:0,busy:false}; states.set(button,state); }
+      if(state.busy) return;
+      clearTimeout(state.timer);
+      state.busy = true;
+      button.setAttribute('aria-busy','true');
+      try {
+        await copyText(code.textContent);
+        button.textContent = 'คัดลอกแล้ว ✓';
+        button.classList.add('copied');
+        announce('คัดลอกคำสั่งแล้ว');
+      } catch {
+        const range = document.createRange(); range.selectNodeContents(code);
+        const selection = window.getSelection(); selection?.removeAllRanges(); selection?.addRange(range);
+        button.textContent = 'เลือกข้อความแล้ว';
+        announce('คัดลอกอัตโนมัติไม่ได้ เลือกข้อความให้แล้ว กรุณาใช้คำสั่งคัดลอกของอุปกรณ์');
+      } finally {
+        state.busy = false;
+        button.removeAttribute('aria-busy');
+        state.timer = setTimeout(() => {button.textContent = state.label; button.classList.remove('copied');},2000);
+      }
+    });
+    document.querySelectorAll('[data-print-article]').forEach(button => button.addEventListener('click',() => window.print()));
+  }
+  initCopyButtons();
+
 // ambient network node animation — reusable, with mouse-reactive burst
   function initNetwork(canvasId, hostEl, opts){
     opts = opts || {};
     const canvas = document.getElementById(canvasId);
     if(!canvas || !hostEl) return;
     const ctx = canvas.getContext('2d', {alpha:true, desynchronized:true});
+    if(!ctx) return;
     let w, h, nodes;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const smallScreen = window.matchMedia('(max-width: 720px)').matches;
-    const animate = !reduced && !smallScreen;
+    let animate = !reduced && !smallScreen;
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.35);
     let inViewport = true;
     let frameId = 0;
@@ -154,21 +277,23 @@
         resize(); initNodes(); start();
       });
     }, {passive:true});
-    if(animate && interactive) hostEl.addEventListener('pointermove', (e) => {
+    if(interactive) hostEl.addEventListener('pointermove', (e) => {
+      if(!animate) return;
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
       mouse.active = true;
     });
-    if(animate && interactive) hostEl.addEventListener('pointerleave', () => { mouse.active = false; });
-    if(animate && interactive) hostEl.addEventListener('touchmove', (e) => {
+    if(interactive) hostEl.addEventListener('pointerleave', () => { mouse.active = false; });
+    if(interactive) hostEl.addEventListener('touchmove', (e) => {
+      if(!animate) return;
       const rect = canvas.getBoundingClientRect();
       const t = e.touches[0];
       mouse.x = t.clientX - rect.left;
       mouse.y = t.clientY - rect.top;
       mouse.active = true;
     }, {passive:true});
-    if(animate && interactive) hostEl.addEventListener('touchend', () => { mouse.active = false; });
+    if(interactive) hostEl.addEventListener('touchend', () => { mouse.active = false; });
     if('IntersectionObserver' in window){
       const canvasObserver = new IntersectionObserver(entries => {
         inViewport = Boolean(entries[0]?.isIntersecting);
@@ -177,87 +302,180 @@
       canvasObserver.observe(hostEl);
     }
     document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' ? start() : stop());
+    const screen = matchMedia('(max-width:720px)');
+    function syncMotion(){ stop(); animate = !motion.matches && !screen.matches; lastFrame = 0; start(); }
+    motion.addEventListener('change',syncMotion);
+    screen.addEventListener('change',syncMotion);
     resize(); initNodes(); start();
   }
 
   initNetwork('netCanvas', document.querySelector('.hero'), {coreNode:true, interactive:true});
 
-  // Reliable card-by-card review autoplay. User interaction pauses it briefly;
-  // hovering alone does not stop playback, so desktop visitors can see it move.
+  // One controller owns timing, input, looping and accessible review state.
   function initReviewAutoScroll(){
-    const track = document.querySelector('.reviews .rgrid');
+    const viewport = document.querySelector('.review-viewport');
+    const track = viewport?.querySelector('.rgrid');
     const toggle = document.querySelector('[data-review-autoplay]');
-    if(!track || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let timerId = 0;
-    let inViewport = true;
-    let userPaused = false;
-    let resumeTimer = 0;
-    let activeIndex = 0;
-    const interval = 2200;
+    if(!track || !toggle || track.dataset.ready) return;
+    track.dataset.ready = 'true';
+    const cards = Array.from(track.children);
+    const count = cards.length;
+    const status = document.querySelector('[data-review-status]');
     const progress = document.querySelector('.review-progress span');
-    const cards = Array.from(track.querySelectorAll('.rcard'));
+    const previous = document.querySelector('[data-review-previous]');
+    const next = document.querySelector('[data-review-next]');
+    const interval = 5000;
+    let timer = 0, settleTimer = 0, base = 0, cycle = 0, active = 0;
+    let inView = !('IntersectionObserver' in window), dragging = false, focused = false;
+    let paused = motion.matches, manualPause = false, keyboardIntent = false, moving = false, pointer = null, suppressClick = false;
+    const clones = [];
 
-    function updateToggle(){
-      if(!toggle) return;
-      toggle.setAttribute('aria-pressed', String(userPaused));
-      toggle.textContent = userPaused ? 'เล่นต่อ' : 'หยุดเลื่อน';
-    }
-    function stop(){
-      if(timerId){ window.clearTimeout(timerId); timerId = 0; }
-    }
-    function start(){
-      if(timerId || userPaused || !inViewport || document.visibilityState !== 'visible' || cards.length < 2) return;
-      timerId = window.setTimeout(advance, interval);
-    }
-    function hold(ms){
+    const stop = () => { clearTimeout(timer); timer = 0; };
+    const canPlay = () => count > 1 && cycle > 0 && !paused && !dragging && !focused && inView && !document.hidden;
+    function schedule(){
       stop();
-      window.clearTimeout(resumeTimer);
-      resumeTimer = window.setTimeout(start, ms);
+      if(canPlay() && !moving) timer = setTimeout(() => move(1), interval);
     }
-    function advance(){
-      timerId = 0;
-      if(userPaused || !inViewport || document.visibilityState !== 'visible') return;
-      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-      if(maxScroll <= 1) return;
-      const cardStep = cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth + 18;
-      const finalIndex = Math.max(1, Math.ceil(maxScroll / Math.max(1, cardStep)));
-      activeIndex = (activeIndex + 1) % (finalIndex + 1);
-      const target = Math.min(maxScroll, activeIndex * cardStep);
-      track.scrollTo({left:target, behavior:'smooth'});
-      start();
+    function update(){
+      toggle.textContent = paused ? 'เล่นต่อ' : 'หยุดเลื่อน';
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? 'เริ่มเลื่อนรีวิวอัตโนมัติ' : 'หยุดเลื่อนรีวิวอัตโนมัติ');
+      if(status) status.textContent = `รายการ ${active + 1} / ${count} · ${paused ? 'หยุดอัตโนมัติแล้ว' : focused ? 'หยุดขณะอ่านด้วยแป้นพิมพ์' : 'เลื่อนทุก 5 วินาที'}`;
+      track.setAttribute('aria-live', paused || focused ? 'polite' : 'off');
+      if(progress){ progress.style.width = `${100 / count}%`; progress.style.transform = `translateX(${active * 100}%)`; }
     }
-
-    track.addEventListener('pointerdown', () => hold(3600), {passive:true});
-    track.addEventListener('touchstart', () => hold(3600), {passive:true});
-    track.addEventListener('wheel', () => hold(3600), {passive:true});
-    track.addEventListener('keydown', () => hold(3600));
-    track.addEventListener('scroll', () => {
-      const maxScroll = Math.max(1, track.scrollWidth - track.clientWidth);
-      const cardStep = cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth + 18;
-      activeIndex = Math.round(track.scrollLeft / Math.max(1, cardStep));
-      if(progress) progress.style.transform = `translate3d(${Math.max(0, Math.min(1, track.scrollLeft / maxScroll)) * 316}%,0,0)`;
-    }, {passive:true});
-    toggle?.addEventListener('click', () => {
-      userPaused = !userPaused;
-      updateToggle();
-      if(userPaused){
-        stop();
-        window.clearTimeout(resumeTimer);
-      } else {
-        start();
-      }
+    function jump(left){ track.scrollTo({left, behavior:'instant'}); }
+    function settle(){
+      clearTimeout(settleTimer);
+      if(dragging || !cycle) return;
+      moving = false;
+      const relative = ((track.scrollLeft - base) % cycle + cycle) % cycle;
+      const normalized = base + relative;
+      // Clones are visual only. Normalize to the identical original group after moving.
+      if(Math.abs(normalized - track.scrollLeft) > cycle / 2) jump(normalized);
+      active = Math.round(relative / (cycle / count)) % count;
+      update();
+      schedule();
+    }
+    function move(direction){
+      stop();
+      if(!cycle || count < 2) return;
+      moving = true;
+      const index = Math.round((track.scrollLeft - base) / (cycle / count));
+      track.scrollTo({left:base + (index + direction) * cycle / count, behavior:motion.matches ? 'instant' : 'smooth'});
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(settle, 900);
+    }
+    function measure(){
+      stop();
+      clearTimeout(settleTimer);
+      if(count < 2) return;
+      base = cards[0].offsetLeft - track.firstElementChild.offsetLeft;
+      cycle = clones[count].offsetLeft - cards[0].offsetLeft;
+      moving = false;
+      if(cycle > 0) jump(base + active * cycle / count);
+      update();
+      schedule();
+    }
+    if(count < 2){
+      toggle.hidden = true;
+      if(previous) previous.hidden = true;
+      if(next) next.hidden = true;
+      return;
+    }
+    function cloneCard(card){
+      const clone = card.cloneNode(true);
+      clone.dataset.reviewClone = 'true';
+      clone.setAttribute('aria-hidden','true');
+      // Hidden from assistive technology and tab order; pointer links remain usable.
+      clone.addEventListener('pointerdown', event => event.preventDefault());
+      clone.removeAttribute('id');
+      clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+      clone.querySelectorAll('a,button,input,[tabindex]').forEach(el => el.setAttribute('tabindex','-1'));
+      return clone;
+    }
+    const before = document.createDocumentFragment();
+    const after = document.createDocumentFragment();
+    cards.forEach(card => { const clone = cloneCard(card); clones.push(clone); before.appendChild(clone); });
+    cards.forEach((card,index) => {
+      card.setAttribute('role','group');
+      card.setAttribute('aria-roledescription','รายการรีวิว');
+      card.setAttribute('aria-label',`${index + 1} จาก ${count}`);
+      const clone = cloneCard(card); clones.push(clone); after.appendChild(clone);
     });
+    track.prepend(before);
+    track.append(after);
+    track.addEventListener('scroll', () => {
+      stop();
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(settle, 160);
+    }, {passive:true});
+    track.addEventListener('scrollend', settle);
+    track.addEventListener('wheel', () => { stop(); moving = false; clearTimeout(settleTimer); settleTimer = setTimeout(settle,200); }, {passive:true});
+    track.addEventListener('pointerdown', event => {
+      if(event.button !== 0) return;
+      stop();
+      dragging = true;
+      moving = false;
+      suppressClick = false;
+      pointer = {id:event.pointerId, x:event.clientX, left:track.scrollLeft, mouse:event.pointerType === 'mouse'};
+    }, {passive:true});
+    track.addEventListener('pointermove', event => {
+      if(!pointer?.mouse || event.pointerId !== pointer.id) return;
+      const delta = event.clientX - pointer.x;
+      if(!suppressClick && Math.abs(delta) < 8) return;
+      suppressClick = true;
+      track.classList.add('is-dragging');
+      track.setPointerCapture?.(event.pointerId);
+      event.preventDefault();
+      jump(pointer.left - delta);
+    });
+    function release(event){
+      if(!pointer || event.pointerId !== pointer.id) return;
+      dragging = false;
+      pointer = null;
+      track.classList.remove('is-dragging');
+      settle();
+      setTimeout(() => { suppressClick = false; }, 0);
+    }
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
+    track.addEventListener('click', event => {
+      if(suppressClick){ event.preventDefault(); event.stopImmediatePropagation(); }
+    }, true);
+    track.addEventListener('dragstart', event => event.preventDefault());
+    window.addEventListener('keydown', event => { if(event.key === 'Tab') keyboardIntent = true; });
+    window.addEventListener('pointerdown', () => { keyboardIntent = false; focused = false; update(); }, {capture:true});
+    viewport.addEventListener('focusin', event => {
+      focused = keyboardIntent || Boolean(event.target.matches?.(':focus-visible'));
+      if(focused) stop();
+      update();
+    });
+    viewport.addEventListener('focusout', event => {
+      if(viewport.contains(event.relatedTarget)) return;
+      focused = false; update(); schedule();
+    });
+    track.addEventListener('keydown', event => {
+      if(event.target !== track || !['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+      event.preventDefault();
+      if(event.key === 'ArrowLeft' || event.key === 'ArrowRight') move(event.key === 'ArrowLeft' ? -1 : 1);
+      else { active = event.key === 'Home' ? 0 : count - 1; jump(base + active * cycle / count); settle(); }
+    });
+    toggle.addEventListener('click', () => { paused = !paused; manualPause = paused; update(); schedule(); });
+    previous?.addEventListener('click', () => move(-1));
+    next?.addEventListener('click', () => move(1));
+    motion.addEventListener('change', () => { paused = manualPause || motion.matches; update(); schedule(); });
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : schedule());
     if('IntersectionObserver' in window){
       const observer = new IntersectionObserver(([entry]) => {
-        inViewport = Boolean(entry?.isIntersecting);
-        inViewport ? start() : stop();
-      }, {rootMargin:'120px'});
-      observer.observe(track);
+        inView = entry.isIntersecting; inView ? schedule() : stop();
+      }, {threshold:0.1});
+      observer.observe(viewport);
     }
-    document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' ? start() : stop());
-    updateToggle();
-    start();
+    if('ResizeObserver' in window) new ResizeObserver(measure).observe(track);
+    else window.addEventListener('resize', measure, {passive:true});
+    document.fonts?.ready.then(measure);
+    measure();
   }
   initReviewAutoScroll();
 
@@ -266,6 +484,7 @@
   function animateNumber(el, target, decimals = 0, suffix = ''){
     if(el.dataset.counted === '1') return;
     el.dataset.counted = '1';
+    if(motion.matches){ el.textContent = target.toFixed(decimals) + suffix; return; }
     const duration = 1500;
     const start = performance.now();
     function tick(now){
@@ -346,13 +565,13 @@
     toggle.addEventListener('click', () => {
       panel.classList.contains('open') ? closePanel() : openPanel();
     });
-    panelClose && panelClose.addEventListener('click', closePanel);
+    panelClose && panelClose.addEventListener('click', () => closePanel());
     teaserClose && teaserClose.addEventListener('click', (e) => { e.stopPropagation(); hideTeaser(); });
     if(teaser){
       teaser.setAttribute('role','button');
       teaser.setAttribute('tabindex','0');
       teaser.setAttribute('aria-label','เปิดช่องทางติดต่อ');
-      teaser.addEventListener('click', openPanel);
+      teaser.addEventListener('click', event => {event.stopPropagation(); openPanel();});
       teaser.addEventListener('keydown', event => { if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); openPanel(); } });
     }
     document.addEventListener('click', (e) => {
@@ -386,41 +605,54 @@
     }
   })();
 
-(function(){
-    // Project carousel is handled by the UX refresh script below.
-
-    // Lightbox & Smooth scroll
+  function initLightbox(){
     const box = document.getElementById('lightbox');
-    const img = document.getElementById('lightboxImg');
+    const image = document.getElementById('lightboxImg');
     const close = document.getElementById('lightboxClose');
-
-    // Use event delegation to support cloned elements
-    document.body.addEventListener('click', e => {
-      const btn = e.target.closest('[data-lightbox]');
-      if(btn && box && img) {
-        img.src = btn.dataset.lightbox;
+    let origin = null, overflow = '';
+    if(box && image && close){
+      box.setAttribute('role','dialog');
+      box.setAttribute('aria-modal','true');
+      box.setAttribute('aria-label','ภาพขยาย');
+      box.setAttribute('aria-hidden','true');
+      close.setAttribute('aria-label','ปิดภาพขยาย');
+      document.addEventListener('click',event => {
+        const button = event.target.closest('[data-lightbox]');
+        if(!button) return;
+        origin = button;
+        overflow = document.body.style.overflow;
+        image.src = button.dataset.lightbox;
+        image.alt = button.querySelector('img')?.alt || 'ภาพขยาย';
         box.classList.add('open');
+        box.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
-      }
-    });
-
-    function hide(){
-      if(!box || !img) return;
-      box.classList.remove('open');
-      document.body.style.overflow = '';
-      img.removeAttribute('src');
-    }
-    close && close.addEventListener('click', hide);
-    box && box.addEventListener('click', e => { if(e.target === box) hide(); });
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') hide(); });
-
-    document.querySelectorAll('[data-scroll-contact]').forEach(el => {
-      el.addEventListener('click', () => {
-        document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+        close.focus();
       });
-    });
-  })();
-
+      function hide(){
+        if(!box.classList.contains('open')) return;
+        box.classList.remove('open');
+        box.setAttribute('aria-hidden','true');
+        document.body.style.overflow = overflow;
+        image.removeAttribute('src');
+        origin?.focus({preventScroll:true}); origin = null;
+      }
+      close.addEventListener('click',hide);
+      box.addEventListener('click',event => { if(event.target === box) hide(); });
+      document.addEventListener('keydown',event => {
+        if(!box.classList.contains('open')) return;
+        if(event.key === 'Escape'){event.preventDefault(); hide();}
+        if(event.key === 'Tab'){event.preventDefault(); close.focus();}
+      });
+    }
+    document.querySelectorAll('[data-scroll-contact]').forEach(button => button.addEventListener('click',() => {
+      const contact = document.getElementById('contact');
+      if(!contact) return;
+      contact.scrollIntoView({behavior:scrollBehavior()});
+      const heading = contact.querySelector('h2');
+      if(heading){heading.tabIndex = -1; heading.focus({preventScroll:true});}
+    }));
+  }
+  initLightbox();
 
 /* =========================================================
    SCROLL REVEAL — lightweight and motion-safe
@@ -443,38 +675,6 @@
 
 })();
 
-/* Small usability details shared by public pages. */
-(function(){
-  const progress = document.createElement("div");
-  progress.className = "page-progress";
-  progress.setAttribute("aria-hidden", "true");
-  document.body.prepend(progress);
-  const updateProgress = () => {
-    const maximum = document.documentElement.scrollHeight - innerHeight;
-    progress.style.transform = `scaleX(${maximum > 0 ? Math.min(1, scrollY / maximum) : 0})`;
-  };
-  addEventListener("scroll", updateProgress, {passive:true});
-  addEventListener("resize", updateProgress, {passive:true});
-  updateProgress();
-
-  const currentPage = location.pathname.split("/").pop() || "index.html";
-  const navigationPage = currentPage.startsWith("article-")
-    ? "articles.html"
-    : (/^course-|^it-procurement-toolkit/.test(currentPage) ? "courses.html" : currentPage);
-  const navLinks = Array.from(document.querySelectorAll(".links a"));
-  const hasExactHashLink = Boolean(location.hash) && navLinks.some(link => {
-    const [page = "index.html", hash = ""] = (link.getAttribute("href") || "").split("#");
-    return (page || "index.html") === navigationPage && `#${hash}` === location.hash;
-  });
-  navLinks.forEach(link => {
-    const [rawPage = "index.html", hash = ""] = (link.getAttribute("href") || "").split("#");
-    const page = rawPage || "index.html";
-    const isCurrent = page === navigationPage && (hasExactHashLink ? `#${hash}` === location.hash : !hash);
-    if(isCurrent){
-      link.classList.add("is-current");
-      link.setAttribute("aria-current", "page");
-    }
-  });
 
   document.querySelectorAll(".course-card").forEach(card => {
     const media = card.querySelector(".course-media");
@@ -486,56 +686,6 @@
     media.appendChild(pill);
     card.classList.add("has-private-access");
   });
-})();
-
-(function(){
-  const vp=document.querySelector('.review-viewport');
-  const track=document.querySelector('.review-viewport .rgrid');
-  if(!vp||!track) return;
-  vp.addEventListener('focusin',()=>track.style.animationPlayState='paused');
-  vp.addEventListener('focusout',()=>track.style.animationPlayState='running');
-})();
-
-(function(){
-  "use strict";
-
-  // Lead form -> Email
-  // Back to top
-  const topBtn = document.createElement("button");
-  topBtn.className = "back-top";
-  topBtn.type = "button";
-  topBtn.setAttribute("aria-label","กลับขึ้นด้านบน");
-  topBtn.textContent = "↑";
-  document.body.appendChild(topBtn);
-  window.addEventListener("scroll", function(){
-    topBtn.classList.toggle("show", window.scrollY > 650);
-  }, {passive:true});
-  topBtn.addEventListener("click", function(){
-    window.scrollTo({top:0,behavior:"smooth"});
-  });
-
-  // Prevent pointer-follow transforms from creating shaking on touch devices.
-  if (window.matchMedia("(pointer:coarse)").matches) {
-    document.documentElement.classList.add("coarse-pointer");
-  }
-})();
-
-
-
-(function(){
-  document.addEventListener("click",async event=>{
-    const button=event.target.closest("[data-copy-code]");
-    if(!button) return;
-    const code=button.closest(".command-box")?.querySelector("code")?.textContent||"";
-    try{
-      await navigator.clipboard.writeText(code);
-      const old=button.textContent; button.textContent="คัดลอกแล้ว"; button.classList.add("copied");
-      setTimeout(()=>{button.textContent=old;button.classList.remove("copied")},1500);
-    }catch(error){ button.textContent="เลือกข้อความแล้วคัดลอก"; }
-  });
-  document.querySelectorAll('[data-print-article]').forEach(button => button.addEventListener('click', () => window.print()));
-})();
-
 (function(){
   document.querySelectorAll('.article-toc-toggle').forEach(button => {
     const toc = button.closest('.article-toc');
@@ -553,8 +703,7 @@
   });
 })();
 
-/* ===== integrated analytics.js ===== */
-"use strict";
+/* Shared, optional analytics. No requests without a configured endpoint. */
 (function(){
   const endpoint = document.querySelector('meta[name="analytics-endpoint"]')?.content?.trim() || window.POND_ANALYTICS_ENDPOINT || "";
   const privacyEnabled = navigator.globalPrivacyControl === true || navigator.doNotTrack === "1";
@@ -599,4 +748,6 @@
       },800);
     });
   });
+})();
+
 })();

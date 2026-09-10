@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI Web & App Builder — Prompt แบบง่ายสำหรับมือใหม่</title>
+<meta name="description" content="คอร์ส 2 ชั่วโมง สอนวิธีสั่ง AI และ Claude Code ให้สร้างเว็บและ Web App สวย ใช้งานง่าย พร้อม Prompt ตัวอย่าง">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020817;--bg2:#041027;--card:#07182f;--card2:#0a2144;--line:rgba(132,179,255,.17);
+  --ink:#f4f8ff;--muted:#a7b7cf;--blue:#4f8cff;--blue2:#8fc2ff;--green:#73d8b8;
+  --yellow:#efbd62;--red:#ff8c94;--max:1320px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2) 45%,var(--bg));color:var(--ink);font-family:'Noto Sans Thai',sans-serif;line-height:1.75}
+a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(2,8,23,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.topbar-in{height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Sora',sans-serif;font-weight:800}
+.brandmark{width:40px;height:40px;border-radius:12px;background:#245ec9;display:grid;place-items:center;font-weight:800}
+.brand small{display:block;color:#758aaa;font:600 9px 'JetBrains Mono',monospace;letter-spacing:.14em;margin-top:1px}
+.home-btn{border:1px solid var(--line);background:#07182f;color:#dbeaff;padding:9px 14px;border-radius:999px}
+.progress{height:3px;background:#09152a}.progress i{display:block;height:100%;width:0;background:#4f8cff}
+.hero{padding:64px 0 38px}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:34px;align-items:center}
+.eyebrow,.tag{font:700 10px 'JetBrains Mono',monospace;letter-spacing:.14em;color:var(--blue2);text-transform:uppercase}
+.hero h1{font:800 clamp(42px,5.5vw,74px)/1.08 'Sora','Noto Sans Thai',sans-serif;letter-spacing:-.04em;margin:12px 0 18px}
+.hero h1 span{color:var(--blue2)}.lead{font-size:17px;color:var(--muted);max-width:770px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.pill{border:1px solid var(--line);background:#07162d;color:#bfd1eb;padding:7px 11px;border-radius:999px;font-size:12px}
+.hero-visual{border:1px solid var(--line);background:#06152d;border-radius:25px;padding:20px;overflow:hidden}
+.hero-screen{background:#f4f7fb;border-radius:16px;overflow:hidden;min-height:330px;color:#132039}
+.hero-screen .bar{height:34px;background:#dfe7f2;display:flex;gap:6px;align-items:center;padding:0 13px}.hero-screen .bar i{width:8px;height:8px;background:#93a5bd;border-radius:50%}
+.hero-screen .body{padding:28px}.fake-title{width:70%;height:26px;background:#18263e;border-radius:7px}.fake-line{height:9px;background:#aeb9c8;border-radius:5px;margin-top:12px}.fake-line.w2{width:64%}
+.fake-btn{width:110px;height:38px;background:#3175eb;border-radius:9px;margin-top:20px}.fake-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}.fake-cards i{height:75px;background:#e5ebf3;border:1px solid #d5dee9;border-radius:12px}
+.course-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;padding-bottom:80px}.side{position:sticky;top:90px;align-self:start;border:1px solid var(--line);background:#06152d;border-radius:18px;padding:14px;max-height:calc(100vh - 110px);overflow:auto}
+.side strong{display:block;color:#7186a8;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.13em;padding:8px 10px}
+.side a{display:block;color:#97aac8;padding:9px 10px;border-radius:10px;font-size:13px}.side a:hover,.side a.active{background:#0c2448;color:white}
+.section{background:#06152d;border:1px solid var(--line);border-radius:24px;padding:32px;margin-bottom:22px}.section-head{display:grid;grid-template-columns:52px 1fr;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.secno{width:48px;height:48px;border-radius:13px;background:#245ec9;display:grid;place-items:center;font:800 16px 'Sora',sans-serif}.section h2{font:700 clamp(25px,3vw,36px)/1.35 'Sora','Noto Sans Thai',sans-serif;margin:3px 0 7px}.intro{color:var(--muted);margin:0}
+.visual-card{margin:22px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#041126}.visual-top{display:flex;gap:10px;align-items:center;padding:12px 15px;border-bottom:1px solid var(--line)}.visual-top span{font:700 9px 'JetBrains Mono',monospace;color:var(--blue2);letter-spacing:.13em}.visual-top b{font-size:14px}.visual-canvas{padding:12px;overflow:auto}.visual-canvas svg{display:block;width:100%;min-width:680px;height:auto}figcaption{padding:0 16px 15px;color:#8fa2c0;font-size:13px}
+.prompt{margin:20px 0;border:1px solid rgba(132,179,255,.22);background:#020b1b;border-radius:17px;overflow:hidden}.prompt-head{display:flex;justify-content:space-between;align-items:center;gap:15px;background:#071a38;padding:12px 14px;border-bottom:1px solid var(--line)}.prompt-head>div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.prompt-head span{color:var(--blue2);font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em}.prompt-head b{font-size:14px}.copy{border:1px solid rgba(132,179,255,.28);background:#0a2854;color:#eaf3ff;border-radius:9px;padding:6px 10px;font:700 10px 'JetBrains Mono',monospace;cursor:pointer}
+.prompt pre{white-space:pre-wrap;word-break:break-word;color:#cbd9ed;font:500 13px/1.75 'JetBrains Mono','Noto Sans Thai',monospace;margin:0;padding:18px}.prompt-note{border-top:1px solid var(--line);color:#91a5c4;padding:10px 16px;background:#06152d;font-size:12px}
+.callout{margin:18px 0;padding:15px 17px;border-left:4px solid var(--blue);background:#082147;border-radius:0 13px 13px 0;color:#c6d5e9}.callout.green{border-left-color:var(--green);background:#092a2d}
+.timeline,.simple-grid,.state-grid,.final-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.timeline div,.term,.state-grid div,.final-grid div{border:1px solid var(--line);background:#081c39;border-radius:14px;padding:15px}.timeline b{display:block;color:var(--blue2)}.timeline span,.term span,.state-grid span{color:var(--muted);font-size:13px}.term b,.state-grid b{display:block;margin-bottom:4px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{border:1px solid var(--line);background:#081c39;border-radius:16px;padding:18px}.box.bad{border-top:3px solid var(--red)}.box.good{border-top:3px solid var(--green)}.box p{color:#d9e4f3}.box small{color:#8fa1bd}
+.example-story{display:grid;grid-template-columns:1fr 55px 1.5fr;gap:14px;align-items:stretch;margin:20px 0}.example-story>div:not(.arrow){border:1px solid var(--line);background:#081c39;border-radius:16px;padding:18px}.example-story span{display:block;color:#8fa4c2;font-size:12px;margin-bottom:7px}.example-story .arrow{display:grid;place-items:center;color:var(--blue2);font-size:30px}
+.style-picker,.image-types,.workshop-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.style-picker>div,.image-demo,.workshop-steps>div{border:1px solid var(--line);background:#081c39;border-radius:16px;padding:16px}.style-picker b,.image-demo b{display:block}.style-picker span,.image-demo span,.workshop-steps p{color:var(--muted);font-size:12px}
+.image-demo{min-height:160px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}.image-demo:before{content:"";position:absolute;inset:14px 14px 65px;border-radius:12px;background:#dce6f1}.image-demo.photo:before{background:linear-gradient(145deg,#95abc5 0 45%,#d5e2ef 45%)}.image-demo.screen:before{background:linear-gradient(#dfe7ef 0 18%,#f5f7fa 18%);border:1px solid #bdcad9}.image-demo.illu:before{background:linear-gradient(135deg,#dbe6f4 50%,#9fbfe9 50%)}.image-demo span,.image-demo b{position:relative}
+.rewrite-list{display:grid;gap:9px;margin:18px 0}.rewrite-list div{display:grid;grid-template-columns:180px 1fr;gap:13px;padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:#081c39}.rewrite-list span{color:#ffb2b7}.rewrite-list b{color:#cfe0f5;font-weight:600}
+.safe-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:11px;margin:20px 0}.safe-flow span{border:1px solid var(--line);background:#081c39;border-radius:999px;padding:9px 14px}.safe-flow i{color:var(--blue2)}.workshop-steps>div span{display:grid;place-items:center;width:33px;height:33px;border-radius:10px;background:#245ec9;font:800 13px 'Sora';margin-bottom:10px}.workshop-steps>div b{display:block}.final-grid div{font-weight:600}
+.master{border-color:rgba(143,194,255,.31);background:#07204a}
+.footer{padding:28px 0 50px;color:#7186a7;text-align:center;font-size:12px}
+.mobile-nav{display:none}
+@media(max-width:1000px){.hero-grid{grid-template-columns:1fr}.course-layout{grid-template-columns:1fr}.side{display:none}.style-picker,.workshop-steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.wrap{width:min(100% - 24px,var(--max))}.hero{padding-top:38px}.hero h1{font-size:38px}.hero-visual{padding:12px}.hero-screen{min-height:270px}.section{padding:22px 16px;border-radius:18px}.section-head{grid-template-columns:42px 1fr;gap:11px}.secno{width:40px;height:40px;border-radius:11px}.section h2{font-size:25px}.timeline,.simple-grid,.state-grid,.final-grid,.compare,.style-picker,.image-types,.workshop-steps{grid-template-columns:1fr}.example-story{grid-template-columns:1fr}.example-story .arrow{transform:rotate(90deg);height:28px}.rewrite-list div{grid-template-columns:1fr;gap:4px}.visual-canvas{overflow-x:auto;padding:8px}.prompt pre{font-size:12px;padding:14px}.home-btn{padding:8px 10px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html"><span class="brandmark">P</span><span>Pond Natdanai<small>PRIVATE IT TRAINING</small></span></a>
+    <a class="home-btn" href="index.html">← กลับหน้าเว็บหลัก</a>
+  </div>
+  <div class="progress"><i id="progress"></i></div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">BEGINNER · 2 HOURS · PROMPT WORKSHOP</div>
+      <h1>สร้างเว็บและแอปด้วย AI<br><span>สั่งยังไงให้สวยและใช้งานได้จริง</span></h1>
+      <p class="lead">คอร์สสำหรับคนเริ่มต้นที่อยากใช้ Claude Code หรือ AI Coding Tool ช่วยสร้างเว็บไซต์และระบบ โดยไม่ต้องเริ่มจากศัพท์ยาก ๆ เน้น “อธิบายสิ่งที่ต้องการให้ AI เข้าใจ” พร้อมภาพประกอบและ Prompt ใช้จริง</p>
+      <div class="hero-pills"><span class="pill">ศัพท์ง่าย</span><span class="pill">23 Prompts</span><span class="pill">ภาพประกอบ</span><span class="pill">Live Workshop</span><span class="pill">Mobile Friendly</span></div>
+    </div>
+    <div class="hero-visual" aria-label="ตัวอย่างหน้าจอเว็บไซต์">
+      <div class="hero-screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><div class="fake-title"></div><div class="fake-line"></div><div class="fake-line w2"></div><div class="fake-btn"></div><div class="fake-cards"><i></i><i></i><i></i></div></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap course-layout">
+  <aside class="side">
+    <strong>COURSE CONTENT</strong>
+    <a href="#map">00 · ภาพรวม</a>
+    <a href="#words">01 · ศัพท์ง่าย ๆ</a>
+    <a href="#prompt-basic">02 · Prompt พื้นฐาน</a>
+    <a href="#formula">03 · สูตร 8 ช่อง</a>
+    <a href="#idea">04 · จากไอเดีย</a>
+    <a href="#pages">05 · วางหน้าเว็บ</a>
+    <a href="#look">06 · กำหนดหน้าตา</a>
+    <a href="#images">07 · รูปประกอบ</a>
+    <a href="#reference">08 · เว็บตัวอย่าง</a>
+    <a href="#build">09 · เริ่มสร้าง</a>
+    <a href="#refine">10 · สั่งแก้ให้สวย</a>
+    <a href="#webapp">11 · Web App</a>
+    <a href="#states">12 · สถานะหน้าจอ</a>
+    <a href="#responsive">13 · มือถือ</a>
+    <a href="#debug">14 · แก้บั๊ก</a>
+    <a href="#safe">15 · ไม่รื้อของเดิม</a>
+    <a href="#workshop">16 · Workshop</a>
+    <a href="#kit">17 · Prompt กลับบ้าน</a>
+    <a href="#master">18 · Master Prompt</a>
+  </aside>
+  <main>
+<section class="section" id="map">
+  <div class="section-head"><span class="secno">00</span><div><span class="tag">เริ่มจากภาพรวม</span><h2>คอร์ส 2 ชั่วโมงนี้เรียนอะไร</h2><p class="intro">เป้าหมายคือให้คุณมี่สามารถเอา “ไอเดีย” ไปคุยกับ AI แล้วค่อย ๆ ได้เว็บหรือแอปที่ดูดี ใช้งานง่าย และแก้ต่อได้ โดยไม่ต้องเริ่มจากการเขียนโค้ดเอง</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>ภาพรวมวิธีทำงาน</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 250" role="img" aria-label="ขั้นตอนจากไอเดียไปสู่เว็บ">
+<style>.a{font:700 25px 'Noto Sans Thai',sans-serif;fill:#eef5ff}.b{font:500 18px 'Noto Sans Thai',sans-serif;fill:#a9bad2}.c{fill:#0b2247;stroke:#315d99;stroke-width:2}.d{fill:#2f72ff}.e{font:700 22px 'Sora',sans-serif;fill:#fff}</style>
+<rect x="20" y="75" width="170" height="95" rx="18" class="c"/><text x="105" y="115" text-anchor="middle" class="a">ไอเดีย</text><text x="105" y="145" text-anchor="middle" class="b">อยากทำอะไร</text>
+<path d="M200 122h55" stroke="#6ea5ed" stroke-width="4"/><path d="M245 110l18 12-18 12" class="d"/>
+<rect x="275" y="75" width="190" height="95" rx="18" class="c"/><text x="370" y="115" text-anchor="middle" class="a">บอกความต้องการ</text><text x="370" y="145" text-anchor="middle" class="b">ใครใช้ / ทำอะไร</text>
+<path d="M475 122h55" stroke="#6ea5ed" stroke-width="4"/><path d="M520 110l18 12-18 12" class="d"/>
+<rect x="550" y="75" width="170" height="95" rx="18" class="c"/><text x="635" y="115" text-anchor="middle" class="a">วางหน้าตา</text><text x="635" y="145" text-anchor="middle" class="b">สี / ฟอนต์ / เลย์เอาต์</text>
+<path d="M730 122h55" stroke="#6ea5ed" stroke-width="4"/><path d="M775 110l18 12-18 12" class="d"/>
+<rect x="805" y="75" width="135" height="95" rx="18" class="c"/><text x="872" y="115" text-anchor="middle" class="a">สร้าง</text><text x="872" y="145" text-anchor="middle" class="b">ทำทีละส่วน</text>
+<path d="M950 122h50" stroke="#6ea5ed" stroke-width="4"/><path d="M990 110l18 12-18 12" class="d"/>
+<rect x="1015" y="75" width="70" height="95" rx="18" fill="#173b74"/><text x="1050" y="132" text-anchor="middle" class="e">✓</text>
+</svg>
+</div>
+      <figcaption>ไม่ต้องสั่ง AI ให้สร้างทุกอย่างในครั้งเดียว ให้ค่อย ๆ เดินจากซ้ายไปขวา</figcaption>
+    </figure>
+    
+  <div class="timeline">
+    <div><b>0–15 นาที</b><span>เข้าใจวิธีสั่ง AI และคำศัพท์ที่ต้องรู้</span></div>
+    <div><b>15–35 นาที</b><span>เปลี่ยนไอเดียให้เป็นสิ่งที่ AI เข้าใจ</span></div>
+    <div><b>35–55 นาที</b><span>วางหน้าเว็บและกำหนดหน้าตา</span></div>
+    <div><b>55–80 นาที</b><span>สั่งสร้างเว็บจริงทีละส่วน</span></div>
+    <div><b>80–100 นาที</b><span>สั่งแก้ให้สวยขึ้น + รองรับมือถือ</span></div>
+    <div><b>100–115 นาที</b><span>Web App + ฟอร์ม + Dashboard + สถานะ</span></div>
+    <div><b>115–120 นาที</b><span>Prompt ชุดกลับบ้าน</span></div>
+  </div>
+</section>
+
+<section class="section" id="words">
+  <div class="section-head"><span class="secno">01</span><div><span class="tag">ศัพท์ง่าย ๆ</span><h2>คำที่เจอบ่อย แปลเป็นภาษาคนทั่วไป</h2><p class="intro">ไม่ต้องจำศัพท์ทั้งหมด แค่รู้ว่าคำนี้หมายถึงอะไรเวลา AI พูดกลับมา</p></div></div>
+  <div class="simple-grid">
+    <div class="term"><b>Prompt</b><span>ข้อความที่เราพิมพ์สั่ง AI</span></div>
+    <div class="term"><b>Requirement</b><span>สิ่งที่เราอยากได้ เช่น ต้องมีหน้าอะไร ทำอะไรได้บ้าง</span></div>
+    <div class="term"><b>Layout</b><span>การจัดวางของบนหน้า เช่น รูปอยู่ขวา ปุ่มอยู่ซ้าย</span></div>
+    <div class="term"><b>UX</b><span>ใช้ง่ายไหม คนกดแล้วรู้ไหมว่าต้องทำอะไรต่อ</span></div>
+    <div class="term"><b>UI</b><span>หน้าตาที่เห็น เช่น สี ปุ่ม การ์ด ฟอนต์</span></div>
+    <div class="term"><b>Responsive</b><span>เว็บปรับตัวได้ทั้งมือถือ แท็บเล็ต และคอม</span></div>
+    <div class="term"><b>Reference</b><span>เว็บตัวอย่างที่เราชอบ ใช้เป็นแนวทาง ไม่ใช่ลอก</span></div>
+    <div class="term"><b>Debug</b><span>หาสาเหตุว่าอะไรพัง แล้วแก้ตรงจุด</span></div>
+    <div class="term"><b>Web App</b><span>เว็บที่ผู้ใช้ “ทำงาน” ได้ เช่น กรอกข้อมูล อนุมัติ ดูสถานะ</span></div>
+    <div class="term"><b>Database</b><span>ที่เก็บข้อมูลของระบบ เช่น รายชื่อผู้ใช้ รายการคำขอ</span></div>
+  </div>
+  <div class="callout"><b>จำง่าย:</b> UI = “หน้าตา” · UX = “ใช้งานแล้วรู้เรื่องไหม” · Prompt = “คำสั่งที่เราคุยกับ AI”</div>
+</section>
+
+<section class="section" id="prompt-basic">
+  <div class="section-head"><span class="secno">02</span><div><span class="tag">พื้นฐาน Prompt</span><h2>ทำไมพิมพ์แค่ “สร้างเว็บสวย ๆ” แล้วมักไม่ได้อย่างที่คิด</h2><p class="intro">เพราะคำว่า “สวย” ของแต่ละคนไม่เหมือนกัน ถ้าเราไม่บอกกรอบ AI จะเลือกสี การจัดหน้า และลูกเล่นเอง</p></div></div>
+  <div class="compare">
+    <div class="box bad"><b>แบบที่กว้างเกินไป</b><p>“สร้างเว็บบริษัทสวย ๆ ทันสมัยให้หน่อย”</p><small>AI ต้องเดาแทบทุกอย่าง</small></div>
+    <div class="box good"><b>แบบที่ชัดกว่า</b><p>“สร้างเว็บบริษัท IT โทนขาว-น้ำเงิน ดูมืออาชีพ หน้าแรกต้องเห็นบริการ ผลงาน และปุ่มติดต่อทันที รองรับมือถือ และไม่เอาแสง Glow”</p><small>AI รู้ทั้งเป้าหมาย หน้าตา และข้อห้าม</small></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 01</span><b>ให้ AI ถามเราก่อนเริ่มทำ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ฉันอยากสร้างเว็บไซต์ แต่รายละเอียดอาจยังไม่ครบ
+
+ก่อนเขียนโค้ด ช่วยถามฉันทีละข้อเฉพาะเรื่องที่จำเป็น:
+1. เว็บนี้ทำขึ้นเพื่ออะไร
+2. ใครเป็นคนใช้
+3. ต้องมีหน้าอะไรบ้าง
+4. ต้องมีข้อมูลอะไร
+5. อยากได้หน้าตาประมาณไหน
+6. มีเว็บตัวอย่างที่ชอบไหม
+7. ต้องรองรับมือถือหรือไม่
+8. มีอะไรที่ไม่ต้องการให้ทำ
+
+หลังจากฉันตอบครบแล้ว ให้สรุปสิ่งที่ฉันต้องการเป็นภาษาง่าย ๆ
+ยังไม่ต้องเขียนโค้ด</pre>
+      <div class="prompt-note">เหมาะมากสำหรับคนที่ยังไม่รู้ว่าจะเริ่มอธิบายระบบจากตรงไหน</div>
+    </div>
+    
+</section>
+
+<section class="section" id="formula">
+  <div class="section-head"><span class="secno">03</span><div><span class="tag">สูตรจำง่าย</span><h2>Prompt ที่ดีควรบอก 8 เรื่องนี้</h2><p class="intro">ไม่จำเป็นต้องใช้ศัพท์อังกฤษ แค่ตอบให้ครบว่า “ทำอะไร · ใครใช้ · มีอะไร · หน้าตาแบบไหน · ใช้งานยังไง”</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>สูตร 8 ช่อง</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 410" role="img" aria-label="สูตรเขียน prompt แบบง่าย">
+<style>.t{font:700 21px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 16px 'Noto Sans Thai',sans-serif;fill:#9eb0ca}.x{font:800 24px 'Sora',sans-serif;fill:#8fc2ff}.r{fill:#081d3d;stroke:#284e84;stroke-width:2}</style>
+<g transform="translate(25 30)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">1</text><text x="58" y="39" class="t">เป้าหมาย</text><text x="22" y="77" class="s">เว็บนี้ทำอะไร</text><text x="22" y="104" class="s">และอยากให้คนทำอะไรต่อ</text>
+</g>
+<g transform="translate(290 30)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">2</text><text x="58" y="39" class="t">คนที่ใช้</text><text x="22" y="77" class="s">ลูกค้า / พนักงาน / Admin</text><text x="22" y="104" class="s">ใครคือคนหลัก</text>
+</g>
+<g transform="translate(555 30)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">3</text><text x="58" y="39" class="t">ข้อมูลที่ต้องมี</text><text x="22" y="77" class="s">บริการ / ราคา / ฟอร์ม</text><text x="22" y="104" class="s">หรือข้อมูลในระบบ</text>
+</g>
+<g transform="translate(820 30)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">4</text><text x="58" y="39" class="t">หน้าตา</text><text x="22" y="77" class="s">เรียบ / ทันสมัย / มืออาชีพ</text><text x="22" y="104" class="s">พร้อมสิ่งที่ไม่ต้องการ</text>
+</g>
+<g transform="translate(25 205)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">5</text><text x="58" y="39" class="t">ลำดับหน้า</text><text x="22" y="77" class="s">อะไรต้องอยู่ก่อน-หลัง</text><text x="22" y="104" class="s">ไม่ให้ข้อมูลกระจัดกระจาย</text>
+</g>
+<g transform="translate(290 205)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">6</text><text x="58" y="39" class="t">การใช้งาน</text><text x="22" y="77" class="s">ผู้ใช้กดอะไร</text><text x="22" y="104" class="s">และไปถึงงานหลักได้เร็วไหม</text>
+</g>
+<g transform="translate(555 205)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">7</text><text x="58" y="39" class="t">ทุกหน้าจอ</text><text x="22" y="77" class="s">มือถือ / แท็บเล็ต / คอม</text><text x="22" y="104" class="s">ต้องไม่ล้นและกดง่าย</text>
+</g>
+<g transform="translate(820 205)">
+<rect width="245" height="145" rx="18" class="r"/><text x="22" y="38" class="x">8</text><text x="58" y="39" class="t">ข้อห้าม</text><text x="22" y="77" class="s">ห้าม Glow / ห้ามรื้อของเดิม</text><text x="22" y="104" class="s">ห้ามเพิ่มของที่ไม่ได้ขอ</text>
+</g>
+</svg>
+</div>
+      <figcaption>ก่อนส่ง Prompt ลองไล่ดูว่าขาดช่องไหนอยู่หรือไม่</figcaption>
+    </figure>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 02</span><b>ตัวอย่าง Prompt สำหรับเว็บ Portfolio</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ช่วยสร้างเว็บไซต์ Portfolio สำหรับคนรับงาน IT
+
+เป้าหมาย:
+ให้คนที่เข้ามารู้ภายในไม่กี่วินาทีว่าฉันรับทำอะไร และสามารถดูผลงานหรือกดติดต่อได้ง่าย
+
+คนที่เข้ามาดู:
+- คนที่ต้องการ IT Support
+- ธุรกิจที่ต้องการเว็บไซต์หรือระบบ
+- คนที่สนใจเรียนคอมพิวเตอร์แบบตัวต่อตัว
+
+ข้อมูลที่ต้องมี:
+- แนะนำตัวสั้น ๆ
+- บริการ
+- คอร์ส
+- โปรเจกต์ที่เคยทำ
+- รีวิว
+- ราคาเริ่มต้น
+- ช่องทางติดต่อ
+
+หน้าตา:
+- ทันสมัย
+- ดูเป็นมืออาชีพ
+- พื้นหลังสว่าง
+- ใช้รูปประกอบที่เกี่ยวข้องจริง
+- ตัวหนังสืออ่านง่าย
+
+การจัดหน้า:
+หน้าแรก → บริการ → ผลงาน → คอร์ส → รีวิว → ราคา → ติดต่อ
+
+การใช้งาน:
+คนต้องกดไปดู “ผลงาน / คอร์ส / ติดต่อ” ได้ง่าย
+
+มือถือ:
+ต้องออกแบบใหม่ให้เหมาะกับมือถือ ไม่ใช่แค่ย่อหน้า Desktop
+
+ไม่ต้องการ:
+- แสง Glow
+- Neon
+- Gradient เยอะ
+- การ์ดซ้ำ ๆ ทุก Section
+- ช่องว่างยาวเกินไป
+- Animation ที่รบกวนการอ่าน
+
+ก่อนเขียนโค้ด ให้สรุปแผนหน้าเว็บก่อน</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="idea">
+  <div class="section-head"><span class="secno">04</span><div><span class="tag">จากไอเดียสู่ระบบ</span><h2>เปลี่ยนประโยคสั้น ๆ ให้ AI เข้าใจงานจริง</h2><p class="intro">แทนที่จะบอกแค่ชื่อระบบ ให้ตอบ 4 คำถาม: “ใครใช้ / ทำอะไร / เก็บอะไร / เสร็จแล้วเห็นอะไร”</p></div></div>
+  <div class="example-story">
+    <div><span>ไอเดียเดิม</span><b>“อยากได้ระบบแจ้งซ่อม”</b></div>
+    <div class="arrow">→</div>
+    <div><span>อธิบายให้ชัดขึ้น</span><b>พนักงานแจ้งปัญหา → ช่างรับงาน → เปลี่ยนสถานะ → ผู้แจ้งกลับมาดูได้</b></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 03</span><b>แปลงไอเดียให้เป็นแผนระบบ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ฉันอยากทำ “ระบบแจ้งซ่อม”
+
+คนที่ใช้:
+- พนักงาน: แจ้งปัญหาและดูสถานะ
+- ช่าง: ดูงานที่ได้รับและอัปเดตสถานะ
+- Admin: ดูงานทั้งหมดและจัดการประเภทปัญหา
+
+ข้อมูลที่ต้องเก็บ:
+- หัวข้อ
+- รายละเอียด
+- รูปภาพ
+- ผู้แจ้ง
+- วันที่
+- ผู้รับผิดชอบ
+- สถานะ
+
+ช่วยฉัน:
+1. สรุปว่าระบบนี้ต้องมีอะไรบ้าง
+2. แบ่งเป็น “จำเป็นตอนแรก” กับ “ทำเพิ่มทีหลัง”
+3. เสนอหน้าที่ต้องมี
+4. เสนอเส้นทางการใช้งานแบบง่าย
+5. บอกข้อมูลที่ฉันยังไม่ได้ระบุ
+
+ยังไม่ต้องเขียนโค้ด</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="pages">
+  <div class="section-head"><span class="secno">05</span><div><span class="tag">วางหน้าเว็บ</span><h2>ก่อนเลือกสี ต้องรู้ก่อนว่าคนจะเดินไปหน้าไหน</h2><p class="intro">เว็บที่ใช้ง่ายไม่ได้เริ่มจากเอฟเฟกต์ แต่เริ่มจากการวางข้อมูลให้คนหาเจอเร็ว</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>ตัวอย่างแผนผังหน้าเว็บ</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 420" role="img" aria-label="ตัวอย่างโครงสร้างเว็บไซต์">
+<style>.t{font:700 19px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 15px 'Noto Sans Thai',sans-serif;fill:#9fb1cb}.b{fill:#0a2144;stroke:#2d568e;stroke-width:2}.l{stroke:#426caa;stroke-width:3;fill:none}</style>
+<rect x="420" y="25" width="260" height="74" rx="18" class="b"/><text x="550" y="59" text-anchor="middle" class="t">หน้าแรก</text><text x="550" y="82" text-anchor="middle" class="s">คนเข้ามาแล้วต้องเข้าใจทันที</text>
+<path d="M550 100v52M180 152h740M180 152v42M420 152v42M680 152v42M920 152v42" class="l"/>
+<rect x="75" y="195" width="210" height="72" rx="16" class="b"/><text x="180" y="230" text-anchor="middle" class="t">บริการ</text><text x="180" y="252" text-anchor="middle" class="s">รับทำอะไร</text>
+<rect x="315" y="195" width="210" height="72" rx="16" class="b"/><text x="420" y="230" text-anchor="middle" class="t">ผลงาน</text><text x="420" y="252" text-anchor="middle" class="s">เคยทำอะไรมา</text>
+<rect x="575" y="195" width="210" height="72" rx="16" class="b"/><text x="680" y="230" text-anchor="middle" class="t">คอร์ส</text><text x="680" y="252" text-anchor="middle" class="s">เรียนอะไรได้บ้าง</text>
+<rect x="815" y="195" width="210" height="72" rx="16" class="b"/><text x="920" y="230" text-anchor="middle" class="t">ติดต่อ</text><text x="920" y="252" text-anchor="middle" class="s">ให้คนตัดสินใจได้ง่าย</text>
+<path d="M420 268v42M420 310h500M680 310v42M920 310v42" class="l"/>
+<rect x="575" y="350" width="210" height="52" rx="14" class="b"/><text x="680" y="382" text-anchor="middle" class="t">ดูรายละเอียด</text>
+<rect x="815" y="350" width="210" height="52" rx="14" class="b"/><text x="920" y="382" text-anchor="middle" class="t">ส่งข้อความ / นัดคุย</text>
+</svg>
+</div>
+      <figcaption>หน้าแรกเป็นจุดเริ่ม แล้วพาคนไปยังสิ่งที่เขาต้องการ เช่น บริการ ผลงาน คอร์ส หรือการติดต่อ</figcaption>
+    </figure>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 04</span><b>ให้ AI วางหน้าและเส้นทางการใช้งาน</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>จากข้อมูลโปรเจกต์ที่สรุปไว้ ช่วยวางโครงหน้าเว็บก่อน
+
+ขอผลลัพธ์เป็น:
+1. ต้องมีหน้าอะไรบ้าง
+2. แต่ละหน้ามีไว้ทำอะไร
+3. หน้าแรกควรเรียง Section อะไรก่อน-หลัง
+4. ปุ่มหลักของแต่ละหน้าควรเป็นอะไร
+5. ถ้าเป็นมือถือ เมนูควรใช้อย่างไร
+6. มีหน้าไหนที่ไม่จำเป็นหรือรวมกันได้บ้าง
+
+อธิบายเป็นภาษาง่าย ๆ
+ยังไม่ต้องเขียนโค้ด</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="look">
+  <div class="section-head"><span class="secno">06</span><div><span class="tag">กำหนดหน้าตา</span><h2>อย่าบอกแค่ “สวย” ให้บอกว่าอยากให้เว็บรู้สึกแบบไหน</h2><p class="intro">เลือก 3–5 คำที่บอกอารมณ์ของงาน เช่น เรียบ, มืออาชีพ, เป็นมิตร, ทันสมัย, Premium แล้วบอกสิ่งที่ “ไม่เอา” ด้วย</p></div></div>
+  <div class="style-picker">
+    <div><b>เรียบและมืออาชีพ</b><span>สีไม่เยอะ · ฟอนต์ชัด · ช่องว่างพอดี</span></div>
+    <div><b>ทันสมัยแบบ Software</b><span>Card ใช้เท่าที่จำเป็น · มีภาพหน้าจอ · ปุ่มชัด</span></div>
+    <div><b>เป็นมิตร</b><span>ภาษาอ่านง่าย · รูปภาพจริง · ไม่แข็งเกินไป</span></div>
+    <div><b>สิ่งที่ไม่เอา</b><span>Glow · Neon · ของลอยเยอะ · Animation เกินจำเป็น</span></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 05</span><b>กำหนดแนวหน้าตาแบบเข้าใจง่าย</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ช่วยกำหนดแนวหน้าตาของเว็บนี้ก่อนสร้างจริง
+
+ฉันต้องการ:
+- ทันสมัย
+- ดูเป็นมืออาชีพ
+- อ่านง่าย
+- ไม่แน่นเกินไป
+- ใช้รูปหรือภาพประกอบที่มีความหมาย
+- สีหลักไม่เกิน 2–3 สี
+- ปุ่มหลักต้องเด่นกว่าปุ่มรอง
+
+ช่วยกำหนด:
+- สีหลัก / สีพื้น / สีข้อความ
+- ฟอนต์และขนาดหัวข้อ
+- ระยะห่าง
+- รูปแบบปุ่ม
+- รูปแบบ Card
+- รูปแบบภาพประกอบ
+- วิธีจัดหน้าในมือถือ
+
+สิ่งที่ไม่ต้องการ:
+- Glow
+- Neon
+- Gradient เยอะ
+- เงาหนัก
+- Card ทุกอย่าง
+- Animation ที่ทำให้เวียนหัว
+
+ยังไม่ต้องเขียนโค้ด</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="images">
+  <div class="section-head"><span class="secno">07</span><div><span class="tag">รูปประกอบ</span><h2>เว็บดูดีขึ้นเมื่อใช้ “รูปที่ช่วยเล่าเรื่อง” ไม่ใช่ใส่รูปเพราะมีที่ว่าง</h2><p class="intro">ให้ AI บอกก่อนว่า Section ไหนควรใช้ภาพจริง ภาพหน้าจอ หรือภาพประกอบ แล้วค่อยใส่ลงเว็บ</p></div></div>
+  <div class="image-types">
+    <div class="image-demo photo"><span>ภาพจริง</span><b>เหมาะกับบริการ / คน / ผลงานจริง</b></div>
+    <div class="image-demo screen"><span>ภาพหน้าจอ</span><b>เหมาะกับเว็บ / Dashboard / ระบบ</b></div>
+    <div class="image-demo illu"><span>ภาพประกอบ</span><b>เหมาะกับเรื่องที่อธิบายด้วยภาพง่ายกว่า</b></div>
+  </div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 06</span><b>ให้ AI วางแผนว่าจะใช้รูปตรงไหน</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ตรวจโครงหน้าเว็บนี้ แล้วช่วยบอกว่า Section ไหน “ควรมีรูป” และควรเป็นรูปแบบไหน
+
+เลือกได้จาก:
+- ภาพถ่ายจริง
+- Screenshot ผลงาน
+- ภาพประกอบแบบเรียบ
+- Icon
+- ไม่ต้องใช้รูป
+
+สำหรับแต่ละ Section ขอ:
+1. ควรใช้รูปหรือไม่
+2. ใช้รูปประเภทไหน
+3. รูปควรสื่ออะไร
+4. ควรวางซ้าย/ขวา/เต็มความกว้าง
+5. มือถือควรแสดงรูปอย่างไร
+
+หลีกเลี่ยงรูป Stock ที่ไม่เกี่ยวข้องกับเนื้อหา</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="reference">
+  <div class="section-head"><span class="secno">08</span><div><span class="tag">ใช้เว็บตัวอย่าง</span><h2>ถ้าชอบเว็บใคร ให้ AI วิเคราะห์ “สิ่งที่ชอบ” แทนการสั่งว่าลอกให้เหมือน</h2><p class="intro">ตัวอย่างเช่น ชอบการเรียง Section, ขนาดตัวหนังสือ, การแสดงผลงาน หรือความโล่งของหน้า ไม่จำเป็นต้องลอกสีและข้อความทั้งหมด</p></div></div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 07</span><b>วิเคราะห์เว็บตัวอย่าง</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>นี่คือเว็บตัวอย่างที่ฉันชอบ:
+[ใส่ลิงก์เว็บ]
+
+ช่วยวิเคราะห์ให้หน่อยว่าเว็บนี้ดูดีเพราะอะไร โดยดูเฉพาะ:
+- การเรียงข้อมูล
+- การใช้พื้นที่
+- ขนาดหัวข้อ
+- ตำแหน่งปุ่ม
+- วิธีแสดงผลงาน
+- วิธีใช้รูป
+- การจัดหน้าในมือถือ
+
+จากนั้นช่วยเสนอแนวทาง “ใหม่” สำหรับเว็บของฉัน
+ห้ามลอกชื่อ ข้อความ โลโก้ สี หรือรูปเฉพาะของเว็บต้นฉบับ</pre>
+      
+    </div>
+    
+<div class="callout"><b>ประโยคที่ดี:</b> “ชอบวิธีจัดผลงานเป็นการ์ดแนวนอนและมีภาพใหญ่” ดีกว่า “ทำเหมือนเว็บนี้เลย”</div>
+</section>
+
+<section class="section" id="build">
+  <div class="section-head"><span class="secno">09</span><div><span class="tag">เริ่มสร้างจริง</span><h2>เมื่อแผนชัดแล้ว ค่อยให้ AI เขียนเว็บ</h2><p class="intro">สั่งให้ทำทีละส่วนจะตรวจง่ายกว่า และถ้าพังก็รู้ว่าพังจากตรงไหน</p></div></div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 08</span><b>Master Prompt สำหรับเริ่มสร้างเว็บ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ตอนนี้เราได้ข้อสรุปเรื่องโครงหน้าและหน้าตาแล้ว
+เริ่มสร้างเว็บไซต์ตามแผนที่ตกลงกัน
+
+กติกา:
+- ทำทีละ Section
+- เริ่มจาก Header + Hero ก่อน
+- เมื่อทำเสร็จให้หยุดและสรุปว่าทำอะไรไป
+- อย่าเพิ่ม Section ที่ฉันไม่ได้ขอ
+- ใช้รูปประกอบหรือ Placeholder เฉพาะตำแหน่งที่จำเป็น
+- รองรับมือถือ แท็บเล็ต และคอม
+- ห้ามมี Horizontal Scroll
+- ปุ่มต้องกดง่ายบนมือถือ
+- ตัวหนังสือต้องไม่เล็กเกินไป
+- ไม่ใช้ Glow / Neon / Animation เยอะ
+
+ก่อนแก้ไฟล์ ให้ดูไฟล์เดิมก่อน
+ถ้ามีของเดิมที่ใช้งานได้ ให้เก็บไว้</pre>
+      <div class="prompt-note">Prompt นี้เหมาะสำหรับใช้กับ Claude Code หรือ AI Coding Tool ที่เปิดอยู่ในโฟลเดอร์โปรเจกต์</div>
+    </div>
+    
+</section>
+
+<section class="section" id="refine">
+  <div class="section-head"><span class="secno">10</span><div><span class="tag">สั่งแก้ให้สวยขึ้น</span><h2>จุดสำคัญที่สุด: อย่าพิมพ์ว่า “ไม่สวย ทำใหม่”</h2><p class="intro">บอกให้ชัดว่าตรงไหนมีปัญหา เช่น หัวข้อไม่เด่น ช่องว่างเยอะ ปุ่มดูเหมือนกัน หรือรูปไม่ช่วยเล่าเรื่อง</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>ก่อนและหลังสั่งแก้แบบชัดเจน</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 420" role="img" aria-label="ก่อนและหลังปรับ prompt">
+<style>.t{font:700 21px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 15px 'Noto Sans Thai',sans-serif;fill:#9eb0c8}.dark{fill:#071a36;stroke:#315987;stroke-width:2}.light{fill:#f4f7fb}.txt{fill:#18233a}.mut{fill:#a7b4c7}.btn{fill:#3778ef}.card{fill:#e7edf6;stroke:#d1dbe9}</style>
+<text x="250" y="42" text-anchor="middle" class="t">สั่งกว้างเกินไป</text>
+<rect x="55" y="65" width="390" height="300" rx="24" class="dark"/>
+<rect x="85" y="95" width="330" height="235" rx="16" class="light"/>
+<rect x="110" y="120" width="250" height="24" rx="8" fill="#8aa0bb"/>
+<rect x="110" y="160" width="290" height="12" rx="6" class="mut"/>
+<rect x="110" y="187" width="210" height="12" rx="6" class="mut"/>
+<rect x="110" y="225" width="82" height="40" rx="10" fill="#8e9eb4"/>
+<rect x="110" y="285" width="85" height="28" rx="8" class="card"/><rect x="205" y="285" width="85" height="28" rx="8" class="card"/><rect x="300" y="285" width="85" height="28" rx="8" class="card"/>
+<text x="850" y="42" text-anchor="middle" class="t">สั่งชัด + แก้ทีละจุด</text>
+<rect x="655" y="65" width="390" height="300" rx="24" class="dark"/>
+<rect x="685" y="95" width="330" height="235" rx="16" class="light"/>
+<rect x="710" y="118" width="220" height="30" rx="8" class="txt"/>
+<rect x="710" y="163" width="260" height="10" rx="5" class="mut"/>
+<rect x="710" y="188" width="200" height="10" rx="5" class="mut"/>
+<rect x="710" y="220" width="120" height="42" rx="10" class="btn"/>
+<rect x="842" y="220" width="105" height="42" rx="10" fill="#eef2f8" stroke="#bdcadc"/>
+<rect x="710" y="284" width="235" height="25" rx="8" class="card"/>
+<path d="M505 210h90" stroke="#67a2ef" stroke-width="4"/><path d="M580 195l22 15-22 15" fill="#67a2ef"/>
+</svg>
+</div>
+      <figcaption>Prompt รอบที่ 2–5 มักเป็นจุดที่ทำให้งานดูดีขึ้นกว่ารอบแรกมาก</figcaption>
+    </figure>
+    
+  <div class="rewrite-list">
+    <div><span>“มันโล่งไป”</span><b>→ ลดช่องว่างแนวตั้ง และดึงข้อมูลสำคัญขึ้นมาใกล้กันมากขึ้น</b></div>
+    <div><span>“หัวข้อไม่เด่น”</span><b>→ ทำให้หัวข้อหลักเด่นที่สุด และลดน้ำหนักข้อความรอง</b></div>
+    <div><span>“ปุ่มแปลก”</span><b>→ ทำให้ปุ่มหลักเด่นกว่าปุ่มรองอย่างชัดเจน</b></div>
+    <div><span>“มือถือดูยัด”</span><b>→ จัดองค์ประกอบมือถือใหม่ ไม่ใช่ย่อจาก Desktop อย่างเดียว</b></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 09</span><b>แก้เฉพาะ Hero ไม่ให้ AI รื้อทั้งเว็บ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>อย่าออกแบบใหม่ทั้งเว็บไซต์
+แก้เฉพาะ Hero Section เท่านั้น
+
+ปัญหาที่เห็น:
+- หัวข้อยังไม่เด่น
+- ช่องว่างเยอะเกินไป
+- รูปด้านขวายังไม่ช่วยอธิบายบริการ
+- ปุ่มหลักกับปุ่มรองดูเด่นเท่ากัน
+
+ขอให้:
+1. ปรับลำดับความเด่นของข้อความ
+2. ลดพื้นที่ว่างที่ไม่จำเป็น
+3. ทำปุ่มหลักให้เด่นขึ้น
+4. ใช้ภาพประกอบที่สื่อถึงบริการจริง
+5. ตรวจมือถือด้วย
+
+ห้ามแก้ Navigation และ Section อื่น
+หลังแก้ให้สรุปว่าปรับตรงไหนบ้าง</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="webapp">
+  <div class="section-head"><span class="secno">11</span><div><span class="tag">Website vs Web App</span><h2>เว็บแนะนำบริการกับระบบใช้งานจริง สั่ง AI ไม่เหมือนกัน</h2><p class="intro">Website เน้นให้คนอ่านและตัดสินใจ ส่วน Web App เน้นให้คนทำงาน เช่น กรอกฟอร์ม อนุมัติ ค้นหา และดูสถานะ</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>ต่างกันตรงเป้าหมายการใช้งาน</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 410" role="img" aria-label="เว็บไซต์ต่างจากเว็บแอปอย่างไร">
+<style>.t{font:700 22px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 16px 'Noto Sans Thai',sans-serif;fill:#a2b4ce}.b{fill:#0a2144;stroke:#2f5b95;stroke-width:2}.a{fill:#173c76}.l{stroke:#4e78b2;stroke-width:3}</style>
+<text x="270" y="42" text-anchor="middle" class="t">Website</text><text x="820" y="42" text-anchor="middle" class="t">Web App</text>
+<rect x="70" y="75" width="400" height="270" rx="22" class="b"/>
+<text x="270" y="115" text-anchor="middle" class="s">เน้นให้คน “อ่านและตัดสินใจ”</text>
+<rect x="115" y="150" width="310" height="46" rx="12" class="a"/><text x="270" y="180" text-anchor="middle" class="t">รู้ว่าเราทำอะไร</text>
+<path d="M270 200v26" class="l"/>
+<rect x="115" y="228" width="310" height="46" rx="12" class="a"/><text x="270" y="258" text-anchor="middle" class="t">ดูผลงาน / ราคา</text>
+<path d="M270 278v26" class="l"/>
+<rect x="115" y="306" width="310" height="46" rx="12" fill="#2f72ff"/><text x="270" y="336" text-anchor="middle" class="t">ติดต่อ</text>
+<rect x="630" y="75" width="400" height="270" rx="22" class="b"/>
+<text x="830" y="115" text-anchor="middle" class="s">เน้นให้คน “ทำงานบางอย่าง”</text>
+<rect x="675" y="150" width="310" height="46" rx="12" class="a"/><text x="830" y="180" text-anchor="middle" class="t">กรอกข้อมูล</text>
+<path d="M830 200v26" class="l"/>
+<rect x="675" y="228" width="310" height="46" rx="12" class="a"/><text x="830" y="258" text-anchor="middle" class="t">ระบบประมวลผล</text>
+<path d="M830 278v26" class="l"/>
+<rect x="675" y="306" width="310" height="46" rx="12" fill="#2f72ff"/><text x="830" y="336" text-anchor="middle" class="t">เห็นผล / สถานะ</text>
+</svg>
+</div>
+      <figcaption>ถ้าเป็น Web App ต้องคิดถึงงานที่ผู้ใช้ทำ ไม่ใช่แค่ความสวยของหน้า</figcaption>
+    </figure>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 10</span><b>Prompt สำหรับ Web App</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ช่วยออกแบบ Web App สำหรับระบบคำขอภายในบริษัท
+
+ผู้ใช้:
+- พนักงาน: สร้างคำขอและดูสถานะ
+- หัวหน้า: อนุมัติหรือปฏิเสธ
+- Admin: ดูทั้งหมดและตั้งค่าระบบ
+
+งานหลัก:
+- กรอกคำขอ
+- แนบไฟล์
+- ดูสถานะ
+- อนุมัติ / ปฏิเสธ
+- ค้นหาและกรองรายการ
+
+ขอให้เน้น “ใช้งานง่าย” มากกว่าตกแต่ง
+ทุกหน้าต้องบอกให้ผู้ใช้รู้ว่าต้องทำอะไรต่อ
+
+ช่วยออกแบบ:
+- หน้า Dashboard
+- ฟอร์มสร้างคำขอ
+- หน้ารายละเอียด
+- หน้ารออนุมัติ
+- หน้าจัดการของ Admin
+
+และต้องมีสถานะ:
+กำลังโหลด / ไม่มีข้อมูล / สำเร็จ / ผิดพลาด / ปุ่มกดไม่ได้ / ยืนยันก่อนลบ</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="states">
+  <div class="section-head"><span class="secno">12</span><div><span class="tag">หน้าจอต้องบอกสถานะ</span><h2>ระบบที่ดู “ครบ” ต้องคิดตอนที่ยังไม่มีข้อมูลและตอนที่เกิดปัญหาด้วย</h2><p class="intro">มือใหม่มักออกแบบเฉพาะตอนทุกอย่างทำงานปกติ แต่ผู้ใช้จริงจะเจอ Loading, Error และข้อมูลว่างแน่นอน</p></div></div>
+  <div class="state-grid">
+    <div><b>กำลังโหลด</b><span>บอกว่าระบบกำลังทำงาน</span></div>
+    <div><b>ยังไม่มีข้อมูล</b><span>บอกว่าต้องเริ่มจากอะไร</span></div>
+    <div><b>สำเร็จ</b><span>ยืนยันว่าบันทึกแล้ว</span></div>
+    <div><b>ผิดพลาด</b><span>บอกสาเหตุและวิธีลองใหม่</span></div>
+    <div><b>กดไม่ได้</b><span>ปิดปุ่มเมื่อข้อมูลยังไม่ครบ</span></div>
+    <div><b>ยืนยันก่อนทำ</b><span>เช่น ลบข้อมูลหรืออนุมัติรายการ</span></div>
+  </div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 11</span><b>ให้ AI เติมสถานะที่ขาด</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ตรวจ Web App นี้ว่ามีหน้าจอรองรับสถานการณ์เหล่านี้ครบหรือยัง:
+- กำลังโหลด
+- ไม่มีข้อมูล
+- บันทึกสำเร็จ
+- เกิดข้อผิดพลาด
+- ไม่มีสิทธิ์
+- ปุ่มยังไม่สามารถกดได้
+- ยืนยันก่อนลบหรือทำรายการสำคัญ
+
+ถ้ายังขาด ให้เพิ่มข้อความและหน้าตาที่เข้าใจง่าย
+อย่าเพิ่ม Animation ที่ไม่จำเป็น</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="responsive">
+  <div class="section-head"><span class="secno">13</span><div><span class="tag">มือถือ / แท็บเล็ต / คอม</span><h2>รองรับมือถือ ไม่ใช่แค่ย่อทุกอย่างให้เล็ก</h2><p class="intro">บางอย่างต้อง “เปลี่ยนวิธีแสดง” เช่น ตารางใหญ่ในคอม อาจกลายเป็น Card ในมือถือ</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>หน้าจอใหญ่กับมือถือควรจัดต่างกัน</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 360" role="img" aria-label="เว็บไซต์รองรับหลายขนาดหน้าจอ">
+<style>.t{font:700 18px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 14px 'Noto Sans Thai',sans-serif;fill:#9fb1ca}.f{fill:#071a36;stroke:#335e95;stroke-width:3}.sc{fill:#f4f7fb}.a{fill:#2f72ff}.m{fill:#aab7c8}</style>
+<rect x="65" y="70" width="470" height="245" rx="20" class="f"/><rect x="90" y="96" width="420" height="185" rx="10" class="sc"/>
+<rect x="115" y="120" width="180" height="18" rx="6" fill="#1b2940"/><rect x="115" y="151" width="280" height="9" rx="4" class="m"/>
+<rect x="115" y="184" width="95" height="32" rx="8" class="a"/><rect x="115" y="235" width="95" height="24" rx="7" fill="#e3e9f2"/><rect x="220" y="235" width="95" height="24" rx="7" fill="#e3e9f2"/><rect x="325" y="235" width="95" height="24" rx="7" fill="#e3e9f2"/>
+<text x="300" y="340" text-anchor="middle" class="t">คอม: วางหลายคอลัมน์ได้</text>
+<rect x="690" y="38" width="235" height="300" rx="28" class="f"/><rect x="710" y="65" width="195" height="245" rx="17" class="sc"/>
+<rect x="730" y="91" width="125" height="16" rx="6" fill="#1b2940"/><rect x="730" y="121" width="150" height="8" rx="4" class="m"/><rect x="730" y="151" width="115" height="34" rx="9" class="a"/>
+<rect x="730" y="210" width="150" height="34" rx="9" fill="#e3e9f2"/><rect x="730" y="254" width="150" height="34" rx="9" fill="#e3e9f2"/>
+<text x="808" y="357" text-anchor="middle" class="t">มือถือ: เรียงใหม่ให้อ่านง่าย</text>
+</svg>
+</div>
+      <figcaption>เป้าหมายคืออ่านง่ายและกดง่าย ไม่ใช่ให้ Layout เหมือนกันทุกพิกเซล</figcaption>
+    </figure>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 12</span><b>ตรวจ Responsive แบบภาษาง่าย</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ช่วยตรวจเว็บนี้ในขนาดหน้าจอ:
+320, 375, 430, 768, 1024 และ 1440px
+
+เช็กเรื่อง:
+- มีอะไรล้นออกนอกจอไหม
+- ตัวหนังสือถูกตัดไหม
+- หัวข้อใหญ่เกินไปไหม
+- ปุ่มเล็กเกินไปไหม
+- Card แคบจนอ่านยากไหม
+- ตารางใช้บนมือถือได้ไหม
+- เมนูเปิด/ปิดได้ไหม
+- Modal ปิดได้ไหม
+- รูปถูกตัดแปลกไหม
+- มีช่องว่างยาวเกินไปไหม
+
+ถ้าส่วนไหนไม่เหมาะกับมือถือ ให้ “จัดใหม่สำหรับมือถือ”
+ไม่ต้องพยายามให้เหมือน Desktop ทุกอย่าง</pre>
+      
+    </div>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 13</span><b>เปลี่ยนตารางเป็น Card ในมือถือ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ตารางนี้อ่านยากบนมือถือ
+
+ขอให้:
+- Desktop ยังใช้ตารางเหมือนเดิม
+- หน้าจอต่ำกว่า 640px ให้เปลี่ยนเป็น Card
+- ใน Card ให้แสดงข้อมูลสำคัญก่อน
+- สถานะต้องเห็นชัด
+- ปุ่มต้องกดง่ายด้วยนิ้ว
+- ห้ามทำให้ข้อมูลหาย
+
+แก้เฉพาะส่วนแสดงผล ไม่ต้องเปลี่ยนข้อมูลหรือระบบหลังบ้าน</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="debug">
+  <div class="section-head"><span class="secno">14</span><div><span class="tag">แก้บั๊ก</span><h2>เวลาเว็บพัง ให้บอก “อาการ” ไม่ใช่แค่บอกว่า “แก้ให้หน่อย”</h2><p class="intro">AI จะหาต้นเหตุได้ง่ายขึ้น ถ้าเราบอกว่ากดอะไร เกิดอะไร และจริง ๆ แล้วควรเกิดอะไร</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>วิธีแก้บั๊กแบบปลอดภัย</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 250" role="img" aria-label="ขั้นตอนแก้บั๊ก">
+<style>.t{font:700 19px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 14px 'Noto Sans Thai',sans-serif;fill:#9fb1ca}.b{fill:#0a2144;stroke:#2f5a92;stroke-width:2}.l{stroke:#5c88c0;stroke-width:4}</style>
+<rect x="30" y="80" width="185" height="92" rx="17" class="b"/><text x="122" y="117" text-anchor="middle" class="t">บอกอาการ</text><text x="122" y="145" text-anchor="middle" class="s">กดแล้วเกิดอะไร</text>
+<path d="M225 126h55" class="l"/><path d="M270 113l18 13-18 13" fill="#5c88c0"/>
+<rect x="300" y="80" width="185" height="92" rx="17" class="b"/><text x="392" y="117" text-anchor="middle" class="t">หาต้นเหตุ</text><text x="392" y="145" text-anchor="middle" class="s">ดูไฟล์ที่เกี่ยวข้อง</text>
+<path d="M495 126h55" class="l"/><path d="M540 113l18 13-18 13" fill="#5c88c0"/>
+<rect x="570" y="80" width="185" height="92" rx="17" class="b"/><text x="662" y="117" text-anchor="middle" class="t">แก้ให้น้อย</text><text x="662" y="145" text-anchor="middle" class="s">ไม่รื้อทั้งระบบ</text>
+<path d="M765 126h55" class="l"/><path d="M810 113l18 13-18 13" fill="#5c88c0"/>
+<rect x="840" y="80" width="220" height="92" rx="17" fill="#173c76" stroke="#4f83c5" stroke-width="2"/><text x="950" y="117" text-anchor="middle" class="t">ลองใช้จริงอีกครั้ง</text><text x="950" y="145" text-anchor="middle" class="s">เช็กว่าส่วนอื่นยังไม่พัง</text>
+</svg>
+</div>
+      <figcaption>อธิบายอาการ → หาไฟล์ที่เกี่ยวข้อง → แก้ให้น้อยที่สุด → ลองใหม่</figcaption>
+    </figure>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 14</span><b>Prompt แก้บั๊กสำหรับมือใหม่</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ตอนนี้มีปัญหาในระบบ
+
+อาการที่เห็น:
+[เช่น กดปุ่มบันทึกแล้วไม่มีอะไรเกิดขึ้น]
+
+สิ่งที่ควรเกิด:
+[เช่น บันทึกข้อมูลแล้วกลับไปหน้า Dashboard]
+
+ถ้ามีข้อความ Error:
+[วางข้อความตรงนี้]
+
+ขั้นตอนที่ทำให้เจอปัญหา:
+1. ...
+2. ...
+3. ...
+
+ก่อนแก้:
+1. ดูไฟล์ที่เกี่ยวข้อง
+2. หาต้นเหตุ
+3. อธิบายสั้น ๆ ว่าเกิดจากอะไร
+4. บอกว่าจะเปลี่ยนอะไร
+
+จากนั้นค่อยแก้
+ขอให้แก้ให้น้อยที่สุด และตรวจว่าส่วนอื่นยังใช้ได้
+ห้ามเขียนหน้าใหม่ทั้งหน้า ถ้าไม่จำเป็น</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="safe">
+  <div class="section-head"><span class="secno">15</span><div><span class="tag">ไม่ให้ AI รื้อของเดิม</span><h2>โปรเจกต์เริ่มใหญ่ ต้องบอกขอบเขตให้ชัด</h2><p class="intro">ยิ่ง AI แก้หลายเรื่องพร้อมกัน ยิ่งตามยาก ควรให้แก้ทีละ Feature หรือทีละ Section</p></div></div>
+  <div class="safe-flow"><span>แก้ 1 เรื่อง</span><i>→</i><span>ลองใช้</span><i>→</i><span>เก็บเวอร์ชัน</span><i>→</i><span>ค่อยทำเรื่องต่อไป</span></div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 15</span><b>ห้ามกระทบของเดิม</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>แก้เฉพาะงานนี้:
+[ใส่สิ่งที่ต้องการแก้]
+
+สิ่งที่แก้ได้:
+- [รายการ 1]
+- [รายการ 2]
+
+สิ่งที่ห้ามแก้:
+- หน้าอื่น
+- ชื่อไฟล์ที่ระบบใช้อยู่
+- Database
+- Login
+- Feature ที่ใช้งานได้อยู่แล้ว
+
+ก่อนแก้ให้ดูไฟล์ที่เกี่ยวข้องก่อน
+ถ้าจำเป็นต้องไปแก้ส่วนอื่น ให้หยุดและอธิบายก่อน
+
+หลังแก้:
+- บอกว่าแก้ไฟล์ไหน
+- แก้อะไร
+- ตรวจอะไรแล้ว</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="workshop">
+  <div class="section-head"><span class="secno">16</span><div><span class="tag">Live Workshop</span><h2>ฝึกจริง: สร้าง Service Request Dashboard</h2><p class="intro">ใช้โจทย์เดียวกัน แต่สั่ง 3 รอบ เพื่อให้เห็นว่าผลงานดีขึ้นเมื่อเราให้รายละเอียดมากขึ้น</p></div></div>
+  <div class="workshop-steps">
+    <div><span>1</span><b>สั่งสั้น ๆ ก่อน</b><p>ดูว่า AI เดาอะไรเองบ้าง</p></div>
+    <div><span>2</span><b>เพิ่มความต้องการ</b><p>บอกผู้ใช้ ข้อมูล หน้าที่ต้องมี</p></div>
+    <div><span>3</span><b>เพิ่มหน้าตา + มือถือ</b><p>กำหนดสไตล์ ข้อห้าม และ Responsive</p></div>
+    <div><span>4</span><b>สั่งแก้เฉพาะจุด</b><p>Review Hero, Card, Form, Table</p></div>
+  </div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 16</span><b>รอบแรก: ตั้งใจให้ Prompt สั้น</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>สร้าง Service Request Dashboard สวย ๆ ด้วย HTML, CSS และ JavaScript</pre>
+      <div class="prompt-note">ใช้เพื่อให้ลูกค้าเห็นก่อนว่า ถ้าบอกน้อย AI ต้องเดาเยอะ</div>
+    </div>
+    
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 17</span><b>รอบสอง: เพิ่มสิ่งที่ต้องมี</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>สร้าง Service Request Dashboard สำหรับบริษัทขนาดเล็ก
+
+ผู้ใช้:
+- พนักงานสร้างคำขอและดูสถานะ
+- Support อัปเดตสถานะ
+
+ต้องมี:
+- จำนวนงาน Open / In Progress / Completed
+- รายการคำขอ
+- ตัวกรองสถานะ
+- ฟอร์มสร้างคำขอ
+- หน้าดูรายละเอียด
+
+ข้อมูล:
+หัวข้อ, ประเภท, ความสำคัญ, รายละเอียด, ผู้แจ้ง, วันที่, สถานะ
+
+สำหรับ Workshop นี้ใช้ข้อมูลตัวอย่างใน Browser ก่อน
+ยังไม่ต้องต่อ Database
+
+ก่อนเขียนโค้ด ให้เสนอการจัดหน้าก่อน</pre>
+      
+    </div>
+    
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 18</span><b>รอบสาม: เพิ่มหน้าตาและข้อห้าม</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ใช้ Requirement เดิม แต่ปรับหน้าตาให้:
+
+- ดูสะอาด
+- เป็นระบบบริษัท
+- สีหลักน้ำเงินเข้ม + พื้นสว่าง
+- หัวข้อและสถานะมองเห็นง่าย
+- Card ใช้เท่าที่จำเป็น
+- ฟอร์มกรอกง่าย
+- ตารางอ่านง่าย
+- มี Empty State
+- รองรับมือถือจริง
+
+ไม่เอา:
+- Glow
+- Neon
+- Gradient เยอะ
+- เงาหนัก
+- Animation เยอะ
+- ช่องว่างยาว
+
+Desktop ใช้ Table ได้
+Mobile ให้เปลี่ยนรายการเป็น Card
+
+เริ่มสร้างทีละส่วน และหยุดหลังทำ Dashboard เสร็จก่อน</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="kit">
+  <div class="section-head"><span class="secno">17</span><div><span class="tag">Prompt กลับบ้าน</span><h2>ชุด Prompt สั้น ๆ เลือกใช้ตามสถานการณ์</h2><p class="intro">ไม่ต้องใช้ Master Prompt ทุกครั้ง งานเล็กใช้ Prompt สั้นที่เจาะจงจะควบคุมง่ายกว่า</p></div></div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 19</span><b>ทำ Landing Page</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>สร้าง Landing Page สำหรับ [สินค้า/บริการ]
+
+คนที่ต้องการให้ซื้อ/ติดต่อคือ:
+[กลุ่มลูกค้า]
+
+เป้าหมายหลัก:
+[เช่น กดแชต / นัดคุย / ซื้อสินค้า]
+
+เรียงเนื้อหา:
+ปัญหา → สิ่งที่เราให้ → วิธีทำงาน → ผลงาน/ความน่าเชื่อถือ → ราคา → FAQ → ปุ่มติดต่อ
+
+ทำให้ปุ่มหลักมีเพียงหนึ่งเป้าหมาย
+รองรับมือถือ</pre>
+      
+    </div>
+    
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 20</span><b>ตรวจหน้า Dashboard</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ช่วยตรวจ Dashboard นี้
+
+ทุก Card หรือกราฟต้องตอบได้ว่า:
+- ผู้ใช้ดูแล้วรู้อะไร
+- ข้อมูลนี้มีประโยชน์กับใคร
+- ดูแล้วต้องทำอะไรต่อหรือไม่
+
+ถ้าข้อมูลไหนมีไว้แค่ให้ดูเยอะ แต่ไม่ช่วยตัดสินใจ ให้เสนอว่าจะตัดหรือย้ายตรงไหน</pre>
+      
+    </div>
+    
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 21</span><b>ปรับฟอร์มให้ง่าย</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ช่วยตรวจฟอร์มนี้สำหรับผู้ใช้มือใหม่
+
+ดูเรื่อง:
+- เรียงช่องกรอกถูกลำดับไหม
+- ชื่อช่องเข้าใจง่ายไหม
+- ช่องไหนไม่จำเป็น
+- อะไรควรมีตัวอย่าง
+- อะไรควรเลือกจาก Dropdown
+- ข้อความ Error อ่านเข้าใจไหม
+- ปุ่ม Save อยู่ในตำแหน่งที่หาเจอง่ายไหม
+
+ปรับให้กรอกได้เร็วขึ้น โดยไม่ตัดข้อมูลที่จำเป็น</pre>
+      
+    </div>
+    
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 22</span><b>ตรวจเว็บก่อนส่งงาน</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ตรวจเว็บไซต์นี้ก่อนส่งงาน
+
+ช่วยเช็ก:
+- ลิงก์และปุ่ม
+- ฟอร์ม
+- เมนู
+- มือถือ / แท็บเล็ต / คอม
+- ข้อความล้น
+- รูปแตกหรือถูกตัด
+- Section ว่างยาว
+- ปุ่มที่กดไม่ได้
+- Modal ที่ปิดไม่ได้
+- การโหลด
+- Error ที่ผู้ใช้มองเห็น
+
+สรุปเป็น:
+1. ต้องแก้ก่อนส่ง
+2. ควรแก้
+3. เพิ่มภายหลังได้
+
+ยังไม่ต้องแก้จนกว่าฉันจะอนุมัติ</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section master" id="master">
+  <div class="section-head"><span class="secno">18</span><div><span class="tag">Master Prompt</span><h2>Template เดียวสำหรับเริ่มโปรเจกต์ใหม่</h2><p class="intro">Copy แล้วแทนค่าช่อง [ ] ได้ทั้ง Portfolio, เว็บขายบริการ, Dashboard หรือระบบภายใน</p></div></div>
+
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>Prompt 23</span><b>Master Prompt ฉบับภาษาง่าย</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>ฉันต้องการสร้าง:
+[ชื่อเว็บหรือระบบ]
+
+เป้าหมาย:
+[สร้างขึ้นมาเพื่อแก้ปัญหาอะไร]
+
+คนที่ใช้:
+[ใครบ้าง]
+
+สิ่งที่ผู้ใช้ต้องทำได้:
+- [งาน 1]
+- [งาน 2]
+- [งาน 3]
+
+ข้อมูลที่ต้องมี:
+[รายการข้อมูล]
+
+หน้าที่คิดว่าต้องมี:
+[ถ้ายังไม่รู้ ให้ AI ช่วยเสนอ]
+
+หน้าตาที่ต้องการ:
+- [เช่น สะอาด / มืออาชีพ / ทันสมัย]
+- [สีที่ชอบ]
+- [แบบรูปภาพที่ต้องการ]
+
+สิ่งที่ไม่ต้องการ:
+- [เช่น Glow]
+- [เช่น Animation เยอะ]
+- [เช่น Card ซ้ำทุก Section]
+
+มือถือ:
+ต้องออกแบบให้ใช้งานง่ายบนมือถือ ไม่ใช่แค่ย่อ Desktop
+
+ก่อนสร้าง:
+1. สรุปสิ่งที่ฉันต้องการ
+2. ถามเฉพาะสิ่งที่ยังขาด
+3. เสนอหน้าและลำดับการใช้งาน
+4. เสนอแนวหน้าตา
+5. รอฉันอนุมัติ
+
+ตอนสร้าง:
+- ทำทีละส่วน
+- เก็บของเดิมที่ใช้งานได้
+- อย่าเพิ่มสิ่งที่ไม่ได้ขอ
+- ถ้าต้องแก้ส่วนอื่น ให้บอกก่อน
+- ตรวจมือถือหลังทำแต่ละส่วน
+
+หลังทำแต่ละรอบ:
+- สรุปว่าแก้อะไร
+- บอกไฟล์ที่แก้
+- บอกสิ่งที่ยังต้องตรวจ</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="finish">
+  <div class="section-head"><span class="secno">✓</span><div><span class="tag">หลังเรียน</span><h2>ถ้าทำ 8 อย่างนี้ได้ ถือว่าใช้ AI สร้างเว็บได้เป็นแล้ว</h2></div></div>
+  <div class="final-grid">
+    <div>✓ อธิบายไอเดียให้ AI เข้าใจ</div>
+    <div>✓ ให้ AI ช่วยถามสิ่งที่ยังขาด</div>
+    <div>✓ วางหน้าเว็บก่อนเขียนโค้ด</div>
+    <div>✓ บอกหน้าตาที่ต้องการและสิ่งที่ไม่เอา</div>
+    <div>✓ สั่งสร้างทีละส่วน</div>
+    <div>✓ สั่งแก้เป็นจุด ไม่รื้อทั้งเว็บ</div>
+    <div>✓ ตรวจมือถือและหน้าจอหลายขนาด</div>
+    <div>✓ อธิบายบั๊กเป็นอาการและให้ AI หาต้นเหตุ</div>
+  </div>
+  <div class="callout green"><b>หัวใจของคอร์ส:</b> ไม่ต้องเป็นโปรแกรมเมอร์ก่อน ถึงจะเริ่มใช้ AI ช่วยสร้างเว็บได้ แต่ต้อง “อธิบายสิ่งที่ต้องการให้ชัด” และ “ตรวจงานเป็นรอบ ๆ”</div>
+</section>
+</main>
+</div>
+
+<footer class="footer">AI Web & App Builder · Pond Natdanai · Beginner System Building Workshop</footer>
+<script>
+document.querySelectorAll('.copy').forEach(btn=>{
+  btn.addEventListener('click', async()=>{
+    const pre=btn.closest('.prompt').querySelector('pre').innerText;
+    try{await navigator.clipboard.writeText(pre);btn.textContent='COPIED';setTimeout(()=>btn.textContent='COPY',1200)}catch(e){}
+  });
+});
+const p=document.getElementById('progress');
+const links=[...document.querySelectorAll('.side a')];
+const sections=[...document.querySelectorAll('main .section')];
+function update(){
+ const h=document.documentElement.scrollHeight-innerHeight;
+ p.style.width=(h>0?scrollY/h*100:0)+'%';
+ let current='';
+ for(const s of sections){if(s.getBoundingClientRect().top<150)current=s.id}
+ links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+}
+addEventListener('scroll',update,{passive:true});update();
+</script>
+</body>
+</html>

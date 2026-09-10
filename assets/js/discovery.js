@@ -1,146 +1,119 @@
 "use strict";
-(function(){
-  "use strict";
-
-  const normalize = s => (s || "").toLocaleLowerCase("th").trim();
+(() => {
+  const normalize = value => (value || '').normalize('NFC').toLocaleLowerCase('th').trim();
 
   function createDiscovery(opts){
+    const parent = document.querySelector(opts.parentSelector);
     const cards = Array.from(document.querySelectorAll(opts.cardSelector));
     const search = document.querySelector(opts.searchSelector);
     const clear = document.querySelector(opts.clearSelector);
     const filters = Array.from(document.querySelectorAll(opts.filterSelector));
     const count = document.querySelector(opts.countSelector);
     const more = document.querySelector(opts.moreSelector);
-    const parent = document.querySelector(opts.parentSelector);
-    const hasDiscoveryControls = Boolean(search || filters.length || more);
-    if(!cards.length || !parent || !hasDiscoveryControls) return;
-
-    const urlState = new URLSearchParams(location.search);
-    let active = urlState.get(opts.categoryParam || "category") || "all";
-    if(!filters.some(button => (button.dataset[opts.filterDataset] || "all") === active)) active = "all";
-    if(search) search.value = urlState.get(opts.queryParam || "q") || "";
-    let expanded = active !== "all" || Boolean(search?.value);
-    const defaultLimit = opts.defaultLimit;
-
-    const empty = document.createElement("div");
-    empty.className = "discovery-empty ux-hidden";
-    empty.innerHTML = `<b>${opts.emptyTitle}</b><span>${opts.emptyHint}</span><button type="button">ล้างคำค้นและตัวกรอง</button>`;
-    parent.appendChild(empty);
-    const emptyReset = empty.querySelector("button");
-
-    function apply(){
-      const q = normalize(search ? search.value : "");
-      const matches = cards.filter(card => {
-        const category = card.dataset[opts.categoryDataset] || "other";
-        const text = normalize(card.dataset.searchText || card.innerText);
-        return (active === "all" || category === active) && (!q || text.includes(q));
-      });
-
-      const filtering = active !== "all" || !!q;
-      const visibleLimit = (expanded || filtering) ? Infinity : defaultLimit;
-
-      cards.forEach(card => card.classList.add("ux-hidden"));
-      matches.forEach((card, index) => {
-        if(index < visibleLimit) card.classList.remove("ux-hidden");
-      });
-
-      empty.classList.toggle("ux-hidden", matches.length !== 0);
-      empty.hidden = matches.length !== 0;
-
-      if(count){
-        count.textContent = matches.length + " " + opts.unit;
-      }
-
-      if(more){
-        more.setAttribute("aria-expanded", expanded ? "true" : "false");
-        const wrap = more.closest(".show-more-wrap");
-        const remaining = Math.max(0, matches.length - defaultLimit);
-        if(filtering || matches.length <= defaultLimit){
-          if(wrap) wrap.classList.add("is-hidden");
-        }else{
-          if(wrap) wrap.classList.remove("is-hidden");
-          const label = more.querySelector("span");
-          const badge = more.querySelector("b");
-          if(label) label.textContent = expanded ? opts.collapseText : opts.moreText;
-          if(badge) badge.textContent = expanded ? "↑" : "+" + remaining;
-        }
-      }
+    if(!parent || !cards.length || parent.dataset.discoveryReady || !(search || filters.length || more)) return;
+    parent.dataset.discoveryReady = 'true';
+    const queryParam = opts.queryParam || 'q', categoryParam = opts.categoryParam || 'category';
+    const motion = window.PondUI?.motion || matchMedia('(prefers-reduced-motion: reduce)');
+    const text = new Map(cards.map(card => [card,normalize(card.dataset.searchText || card.textContent)]));
+    const animations = new Map();
+    let active = 'all', expanded = false, inputTimer = 0, visible = new Set();
+    let empty = parent.querySelector('.discovery-empty');
+    if(!empty){
+      empty = document.createElement('div');
+      empty.className = 'discovery-empty';
+      empty.innerHTML = `<b>${opts.emptyTitle}</b><span>${opts.emptyHint}</span><button type="button">ล้างคำค้นและตัวกรอง</button>`;
+      parent.appendChild(empty);
+    }
+    if(count){ count.setAttribute('aria-live','polite'); count.setAttribute('aria-atomic','true'); }
+    function readURL(){
       const params = new URLSearchParams(location.search);
-      const queryValue = search?.value.trim() || "";
-      queryValue ? params.set(opts.queryParam || "q", queryValue) : params.delete(opts.queryParam || "q");
-      active !== "all" ? params.set(opts.categoryParam || "category", active) : params.delete(opts.categoryParam || "category");
-      const query = params.toString();
-      history.replaceState(null, "", `${location.pathname}${query ? `?${query}` : ""}${location.hash}`);
-    }
-
-    filters.forEach(btn => btn.addEventListener("click", () => {
-      filters.forEach(x => x.classList.remove("active"));
-      filters.forEach(x => x.setAttribute("aria-pressed", "false"));
-      btn.classList.add("active");
-      btn.setAttribute("aria-pressed", "true");
-      active = btn.dataset[opts.filterDataset] || "all";
+      active = params.get(categoryParam) || 'all';
+      if(!filters.some(button => button.dataset[opts.filterDataset] === active)) active = 'all';
+      if(search) search.value = params.get(queryParam) || '';
       expanded = false;
-      apply();
+    }
+    function saveURL(){
+      if(location.protocol === 'file:') return;
+      const params = new URLSearchParams(location.search);
+      const query = search?.value.trim() || '';
+      query ? params.set(queryParam,query) : params.delete(queryParam);
+      active !== 'all' ? params.set(categoryParam,active) : params.delete(categoryParam);
+      const next = `${location.pathname}${params.size ? '?' + params.toString() : ''}${location.hash}`;
+      try { history.replaceState(history.state,'',next); } catch { /* Filtering still works without History API access. */ }
+    }
+    function apply(animate = true, save = true){
+      clearTimeout(inputTimer);
+      const q = normalize(search?.value);
+      const matches = cards.filter(card => (active === 'all' || card.dataset[opts.categoryDataset] === active) && (!q || text.get(card).includes(q)));
+      const filtering = active !== 'all' || Boolean(q);
+      const shown = matches.slice(0,expanded || filtering ? matches.length : opts.defaultLimit);
+      const nextVisible = new Set(shown);
+      animations.forEach(animation => animation.cancel()); animations.clear();
+      cards.forEach(card => {
+        const hidden = !nextVisible.has(card);
+        card.hidden = hidden;
+        card.classList.toggle('ux-hidden',hidden);
+      });
+      if(animate && !motion.matches){
+        shown.filter(card => !visible.has(card)).slice(0,12).forEach((card,index) => {
+          if(typeof card.animate !== 'function') return;
+          const animation = card.animate([{opacity:0.4,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:200,delay:Math.min(index * 20,100),easing:'cubic-bezier(.2,.7,.2,1)'});
+          animations.set(card,animation);
+          animation.onfinish = () => animations.delete(card);
+        });
+      }
+      visible = nextVisible;
+      empty.hidden = matches.length > 0;
+      empty.classList.toggle('ux-hidden',empty.hidden);
+      if(clear) clear.hidden = !search?.value;
+      filters.forEach(button => {
+        const selected = button.dataset[opts.filterDataset] === active;
+        button.classList.toggle('active',selected);
+        button.setAttribute('aria-pressed',String(selected));
+      });
+      if(count) count.textContent = `${matches.length} ${opts.unit}`;
+      if(more){
+        const hideMore = filtering || matches.length <= opts.defaultLimit;
+        const wrap = more.closest('.show-more-wrap') || more;
+        wrap.hidden = hideMore;
+        wrap.classList.toggle('is-hidden',hideMore);
+        more.setAttribute('aria-expanded',String(expanded || filtering));
+        const label = more.querySelector('span'), badge = more.querySelector('b');
+        if(label) label.textContent = expanded ? opts.collapseText : opts.moreText;
+        if(badge) badge.textContent = expanded ? '↑' : `+${Math.max(0,matches.length - opts.defaultLimit)}`;
+      }
+      if(save) saveURL();
+      document.dispatchEvent(new Event('pond:content-change'));
+    }
+    filters.forEach(button => button.addEventListener('click',() => {
+      active = button.dataset[opts.filterDataset] || 'all'; expanded = false; apply();
     }));
-
-    if(search){
-      search.addEventListener("input", () => {
-        expanded = false;
-        apply();
-      });
-    }
-    if(clear && search){
-      const updateClear = () => { clear.hidden = !search.value; };
-      clear.addEventListener("click", () => {
-        search.value = "";
-        search.focus();
-        expanded = false;
-        updateClear();
-        apply();
-      });
-      search.addEventListener("input", updateClear);
-      updateClear();
-    }
-    emptyReset && emptyReset.addEventListener("click", () => {
-      active = "all";
-      expanded = false;
-      if(search) search.value = "";
-      if(clear) clear.hidden = true;
-      filters.forEach(button => button.classList.toggle("active", button.dataset[opts.filterDataset] === "all"));
-      filters.forEach(button => button.setAttribute("aria-pressed", button.dataset[opts.filterDataset] === "all" ? "true" : "false"));
-      apply();
-      search && search.focus();
+    search?.addEventListener('input',event => {
+      clearTimeout(inputTimer);
+      if(clear) clear.hidden = !search.value;
+      if(event.isComposing) return;
+      inputTimer = setTimeout(() => {expanded = false; apply();},100);
     });
-    if(count) count.setAttribute("aria-live", "polite");
-    filters.forEach(button => {
-      const selected = (button.dataset[opts.filterDataset] || "all") === active;
-      button.classList.toggle("active", selected);
-      button.setAttribute("aria-pressed", selected ? "true" : "false");
+    search?.addEventListener('compositionend',() => {expanded = false; apply();});
+    clear?.addEventListener('click',() => {
+      if(search){search.value = ''; search.focus();} expanded = false; apply();
     });
-    if(search){
-      document.addEventListener("keydown", event => {
-        if(event.key === "/" && !/input|textarea|select/i.test(document.activeElement?.tagName || "")){
-          event.preventDefault();
-          search.focus();
-        }
-        if(event.key === "Escape" && document.activeElement === search && search.value){
-          search.value = "";
-          if(clear) clear.hidden = true;
-          apply();
-        }
-      });
-    }
-    if(more){
-      more.addEventListener("click", () => {
-        expanded = !expanded;
-        apply();
-        if(!expanded){
-          const section = more.closest("section");
-          if(section) section.scrollIntoView({behavior:"smooth", block:"start"});
-        }
-      });
-    }
-    apply();
+    empty.querySelector('button').addEventListener('click',() => {
+      active = 'all'; expanded = false; if(search) search.value = ''; apply(); search?.focus();
+    });
+    more?.addEventListener('click',() => {
+      expanded = !expanded; apply();
+      if(!expanded) more.closest('section')?.scrollIntoView({behavior:motion.matches ? 'instant' : 'smooth',block:'start'});
+    });
+    if(search) document.addEventListener('keydown',event => {
+      const focus = document.activeElement;
+      const typing = /input|textarea|select/i.test(focus?.tagName || '') || focus?.isContentEditable;
+      if(event.key === '/' && !typing && !event.ctrlKey && !event.metaKey && !event.altKey){event.preventDefault(); search.focus();}
+      if(event.key === 'Escape' && focus === search && search.value){event.preventDefault(); search.value = ''; expanded = false; apply();}
+    });
+    window.addEventListener('popstate',() => {readURL(); apply(false,false);});
+    motion.addEventListener('change',() => { if(motion.matches){animations.forEach(animation => animation.cancel()); animations.clear();} });
+    readURL(); apply(false,false);
   }
 
   createDiscovery({
@@ -159,26 +132,6 @@
     emptyHint:"ลองใช้คำสั้นลงหรือเลือกหมวด “ทั้งหมด”",
     moreText:"ดูคอร์สเพิ่มเติม",
     collapseText:"ย่อรายการคอร์ส",
-    queryParam:"q",
-    categoryParam:"category"
-  });
-
-  createDiscovery({
-    cardSelector:"#work .project-card",
-    parentSelector:"#projectTrack",
-    searchSelector:"#projectSearch",
-    clearSelector:"#projectSearchClear",
-    filterSelector:"#projectFilters [data-project-filter]",
-    countSelector:"#projectResultCount",
-    moreSelector:"#projectShowMore",
-    categoryDataset:"projectCategory",
-    filterDataset:"projectFilter",
-    defaultLimit:999,
-    unit:"โปรเจกต์",
-    emptyTitle:"ไม่พบโปรเจกต์ที่ตรงกับคำค้น",
-    emptyHint:"ลองใช้คำสั้นลงหรือเลือกหมวด “ทั้งหมด”",
-    moreText:"ดูโปรเจกต์เพิ่มเติม",
-    collapseText:"ย่อรายการโปรเจกต์",
     queryParam:"q",
     categoryParam:"category"
   });
@@ -203,14 +156,4 @@
     categoryParam:"category"
   });
 
-  // Smooth internal navigation where supported.
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener("click", e => {
-      const target = document.querySelector(a.getAttribute("href"));
-      if(!target) return;
-      e.preventDefault();
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-      history.replaceState(null,"",`${location.pathname}${location.search}${a.getAttribute("href")}`);
-    });
-  });
 })();
