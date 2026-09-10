@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#06152f"/>
+    <stop offset=".55" stop-color="#0b2b5c"/>
+    <stop offset="1" stop-color="#041027"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1">
+    <stop offset="0" stop-color="#2f74ff"/>
+    <stop offset="1" stop-color="#86b8ff"/>
+  </linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1">
+    <stop offset="0" stop-color="#32d2ff"/>
+    <stop offset="1" stop-color="#4f8cff"/>
+  </linearGradient>
+  <linearGradient id="green" x1="0" x2="1">
+    <stop offset="0" stop-color="#24b888"/>
+    <stop offset="1" stop-color="#84efd0"/>
+  </linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/>
+  </filter>
+  <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+    <path d="M38 0H0V38" fill="none" stroke="#9ec5ff" stroke-opacity=".07"/>
+  </pattern>
+</defs>
+<rect width="1200" height="675" rx="34" fill="url(#bg)"/><rect width="1200" height="675" rx="34" fill="url(#grid)"/><circle cx="1010" cy="100" r="250" fill="#2e72ff" opacity=".10"/><circle cx="880" cy="555" r="220" fill="#32d2ff" opacity=".055"/><text x="78" y="120" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="19" font-weight="700" fill="#8db4ff">COURSE  •  POND NATDANAI</text><text x="78" y="235" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="48" font-weight="800" fill="#f5f8ff">Network &amp; Security</text><text x="78" y="300" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="48" font-weight="800" fill="#f5f8ff">Fundamentals</text><text x="78" y="393" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="23" font-weight="500" fill="#adc0dd">IP • Wi-Fi • Network • Security</text><g transform="translate(720 110)"><rect x="70" y="190" width="300" height="85" rx="20" fill="#0b2c59" stroke="#76afff" stroke-width="4"/><g fill="#71a9ff"><circle cx="112" cy="232" r="8"/><circle cx="145" cy="232" r="8"/><circle cx="178" cy="232" r="8"/></g><path d="M220 275v75M220 350H95M220 350h145M95 350v70M365 350v70" stroke="#4f8cff" stroke-width="6"/><circle cx="95" cy="446" r="42" fill="#0d376f" stroke="#72e0bd" stroke-width="4"/><circle cx="365" cy="446" r="42" fill="#0d376f" stroke="#72e0bd" stroke-width="4"/><path d="M195 105c28-44 94-44 122 0 48-15 88 45 52 87H140c-34-43-7-99 55-87z" fill="#0b376d" stroke="#7eb8ff" stroke-width="4"/></g></svg>

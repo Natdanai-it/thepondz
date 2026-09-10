@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#06152f"/>
+    <stop offset=".55" stop-color="#0b2b5c"/>
+    <stop offset="1" stop-color="#041027"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" x2="1">
+    <stop offset="0" stop-color="#2f74ff"/>
+    <stop offset="1" stop-color="#86b8ff"/>
+  </linearGradient>
+  <linearGradient id="cyan" x1="0" x2="1">
+    <stop offset="0" stop-color="#32d2ff"/>
+    <stop offset="1" stop-color="#4f8cff"/>
+  </linearGradient>
+  <linearGradient id="green" x1="0" x2="1">
+    <stop offset="0" stop-color="#24b888"/>
+    <stop offset="1" stop-color="#84efd0"/>
+  </linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#001027" flood-opacity=".55"/>
+  </filter>
+  <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+    <path d="M38 0H0V38" fill="none" stroke="#9ec5ff" stroke-opacity=".07"/>
+  </pattern>
+</defs>
+<rect width="1200" height="675" rx="34" fill="url(#bg)"/><rect width="1200" height="675" rx="34" fill="url(#grid)"/><circle cx="1010" cy="100" r="250" fill="#2e72ff" opacity=".10"/><circle cx="880" cy="555" r="220" fill="#32d2ff" opacity=".055"/><text x="78" y="120" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="19" font-weight="700" fill="#8db4ff">COURSE  •  POND NATDANAI</text><text x="78" y="235" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="48" font-weight="800" fill="#f5f8ff">Windows</text><text x="78" y="300" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="48" font-weight="800" fill="#f5f8ff">File Management</text><text x="78" y="393" text-anchor="start" font-family="Arial, Noto Sans Thai, sans-serif" font-size="23" font-weight="500" fill="#adc0dd">Files • Folders • Drives • Backup</text><g transform="translate(720 110)"><g filter="url(#shadow)"><path d="M85 155h150l35 42h250v235H85z" fill="#0c2e5f" stroke="#76afff" stroke-width="4"/></g><path d="M120 255h340M120 305h270M120 355h310" stroke="#80aee9" stroke-width="13" stroke-linecap="round"/><circle cx="455" cy="205" r="34" fill="#72e0bd"/><path d="M442 205l12 12 23-30" fill="none" stroke="#063c31" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
