@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>สร้างเว็บด้วย AI: Sheets, Apps Script, Notion และ Hosting</title>
-<meta name="description" content="เรียนสร้างเว็บและแอปด้วย AI: 40 Prompts, Google Sheets, Forms, Apps Script, GitHub, Notion, Sites และ AppSheet ต่อด้วย Database/Auth และ Hosting พร้อมภาพและ Lab">
+<title>AI Web & App Builder — Prompt แบบง่ายสำหรับมือใหม่</title>
+<meta name="description" content="คอร์ส 2 ชั่วโมง สอนวิธีสั่ง AI และ Claude Code ให้สร้างเว็บและ Web App สวย ใช้งานง่าย พร้อม Prompt ตัวอย่าง">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -57,59 +57,9 @@ a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--m
 @media(max-width:1000px){.hero-grid{grid-template-columns:1fr}.course-layout{grid-template-columns:1fr}.side{display:none}.style-picker,.workshop-steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.wrap{width:min(100% - 24px,var(--max))}.hero{padding-top:38px}.hero h1{font-size:38px}.hero-visual{padding:12px}.hero-screen{min-height:270px}.section{padding:22px 16px;border-radius:18px}.section-head{grid-template-columns:42px 1fr;gap:11px}.secno{width:40px;height:40px;border-radius:11px}.section h2{font-size:25px}.timeline,.simple-grid,.state-grid,.final-grid,.compare,.style-picker,.image-types,.workshop-steps{grid-template-columns:1fr}.example-story{grid-template-columns:1fr}.example-story .arrow{transform:rotate(90deg);height:28px}.rewrite-list div{grid-template-columns:1fr;gap:4px}.visual-canvas{overflow-x:auto;padding:8px}.prompt pre{font-size:12px;padding:14px}.home-btn{padding:8px 10px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-
-/* Course extension: data, hosting and guided Claude Code workshop. */
-[hidden]{display:none}
-.skip-link{position:fixed;left:16px;top:12px;z-index:200;background:#f4f8ff;color:#07182f;padding:10px 16px;border-radius:10px;transform:translateY(-160%)}
-.skip-link:focus{transform:translateY(0)}
-:focus-visible{outline:3px solid var(--green);outline-offset:4px}
-main,.course-layout>*{min-width:0}
-.extension h3{margin:30px 0 12px;font-size:21px;line-height:1.5}
-.extension p,.extension li{overflow-wrap:anywhere}
-.extension p{color:#c3d2e6}
-.extension code{color:#a9d1ff;font-family:'JetBrains Mono','Noto Sans Thai',monospace;font-size:.9em;overflow-wrap:anywhere}
-.extension a:not(.lesson-button),.lesson-path a{color:#9ac8ff;text-decoration:underline;text-underline-offset:4px}
-.lesson-steps{padding-left:26px;display:grid;gap:15px}
-.lesson-steps li{padding-left:6px;color:#c3d2e6}
-.lesson-steps b{color:#f4f8ff}
-.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:20px 0;overscroll-behavior-x:contain}
-.table-scroll table{border-collapse:collapse;width:100%;min-width:620px;background:#07182f;font-size:14px;line-height:1.7}
-.table-scroll caption{text-align:left;padding:14px 16px;color:var(--blue2);background:#0b2247;font-weight:600}
-.table-scroll th,.table-scroll td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
-.table-scroll thead th{background:#0a2144;color:#e4eeff;font-size:13px}
-.table-scroll tbody th{font-weight:600;color:#e4eeff;min-width:145px}
-.table-scroll td{color:#b9cbe2;min-width:170px}
-.table-scroll tr:last-child>*{border-bottom:0}
-.technical-diagram svg{min-width:600px;max-width:100%;height:auto;font-family:'Noto Sans Thai',sans-serif}
-.technical-diagram .visual-canvas{overflow-x:auto;overscroll-behavior-x:contain}
-.source-line{font-size:13px;line-height:1.9;color:var(--muted)}
-.download-row{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
-.lesson-button{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:11px 16px;border:1px solid #578cf1;border-radius:10px;background:#255dc0;color:#fff;cursor:pointer;font-weight:600;font-size:14px;transition:background .16s,transform .16s}
-.lesson-button.secondary{background:#0b2247;color:#d5e6ff;border-color:#426492}
-.lesson-button:hover{background:#306fd9}.lesson-button.secondary:hover{background:#143360}
-.lesson-button:active,.copy:active{transform:translateY(1px)}
-.copy{font-family:'Noto Sans Thai',sans-serif;font-size:12px;min-width:78px;min-height:36px;flex-shrink:0}
-.copy:disabled{cursor:wait;opacity:.75}
-.acceptance-list{display:grid;gap:10px;margin:20px 0}
-.acceptance-list label{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#081c39;cursor:pointer}
-.acceptance-list input{width:19px;height:19px;accent-color:#73d8b8;flex-shrink:0;margin-top:5px}
-.acceptance-list label:has(input:checked){border-color:#3b8d7a;background:#092a2d}
-.lesson-path{padding:18px;background:#0a2144;border:1px solid var(--line);border-radius:14px;margin:20px 0}
-.lesson-path p{margin:6px 0}
-.mobile-course-toc{display:none;margin:0 0 22px;border:1px solid var(--line);border-radius:14px;background:#07182f;padding:14px 16px}
-.mobile-course-toc summary{cursor:pointer;font-weight:600;color:#b4d6ff}
-.mobile-course-toc nav{display:grid;gap:5px;padding-top:12px}
-.mobile-course-toc a{padding:8px 4px;color:#bacde7;font-size:14px}
-.mobile-course-toc a[aria-current="location"]{color:#73d8b8}
-.copy-status{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:120;max-width:calc(100% - 32px);padding:12px 18px;border:1px solid #4d81c8;background:#102a50;color:#eef6ff;border-radius:12px;box-shadow:0 8px 25px #0004;pointer-events:none;font-size:14px}
-.copy-status:empty{display:none}
-@media(max-width:1000px){.mobile-course-toc{display:block}}
-@media(max-width:680px){.extension h3{font-size:19px}.table-scroll th,.table-scroll td{padding:12px}.technical-diagram svg{min-width:580px}.download-row>*{width:100%}.prompt-head{gap:8px;align-items:flex-start}.copy{min-height:42px}.hero-pills{gap:6px}}
-
 </style>
 </head>
 <body>
-<a class="skip-link" href="#course-main">ข้ามไปเนื้อหาบทเรียน</a>
 <div class="topbar">
   <div class="wrap topbar-in">
     <a class="brand" href="index.html"><span class="brandmark">P</span><span>Pond Natdanai<small>PRIVATE IT TRAINING</small></span></a>
@@ -121,10 +71,10 @@ main,.course-layout>*{min-width:0}
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">BEGINNER · 2H CORE + EXTENDED LAB</div>
+      <div class="eyebrow">BEGINNER · 2 HOURS · PROMPT WORKSHOP</div>
       <h1>สร้างเว็บและแอปด้วย AI<br><span>สั่งยังไงให้สวยและใช้งานได้จริง</span></h1>
-      <p class="lead">คอร์สสำหรับคนเริ่มต้นที่อยากใช้ Claude Code หรือ AI Coding Tool ช่วยสร้างเว็บไซต์และระบบ โดยไม่ต้องเริ่มจากศัพท์ยาก ๆ เน้น “อธิบายสิ่งที่ต้องการให้ AI เข้าใจ” พร้อมภาพประกอบและ Prompt ใช้จริง ต่อด้วย Database, Login, Hosting และขั้นตอนใช้ Claude Code และเครื่องมือเริ่มต้นอย่าง Sheets, Apps Script, GitHub และ Notion</p>
-      <div class="hero-pills"><span class="pill">ศัพท์ง่าย</span><span class="pill">40 Prompts</span><span class="pill">ภาพประกอบ</span><span class="pill">Live Workshop</span><span class="pill">Mobile Friendly</span><span class="pill">Sheets · Apps Script · Notion</span><span class="pill">Database + Hosting</span><span class="pill">Claude Code Guide</span></div>
+      <p class="lead">คอร์สสำหรับคนเริ่มต้นที่อยากใช้ Claude Code หรือ AI Coding Tool ช่วยสร้างเว็บไซต์และระบบ โดยไม่ต้องเริ่มจากศัพท์ยาก ๆ เน้น “อธิบายสิ่งที่ต้องการให้ AI เข้าใจ” พร้อมภาพประกอบและ Prompt ใช้จริง</p>
+      <div class="hero-pills"><span class="pill">ศัพท์ง่าย</span><span class="pill">23 Prompts</span><span class="pill">ภาพประกอบ</span><span class="pill">Live Workshop</span><span class="pill">Mobile Friendly</span></div>
     </div>
     <div class="hero-visual" aria-label="ตัวอย่างหน้าจอเว็บไซต์">
       <div class="hero-screen"><div class="bar"><i></i><i></i><i></i></div><div class="body"><div class="fake-title"></div><div class="fake-line"></div><div class="fake-line w2"></div><div class="fake-btn"></div><div class="fake-cards"><i></i><i></i><i></i></div></div></div>
@@ -133,80 +83,31 @@ main,.course-layout>*{min-width:0}
 </header>
 
 <div class="wrap course-layout">
-  <aside class="side"><strong>COURSE CONTENT</strong><a href="#map">00 · เลือกเส้นทางเรียน: เครื่องมือง่าย → เว็บ → แอปข้อมูลจริง</a>
-<a href="#words">01 · คำที่เจอบ่อย แปลเป็นภาษาคนทั่วไป</a>
-<a href="#prompt-basic">02 · ทำไมพิมพ์แค่ “สร้างเว็บสวย ๆ” แล้วมักไม่ได้อย่างที่คิด</a>
-<a href="#formula">03 · Prompt ที่ดีควรบอก 8 เรื่องนี้</a>
-<a href="#idea">04 · เปลี่ยนประโยคสั้น ๆ ให้ AI เข้าใจงานจริง</a>
-<a href="#pages">05 · ก่อนเลือกสี ต้องรู้ก่อนว่าคนจะเดินไปหน้าไหน</a>
-<a href="#look">06 · อย่าบอกแค่ “สวย” ให้บอกว่าอยากให้เว็บรู้สึกแบบไหน</a>
-<a href="#images">07 · เว็บดูดีขึ้นเมื่อใช้ “รูปที่ช่วยเล่าเรื่อง” ไม่ใช่ใส่รูปเพราะมีที่ว่าง</a>
-<a href="#reference">08 · ถ้าชอบเว็บใคร ให้ AI วิเคราะห์ “สิ่งที่ชอบ” แทนการสั่งว่าลอกให้เหมือน</a>
-<a href="#build">09 · เมื่อแผนชัดแล้ว ค่อยให้ AI เขียนเว็บ</a>
-<a href="#refine">10 · จุดสำคัญที่สุด: อย่าพิมพ์ว่า “ไม่สวย ทำใหม่”</a>
-<a href="#webapp">11 · เว็บแนะนำบริการกับระบบใช้งานจริง สั่ง AI ไม่เหมือนกัน</a>
-<a href="#states">12 · ระบบที่ดู “ครบ” ต้องคิดตอนที่ยังไม่มีข้อมูลและตอนที่เกิดปัญหาด้วย</a>
-<a href="#responsive">13 · รองรับมือถือ ไม่ใช่แค่ย่อทุกอย่างให้เล็ก</a>
-<a href="#debug">14 · เวลาเว็บพัง ให้บอก “อาการ” ไม่ใช่แค่บอกว่า “แก้ให้หน่อย”</a>
-<a href="#safe">15 · โปรเจกต์เริ่มใหญ่ ต้องบอกขอบเขตให้ชัด</a>
-<a href="#workshop">16 · ฝึกจริง: สร้าง Service Request Dashboard</a>
-<a href="#kit">17 · ชุด Prompt สั้น ๆ เลือกใช้ตามสถานการณ์</a>
-<a href="#master">18 · Template เดียวสำหรับเริ่มโปรเจกต์ใหม่</a>
-<a href="#easy-tools">19 · เริ่มจากเครื่องมือง่าย: ไม่ใช่ทุกงานต้องเขียนแอปใหม่</a>
-<a href="#sheets-forms">20 · Lab ง่ายที่สุด: Google Forms + Google Sheets</a>
-<a href="#apps-script-lab">21 · Lab: ฟอร์มของเราเอง → Apps Script → Sheets</a>
-<a href="#notion-lab">22 · Lab: ใช้ Notion ทำเว็บเนื้อหาและคลังโปรเจกต์</a>
-<a href="#github-lab">23 · Lab: เอาเว็บที่ AI เขียนขึ้น GitHub Pages</a>
-<a href="#nocode-lab">24 · เครื่องมือเสริม: Google Sites และ AppSheet</a>
-<a href="#architecture">25 · เว็บสวยแล้ว ข้อมูลจริงอยู่ตรงไหน?</a>
-<a href="#database-brands">26 · เลือก Database: เปรียบเทียบ 4 บริการที่เจอบ่อย</a>
-<a href="#data-model">27 · ออกแบบตารางให้ AI ก่อนสั่งสร้างฟอร์ม</a>
-<a href="#supabase-lab">28 · Lab: ล็อกอินแล้วบันทึกลง Supabase จริง</a>
-<a href="#hosting-brands">29 · Hosting ใช้ยี่ห้อไหนดี? ข้อดีและข้อจำกัด</a>
-<a href="#deploy-lab">30 · Lab: เผยแพร่เว็บ + ต่อ Database บน URL จริง</a>
-<a href="#production-debug">31 · แก้อาการยอดฮิต: หน้าเว็บสวย แต่ใช้งานไม่ได้</a>
-<a href="#claude-practice">32 · ลงมือใช้ Claude Code: จาก Prompt ไปสู่ชิ้นงาน</a>
-<a href="#acceptance">33 · Prompt ส่งงาน + Checklist ที่ใช้ตรวจได้จริง</a>
-<a href="#finish">✓ · สิ่งที่ควรทำได้หลังเรียนและฝึกครบ</a>
-</aside>
-  <main id="course-main" tabindex="-1"><details class="mobile-course-toc"><summary>สารบัญบทเรียน · เลือกเรื่องที่ต้องการเรียน</summary><nav aria-label="สารบัญคอร์สบนมือถือ"><a href="#map">00 · เลือกเส้นทางเรียน: เครื่องมือง่าย → เว็บ → แอปข้อมูลจริง</a>
-<a href="#words">01 · คำที่เจอบ่อย แปลเป็นภาษาคนทั่วไป</a>
-<a href="#prompt-basic">02 · ทำไมพิมพ์แค่ “สร้างเว็บสวย ๆ” แล้วมักไม่ได้อย่างที่คิด</a>
-<a href="#formula">03 · Prompt ที่ดีควรบอก 8 เรื่องนี้</a>
-<a href="#idea">04 · เปลี่ยนประโยคสั้น ๆ ให้ AI เข้าใจงานจริง</a>
-<a href="#pages">05 · ก่อนเลือกสี ต้องรู้ก่อนว่าคนจะเดินไปหน้าไหน</a>
-<a href="#look">06 · อย่าบอกแค่ “สวย” ให้บอกว่าอยากให้เว็บรู้สึกแบบไหน</a>
-<a href="#images">07 · เว็บดูดีขึ้นเมื่อใช้ “รูปที่ช่วยเล่าเรื่อง” ไม่ใช่ใส่รูปเพราะมีที่ว่าง</a>
-<a href="#reference">08 · ถ้าชอบเว็บใคร ให้ AI วิเคราะห์ “สิ่งที่ชอบ” แทนการสั่งว่าลอกให้เหมือน</a>
-<a href="#build">09 · เมื่อแผนชัดแล้ว ค่อยให้ AI เขียนเว็บ</a>
-<a href="#refine">10 · จุดสำคัญที่สุด: อย่าพิมพ์ว่า “ไม่สวย ทำใหม่”</a>
-<a href="#webapp">11 · เว็บแนะนำบริการกับระบบใช้งานจริง สั่ง AI ไม่เหมือนกัน</a>
-<a href="#states">12 · ระบบที่ดู “ครบ” ต้องคิดตอนที่ยังไม่มีข้อมูลและตอนที่เกิดปัญหาด้วย</a>
-<a href="#responsive">13 · รองรับมือถือ ไม่ใช่แค่ย่อทุกอย่างให้เล็ก</a>
-<a href="#debug">14 · เวลาเว็บพัง ให้บอก “อาการ” ไม่ใช่แค่บอกว่า “แก้ให้หน่อย”</a>
-<a href="#safe">15 · โปรเจกต์เริ่มใหญ่ ต้องบอกขอบเขตให้ชัด</a>
-<a href="#workshop">16 · ฝึกจริง: สร้าง Service Request Dashboard</a>
-<a href="#kit">17 · ชุด Prompt สั้น ๆ เลือกใช้ตามสถานการณ์</a>
-<a href="#master">18 · Template เดียวสำหรับเริ่มโปรเจกต์ใหม่</a>
-<a href="#easy-tools">19 · เริ่มจากเครื่องมือง่าย: ไม่ใช่ทุกงานต้องเขียนแอปใหม่</a>
-<a href="#sheets-forms">20 · Lab ง่ายที่สุด: Google Forms + Google Sheets</a>
-<a href="#apps-script-lab">21 · Lab: ฟอร์มของเราเอง → Apps Script → Sheets</a>
-<a href="#notion-lab">22 · Lab: ใช้ Notion ทำเว็บเนื้อหาและคลังโปรเจกต์</a>
-<a href="#github-lab">23 · Lab: เอาเว็บที่ AI เขียนขึ้น GitHub Pages</a>
-<a href="#nocode-lab">24 · เครื่องมือเสริม: Google Sites และ AppSheet</a>
-<a href="#architecture">25 · เว็บสวยแล้ว ข้อมูลจริงอยู่ตรงไหน?</a>
-<a href="#database-brands">26 · เลือก Database: เปรียบเทียบ 4 บริการที่เจอบ่อย</a>
-<a href="#data-model">27 · ออกแบบตารางให้ AI ก่อนสั่งสร้างฟอร์ม</a>
-<a href="#supabase-lab">28 · Lab: ล็อกอินแล้วบันทึกลง Supabase จริง</a>
-<a href="#hosting-brands">29 · Hosting ใช้ยี่ห้อไหนดี? ข้อดีและข้อจำกัด</a>
-<a href="#deploy-lab">30 · Lab: เผยแพร่เว็บ + ต่อ Database บน URL จริง</a>
-<a href="#production-debug">31 · แก้อาการยอดฮิต: หน้าเว็บสวย แต่ใช้งานไม่ได้</a>
-<a href="#claude-practice">32 · ลงมือใช้ Claude Code: จาก Prompt ไปสู่ชิ้นงาน</a>
-<a href="#acceptance">33 · Prompt ส่งงาน + Checklist ที่ใช้ตรวจได้จริง</a>
-<a href="#finish">✓ · สิ่งที่ควรทำได้หลังเรียนและฝึกครบ</a>
-</nav></details>
+  <aside class="side">
+    <strong>COURSE CONTENT</strong>
+    <a href="#map">00 · ภาพรวม</a>
+    <a href="#words">01 · ศัพท์ง่าย ๆ</a>
+    <a href="#prompt-basic">02 · Prompt พื้นฐาน</a>
+    <a href="#formula">03 · สูตร 8 ช่อง</a>
+    <a href="#idea">04 · จากไอเดีย</a>
+    <a href="#pages">05 · วางหน้าเว็บ</a>
+    <a href="#look">06 · กำหนดหน้าตา</a>
+    <a href="#images">07 · รูปประกอบ</a>
+    <a href="#reference">08 · เว็บตัวอย่าง</a>
+    <a href="#build">09 · เริ่มสร้าง</a>
+    <a href="#refine">10 · สั่งแก้ให้สวย</a>
+    <a href="#webapp">11 · Web App</a>
+    <a href="#states">12 · สถานะหน้าจอ</a>
+    <a href="#responsive">13 · มือถือ</a>
+    <a href="#debug">14 · แก้บั๊ก</a>
+    <a href="#safe">15 · ไม่รื้อของเดิม</a>
+    <a href="#workshop">16 · Workshop</a>
+    <a href="#kit">17 · Prompt กลับบ้าน</a>
+    <a href="#master">18 · Master Prompt</a>
+  </aside>
+  <main>
 <section class="section" id="map">
-  <div class="section-head"><span class="secno">00</span><div><span class="tag">เริ่มจากภาพรวม</span><h2>เลือกเส้นทางเรียน: เครื่องมือง่าย → เว็บ → แอปข้อมูลจริง</h2><p class="intro">เป้าหมายคือให้คุณสามารถเอา “ไอเดีย” ไปคุยกับ AI แล้วค่อย ๆ ได้เว็บหรือแอปที่ดูดี ใช้งานง่าย และแก้ต่อได้ โดยไม่ต้องเริ่มจากการเขียนโค้ดเอง</p></div></div>
+  <div class="section-head"><span class="secno">00</span><div><span class="tag">เริ่มจากภาพรวม</span><h2>คอร์ส 2 ชั่วโมงนี้เรียนอะไร</h2><p class="intro">เป้าหมายคือให้คุณมี่สามารถเอา “ไอเดีย” ไปคุยกับ AI แล้วค่อย ๆ ได้เว็บหรือแอปที่ดูดี ใช้งานง่าย และแก้ต่อได้ โดยไม่ต้องเริ่มจากการเขียนโค้ดเอง</p></div></div>
   
     <figure class="visual-card">
       <div class="visual-top"><span>ภาพประกอบ</span><b>ภาพรวมวิธีทำงาน</b></div>
@@ -236,7 +137,7 @@ main,.course-layout>*{min-width:0}
     <div><b>100–115 นาที</b><span>Web App + ฟอร์ม + Dashboard + สถานะ</span></div>
     <div><b>115–120 นาที</b><span>Prompt ชุดกลับบ้าน</span></div>
   </div>
-<div class="lesson-path"><b>เลือกเส้นทางที่ตรงกับพื้นฐานของคุณ</b><p><a href="#easy-tools">เส้นทางเริ่มง่าย</a>: Forms + Sheets, Apps Script, Notion, GitHub Pages และเครื่องมือ No-code เลือกทำหนึ่งชิ้นงานก่อน</p><p><a href="#map">เส้นทาง Prompt + UI</a>: ใช้ตารางเวลา 2 ชั่วโมงด้านบนเป็นแนวฝึกพื้นฐาน อธิบายโจทย์ ออกแบบหน้าเว็บ และแก้หน้าตาทีละรอบ</p><p><a href="#architecture">เส้นทาง Web App + Database</a>: ต่อ Auth/RLS และ Hosting เมื่อพร้อมฝึกข้อมูลจริง บทฝึกต่อใช้เวลาตามพื้นฐานและเครื่องมือที่เลือก ไม่จำเป็นต้องทำทุก Lab จบในคาบเดียว</p><p><a href="#claude-practice">เริ่มใช้ Claude Code</a> · <a href="#sheets-forms">ทำฟอร์มแรก</a> · <a href="#notion-lab">ทำหน้า Notion</a> · <a href="#github-lab">อัปโหลดเว็บขึ้น GitHub</a></p></div></section>
+</section>
 
 <section class="section" id="words">
   <div class="section-head"><span class="secno">01</span><div><span class="tag">ศัพท์ง่าย ๆ</span><h2>คำที่เจอบ่อย แปลเป็นภาษาคนทั่วไป</h2><p class="intro">ไม่ต้องจำศัพท์ทั้งหมด แค่รู้ว่าคำนี้หมายถึงอะไรเวลา AI พูดกลับมา</p></div></div>
@@ -265,7 +166,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 01</span><b>ให้ AI ถามเราก่อนเริ่มทำ</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ฉันอยากสร้างเว็บไซต์ แต่รายละเอียดอาจยังไม่ครบ
 
@@ -327,7 +228,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 02</span><b>ตัวอย่าง Prompt สำหรับเว็บ Portfolio</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ช่วยสร้างเว็บไซต์ Portfolio สำหรับคนรับงาน IT
 
@@ -389,7 +290,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 03</span><b>แปลงไอเดียให้เป็นแผนระบบ</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ฉันอยากทำ “ระบบแจ้งซ่อม”
 
@@ -446,7 +347,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 04</span><b>ให้ AI วางหน้าและเส้นทางการใช้งาน</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>จากข้อมูลโปรเจกต์ที่สรุปไว้ ช่วยวางโครงหน้าเว็บก่อน
 
@@ -477,7 +378,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 05</span><b>กำหนดแนวหน้าตาแบบเข้าใจง่าย</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ช่วยกำหนดแนวหน้าตาของเว็บนี้ก่อนสร้างจริง
 
@@ -524,7 +425,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 06</span><b>ให้ AI วางแผนว่าจะใช้รูปตรงไหน</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ตรวจโครงหน้าเว็บนี้ แล้วช่วยบอกว่า Section ไหน “ควรมีรูป” และควรเป็นรูปแบบไหน
 
@@ -554,7 +455,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 07</span><b>วิเคราะห์เว็บตัวอย่าง</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>นี่คือเว็บตัวอย่างที่ฉันชอบ:
 [ใส่ลิงก์เว็บ]
@@ -582,7 +483,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 08</span><b>Master Prompt สำหรับเริ่มสร้างเว็บ</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ตอนนี้เราได้ข้อสรุปเรื่องโครงหน้าและหน้าตาแล้ว
 เริ่มสร้างเว็บไซต์ตามแผนที่ตกลงกัน
@@ -647,7 +548,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 09</span><b>แก้เฉพาะ Hero ไม่ให้ AI รื้อทั้งเว็บ</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>อย่าออกแบบใหม่ทั้งเว็บไซต์
 แก้เฉพาะ Hero Section เท่านั้น
@@ -704,7 +605,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 10</span><b>Prompt สำหรับ Web App</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ช่วยออกแบบ Web App สำหรับระบบคำขอภายในบริษัท
 
@@ -751,7 +652,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 11</span><b>ให้ AI เติมสถานะที่ขาด</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ตรวจ Web App นี้ว่ามีหน้าจอรองรับสถานการณ์เหล่านี้ครบหรือยัง:
 - กำลังโหลด
@@ -794,7 +695,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 12</span><b>ตรวจ Responsive แบบภาษาง่าย</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ช่วยตรวจเว็บนี้ในขนาดหน้าจอ:
 320, 375, 430, 768, 1024 และ 1440px
@@ -820,7 +721,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 13</span><b>เปลี่ยนตารางเป็น Card ในมือถือ</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ตารางนี้อ่านยากบนมือถือ
 
@@ -862,7 +763,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 14</span><b>Prompt แก้บั๊กสำหรับมือใหม่</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ตอนนี้มีปัญหาในระบบ
 
@@ -901,7 +802,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 15</span><b>ห้ามกระทบของเดิม</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>แก้เฉพาะงานนี้:
 [ใส่สิ่งที่ต้องการแก้]
@@ -930,7 +831,7 @@ main,.course-layout>*{min-width:0}
 </section>
 
 <section class="section" id="workshop">
-  <div class="section-head"><span class="secno">16</span><div><span class="tag">Live Workshop</span><h2>ฝึกจริง: สร้าง Service Request Dashboard</h2><p class="intro">Phase A: ฝึกหน้าจอด้วยข้อมูลตัวอย่าง ใช้โจทย์เดียวกันแต่เพิ่มรายละเอียดทีละรอบ จากนั้นเลือกบทเครื่องมือง่าย หรือไป Phase B เรื่อง Database จริงผ่านสารบัญ</p></div></div>
+  <div class="section-head"><span class="secno">16</span><div><span class="tag">Live Workshop</span><h2>ฝึกจริง: สร้าง Service Request Dashboard</h2><p class="intro">ใช้โจทย์เดียวกัน แต่สั่ง 3 รอบ เพื่อให้เห็นว่าผลงานดีขึ้นเมื่อเราให้รายละเอียดมากขึ้น</p></div></div>
   <div class="workshop-steps">
     <div><span>1</span><b>สั่งสั้น ๆ ก่อน</b><p>ดูว่า AI เดาอะไรเองบ้าง</p></div>
     <div><span>2</span><b>เพิ่มความต้องการ</b><p>บอกผู้ใช้ ข้อมูล หน้าที่ต้องมี</p></div>
@@ -941,7 +842,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 16</span><b>รอบแรก: ตั้งใจให้ Prompt สั้น</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>สร้าง Service Request Dashboard สวย ๆ ด้วย HTML, CSS และ JavaScript</pre>
       <div class="prompt-note">ใช้เพื่อให้ลูกค้าเห็นก่อนว่า ถ้าบอกน้อย AI ต้องเดาเยอะ</div>
@@ -950,7 +851,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 17</span><b>รอบสอง: เพิ่มสิ่งที่ต้องมี</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>สร้าง Service Request Dashboard สำหรับบริษัทขนาดเล็ก
 
@@ -978,7 +879,7 @@ main,.course-layout>*{min-width:0}
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 18</span><b>รอบสาม: เพิ่มหน้าตาและข้อห้าม</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ใช้ Requirement เดิม แต่ปรับหน้าตาให้:
 
@@ -1015,7 +916,7 @@ Mobile ให้เปลี่ยนรายการเป็น Card
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 19</span><b>ทำ Landing Page</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>สร้าง Landing Page สำหรับ [สินค้า/บริการ]
 
@@ -1036,7 +937,7 @@ Mobile ให้เปลี่ยนรายการเป็น Card
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 20</span><b>ตรวจหน้า Dashboard</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ช่วยตรวจ Dashboard นี้
 
@@ -1052,7 +953,7 @@ Mobile ให้เปลี่ยนรายการเป็น Card
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 21</span><b>ปรับฟอร์มให้ง่าย</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ช่วยตรวจฟอร์มนี้สำหรับผู้ใช้มือใหม่
 
@@ -1072,7 +973,7 @@ Mobile ให้เปลี่ยนรายการเป็น Card
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 22</span><b>ตรวจเว็บก่อนส่งงาน</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ตรวจเว็บไซต์นี้ก่อนส่งงาน
 
@@ -1106,7 +1007,7 @@ Mobile ให้เปลี่ยนรายการเป็น Card
     <div class="prompt">
       <div class="prompt-head">
         <div><span>Prompt 23</span><b>Master Prompt ฉบับภาษาง่าย</b></div>
-        <button class="copy" type="button">คัดลอก</button>
+        <button class="copy" type="button">COPY</button>
       </div>
       <pre>ฉันต้องการสร้าง:
 [ชื่อเว็บหรือระบบ]
@@ -1164,380 +1065,8 @@ Mobile ให้เปลี่ยนรายการเป็น Card
     
 </section>
 
-<section class="section extension" id="easy-tools"><div class="section-head"><span class="secno">19</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>เริ่มจากเครื่องมือง่าย: ไม่ใช่ทุกงานต้องเขียนแอปใหม่</h2><p class="intro">เลือกงานหนึ่งอย่างที่อยากทำให้สำเร็จ แล้วเลือกเครื่องมือที่ใช้ส่วนประกอบน้อยที่สุด คุณใช้ AI ช่วยวางหน้าเว็บ ออกแบบตาราง เขียนข้อความและโค้ดเฉพาะส่วนได้</p></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="เลือกเครื่องมือจากงานที่จะทำ"><table><caption>เลือกเครื่องมือจากงานที่จะทำ</caption><thead><tr><th scope="col">เครื่องมือ / เว็บไซต์</th><th scope="col">เอาไว้ทำอะไร</th><th scope="col">ข้อดี</th><th scope="col">ข้อจำกัด</th></tr></thead><tbody><tr><th scope="row"><a href="https://sheets.google.com" target="_blank" rel="noopener noreferrer">Google Sheets ↗</a></th><td>เก็บรายการ คำนวณ ติดตามงาน</td><td>คุ้นกับตาราง แก้ข้อมูลและทำสรุปได้เร็ว</td><td>การแชร์ไฟล์หรือกรองแถวไม่ใช่ระบบสิทธิ์รายลูกค้าแบบ Database</td></tr><tr><th scope="row"><a href="https://forms.google.com" target="_blank" rel="noopener noreferrer">Google Forms ↗</a></th><td>ทำแบบฟอร์มแล้วส่งคำตอบเข้า Sheets</td><td>เริ่มรับข้อมูลได้โดยไม่เขียนโค้ด</td><td>ปรับหน้าตาและขั้นตอนซับซ้อนได้น้อยกว่าเว็บที่เขียนเอง</td></tr><tr><th scope="row"><a href="https://script.google.com" target="_blank" rel="noopener noreferrer">Google Apps Script ↗</a></th><td>เขียนงานอัตโนมัติและ Web App เชื่อมบริการ Google</td><td>ใช้ JavaScript และมีที่รันให้ ไม่ต้องเช่า Server สำหรับ Lab นี้</td><td>ต้องดูสิทธิ์และโควตา; ไม่ใช่ runtime สำหรับ Node.js ทุกแพ็กเกจ</td></tr><tr><th scope="row"><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub + GitHub Pages ↗</a></th><td>เก็บเวอร์ชันโค้ด + เผยแพร่เว็บ Static</td><td>เหมาะกับเว็บ HTML/CSS/JS ที่ AI สร้างและ Portfolio ฝึก</td><td>Pages ไม่รัน Code.gs, Node/PHP server หรือ Database ให้</td></tr><tr><th scope="row"><a href="https://www.notion.com" target="_blank" rel="noopener noreferrer">Notion ↗</a></th><td>ทำเอกสาร คลังความรู้ ตารางงาน และเว็บเนื้อหา</td><td>เรียงเนื้อหาและแก้ไขเร็ว ไม่ต้องเขียน HTML</td><td>Layout มีกรอบของบริการ; ต้องตรวจสิทธิ์หน้าและหน้าย่อยก่อนเผยแพร่</td></tr><tr><th scope="row"><a href="https://sites.google.com" target="_blank" rel="noopener noreferrer">Google Sites ↗</a></th><td>ทำเว็บแนะนำบริการหรือศูนย์รวมลิงก์</td><td>จัดหน้าแบบลากวาง และแทรก Forms/ไฟล์ Google ได้</td><td>ควบคุม CSS และปฏิสัมพันธ์ได้ไม่เท่าเว็บเขียนเอง; ไฟล์ฝังยังมีสิทธิ์แยก</td></tr><tr><th scope="row"><a href="https://about.appsheet.com" target="_blank" rel="noopener noreferrer">AppSheet ↗</a></th><td>สร้างแอปฟอร์ม รายการ และสถานะจากข้อมูล เช่น Sheets</td><td>เริ่มจากข้อมูลแล้วสร้างหน้าจอโดยเขียนโค้ดน้อย</td><td>ต้องเรียนชนิดข้อมูล/Key/สิทธิ์ และตรวจแผนสำหรับผู้ใช้จริงก่อนเผยแพร่</td></tr></tbody></table></div><h3>เส้นทางแนะนำ 4 แบบ</h3><div class="simple-grid"><div class="term"><b>01 · รับข้อมูลให้ได้ก่อน</b><span>Google Forms + Sheets → แบบสอบถาม ลงทะเบียน หรือรับแจ้งปัญหา</span></div><div class="term"><b>02 · มีหน้าเว็บให้อ่าน</b><span>Notion หรือ Google Sites → บทความ คู่มือ หน้าแนะนำบริการ และลิงก์ฟอร์ม</span></div><div class="term"><b>03 · ออกแบบหน้าตาเอง</b><span>AI ช่วยเขียน HTML/CSS/JS → GitHub Pages; หรือ HTML + Apps Script → Sheets สำหรับ Lab</span></div><div class="term"><b>04 · ระบบสมาชิกหลายคน</b><span>AppSheet พร้อมสิทธิ์ที่เหมาะสม หรือ Supabase/Auth/Hosting ในบทต่อยอด เมื่อเริ่มมีข้อมูลส่วนตัวแยกรายคน</span></div></div><div class="callout"><b>หน้าตากับที่เก็บข้อมูลเป็นคนละเรื่อง:</b> Notion และ Google Sites ช่วยทำหน้าเว็บเร็ว ส่วน Sheets ช่วยเก็บตาราง คุณไม่จำเป็นต้องใช้ทั้งเจ็ดเครื่องมือในงานเดียว เลือกหนึ่งเส้นทางแล้วทำให้จบก่อน</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 24</span><b>ช่วยเลือกเส้นทางง่ายที่สุดสำหรับงานของฉัน</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันเป็นมือใหม่ ต้องการทำ [เช่น แบบฟอร์มรับแจ้งปัญหาและติดตามสถานะ]
-ผู้ใช้คือ [ใคร] จำนวนประมาณ [กี่คน] ข้อมูลที่รับคือ [รายการข้อมูล]
-ข้อมูลใดเป็นส่วนตัว: [ระบุ] ต้องล็อกอินหรือไม่: [ระบุ]
-เปรียบเทียบ Google Forms + Sheets, Apps Script, Notion, Google Sites,
-GitHub Pages และ AppSheet โดยใช้คำง่าย ๆ
-บอกว่าแต่ละตัวทำหน้าที่อะไร ข้อดี ข้อจำกัด และส่วนไหนต้องทำเอง
-เลือกหนึ่งเส้นทางที่ง่ายพอสำหรับโจทย์นี้ พร้อมชิ้นงานเล็กที่สุดที่ทำได้ก่อน
-AI มีหน้าที่ช่วยฉันวางแผน/เขียนตัวอย่าง อย่าอ้างว่าได้เปิดบัญชีหรือตั้งค่าบริการให้แล้ว
-ถ้าเป็นข้อมูลส่วนตัว ห้ามใช้การกรองหรือซ่อนคอลัมน์แทนการกำหนดสิทธิ์</pre></div></section>
-<section class="section extension" id="sheets-forms"><div class="section-head"><span class="secno">20</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Lab ง่ายที่สุด: Google Forms + Google Sheets</h2><p class="intro">เป้าหมาย: สร้างฟอร์มรับแจ้งปัญหา ส่งข้อมูลสมมติ 3 รายการ และเปิดดูคำตอบในตารางได้ โดยยังไม่เขียนโค้ด</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>เริ่มรับข้อมูล โดยไม่ต้องเขียน Backend</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="เริ่มรับข้อมูล โดยไม่ต้องเขียน Backend — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="385" viewBox="0 0 800 385" role="img" aria-labelledby="forms-sheets-flow-title forms-sheets-flow-desc"><title id="forms-sheets-flow-title">เริ่มรับข้อมูล โดยไม่ต้องเขียน Backend</title><desc id="forms-sheets-flow-desc">ผู้ตอบเปิดลิงก์ Google Forms และส่งคำตอบเข้าแผ่นคำตอบใน Sheets ผู้ดูแลจึงใช้ตารางนั้นติดตามหรือสรุปงาน การส่งลิงก์ฟอร์มไม่จำเป็นต้องแชร์แผ่นคำตอบให้ผู้ตอบทุกคน</desc><defs><marker id="forms-sheets-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M327 83 H473" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#forms-sheets-flow-arrow)"/><text x="400" y="71" fill="#b9cbe3" font-size="14" text-anchor="middle">ส่งฟอร์ม</text><path d="M626 137 V247" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#forms-sheets-flow-arrow)"/><text x="688" y="199" fill="#b9cbe3" font-size="14" text-anchor="middle">Link to Sheets</text><path d="M473 300 H327" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#forms-sheets-flow-arrow)"/><text x="400" y="286" fill="#b9cbe3" font-size="14" text-anchor="middle">อ่านเพื่อสรุป</text><rect x="25" y="30" width="300" height="105" rx="14" fill="#102a50" stroke="#426492"/><text x="175.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">ผู้ตอบแบบฟอร์ม</text><text x="175.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">ลิงก์สำหรับตอบ Google Forms</text><text x="175.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">กรอกหัวข้อ / ประเภท / รายละเอียด</text><rect x="475" y="30" width="300" height="105" rx="14" fill="#142b4b" stroke="#426492"/><text x="625.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Google Forms</text><text x="625.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">ตรวจช่องบังคับ → รับคำตอบ</text><text x="625.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">มีสถานะส่งฟอร์มสำเร็จ</text><rect x="475" y="250" width="300" height="100" rx="14" fill="#0c3536" stroke="#426492"/><text x="625.0" y="281" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Google Sheets</text><text x="625.0" y="307" fill="#bdd0e7" font-size="15" text-anchor="middle">แผ่นคำตอบ: หนึ่งคำตอบต่อหนึ่งแถว</text><text x="625.0" y="329" fill="#bdd0e7" font-size="15" text-anchor="middle">จำกัดคนที่เปิดอ่าน/แก้ไฟล์ได้</text><rect x="25" y="250" width="300" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="175.0" y="281" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">ตารางสรุปของคุณ</text><text x="175.0" y="307" fill="#bdd0e7" font-size="15" text-anchor="middle">นับจำนวน / กรองประเภท / กราฟ</text><text x="175.0" y="329" fill="#bdd0e7" font-size="15" text-anchor="middle">ไม่เผยแพร่ข้อมูลดิบโดยไม่จำเป็น</text></svg></div><figcaption>ผู้ตอบเปิดลิงก์ Google Forms และส่งคำตอบเข้าแผ่นคำตอบใน Sheets ผู้ดูแลจึงใช้ตารางนั้นติดตามหรือสรุปงาน การส่งลิงก์ฟอร์มไม่จำเป็นต้องแชร์แผ่นคำตอบให้ผู้ตอบทุกคน</figcaption></figure><h3>1. ออกแบบข้อมูลให้อ่านง่ายก่อน</h3><div class="table-scroll" tabindex="0" role="region" aria-label="แบบฟอร์มฝึก 3 ช่อง ไม่เก็บข้อมูลส่วนบุคคลที่ยังไม่จำเป็น"><table><caption>แบบฟอร์มฝึก 3 ช่อง ไม่เก็บข้อมูลส่วนบุคคลที่ยังไม่จำเป็น</caption><thead><tr><th scope="col">คำถามใน Form</th><th scope="col">ชนิด</th><th scope="col">ตัวอย่าง / กติกา</th></tr></thead><tbody><tr><th scope="row">หัวข้อปัญหา</th><td>คำตอบสั้น · บังคับกรอก</td><td>Wi-Fi ในห้องทำงานช้า</td></tr><tr><th scope="row">ประเภท</th><td>ตัวเลือกเดียว · บังคับเลือก</td><td>Hardware / Software / Network / Other</td></tr><tr><th scope="row">รายละเอียด</th><td>ย่อหน้า</td><td>เกิดเมื่อไร ลองทำอะไรแล้ว; ไม่ใส่รหัสผ่าน</td></tr></tbody></table></div><ol class="lesson-steps"><li><b>เปิด Google Forms แล้วสร้างฟอร์มว่าง</b> ตั้งชื่อ “แจ้งปัญหา IT — แบบฝึก” เพิ่มคำถามตามตาราง และเขียนคำอธิบายสั้นว่าผู้ตอบควรกรอกอะไร</li><li><b>ตรวจ Settings ของฟอร์ม</b> ดูว่าบัญชีหรือองค์กรจำกัดผู้ตอบหรือไม่ เปิดเก็บอีเมลเฉพาะเมื่อจำเป็น ปิดการแสดงสรุปคำตอบต่อผู้ตอบถ้ามีข้อมูลที่ไม่ควรเผยแพร่</li><li><b>ไป Responses → Link to Sheets</b> เลือกสร้างไฟล์ใหม่ ระบบสร้างคอลัมน์เวลาและคำถามให้อัตโนมัติ อย่าทำคอลัมน์ชื่อซ้ำหรือรวมเซลล์ในตารางคำตอบ</li><li><b>เปิดฟอร์มในมุมมองผู้ตอบ</b> เผยแพร่/ส่งลิงก์สำหรับตอบตามเมนูในบัญชีของคุณ ไม่ส่ง URL สำหรับแก้ไขฟอร์ม ทดลองกรอก 3 ครั้งด้วยข้อมูลสมมติ</li><li><b>กลับมาดู Sheets</b> ต้องมีคำตอบ 3 แถว พร้อมเวลาและประเภทถูกช่อง รีเฟรชแล้วยังอยู่ ถ้าไม่มี ให้ตรวจว่าเปิดไฟล์และแผ่นคำตอบที่เชื่อมจริง</li><li><b>ทำแผ่นสรุปแยก</b> ตั้งชื่อ Summary ใช้ COUNTIF นับประเภทจากแผ่นคำตอบเดิม อย่าย้าย/ลบคอลัมน์คำตอบเพื่อแต่งหน้ารายงาน</li></ol><div class="prompt code-example"><div class="prompt-head"><div><span>GOOGLE SHEETS</span><b>ตัวอย่างสูตร — ปรับชื่อแท็บและคอลัมน์ให้ตรงไฟล์จริง</b></div><button class="copy" type="button">คัดลอก</button></div><pre>=COUNTIF(&#x27;Form Responses 1&#x27;!C2:C,&quot;Network&quot;)</pre></div><p>สูตรนี้สมมติว่าแท็บคำตอบชื่อ <code>Form Responses 1</code> และประเภทอยู่คอลัมน์ C ถ้าไฟล์ของคุณใช้ชื่อภาษาไทยหรือคำถามคนละลำดับต้องเปลี่ยนตามนั้น ตัวคั่นสูตรอาจเป็น comma หรือ semicolon ตาม Locale ของไฟล์ ไม่ต้องเปลี่ยนทั้งไฟล์เพียงเพื่อให้เหมือนตัวอย่าง</p><h3>ทำตารางสวยและใช้ต่อได้</h3><p>ใช้หนึ่งแถวต่อหนึ่งรายการ ตั้งหัวคอลัมน์ให้ชัด ตรึงแถวหัวตาราง แยกวันเวลา/จำนวน/ข้อความให้ถูกชนิด แล้วค่อยทำกราฟจากตารางสรุป ไม่ใส่สีทุกช่อง ใช้สีเฉพาะสถานะที่ต้องตัดสินใจ เมื่อจะนำเข้าแอป ให้เพิ่ม ID ที่คงที่ ไม่ใช้เลขแถวเป็นรหัสเพราะลำดับเปลี่ยนได้</p><div class="callout"><b>ข้อจำกัดที่ควรเข้าใจ:</b> คนที่มีสิทธิ์เปิด Sheet อาจเข้าถึงข้อมูลมากกว่ามุมมองที่กรองไว้ การซ่อนแถว ป้องกันช่วงแก้ไข หรือ filter ไม่ใช่การแยกข้อมูลส่วนตัวรายบัญชี ผู้ตอบควรได้ลิงก์ฟอร์ม ส่วนตารางคำตอบแชร์ให้คนที่ต้องดูแลเท่านั้น</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 25</span><b>ออกแบบฟอร์มกับตารางให้พร้อมใช้งาน</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ช่วยออกแบบ Google Form รับแจ้งปัญหา IT สำหรับแบบฝึก
-ใช้คำถามหัวข้อปัญหา ประเภท Hardware/Software/Network/Other และรายละเอียด
-บอกข้อความคำอธิบาย ชนิดคำถาม ช่องบังคับ และข้อความหลังส่งสำเร็จ
-อธิบายวิธีเชื่อมคำตอบเข้า Google Sheets และตรวจว่า 3 คำตอบอยู่ครบจริง
-แนะนำตาราง Summary และสูตรนับประเภท โดยให้ฉันยืนยันชื่อแท็บและคอลัมน์ก่อน
-ใช้ข้อมูลสมมติ ไม่เก็บรหัสผ่าน และไม่แชร์แผ่นคำตอบให้ผู้ตอบทุกคน
-ยังไม่เพิ่ม Login, Database หรือ Server ใหม่ถ้า Google Forms ตอบโจทย์อยู่แล้ว</pre></div><p class="source-line">เอกสารทางการ: <a href="https://support.google.com/docs/answer/139706?hl=en" target="_blank" rel="noopener noreferrer">จัดการคำตอบ ↗</a> · <a href="https://support.google.com/docs/answer/2917686?hl=en" target="_blank" rel="noopener noreferrer">เชื่อมคำตอบเข้า Sheets ↗</a></p></section>
-<section class="section extension" id="apps-script-lab"><div class="section-head"><span class="secno">21</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Lab: ฟอร์มของเราเอง → Apps Script → Sheets</h2><p class="intro">เป้าหมาย: ปรับหน้าตาฟอร์มได้เอง และกดบันทึกให้เกิดแถวใหม่จริง ตัวอย่างนี้สำหรับฝึกคนเดียว มีเพียงไฟล์ Code.gs กับ Index.html ไม่ต้องใช้ React หรือเช่า Hosting เพิ่ม</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>Apps Script เป็นทั้งที่รันหน้าเว็บและตัวเชื่อม Sheets</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="Apps Script เป็นทั้งที่รันหน้าเว็บและตัวเชื่อม Sheets — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="390" viewBox="0 0 800 390" role="img" aria-labelledby="apps-script-flow-title apps-script-flow-desc"><title id="apps-script-flow-title">Apps Script เป็นทั้งที่รันหน้าเว็บและตัวเชื่อม Sheets</title><desc id="apps-script-flow-desc">เปิดหน้า Index ผ่าน Web App URL ของ Apps Script ปุ่มบันทึกเรียก saveRequest ผ่าน google.script.run โค้ดฝั่ง server ตรวจข้อมูลและเขียนลง Requests ใน Sheet ที่กำหนด แล้วส่งผลสำเร็จหรือข้อผิดพลาดกลับมายังหน้าเว็บ</desc><defs><marker id="apps-script-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M317 88 H468" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#apps-script-flow-arrow)"/><text x="395" y="76" fill="#b9cbe3" font-size="14" text-anchor="middle">google.script.run</text><path d="M620 157 V252" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#apps-script-flow-arrow)"/><text x="674" y="211" fill="#b9cbe3" font-size="14" text-anchor="middle">appendRow</text><path d="M468 310 H317" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#apps-script-flow-arrow)"/><text x="396" y="296" fill="#b9cbe3" font-size="14" text-anchor="middle">ผลบันทึก</text><path d="M169 253 V158" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#apps-script-flow-arrow)"/><text x="231" y="211" fill="#b9cbe3" font-size="14" text-anchor="middle">แสดงผล</text><rect x="25" y="35" width="290" height="120" rx="14" fill="#102a50" stroke="#426492"/><text x="170.0" y="66" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Index.html / Browser</text><text x="170.0" y="92" fill="#bdd0e7" font-size="15" text-anchor="middle">ช่องกรอก + ปุ่ม + ข้อความผลลัพธ์</text><text x="170.0" y="114" fill="#bdd0e7" font-size="15" text-anchor="middle">เปิดผ่าน Apps Script URL</text><text x="170.0" y="136" fill="#bdd0e7" font-size="15" text-anchor="middle">Lab จำกัดให้คุณเข้าคนเดียว</text><rect x="470" y="35" width="300" height="120" rx="14" fill="#142b4b" stroke="#426492"/><text x="620.0" y="66" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Code.gs / Server</text><text x="620.0" y="92" fill="#bdd0e7" font-size="15" text-anchor="middle">saveRequest → ตรวจข้อมูล</text><text x="620.0" y="114" fill="#bdd0e7" font-size="15" text-anchor="middle">Lock → เขียนข้อมูล</text><text x="620.0" y="136" fill="#bdd0e7" font-size="15" text-anchor="middle">รันด้วยสิทธิ์ตาม deployment</text><rect x="470" y="255" width="300" height="100" rx="14" fill="#0c3536" stroke="#426492"/><text x="620.0" y="286" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Google Sheets</text><text x="620.0" y="312" fill="#bdd0e7" font-size="15" text-anchor="middle">Requests: ID / เวลา / หัวข้อ</text><text x="620.0" y="334" fill="#bdd0e7" font-size="15" text-anchor="middle">ประเภท / สถานะ</text><rect x="25" y="255" width="290" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="170.0" y="286" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">ผลที่หน้าเว็บ</text><text x="170.0" y="312" fill="#bdd0e7" font-size="15" text-anchor="middle">สำเร็จ: แสดงรหัสรายการ</text><text x="170.0" y="334" fill="#bdd0e7" font-size="15" text-anchor="middle">ผิดพลาด: แจ้งและให้ลองใหม่</text></svg></div><figcaption>เปิดหน้า Index ผ่าน Web App URL ของ Apps Script ปุ่มบันทึกเรียก saveRequest ผ่าน google.script.run โค้ดฝั่ง server ตรวจข้อมูลและเขียนลง Requests ใน Sheet ที่กำหนด แล้วส่งผลสำเร็จหรือข้อผิดพลาดกลับมายังหน้าเว็บ</figcaption></figure><h3>เตรียมและเปิดใช้งานทีละขั้น</h3><ol class="lesson-steps"><li><b>สร้าง Google Sheet เปล่า</b> เปลี่ยนชื่อแท็บเป็น <code>Requests</code> แล้วใส่หัวคอลัมน์แถว 1 ตามกล่องด้านล่าง ทุกชื่อและลำดับต้องตรงกัน</li><li><b>เปิด Extensions → Apps Script</b> วางตัวอย่าง Code.gs และสร้างไฟล์ HTML ชื่อ <code>Index</code> แล้ววางตัวอย่าง Index.html</li><li><b>ตั้ง Script property</b> ใน Project Settings เพิ่มชื่อ <code>SPREADSHEET_ID</code> คัดลอก ID จาก URL ของ Sheet ระหว่าง <code>/d/</code> กับ <code>/edit</code> ไม่ใช่ค่า gid ของแท็บ</li><li><b>Deploy → New deployment → Web app</b> สำหรับ Lab นี้เลือก Execute as: Me และจำกัด Who has access ให้เป็นตัวคุณเอง/Only myself ถ้าบัญชีมีนโยบายองค์กร ให้ใช้ตัวเลือกที่จำกัดเทียบเท่าและตรวจผู้ที่เข้าถึงได้</li><li><b>ยืนยันสิทธิ์ที่ขอหลังอ่านแล้ว</b> ตรวจว่าเป็นโปรเจกต์ที่คุณสร้างเองและการเข้าถึง Sheets ตรงกับงาน ไม่ข้ามคำเตือนของสคริปต์ที่ไม่รู้จัก</li><li><b>เปิด Web app URL ที่ลงท้าย /exec</b> ล็อกอินบัญชีของคุณ กรอกตัวอย่างหนึ่งรายการ กดบันทึก แล้วตรวจแถวใหม่ใน Sheet พร้อม ID และสถานะ new</li><li><b>ทดสอบการแก้ไขและข้อผิดพลาด</b> ลองปล่อยหัวข้อว่างหรือสั้นเกินไป และทดลองชื่อแท็บผิดในสำเนา Lab ต้องไม่แจ้งสำเร็จปลอม เมื่อแก้โค้ดให้เลือก Manage deployments → Edit → New version แล้ว Deploy อีกครั้ง</li></ol><div class="prompt code-example"><div class="prompt-head"><div><span>SHEETS HEADER</span><b>หัวคอลัมน์ — คัดลอกวางที่ A1 จะกระจายเป็น 5 คอลัมน์</b></div><button class="copy" type="button">คัดลอก</button></div><pre>id	created_at	title	category	status</pre></div><div class="prompt code-example"><div class="prompt-head"><div><span>APPS SCRIPT</span><b>ไฟล์ที่ 1: Code.gs — ตรวจข้อมูลและบันทึกที่ server</b></div><button class="copy" type="button">คัดลอก</button></div><pre id="apps-script-code">// Code.gs — Lab ใช้เองเท่านั้น: Deploy จำกัดผู้เข้าถึงเป็นตัวคุณเอง
-// Project Settings &gt; Script properties: เพิ่ม SPREADSHEET_ID
-function doGet() {
-  return HtmlService.createHtmlOutputFromFile(&#x27;Index&#x27;)
-    .setTitle(&#x27;แบบฝึกรับแจ้งปัญหา&#x27;);
-}
-
-function sheet_() {
-  const id = PropertiesService.getScriptProperties().getProperty(&#x27;SPREADSHEET_ID&#x27;);
-  if (!id) throw new Error(&#x27;ยังไม่ได้ตั้ง SPREADSHEET_ID ใน Script properties&#x27;);
-  const sheet = SpreadsheetApp.openById(id).getSheetByName(&#x27;Requests&#x27;);
-  if (!sheet) throw new Error(&#x27;ไม่พบแท็บ Requests&#x27;);
-  const expected = [&#x27;id&#x27;, &#x27;created_at&#x27;, &#x27;title&#x27;, &#x27;category&#x27;, &#x27;status&#x27;];
-  const header = sheet.getRange(1, 1, 1, expected.length).getValues()[0];
-  if (expected.some((name, i) =&gt; header[i] !== name)) {
-    throw new Error(&#x27;หัวคอลัมน์ Requests ไม่ตรงตัวอย่าง กรุณาตรวจแถว 1&#x27;);
-  }
-  return sheet;
-}
-
-function saveRequest(input) {
-  if (!input || typeof input.title !== &#x27;string&#x27; || typeof input.category !== &#x27;string&#x27;) {
-    throw new Error(&#x27;ข้อมูลไม่ครบ&#x27;);
-  }
-  const title = input.title.trim();
-  const categories = [&#x27;Hardware&#x27;, &#x27;Software&#x27;, &#x27;Network&#x27;, &#x27;Other&#x27;];
-  if ([...title].length &lt; 3 || [...title].length &gt; 120) {
-    throw new Error(&#x27;หัวข้อต้องมี 3–120 ตัวอักษร&#x27;);
-  }
-  if (!categories.includes(input.category)) throw new Error(&#x27;ประเภทไม่ถูกต้อง&#x27;);
-  // ข้อความผู้ใช้ต้องไม่ถูก Sheets ตีความเป็นสูตร
-  const safeTitle = /^[=+@-]/.test(title) ? &quot;&#x27;&quot; + title : title;
-  const lock = LockService.getScriptLock();
-  lock.waitLock(10000);
-  try {
-    const id = Utilities.getUuid();
-    sheet_().appendRow([id, new Date(), safeTitle, input.category, &#x27;new&#x27;]);
-    SpreadsheetApp.flush();
-    return { id: id, message: &#x27;บันทึกแล้ว&#x27; };
-  } finally {
-    lock.releaseLock();
-  }
-}</pre></div><div class="prompt code-example"><div class="prompt-head"><div><span>HTML</span><b>ไฟล์ที่ 2: Index.html — หน้าแบบฟอร์มใน Apps Script</b></div><button class="copy" type="button">คัดลอก</button></div><pre id="apps-script-html">&lt;!doctype html&gt;
-&lt;html lang=&quot;th&quot;&gt;
-&lt;head&gt;
-  &lt;base target=&quot;_top&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
-  &lt;style&gt;
-    *{box-sizing:border-box} body{margin:0;padding:24px;background:#f2f5fa;color:#13233f;font:16px/1.7 system-ui,sans-serif}
-    main{max-width:540px;margin:24px auto;padding:24px;background:white;border-radius:18px}
-    h1{font-size:25px;line-height:1.4} label{display:block;margin:16px 0 6px}
-    input,select,button{font:inherit;width:100%;padding:12px;border:1px solid #9eabc0;border-radius:9px}
-    button{margin-top:20px;background:#245fc7;color:white;cursor:pointer} button:disabled{opacity:.65;cursor:wait}
-    :focus-visible{outline:3px solid #2866c4;outline-offset:3px}
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;&lt;main&gt;
-  &lt;h1&gt;แจ้งปัญหา IT — แบบฝึกใช้เอง&lt;/h1&gt;
-  &lt;p&gt;ข้อมูลจะถูกส่งไปแท็บ Requests ใน Google Sheets ของคุณ&lt;/p&gt;
-  &lt;form id=&quot;request-form&quot;&gt;
-    &lt;label for=&quot;title&quot;&gt;หัวข้อปัญหา&lt;/label&gt;
-    &lt;input id=&quot;title&quot; name=&quot;title&quot; required minlength=&quot;3&quot; maxlength=&quot;120&quot; placeholder=&quot;เช่น เครื่องพิมพ์ไม่ทำงาน&quot;&gt;
-    &lt;label for=&quot;category&quot;&gt;ประเภท&lt;/label&gt;
-    &lt;select id=&quot;category&quot; name=&quot;category&quot;&gt;&lt;option&gt;Hardware&lt;/option&gt;&lt;option&gt;Software&lt;/option&gt;&lt;option&gt;Network&lt;/option&gt;&lt;option&gt;Other&lt;/option&gt;&lt;/select&gt;
-    &lt;button id=&quot;save&quot; type=&quot;submit&quot;&gt;บันทึกคำขอ&lt;/button&gt;
-  &lt;/form&gt;
-  &lt;p id=&quot;message&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
-  &lt;script&gt;
-    const form = document.getElementById(&#x27;request-form&#x27;);
-    const button = document.getElementById(&#x27;save&#x27;);
-    const message = document.getElementById(&#x27;message&#x27;);
-    form.addEventListener(&#x27;submit&#x27;, event =&gt; {
-      event.preventDefault();
-      if (button.disabled) return;
-      button.disabled = true;
-      message.textContent = &#x27;กำลังบันทึก…&#x27;;
-      google.script.run
-        .withSuccessHandler(result =&gt; {
-          message.textContent = result.message + &#x27; · รหัส &#x27; + result.id;
-          form.reset(); button.disabled = false;
-        })
-        .withFailureHandler(error =&gt; {
-          message.textContent = &#x27;บันทึกไม่สำเร็จ: &#x27; + error.message;
-          button.disabled = false;
-        })
-        .saveRequest({title: form.elements.title.value, category: form.elements.category.value});
-    });
-  &lt;/script&gt;
-&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;</pre></div><h3>ทำไมเอา Index.html นี้ขึ้น GitHub แล้วกดไม่ได้?</h3><p><code>google.script.run</code> มีให้ใช้ในหน้า HTML Service ของ Apps Script การเปิดไฟล์ด้วย file:// หรือ GitHub Pages ไม่ได้สร้าง API นี้ให้ ถ้าจะใช้หน้าเว็บจาก GitHub ให้เริ่มจากลิงก์ไป Google Forms หรือ Apps Script URL ก่อน การเชื่อมผ่าน API ข้ามเว็บไซต์ต้องออกแบบ Auth/CORS เพิ่ม ไม่แก้ด้วย <code>no-cors</code> แล้วอ้างว่ารู้ผลการบันทึก</p><div class="callout"><b>ขอบเขต Lab:</b> จำกัดผู้เข้าใช้เป็นคุณคนเดียว จึงยังไม่ใช่ระบบลูกค้าหลายบัญชี อย่าเปลี่ยนเป็น Anyone แล้วถือว่าข้อมูลเป็น Private หากต้องรับข้อมูลคนทั่วไปแบบง่าย ใช้ Forms ก่อน; ถ้าต้องอ่าน/แก้เฉพาะข้อมูลของแต่ละคน ให้ทำสิทธิ์แยกอย่างชัดเจนด้วย AppSheet หรือบท Auth/RLS ต่อไป</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 26</span><b>ปรับฟอร์ม Apps Script ให้สวยโดยไม่ทำส่วนบันทึกพัง</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันมี Code.gs และ Index.html ของฟอร์มรับแจ้งปัญหาแบบฝึกใช้คนเดียว
-คง saveRequest, ชื่อ field title/category, ชื่อแท็บ Requests และ google.script.run เดิม
-ปรับเฉพาะหน้า Index: ใช้โทนน้ำเงินอ่านง่าย จัดฟอร์มคอลัมน์เดียว กว้างไม่เกิน 540px
-เพิ่ม label ชัดเจน ตัวอย่างข้อความ ปุ่มสูงกดง่าย และสถานะกำลังบันทึก/สำเร็จ/ผิดพลาด
-รองรับมือถือ 360px ไม่ให้ข้อความล้น และไม่ใส่ animation หนัก
-ห้ามย้ายหน้าไป GitHub แล้วใช้ google.script.run ต่อ ห้ามเปลี่ยนสิทธิ์ deployment
-ไม่แสดงข้อมูลสมมติว่าเป็นข้อมูลที่บันทึกแล้ว ตรวจ validation ที่ client และ server
-สรุปไฟล์ที่แก้และขั้นตอน Deploy เวอร์ชันใหม่พร้อมวิธีทดสอบ</pre></div><p class="source-line">เอกสารทางการ: <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener noreferrer">Web App / สิทธิ์ ↗</a> · <a href="https://developers.google.com/apps-script/guides/html/communication" target="_blank" rel="noopener noreferrer">google.script.run ↗</a> · <a href="https://developers.google.com/apps-script/guides/services/quotas" target="_blank" rel="noopener noreferrer">โควตาการใช้งาน ↗</a></p></section>
-<section class="section extension" id="notion-lab"><div class="section-head"><span class="secno">22</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Lab: ใช้ Notion ทำเว็บเนื้อหาและคลังโปรเจกต์</h2><p class="intro">เหมาะเมื่อคุณอยากมีหน้าให้อ่านเร็ว เช่น คู่มือ Portfolio หรือคลังบทความ ใช้ AI ช่วยจัดเนื้อหา แล้วนำไปวางใน Notion ได้โดยไม่ต้องเปิด VS Code</p></div></div><h3>โจทย์: สร้างหน้า “ผลงานและความรู้ของฉัน”</h3><ol class="lesson-steps"><li><b>สร้างหน้าใหม่แยกจากพื้นที่ส่วนตัว</b> ใช้ชื่อที่สื่อว่าเว็บนี้เกี่ยวกับอะไร เขียนแนะนำตัว 2–3 ประโยคและบอกว่าผู้อ่านจะได้อะไร</li><li><b>จัดเนื้อหาเป็น 4 ส่วน</b> แนะนำ / ผลงาน / บทความ / ติดต่อ ใช้ Heading เป็นลำดับ ใส่สารบัญถ้าหน้ายาว และใช้ภาพที่มีสิทธิ์เผยแพร่พร้อมคำบรรยาย</li><li><b>สร้าง database ของผลงาน</b> เพิ่ม property ตามตารางด้านล่าง ใส่ตัวอย่าง 3 รายการ แล้วเปิดแต่ละรายการเขียน ปัญหา → สิ่งที่ทำ → ผลที่ตรวจได้</li><li><b>เปลี่ยนมุมมอง</b> Table ใช้จัดข้อมูล, Gallery ใช้โชว์รูปผลงาน, Board ใช้แยกสถานะ เลือกตามสิ่งที่ผู้อ่านต้องทำ ไม่เปิดหลาย view ที่ซ้ำกันโดยไม่จำเป็น</li><li><b>ตรวจสิทธิ์ก่อนแชร์</b> ถ้าเป็นเนื้อหาส่วนตัวให้เชิญบุคคลที่ต้องอ่าน หากต้องการเว็บสาธารณะใช้ Share → Publish แล้วตรวจทั้งหน้าหลัก หน้าย่อย และรายการใน database</li><li><b>เปิดลิงก์เผยแพร่ในหน้าต่างส่วนตัว</b> ลองเปิดทุกรายการและตรวจว่าไม่มีบันทึกส่วนตัวหรือข้อมูลที่ไม่ได้ตั้งใจเผยแพร่ การปรับ filter เพื่อโชว์งานบางชิ้นไม่ได้แทนการกำหนดสิทธิ์</li></ol><div class="table-scroll" tabindex="0" role="region" aria-label="โครงข้อมูลสำหรับ Portfolio บน Notion"><table><caption>โครงข้อมูลสำหรับ Portfolio บน Notion</caption><thead><tr><th scope="col">Property</th><th scope="col">ชนิด</th><th scope="col">ตัวอย่าง</th></tr></thead><tbody><tr><th scope="row">ชื่อผลงาน</th><td>Title</td><td>ระบบรับแจ้งปัญหา IT — แบบฝึก</td></tr><tr><th scope="row">หมวด</th><td>Select</td><td>Website / Automation / Knowledge</td></tr><tr><th scope="row">สถานะ</th><td>Select</td><td>Draft / Review / Published</td></tr><tr><th scope="row">ภาพปก</th><td>Files & media</td><td>ภาพที่ไม่ติดข้อมูลส่วนตัว</td></tr><tr><th scope="row">ลิงก์ผลงาน</th><td>URL</td><td>URL ที่เปิดได้จริง ไม่ใช้ลิงก์แก้ไข</td></tr></tbody></table></div><h3>ใช้ AI ช่วยตรงไหน?</h3><p>ให้ AI ร่างชื่อหน้า หัวข้อ คำแนะนำตัว โครงบทความ และคำอธิบายภาพ แล้วคุณตรวจความถูกต้องก่อนวางใน Notion หากเครื่องมือ AI ไม่ได้เชื่อม Workspace มันไม่ได้สร้างหน้าให้จริง การพิมพ์ Prompt ใน chatbot กับการใช้ Notion AI ในบัญชีที่มีสิทธิ์เป็นคนละวิธี</p><div class="callout"><b>เผยแพร่กับแชร์ส่วนตัวต่างกัน:</b> Notion Site เป็นเว็บที่คนทั่วไปเข้าดูได้ตามการเผยแพร่ หน้าย่อยอาจถูกเผยแพร่ไปด้วย ต้องตรวจทั้งต้นทางและหน้ารายการ หากต้องการข้อมูลเฉพาะบุคคล ให้ใช้สิทธิ์เชิญ/สิทธิ์หน้าในแผนที่รองรับ ไม่ใช้แค่ซ่อน property หรือ view</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 27</span><b>จัดหน้า Notion ให้น่าอ่าน พร้อมโครง database</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันจะทำ Notion Portfolio และคลังบทความสำหรับ [กลุ่มผู้อ่าน]
-ช่วยร่างหน้าแนะนำตัว ผลงาน บทความ และติดต่อ เป็นข้อความพร้อมนำไปวาง
-ออกแบบ database ผลงาน: ชื่อ หมวด สถานะ ภาพปก และ URL
-ให้ตัวอย่าง 3 รายการที่ระบุว่าเป็นข้อมูลสมมติ ไม่แต่งยอดลูกค้า รางวัล หรือผลลัพธ์จริง
-แนะนำ Table/Gallery/Board ว่าใช้เมื่อไร และการเรียงหัวข้อที่อ่านง่ายบนมือถือ
-ใช้รูปเฉพาะที่ช่วยอธิบายงาน ไม่แต่งเป็นการ์ดซ้ำทุกย่อหน้า
-จบด้วยรายการที่ฉันต้องตรวจเองก่อน Publish: หน้าย่อย ลิงก์ สิทธิ์ และข้อมูลส่วนตัว
-อย่าอ้างว่าแก้ใน Notion ให้แล้วถ้าคุณไม่ได้เชื่อมและแก้จริง</pre></div><p class="source-line">เอกสารทางการ: <a href="https://www.notion.com/help/public-pages-and-web-publishing" target="_blank" rel="noopener noreferrer">เผยแพร่ Notion Site ↗</a> · <a href="https://www.notion.com/help/sharing-and-permissions" target="_blank" rel="noopener noreferrer">สิทธิ์และการแชร์ ↗</a></p></section>
-<section class="section extension" id="github-lab"><div class="section-head"><span class="secno">23</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Lab: เอาเว็บที่ AI เขียนขึ้น GitHub Pages</h2><p class="intro">เป้าหมาย: เผยแพร่เว็บ HTML/CSS/JS แบบ Static ที่มี index.html และไฟล์รูป โดยเริ่มจาก repository ฝึกใหม่ ไม่เขียนทับเว็บที่ใช้งานอยู่</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>โค้ดใน GitHub กับเว็บที่เปิดดู เป็นคนละ URL</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="โค้ดใน GitHub กับเว็บที่เปิดดู เป็นคนละ URL — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="385" viewBox="0 0 800 385" role="img" aria-labelledby="github-learning-flow-title github-learning-flow-desc"><title id="github-learning-flow-title">โค้ดใน GitHub กับเว็บที่เปิดดู เป็นคนละ URL</title><desc id="github-learning-flow-desc">Repository ใช้เก็บโค้ดและประวัติการเปลี่ยนแปลง GitHub Pages ใช้เผยแพร่ไฟล์เว็บจากแหล่งที่ตั้งค่าไว้ คุณแก้ไฟล์แล้ว commit จากนั้นตรวจ deployment ก่อนเปิด URL ของ Pages ให้ผู้อื่นดู</desc><defs><marker id="github-learning-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M362 82 H438" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#github-learning-flow-arrow)"/><text x="400" y="68" fill="#b9cbe3" font-size="14" text-anchor="middle">upload</text><path d="M610 132 V248" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#github-learning-flow-arrow)"/><text x="670" y="198" fill="#b9cbe3" font-size="14" text-anchor="middle">publish</text><path d="M438 300 H362" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#github-learning-flow-arrow)"/><text x="400" y="288" fill="#b9cbe3" font-size="14" text-anchor="middle">ลิงก์</text><rect x="20" y="30" width="340" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="190.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">โฟลเดอร์โปรเจกต์</text><text x="190.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">index.html + assets</text><text x="190.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">เปิดดูและตรวจในเครื่องก่อน</text><rect x="440" y="30" width="340" height="100" rx="14" fill="#142b4b" stroke="#426492"/><text x="610.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">GitHub repository</text><text x="610.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">github.com / ชื่อ / repo</text><text x="610.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">เก็บ source และประวัติ commit</text><rect x="440" y="250" width="340" height="100" rx="14" fill="#0c3536" stroke="#426492"/><text x="610.0" y="281" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">GitHub Pages</text><text x="610.0" y="307" fill="#bdd0e7" font-size="15" text-anchor="middle">ชื่อ.github.io / repo /</text><text x="610.0" y="329" fill="#bdd0e7" font-size="15" text-anchor="middle">เว็บ Static ที่คนเปิดดู</text><rect x="20" y="250" width="340" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="190.0" y="281" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">ข้อมูลจากภายนอก</text><text x="190.0" y="307" fill="#bdd0e7" font-size="15" text-anchor="middle">ลิงก์ Forms / Apps Script</text><text x="190.0" y="329" fill="#bdd0e7" font-size="15" text-anchor="middle">หรือ API ที่ออกแบบสิทธิ์ไว้</text></svg></div><figcaption>Repository ใช้เก็บโค้ดและประวัติการเปลี่ยนแปลง GitHub Pages ใช้เผยแพร่ไฟล์เว็บจากแหล่งที่ตั้งค่าไว้ คุณแก้ไฟล์แล้ว commit จากนั้นตรวจ deployment ก่อนเปิด URL ของ Pages ให้ผู้อื่นดู</figcaption></figure><div class="table-scroll" tabindex="0" role="region" aria-label="GitHub ฉบับเริ่มต้น ไม่ต้องจำคำสั่ง Git ทั้งหมด"><table><caption>GitHub ฉบับเริ่มต้น ไม่ต้องจำคำสั่ง Git ทั้งหมด</caption><thead><tr><th scope="col">คำศัพท์</th><th scope="col">ความหมายที่ใช้ตอนทำงาน</th></tr></thead><tbody><tr><th scope="row">Repository / Repo</th><td>ที่เก็บไฟล์โปรเจกต์และประวัติ คล้ายโฟลเดอร์ที่ติดตามการแก้ไขได้</td></tr><tr><th scope="row">Commit</th><td>บันทึกชุดการเปลี่ยนแปลงพร้อมข้อความว่าแก้อะไร</td></tr><tr><th scope="row">Branch</th><td>แนวทางแก้โค้ดแยกจากชุดหลัก เช่น main</td></tr><tr><th scope="row">GitHub Pages</th><td>บริการเผยแพร่เว็บ Static จากแหล่งที่กำหนดใน repo</td></tr></tbody></table></div><ol class="lesson-steps"><li><b>เตรียมเว็บที่เปิดได้</b> ต้องมี <code>index.html</code> ที่โฟลเดอร์หลักตามที่จะเผยแพร่ ลิงก์รูปใช้เส้นทางเช่น <code>assets/images/cover.webp</code> ไม่ใช้ <code>C:\Users\...</code> หรือ path ในเครื่อง</li><li><b>สร้าง repository ฝึกใน GitHub</b> เช่น <code>my-first-website</code> เลือก visibility ตามเนื้อหาและแผนบัญชี ถ้าใช้ public ต้องไม่มีข้อมูลส่วนตัวหรือกุญแจลับ</li><li><b>Add file → Upload files</b> แตก ZIP ก่อน แล้วอัปโหลดไฟล์และโฟลเดอร์ข้างในให้ index.html อยู่ที่ root ของ repo ไม่อัปโหลด ZIP แล้วคาดว่า Pages จะแตกไฟล์ให้อัตโนมัติ</li><li><b>ตรวจแล้วบันทึก commit</b> ตั้งข้อความ เช่น “เพิ่มเว็บ Portfolio รุ่นแรก” ดูว่าโครงสร้างไฟล์และตัวพิมพ์เล็ก/ใหญ่ของชื่อรูปตรงกัน ไม่ส่ง node_modules, .env หรือรหัสผ่าน</li><li><b>Settings → Pages</b> เลือก Source เป็น Deploy from a branch แล้วเลือก branch ที่มีไฟล์จริง เช่น main และโฟลเดอร์ <code>/(root)</code> จากนั้นบันทึก การตั้งค่านี้ใช้สำหรับเว็บ Static พร้อมเผยแพร่; Vite/SSR ต้องทำตามบท Hosting ที่ตรงชนิดโปรเจกต์</li><li><b>ตรวจสถานะ deployment แล้วเปิด URL ที่ GitHub แสดง</b> Project site โดยทั่วไปอยู่ใต้ชื่อ repo เช่น <code>https://USERNAME.github.io/my-first-website/</code> ลองเมนู รูป ปุ่ม และเปิดจากมือถืออีกเครื่อง</li><li><b>ทดลองแก้ข้อความหนึ่งจุด</b> upload/commit การแก้ไข รอ deployment ใหม่แล้ว refresh หากผิดให้กลับมาใช้ไฟล์หรือ commit รุ่นที่ตรวจผ่าน ประวัติโค้ดไม่ได้เป็น backup ของข้อมูลใน Sheets/Supabase</li></ol><div class="callout"><b>100 ไฟล์เป็นข้อจำกัดการอัปโหลดพร้อมกันผ่านหน้าเว็บ:</b> ไม่ใช่จำนวนสูงสุดของ repository หากโปรเจกต์โต ใช้ GitHub Desktop หรือ Git ได้ แต่ชุดเว็บคอร์สนี้ยังคงจัดให้ไม่เกิน 100 ไฟล์ตามรูปแบบอัปโหลดที่คุณใช้ ไฟล์ที่อัปโหลดผ่าน Browser ยังมีเพดานขนาดต่อไฟล์ด้วย</div><h3>ถ้าอยากรับข้อมูลจากเว็บนี้แบบง่าย</h3><p>เริ่มจากปุ่ม “กรอกแบบฟอร์ม” ที่เปิด Google Forms หรือปุ่ม “เปิดระบบ” ที่ไป URL ของ Apps Script คุณไม่ต้องย้าย Code.gs ไปไว้บน Pages เพราะมันไม่รันที่นั่น หากต้องการฟอร์มที่อยู่บนหน้าเว็บเองและข้อมูลส่วนตัว ให้ต่อ API/Auth ตามบท Database อย่างถูกต้อง</p><p>GitHub Pages เหมาะกับ Portfolio เอกสาร และเดโมที่เข้าเงื่อนไขบริการ ถ้าจะทำระบบธุรกิจ e-commerce หรือ SaaS ให้ตรวจข้อกำหนดและเลือก Hosting ที่เหมาะสมจากบทเปรียบเทียบ ไม่ถือว่าเผยแพร่ได้แปลว่าเหมาะกับทุกงาน</p><div class="prompt"><div class="prompt-head"><div><span>Prompt 28</span><b>ตรวจเว็บก่อนขึ้น GitHub Pages ด้วยภาษาง่าย</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ตรวจโฟลเดอร์เว็บไซต์นี้สำหรับ GitHub Pages
-เป็น HTML/CSS/JS Static หรือยังต้อง build/รัน server? อธิบายจากไฟล์จริง
-ถ้าเป็น Static ให้ตรวจ index.html, ชื่อไฟล์ตัวพิมพ์เล็ก/ใหญ่, relative paths และลิงก์รูป
-แยกไฟล์ที่ต้องอัปโหลดกับไฟล์ local/dependencies ที่ไม่ต้องส่ง พร้อมนับไฟล์จริง
-อธิบายขั้นตอนสร้าง repo, Upload files, Commit และ Settings → Pages
-ห้ามอัปโหลด ZIP แทนไฟล์เว็บ และห้ามใส่ API key ลับหรือ Code.gs โดยอ้างว่า Pages รันได้
-ให้ Checklist เปิด URL จริง เมนู/รูป/ปุ่ม มือถือ และวิธีย้อนการแก้ไข
-อย่าเปลี่ยนฟอนต์ สี หรือเนื้อหาที่ไม่เกี่ยวกับปัญหาการเผยแพร่</pre></div><p class="source-line">เอกสารทางการ: <a href="https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository" target="_blank" rel="noopener noreferrer">อัปโหลดไฟล์ ↗</a> · <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer">ตั้งค่า Pages ↗</a> · <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits" target="_blank" rel="noopener noreferrer">เงื่อนไขและข้อจำกัด ↗</a></p></section>
-<section class="section extension" id="nocode-lab"><div class="section-head"><span class="secno">24</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>เครื่องมือเสริม: Google Sites และ AppSheet</h2><p class="intro">สองตัวนี้แก้คนละโจทย์: Sites ช่วยทำหน้าเว็บไซต์ ส่วน AppSheet ช่วยทำแอปที่อ่านและแก้ข้อมูล เลือกตามสิ่งที่ผู้ใช้ต้องทำ</p></div></div><h3>Google Sites: หน้าเว็บแนะนำบริการ + ฟอร์ม</h3><ol class="lesson-steps"><li><b>สร้างเว็บจากหน้าเปล่าหรือ Theme ที่อ่านง่าย</b> วางหัวเว็บสั้น ๆ ตามด้วยบริการ ผลงาน ขั้นตอนติดต่อ และคำถามที่พบบ่อย ใช้สีหลักเดียวกับสีเน้นหนึ่งสี</li><li><b>ใส่รูปที่เกี่ยวกับบริการ</b> ใช้รูปผลงานที่เผยแพร่ได้จริง ใส่คำอธิบาย ไม่ใช้ภาพหลายแนวปนกันและไม่ปล่อย Section ว่างไว้ยาว</li><li><b>แทรก Google Form</b> ใช้ Insert → Forms หรือเส้นทางแทรกไฟล์ Google ที่มีในเมนู เลือกฟอร์มฝึกที่สร้างไว้ ผู้ตอบต้องมีสิทธิ์เปิดฟอร์มนั้นด้วย การเผยแพร่ Sites ไม่เปลี่ยนสิทธิ์ไฟล์ให้อัตโนมัติ</li><li><b>ดู Preview บนมือถือแล้ว Publish</b> ตรวจ published site URL ด้วยบัญชีผู้ชมที่เหมาะสม ลองส่งฟอร์มหนึ่งครั้งและตรวจคำตอบใน Sheet; หลังแก้เว็บต้องเผยแพร่การแก้ไขตามขั้นตอนของ Sites</li></ol><div class="prompt"><div class="prompt-head"><div><span>Prompt 29</span><b>วางหน้า Google Sites แบบเรียบแต่ดูมืออาชีพ</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันจะทำ Google Sites สำหรับ [บริการ/โครงการ]
-ช่วยร่างข้อความและลำดับหน้า: หัวเว็บ, บริการ, ผลงาน, วิธีติดต่อ และ FAQ ที่มีคำถามจริง
-แนะนำรูปประกอบที่ควรใช้แต่ละส่วนและคำบรรยาย ห้ามสร้างผลงาน/รีวิวปลอม
-กำหนดสีหลัก สีเน้น และแนวการจัดเนื้อหาที่ทำได้ใน Google Sites
-ใส่ตำแหน่ง Google Form และอธิบายการตรวจสิทธิ์ผู้ตอบแยกจากสิทธิ์เว็บ
-ให้รายการตรวจมือถือและลิงก์จริงก่อน Publish ไม่เสนอ CSS ที่ Google Sites แก้ตรง ๆ ไม่ได้</pre></div><h3>AppSheet: เปลี่ยนตารางให้เป็นแอปติดตามงาน</h3><ol class="lesson-steps"><li><b>เตรียม Sheet Requests</b> ใช้ข้อมูลสมมติ หัวคอลัมน์ไม่ซ้ำ หนึ่งแถวต่อรายการ ถ้ามาจาก Lab Apps Script ให้เก็บ ID เดิมไว้และอย่าใช้เลขแถวเป็น Key</li><li><b>สร้างแอปจากข้อมูลที่มี</b> เปิด AppSheet เลือกสร้างจาก existing data แล้วเลือก Google Sheets และแท็บ Requests เมนูอาจต่างตามบัญชี ให้ตรวจว่าเลือกแหล่งข้อมูลถูกไฟล์</li><li><b>ตรวจชนิดข้อมูลและ Key</b> id เป็น Text และ Key; created_at เป็น DateTime; category/status เป็น Enum เมื่อสร้างรายการจาก AppSheet ใช้ Initial value เช่น UNIQUEID() กับ id และห้าม reset ID เมื่อแก้รายการเดิม</li><li><b>จัด 3 มุมมอง</b> รายการงาน / แบบฟอร์มเพิ่ม / รายละเอียด ให้ปุ่มแก้สถานะชัด ใช้ status new, in_progress, done และกำหนดค่าเริ่มต้น new สำหรับรายการใหม่</li><li><b>ทดสอบด้วยตัวเองก่อน</b> เพิ่ม แก้ และ sync แล้วเปิด Sheet ตรวจผล หากมี error อย่ากดซ้ำจนเกิดรายการหลายแถว ก่อนให้คนอื่นใช้ต้องตรวจแผนสิทธิ์และค่าใช้บริการของแอป</li><li><b>ถ้าต้องแยกข้อมูลรายคน</b> เปิด Require sign-in และออกแบบ Security filter ให้ตรงตัวตน เช่น OwnerEmail เทียบกับ USEREMAIL() ในแผนที่รองรับ ห้ามใช้ Slice หรือการซ่อน View แทน security filter; ทดสอบบัญชี A/B และสิทธิ์เข้าถึง Sheet ต้นทางด้วย</li></ol><div class="callout"><b>แอปจากตารางไม่เท่ากับตั้งสิทธิ์เสร็จแล้ว:</b> สำหรับแบบฝึกเริ่มใช้คนเดียวได้ก่อน เมื่อขยายเป็นทีมต้องตัดสินใจว่าใครเห็น/แก้ข้อมูลใด ใครเป็นเจ้าของแหล่งข้อมูล และสิทธิ์ของแผนที่เลือกครอบคลุมผู้ใช้จริงหรือไม่</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 30</span><b>ช่วยออกแบบ AppSheet จากตารางเดิม</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันมี Sheet Requests: id, created_at, title, category, status
-ช่วยวาง AppSheet สำหรับฝึกติดตามงานของตัวเองก่อน
-ระบุ Key, ชนิดข้อมูล, Initial value, Enum และ View ที่จำเป็น
-อย่าใช้เลขแถวเป็น ID อย่าเปลี่ยน ID เดิมเมื่อแก้ข้อมูล
-อธิบายทดสอบเพิ่ม/แก้/sync แล้วตรวจผลใน Sheets ทีละขั้น
-แยกขั้นต่อยอดหลายบัญชี: Require sign-in, OwnerEmail, Security filter และการทดสอบ A/B
-อย่าบอกว่าซ่อน View/Slice แล้วข้อมูลเป็นส่วนตัว และตรวจแผนที่รองรับก่อนใช้จริง</pre></div><p class="source-line">เอกสารทางการ: <a href="https://support.google.com/sites/answer/90569?hl=en" target="_blank" rel="noopener noreferrer">แทรกเนื้อหาใน Sites ↗</a> · <a href="https://support.google.com/appsheet/answer/10106688?hl=en" target="_blank" rel="noopener noreferrer">AppSheet Views ↗</a> · <a href="https://support.google.com/appsheet/answer/10104977?hl=en" target="_blank" rel="noopener noreferrer">AppSheet Security filters ↗</a></p></section>
-<section class="section extension" id="architecture"><div class="section-head"><span class="secno">25</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>เว็บสวยแล้ว ข้อมูลจริงอยู่ตรงไหน?</h2><p class="intro">แยกหน้าจอ การประมวลผล และที่เก็บข้อมูลให้เป็นก่อน จะเลือกเครื่องมือและสั่ง AI ได้ตรงงาน ไม่ต้องซื้อทุกบริการพร้อมกัน</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>เมื่อกดบันทึก ข้อมูลเดินทางไปที่ไหน</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="เมื่อกดบันทึก ข้อมูลเดินทางไปที่ไหน — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="410" viewBox="0 0 800 410" role="img" aria-labelledby="architecture-title architecture-desc"><title id="architecture-title">เมื่อกดบันทึก ข้อมูลเดินทางไปที่ไหน</title><desc id="architecture-desc">Hosting ส่งหน้าเว็บให้ Browser จากนั้น Browser ติดต่อ Supabase ผ่าน HTTPS ผู้ใช้ล็อกอินกับ Auth และส่ง token มากับคำขอ Data API ตรวจสิทธิ์ผ่าน RLS ก่อนเข้าฐานข้อมูล ผลลัพธ์กลับไปอัปเดตหน้าจอ การซ่อนปุ่มอย่างเดียวไม่ได้ป้องกันข้อมูล</desc><defs><marker id="architecture-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M165 126 V228" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#architecture-arrow)"/><text x="200" y="183" fill="#b9cbe3" font-size="14" text-anchor="middle">โหลดเว็บ</text><path d="M310 260 C400 260 410 78 488 78" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#architecture-arrow)"/><text x="404" y="165" fill="#b9cbe3" font-size="14" text-anchor="middle">ล็อกอิน</text><path d="M490 105 C427 105 430 290 312 290" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#architecture-arrow)"/><text x="411" y="211" fill="#b9cbe3" font-size="14" text-anchor="middle">session</text><path d="M312 314 H488" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#architecture-arrow)"/><text x="399" y="306" fill="#b9cbe3" font-size="14" text-anchor="middle">HTTPS + token</text><path d="M634 340 V382 H166 V340" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#architecture-arrow)"/><text x="401" y="375" fill="#b9cbe3" font-size="14" text-anchor="middle">ข้อมูล / Error กลับสู่หน้าจอ</text><rect x="25" y="25" width="285" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="167.5" y="56" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Cloudflare Pages</text><text x="167.5" y="82" fill="#bdd0e7" font-size="15" text-anchor="middle">Hosting: HTML / CSS / JS</text><text x="167.5" y="104" fill="#bdd0e7" font-size="15" text-anchor="middle">เผยแพร่หน้าเว็บ</text><rect x="25" y="230" width="285" height="108" rx="14" fill="#102a50" stroke="#426492"/><text x="167.5" y="261" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Browser / React</text><text x="167.5" y="287" fill="#bdd0e7" font-size="15" text-anchor="middle">Frontend: ฟอร์ม + รายการ</text><text x="167.5" y="309" fill="#bdd0e7" font-size="15" text-anchor="middle">URL + publishable key</text><rect x="490" y="25" width="285" height="100" rx="14" fill="#0c3536" stroke="#426492"/><text x="632.5" y="56" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Supabase Auth</text><text x="632.5" y="82" fill="#bdd0e7" font-size="15" text-anchor="middle">ล็อกอิน → ได้ session token</text><text x="632.5" y="104" fill="#bdd0e7" font-size="15" text-anchor="middle">ระบุตัวตนของผู้ใช้</text><rect x="490" y="230" width="285" height="108" rx="14" fill="#0c3536" stroke="#426492"/><text x="632.5" y="261" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Data API → RLS → DB</text><text x="632.5" y="287" fill="#bdd0e7" font-size="15" text-anchor="middle">ตรวจว่า owner_id ตรงกับผู้ใช้</text><text x="632.5" y="309" fill="#bdd0e7" font-size="15" text-anchor="middle">PostgreSQL เก็บข้อมูลจริง</text></svg></div><figcaption>Hosting ส่งหน้าเว็บให้ Browser จากนั้น Browser ติดต่อ Supabase ผ่าน HTTPS ผู้ใช้ล็อกอินกับ Auth และส่ง token มากับคำขอ Data API ตรวจสิทธิ์ผ่าน RLS ก่อนเข้าฐานข้อมูล ผลลัพธ์กลับไปอัปเดตหน้าจอ การซ่อนปุ่มอย่างเดียวไม่ได้ป้องกันข้อมูล</figcaption></figure><div class="table-scroll" tabindex="0" role="region" aria-label="รู้จักส่วนประกอบของ Web App"><table><caption>รู้จักส่วนประกอบของ Web App</caption><thead><tr><th scope="col">ส่วน</th><th scope="col">หน้าที่แบบเข้าใจง่าย</th><th scope="col">ใน Workshop นี้</th></tr></thead><tbody><tr><th scope="row">Frontend</th><td>สิ่งที่ผู้ใช้เห็นและกด เช่น ฟอร์ม ตาราง ปุ่ม และข้อความแจ้งผล</td><td>React + Vite ทำหน้าจอ</td></tr><tr><th scope="row">Backend / API</th><td>รับคำขอ ตรวจสิทธิ์และกติกา แล้วอ่านหรือบันทึกข้อมูล</td><td>ใช้ Supabase Auth + Data API; งานลับเพิ่ม server function</td></tr><tr><th scope="row">Database</th><td>เก็บข้อมูลเป็นระเบียบ อ่าน แก้ไข ค้นหา และกำหนดความสัมพันธ์</td><td>PostgreSQL บน Supabase</td></tr><tr><th scope="row">Authentication / Authorization</th><td>ยืนยันว่า “คุณคือใคร” / ตรวจว่า “คุณทำอะไรกับข้อมูลใดได้”</td><td>Auth ล็อกอิน; RLS จำกัดแถวข้อมูล</td></tr><tr><th scope="row">Hosting / Domain</th><td>Hosting เป็นที่ให้บริการเว็บ; Domain คือชื่อที่คนพิมพ์เพื่อเข้าถึง</td><td>Cloudflare Pages; เริ่มด้วยชื่อ pages.dev ที่ระบบให้</td></tr><tr><th scope="row">File Storage</th><td>เก็บไฟล์รูป PDF หรือวิดีโอ; Database เก็บชื่อไฟล์ เส้นทาง และเจ้าของ</td><td>ถ้าขยายระบบ ใช้ private bucket + กฎสิทธิ์ + URL ชั่วคราว</td></tr></tbody></table></div><h3>ตัวอย่างที่ต้องแยกให้ออก</h3><div class="compare"><div class="box"><b>เว็บแนะนำบริการ</b><p>มีประวัติ ผลงาน และปุ่มติดต่อ ยังไม่จำเป็นต้องมี Database ของตัวเอง ถ้าฟอร์มส่งข้อมูลไปบริการอื่น ต้องบอกให้ชัดว่าข้อมูลไปที่ไหน</p></div><div class="box good"><b>ระบบรับแจ้งงาน</b><p>ผู้ใช้กลับมาดูคำขอเดิมได้จากอีกเครื่อง จึงต้องมี Database กลางและสิทธิ์เข้าถึง ข้อมูลต้องอยู่หลังรีเฟรช และอีกบัญชีต้องเปิดดูของคนอื่นไม่ได้</p></div></div><div class="callout"><b>localStorage ไม่ใช่ฐานข้อมูลกลาง:</b> เก็บใน Browser ของเครื่องนั้น เหมาะกับค่าหน้าจอหรือเดโม ไม่ใช่หลักฐานว่าระบบบันทึกให้ลูกค้าทุกคนแล้ว ข้อมูลจำลองต้องติดป้ายว่า “ข้อมูลตัวอย่าง” และไม่แจ้งว่าส่งสำเร็จก่อนบริการตอบรับ</div><h3>ทำไม Browser ติดต่อ Supabase ได้ ทั้งที่บอกว่าต้องมี Backend?</h3><p>Supabase มีส่วน Backend จัดการให้แล้ว Browser เรียก API ผ่าน HTTPS ไม่ได้ถือรหัสผ่าน PostgreSQL โดยตรง กุญแจ publishable ระบุโปรเจกต์ ส่วน token และ RLS ตัดสินสิทธิ์ งานที่ใช้กุญแจลับ เช่น เรียก AI แบบคิดเงิน ต้องผ่าน Backend ที่เราเขียนเพิ่ม</p><div class="prompt"><div class="prompt-head"><div><span>Prompt 31</span><b>ให้ AI แยกสิ่งที่ต้องมี ก่อนเลือกยี่ห้อ</b></div><button class="copy" type="button">คัดลอก</button></div><pre>อ่านโจทย์ Service Request Dashboard และโค้ดที่มีอยู่ก่อน ยังไม่ต้องแก้ไฟล์
-อธิบายเป็นภาษาคนเริ่มต้นว่า:
-1. ส่วนไหนเป็น Frontend, Backend/API, Database, Auth, Hosting และ Storage
-2. ตอนกดสร้างคำขอ ข้อมูลผ่านอะไรบ้าง และเก็บที่ไหน
-3. ตอนนี้ส่วนใดเป็นข้อมูลจำลองหรือ localStorage
-4. ถ้าใช้จากอีกเครื่อง ข้อมูลจะตามมาหรือไม่ เพราะอะไร
-5. เสนอชุดเครื่องมือที่น้อยที่สุดซึ่งรองรับข้อมูลแยกตามผู้ใช้
-6. ทำแผนภาพและบอกค่าใช้บริการประเภทที่ต้องเฝ้าดู โดยไม่เดาราคา
-รอให้ฉันยืนยันสถาปัตยกรรมก่อนเริ่มต่อระบบ</pre></div></section>
-<section class="section extension" id="database-brands"><div class="section-head"><span class="secno">26</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>เลือก Database: เปรียบเทียบ 4 บริการที่เจอบ่อย</h2><p class="intro">เลือกจากชนิดข้อมูล ความสัมพันธ์ และความสามารถที่ต้องดูแล ไม่ใช่เลือกเพียงเพราะ AI บอกว่า “ฟรี”</p></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="Database: จุดเด่นและสิ่งที่ต้องรับผิดชอบ"><table><caption>Database: จุดเด่นและสิ่งที่ต้องรับผิดชอบ</caption><thead><tr><th scope="col">บริการ / เว็บไซต์</th><th scope="col">ข้อดี</th><th scope="col">ข้อจำกัด / สิ่งที่ต้องเรียน</th><th scope="col">เหมาะกับ</th></tr></thead><tbody><tr><th scope="row"><a href="https://supabase.com/docs" target="_blank" rel="noopener noreferrer">Supabase ↗</a></th><td>PostgreSQL แบบตาราง; มี Auth, Data API และ Storage ใช้ร่วมกันได้</td><td>ต้องเข้าใจ SQL, RLS และการออกแบบสิทธิ์; ดูโควตาฐานข้อมูล ไฟล์ และการรับส่งข้อมูล</td><td>ระบบสมาชิก คำขอ จองคิว Dashboard ที่ข้อมูลสัมพันธ์กัน</td></tr><tr><th scope="row"><a href="https://firebase.google.com/docs/firestore" target="_blank" rel="noopener noreferrer">Firebase · Cloud Firestore ↗</a></th><td>เก็บแบบ collection/document; SDK และการอัปเดตข้อมูลแบบเรียลไทม์เหมาะกับแอป</td><td>ต้องออกแบบ document และ Security Rules; คิดการอ่าน/เขียนและดัชนี การ JOIN ไม่เหมือน SQL</td><td>แอปที่เน้น document และ sync; ใช้ Firebase Auth ประกอบ</td></tr><tr><th scope="row"><a href="https://neon.com" target="_blank" rel="noopener noreferrer">Neon ↗</a></th><td>PostgreSQL บริหารจัดการให้; branching ช่วยแยกฐานข้อมูลทดลอง</td><td>ต้องเลือกส่วน Auth, API และที่เก็บไฟล์ให้สอดคล้องกับสถาปัตยกรรม; connection string ต้องอยู่ฝั่ง server</td><td>แอป SQL ที่มี Backend หรือ framework รองรับอยู่แล้ว</td></tr><tr><th scope="row"><a href="https://developers.cloudflare.com/d1/" target="_blank" rel="noopener noreferrer">Cloudflare D1 ↗</a></th><td>ฐานข้อมูล SQL ที่ใช้แนวทาง SQLite; เชื่อมกับ Workers ในระบบเดียวกัน</td><td>ต้องเขียน API / ตรวจตัวตนและสิทธิ์บน Worker; ตรวจข้อจำกัดและความต่างจาก PostgreSQL</td><td>ระบบขนาดเล็กถึงกลางที่ต้องการใช้ Workers เป็น Backend</td></tr></tbody></table></div><h3>ใน Lab ฐานข้อมูลจริงเลือก Supabase เพราะอะไร?</h3><p>โจทย์มีผู้ใช้หลายคน แต่ละคนมีคำขอหลายรายการ จึงเหมาะกับตารางที่สัมพันธ์กัน และต้องฝึก Auth กับสิทธิ์ของข้อมูลด้วย การเลือกนี้เป็นข้อเสนอสำหรับ Lab นี้ ไม่ได้แปลว่าเหมาะกับทุกงาน ให้ฝึกเครื่องมือหนึ่งชุดจนเข้าใจเส้นทางข้อมูลก่อนย้ายยี่ห้อ</p><div class="simple-grid"><div class="term"><b>ตาราง / SQL</b><span>คิดเป็นแถวและคอลัมน์ เช่น users เชื่อมกับ service_requests ผ่านรหัสผู้ใช้ เหมาะกับกติกาและรายงานที่สัมพันธ์กัน</span></div><div class="term"><b>Document / NoSQL</b><span>คิดเป็นเอกสารซึ่งมี field และข้อมูลซ้อนกันได้ ยังคงต้องออกแบบโครงสร้าง กฎสิทธิ์ และรูปแบบ query</span></div></div><div class="callout"><b>ทั้งสองแบบต้องออกแบบ:</b> NoSQL ไม่ได้หมายความว่าไม่ต้องมีแบบข้อมูล และ SQL ไม่ได้แปลว่าต้องติดตั้ง Server เองเสมอไป แผนบริการและโควตาเปลี่ยนได้ ให้ตรวจหน้า Pricing ก่อนใช้งานจริง</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 32</span><b>เปรียบเทียบโดยยึดโจทย์ ไม่เพิ่มบริการเกินจำเป็น</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันกำลังทำระบบรับแจ้งงาน: ผู้ใช้ล็อกอิน สร้างคำขอ ดู/แก้ไข/ลบรายการของตัวเอง
-ช่วยเปรียบเทียบ Supabase, Firebase Firestore, Neon และ Cloudflare D1 สำหรับโจทย์นี้
-แสดง: รูปแบบข้อมูล, Auth, จุดตรวจสิทธิ์, Hosting ที่เชื่อมได้, ความยากสำหรับมือใหม่,
-ค่าใช้จ่ายประเภทที่อาจโตตามการใช้ และวิธีย้ายข้อมูลออก
-อ้างอิงเอกสารทางการและระบุวันที่ตรวจ ถ้าเข้าถึงข้อมูลปัจจุบันไม่ได้ให้บอกตรง ๆ
-เลือกหนึ่งชุดที่ทำ Lab ได้ง่าย อธิบายเหตุผลและข้อเสียที่ต้องยอมรับ
-ห้ามถือว่าแพ็กเกจฟรีใช้กับงานเชิงพาณิชย์ได้เสมอ และยังไม่สมัครหรือเปิดบริการแทนฉัน</pre></div><p class="source-line">อ่านประกอบ: <a href="https://firebase.google.com/docs/firestore/pricing" target="_blank" rel="noopener noreferrer">Firestore usage ↗</a> · <a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noopener noreferrer">Security Rules ↗</a> · <a href="https://github.com/neondatabase/neon" target="_blank" rel="noopener noreferrer">Neon architecture ↗</a></p></section>
-<section class="section extension" id="data-model"><div class="section-head"><span class="secno">27</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>ออกแบบตารางให้ AI ก่อนสั่งสร้างฟอร์ม</h2><p class="intro">Phase A ในบท 16 ฝึกหน้าจอด้วยข้อมูลตัวอย่าง ส่วน Phase B นี้ต่อข้อมูลจริงแบบ “แต่ละคนดูแลคำขอของตัวเอง” ก่อนเพิ่มบทบาท Support</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>แบบข้อมูล: ผู้ใช้หนึ่งคน มีคำขอได้หลายรายการ</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="แบบข้อมูล: ผู้ใช้หนึ่งคน มีคำขอได้หลายรายการ — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="405" viewBox="0 0 800 405" role="img" aria-labelledby="data-model-title data-model-desc"><title id="data-model-title">แบบข้อมูล: ผู้ใช้หนึ่งคน มีคำขอได้หลายรายการ</title><desc id="data-model-desc">auth.users.id เชื่อมกับ service_requests.owner_id แบบหนึ่งต่อหลาย owner_id บอกเจ้าของ ส่วน RLS เป็นกฎที่บังคับว่าคนที่ล็อกอินตรงกับเจ้าของหรือไม่ ไม่เก็บรหัสผ่านซ้ำในตารางคำขอ</desc><defs><marker id="data-model-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M316 99 H448" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#data-model-arrow)"/><text x="382" y="88" fill="#b9cbe3" font-size="14" text-anchor="middle">1 → หลาย</text><path d="M605 222 V260 H403 V284" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#data-model-arrow)"/><text x="606" y="258" fill="#b9cbe3" font-size="14" text-anchor="middle">ตรวจทุกคำขอ</text><rect x="35" y="30" width="280" height="142" rx="14" fill="#102a50" stroke="#426492"/><text x="175.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">auth.users</text><text x="175.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">id · UUID (Primary key)</text><text x="175.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">Email / ตัวตน ดูแลโดย Auth</text><text x="175.0" y="131" fill="#bdd0e7" font-size="15" text-anchor="middle">ไม่เก็บรหัสผ่านเอง</text><rect x="450" y="30" width="315" height="190" rx="14" fill="#0c3536" stroke="#426492"/><text x="607.5" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">service_requests</text><text x="607.5" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">id · UUID (Primary key)</text><text x="607.5" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">owner_id · UUID (Foreign key)</text><text x="607.5" y="131" fill="#bdd0e7" font-size="15" text-anchor="middle">title / description / status</text><text x="607.5" y="153" fill="#bdd0e7" font-size="15" text-anchor="middle">created_at</text><rect x="140" y="287" width="520" height="90" rx="14" fill="#142b4b" stroke="#426492"/><text x="400.0" y="318" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">RLS: auth.uid() = owner_id</text><text x="400.0" y="344" fill="#bdd0e7" font-size="15" text-anchor="middle">ล็อกอินเป็น A → อ่านและเขียนเฉพาะแถวของ A</text></svg></div><figcaption>auth.users.id เชื่อมกับ service_requests.owner_id แบบหนึ่งต่อหลาย owner_id บอกเจ้าของ ส่วน RLS เป็นกฎที่บังคับว่าคนที่ล็อกอินตรงกับเจ้าของหรือไม่ ไม่เก็บรหัสผ่านซ้ำในตารางคำขอ</figcaption></figure><div class="table-scroll" tabindex="0" role="region" aria-label="Data dictionary สำหรับฐานข้อมูลฝึก"><table><caption>Data dictionary สำหรับฐานข้อมูลฝึก</caption><thead><tr><th scope="col">Field</th><th scope="col">ชนิด / กติกา</th><th scope="col">เหตุผล</th></tr></thead><tbody><tr><th scope="row">id</th><td>UUID, ไม่ซ้ำ, สร้างอัตโนมัติ</td><td>ใช้แก้หรือลบคำขอที่ต้องการ ไม่ใช้ลำดับแถวบนจอ</td></tr><tr><th scope="row">owner_id</th><td>UUID ของผู้ใช้ที่ล็อกอิน</td><td>บอกเจ้าของและใช้ RLS; ไม่ใช้ชื่อที่พิมพ์เองตัดสินสิทธิ์</td></tr><tr><th scope="row">title</th><td>ข้อความ 3–120 ตัวอักษร</td><td>บังคับหัวข้อทั้งหน้าฟอร์มและฐานข้อมูล</td></tr><tr><th scope="row">description</th><td>ข้อความไม่เกิน 2,000 ตัวอักษร</td><td>รายละเอียดปัญหา; ไม่ใส่รหัสผ่านหรือข้อมูลลูกค้าจริงใน Lab</td></tr><tr><th scope="row">status</th><td>new / in_progress / done</td><td>ค่าในข้อมูลคงที่; หน้าจอแปลเป็น ใหม่ / กำลังทำ / เสร็จแล้ว</td></tr><tr><th scope="row">created_at</th><td>วันเวลาแบบ timestamptz</td><td>ฐานข้อมูลตั้งเวลา; หน้าจอแสดงตามภาษาหรือเขตเวลาผู้ใช้</td></tr></tbody></table></div><h3>แยกของที่ต้องทำรอบนี้กับของที่จะขยาย</h3><p>Lab ข้อมูลจริงตัดให้เหลือ title, description และ status เพื่อฝึก CRUD กับสิทธิ์ให้สำเร็จ รูปแบบฟอร์มในบท 16 ยังใช้เป็นต้นแบบได้ ส่วนประเภท ความสำคัญ ไฟล์แนบ และหน้ารวมงานของ Support เป็นงานต่อยอดที่ต้องเพิ่ม schema และสิทธิ์อย่างตั้งใจ ห้ามแสดงว่าบันทึก field เหล่านี้แล้ว ถ้ายังไม่ได้ส่งเข้าฐานข้อมูล</p><div class="callout green"><b>ไม่ใช้ปุ่ม “ฉันเป็น Admin” บนหน้าเว็บ:</b> ใน Lab นี้เจ้าของเปลี่ยนสถานะงานตัวเองได้ แต่ระบบ Support จริงต้องแยกผู้แจ้งกับเจ้าหน้าที่และจำกัดการเปลี่ยนสถานะทาง Backend/RLS บทบาทต้องกำหนดโดยผู้ดูแลที่เชื่อถือได้ ไม่อ่านค่าที่ผู้ใช้แก้เองจาก Browser</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 33</span><b>ออกแบบ schema และกติกาก่อนเขียน SQL</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ใช้ Service Request Dashboard เดิมเป็น Phase B สำหรับฐานข้อมูลจริง
-ขอบเขต Lab: ผู้ใช้แต่ละคนสร้าง อ่าน แก้ และลบคำขอของตัวเองได้เท่านั้น
-ใช้ Supabase Auth และตาราง service_requests ที่มี id, owner_id, title, description, status, created_at
-status เก็บ new / in_progress / done และแปลเป็นภาษาไทยใน UI
-เสนอ Data Dictionary, ความสัมพันธ์, validation และ RLS สำหรับ CRUD ทั้ง 4 อย่าง
-ห้ามเก็บรหัสผ่านเอง ห้ามใช้ localStorage เป็นฐานข้อมูลคำขอ และห้ามปิด RLS เพื่อให้เดโมผ่าน
-แยก field จากหน้าจอเดิมที่ยังไม่ต่อจริงให้ชัด ไม่แกล้งแจ้งว่าบันทึกแล้ว
-ยังไม่เพิ่ม Admin หรือ Support เห็นทุกงาน รอฉันตรวจ schema ก่อน</pre></div></section>
-<section class="section extension" id="supabase-lab"><div class="section-head"><span class="secno">28</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Lab: ล็อกอินแล้วบันทึกลง Supabase จริง</h2><p class="intro">ทำในโปรเจกต์ฝึกที่มีแต่ข้อมูลสมมติ ให้สำเร็จหนึ่งเส้นทางก่อน: Login → สร้างคำขอ → โหลดซ้ำ → แยกข้อมูลสองบัญชี</p></div></div><h3>1. เตรียมโปรเจกต์และผู้ใช้ทดสอบ</h3><ol class="lesson-steps"><li><b>เปิด Supabase ด้วยบัญชีเจ้าของงาน</b> สร้างโปรเจกต์ฝึกใหม่ เลือกภูมิภาคใกล้ผู้ใช้และตั้งรหัสผ่านฐานข้อมูล เก็บรหัสนี้ในที่ปลอดภัย ไม่วางใน Prompt หรือ source code</li><li><b>เปิด Authentication</b> เลือกวิธี Email/Password สำหรับ Lab สร้างหน้าสมัครและเข้าสู่ระบบ ถ้าเปิดยืนยันอีเมล ผู้ใช้ต้องกดยืนยันก่อนล็อกอินสำเร็จ ไม่ควรสั่งปิดการยืนยันเพื่อซ่อนปัญหา</li><li><b>ตั้ง URL ของ Auth</b> ตอนฝึกใช้ Site URL และ redirect ที่ตรงกับ <code>http://localhost:5173</code> ตอนเผยแพร่เปลี่ยน Site URL เป็น URL จริง และเก็บ localhost ในรายการ redirect เฉพาะที่ยังจำเป็น</li><li><b>เปิด SQL Editor</b> อ่าน SQL ด้านล่างให้เข้าใจแล้วรันในโปรเจกต์ฝึกใหม่ ตารางนี้ยังไม่ควรมีมาก่อน ถ้ามีอยู่แล้วให้ AI เสนอ migration ที่ไม่ลบข้อมูล</li><li><b>เตรียมผู้ใช้ A และ B</b> ใช้อีเมลทดสอบที่คุณควบคุม เปิดคนละ Browser profile หรือหน้าต่างส่วนตัว อย่าใช้ข้อมูลลูกค้าจริงในการทดลอง</li></ol><div class="prompt code-example"><div class="prompt-head"><div><span>SQL</span><b>สร้างตารางและสิทธิ์ของเจ้าของข้อมูล</b></div><button class="copy" type="button">คัดลอก</button></div><pre id="lab-sql">-- Lab ใหม่เท่านั้น: รันครั้งแรกใน Supabase SQL Editor
--- ถ้ามีตารางนี้แล้ว ให้ตรวจ schema และทำ migration แทนการรันทับ
-begin;
-
-create table public.service_requests (
-  id uuid primary key default gen_random_uuid(),
-  owner_id uuid not null default auth.uid()
-    references auth.users(id) on delete cascade,
-  title text not null check (char_length(btrim(title)) between 3 and 120),
-  description text not null default &#x27;&#x27; check (char_length(description) &lt;= 2000),
-  status text not null default &#x27;new&#x27;
-    check (status in (&#x27;new&#x27;, &#x27;in_progress&#x27;, &#x27;done&#x27;)),
-  created_at timestamptz not null default now()
-);
-
-create index service_requests_owner_created_idx
-  on public.service_requests (owner_id, created_at desc);
-
-alter table public.service_requests enable row level security;
-revoke all on public.service_requests from anon;
-grant select, insert, update, delete on public.service_requests to authenticated;
-
-create policy &quot;Read own requests&quot; on public.service_requests
-  for select to authenticated using ((select auth.uid()) = owner_id);
-
-create policy &quot;Create own requests&quot; on public.service_requests
-  for insert to authenticated with check ((select auth.uid()) = owner_id);
-
-create policy &quot;Update own requests&quot; on public.service_requests
-  for update to authenticated
-  using ((select auth.uid()) = owner_id)
-  with check ((select auth.uid()) = owner_id);
-
-create policy &quot;Delete own requests&quot; on public.service_requests
-  for delete to authenticated using ((select auth.uid()) = owner_id);
-
-commit;</pre></div><div class="download-row"><button class="lesson-button" type="button" data-download="sql">ดาวน์โหลด SQL สำหรับ Lab</button><a class="lesson-button secondary" href="#acceptance">ไป Checklist ทดสอบ</a></div><h3>2. แยกกุญแจที่เปิดเผยได้กับกุญแจลับ</h3><div class="table-scroll" tabindex="0" role="region" aria-label="กุญแจแต่ละชนิดใช้ไม่เหมือนกัน"><table><caption>กุญแจแต่ละชนิดใช้ไม่เหมือนกัน</caption><thead><tr><th scope="col">ค่า</th><th scope="col">วางที่ไหน</th><th scope="col">เหตุผล</th></tr></thead><tbody><tr><th scope="row">Project URL + publishable key</th><td>Frontend ได้; ตั้งผ่าน environment ของ Vite</td><td>ออกแบบให้ client ใช้ แต่ข้อมูลต้องได้รับการป้องกันด้วย Auth/RLS</td></tr><tr><th scope="row">Secret key / service_role</th><td>Backend เท่านั้น</td><td>สิทธิ์สูงและข้าม RLS ได้ ห้ามวางใน HTML, VITE_* หรือ GitHub public</td></tr><tr><th scope="row">Database password / connection string</th><td>Backend หรือเครื่องมือฐานข้อมูลที่ได้รับสิทธิ์</td><td>ใช้เชื่อมต่อฐานข้อมูลโดยตรง ไม่ใช้แทน publishable key</td></tr><tr><th scope="row">กุญแจ Claude / AI API / payment</th><td>Backend เท่านั้น</td><td>การเรียกอาจมีค่าใช้จ่าย ต้องควบคุมสิทธิ์และปริมาณการใช้</td></tr></tbody></table></div><div class="prompt code-example"><div class="prompt-head"><div><span>ENV</span><b>.env.local — แทนค่าจากโปรเจกต์ฝึกของคุณ</b></div><button class="copy" type="button">คัดลอก</button></div><pre>VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_PUBLISHABLE_KEY</pre></div><div class="callout"><b>ชื่อ .env ไม่ได้ทำให้ทุกค่าเป็นความลับ:</b> Vite ฝังค่า <code>VITE_*</code> ลงโค้ดที่ส่งให้ Browser ดังนั้นในตัวอย่างนี้จึงมีแค่ URL กับ publishable key เท่านั้น เปลี่ยนค่าแล้วต้อง restart dev server หรือ build/deploy ใหม่ หากกุญแจลับเคยหลุด ต้องหมุนกุญแจ ไม่ใช่แค่ลบจากไฟล์</div><h3>3. เชื่อมหน้าจอเดิมกับข้อมูล</h3><p>ถ้าเดิมเป็น HTML ล้วน ให้สร้างโฟลเดอร์ Lab React/Vite แยกแล้วทยอยย้ายหน้าจอ ห้ามใช้คำสั่งสร้างโปรเจกต์ทับเว็บ Portfolio ของคุณ ถ้าเป็น Vite อยู่แล้วให้ใช้โครงสร้างเดิม ติดตั้ง <code>@supabase/supabase-js</code> ในโปรเจกต์ Lab แล้วเพิ่มไฟล์ตัวเชื่อมต่อด้านล่าง</p><div class="prompt code-example"><div class="prompt-head"><div><span>JAVASCRIPT</span><b>ตัวอย่างฟังก์ชันอ่านและเพิ่มข้อมูล — ยังต้องเรียกจาก UI</b></div><button class="copy" type="button">คัดลอก</button></div><pre>// src/lib/supabase.js — React/Vite, @supabase/supabase-js
-import { createClient } from &#x27;@supabase/supabase-js&#x27;;
-
-const url = import.meta.env.VITE_SUPABASE_URL;
-const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-if (!url || !publishableKey) {
-  throw new Error(&#x27;ยังไม่ได้ตั้งค่า Supabase URL / publishable key&#x27;);
-}
-export const supabase = createClient(url, publishableKey);
-
-export async function loadRequests() {
-  const { data: identity, error: authError } = await supabase.auth.getUser();
-  if (authError || !identity.user) throw new Error(&#x27;กรุณาเข้าสู่ระบบ&#x27;);
-  const { data, error } = await supabase
-    .from(&#x27;service_requests&#x27;)
-    .select(&#x27;id, title, description, status, created_at&#x27;)
-    .order(&#x27;created_at&#x27;, { ascending: false });
-  if (error) throw error;
-  return data; // RLS กรองเจ้าของ ไม่พึ่งการซ่อนแถวในหน้าจอ
-}
-
-export async function createRequest(title, description) {
-  const { data: identity, error: authError } = await supabase.auth.getUser();
-  if (authError || !identity.user) throw new Error(&#x27;กรุณาเข้าสู่ระบบ&#x27;);
-  const cleanTitle = title.trim();
-  if ([...cleanTitle].length &lt; 3 || [...cleanTitle].length &gt; 120) {
-    throw new Error(&#x27;หัวข้อต้องยาว 3–120 ตัวอักษร&#x27;);
-  }
-  if ([...description].length &gt; 2000) throw new Error(&#x27;รายละเอียดไม่เกิน 2,000 ตัวอักษร&#x27;);
-  const { data, error } = await supabase
-    .from(&#x27;service_requests&#x27;)
-    .insert({ owner_id: identity.user.id, title: cleanTitle, description, status: &#x27;new&#x27; })
-    .select(&#x27;id, title, description, status, created_at&#x27;)
-    .single();
-  if (error) throw error;
-  return data; // แสดงสำเร็จหลังถึงบรรทัดนี้เท่านั้น
-}</pre></div><p>โค้ดนี้เป็นส่วนเชื่อมข้อมูล ไม่ใช่แอปครบหน้า ให้ AI ผูกฟอร์มเข้าสู่ <code>createRequest()</code> และเรียก <code>loadRequests()</code> หลังล็อกอินและหลังบันทึก ส่วน Error ต้องแสดงข้อความที่เข้าใจได้และไม่แสดง token หรือล็อกข้อมูลลับ ผู้ใช้กดบันทึกซ้ำระหว่างรอไม่ได้ แต่เมื่อเครือข่ายล้มเหลวต้องกลับมากดใหม่ได้</p><div class="prompt"><div class="prompt-head"><div><span>Prompt 34</span><b>ต่อ Auth + CRUD เข้ากับหน้าจอเดิม</b></div><button class="copy" type="button">คัดลอก</button></div><pre>อ่านโครงสร้างโปรเจกต์ Lab และ schema service_requests ที่ให้ก่อน
-ใช้ React/Vite + @supabase/supabase-js กับ Supabase Auth แบบ Email/Password
-ต้องมีสมัครบัญชี ยืนยันอีเมลตามการตั้งค่า ล็อกอิน ล็อกเอาต์ และคืนสถานะเมื่อเปิดหน้าใหม่
-ใช้ VITE_SUPABASE_URL กับ VITE_SUPABASE_PUBLISHABLE_KEY เท่านั้น ห้ามใช้ secret/service_role ใน client
-ผูก UI เดิมเข้ากับการอ่าน เพิ่ม แก้ และลบคำขอจริงตาม RLS ของเจ้าของ
-แก้/ลบด้วย id; ห้ามอัปเดตทุกแถวโดยไม่มีเงื่อนไข
-มีสถานะกำลังโหลด ไม่มีข้อมูล บันทึกสำเร็จ บันทึกผิดพลาด และถามก่อนลบ
-ปิดปุ่มขณะกำลังบันทึก เคลียร์สถานะเมื่อจบทั้งกรณีสำเร็จและล้มเหลว
-เมื่อออกจากระบบหรือเปลี่ยนบัญชีให้ล้างรายการของบัญชีเดิมทันที
-อย่าเก็บผลลัพธ์ส่วนตัวใน cache สาธารณะ อย่า render HTML จากข้อความที่ผู้ใช้กรอก
-ห้ามทำ success ปลอม ห้าม fallback ไป localStorage แล้วบอกว่าบันทึกลง Database แล้ว
-คงสี ฟอนต์ และ layout เดิมที่ผ่านการตรวจ ทำครั้งละหนึ่ง flow และบอกวิธีทดสอบ</pre></div><div class="prompt"><div class="prompt-head"><div><span>Prompt 35</span><b>ทดสอบสิทธิ์ด้วยสองบัญชีของเราเอง</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ช่วยทำแผนทดสอบในโปรเจกต์ Supabase สำหรับฝึกเท่านั้น ใช้บัญชีทดสอบ A และ B ที่ฉันควบคุม
-A สร้างรายการ 2 รายการ; B สร้าง 1 รายการ; แต่ละบัญชีต้องเห็นเฉพาะของตัวเอง
-ทดสอบจาก client ปกติด้วย publishable key และ session ของแต่ละบัญชี ไม่ใช้ SQL Editor หรือ service_role เป็นหลักฐานสิทธิ์
-ลองอ่าน/แก้/ลบรายการของอีกบัญชีด้วย id ที่ทราบจากข้อมูลทดสอบ: ต้องไม่ได้ข้อมูลและข้อมูลเดิมต้องไม่เปลี่ยน
-ลอง insert หรือเปลี่ยน owner_id เป็นของอีกบัญชี: ต้องถูกปฏิเสธ
-ออกจากระบบแล้วต้องอ่านข้อมูลไม่ได้; refresh และเปิดอีกเครื่องต้องได้ข้อมูลของบัญชีที่ล็อกอิน
-บางกรณี RLS คืนข้อมูลว่างหรือ affected rows เป็นศูนย์ ไม่จำเป็นต้องได้ 403 เสมอ
-รายงานผลจริง แยก ผ่าน / ไม่ผ่าน / ยังไม่ได้ทดสอบ ห้ามปิด RLS หรือให้ everyone อ่านเพื่อแก้ปัญหา</pre></div><p class="source-line">เอกสาร: <a href="https://supabase.com/docs/guides/getting-started/quickstarts/reactjs" target="_blank" rel="noopener noreferrer">Supabase + React ↗</a> · <a href="https://supabase.com/docs/guides/database/postgres/row-level-security" target="_blank" rel="noopener noreferrer">RLS ↗</a> · <a href="https://supabase.com/docs/guides/getting-started/api-keys" target="_blank" rel="noopener noreferrer">API keys ↗</a> · <a href="https://supabase.com/docs/guides/auth/redirect-urls" target="_blank" rel="noopener noreferrer">Auth redirects ↗</a> · <a href="https://vite.dev/guide/env-and-mode" target="_blank" rel="noopener noreferrer">Vite environment ↗</a></p></section>
-<section class="section extension" id="hosting-brands"><div class="section-head"><span class="secno">29</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Hosting ใช้ยี่ห้อไหนดี? ข้อดีและข้อจำกัด</h2><p class="intro">Hosting ไม่ได้แปลว่ามี Database มาให้ทุกกรณี และอัปโหลดโค้ดได้ไม่ได้แปลว่า runtime ของโปรเจกต์นั้นจะทำงานได้</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>เลือก Hosting จากสิ่งที่ต้องรัน</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="เลือก Hosting จากสิ่งที่ต้องรัน — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="465" viewBox="0 0 800 465" role="img" aria-labelledby="hosting-map-title hosting-map-desc"><title id="hosting-map-title">เลือก Hosting จากสิ่งที่ต้องรัน</title><desc id="hosting-map-desc">เว็บ Static ส่ง HTML/CSS/JS ให้ Browser; เว็บที่ต้องรันโค้ดฝั่ง Server ต้องใช้ Runtime ที่รองรับ ทั้งสองแบบต่อ Database กลางได้ แต่ห้ามนำรหัสผ่านฐานข้อมูลไปฝังในหน้าเว็บ</desc><defs><marker id="hosting-map-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M310 102 V136 H198 V173" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#hosting-map-arrow)"/><text x="201" y="151" fill="#b9cbe3" font-size="14" text-anchor="middle">Static</text><path d="M490 102 V136 H602 V173" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#hosting-map-arrow)"/><text x="605" y="151" fill="#b9cbe3" font-size="14" text-anchor="middle">Server runtime</text><path d="M198 287 V316 H305 V348" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#hosting-map-arrow)"/><text x="232" y="332" fill="#b9cbe3" font-size="14" text-anchor="middle">HTTPS API</text><path d="M602 287 V316 H490 V348" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#hosting-map-arrow)"/><text x="597" y="332" fill="#b9cbe3" font-size="14" text-anchor="middle">Server → DB</text><rect x="225" y="20" width="350" height="80" rx="14" fill="#142b4b" stroke="#426492"/><text x="400.0" y="51" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">โปรเจกต์ของเราต้องรันอะไร?</text><text x="400.0" y="77" fill="#bdd0e7" font-size="15" text-anchor="middle">อ่าน package.json และวิธี build ก่อน</text><rect x="20" y="175" width="355" height="110" rx="14" fill="#102a50" stroke="#426492"/><text x="197.5" y="206" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">HTML / CSS / JS หรือ Vite SPA</text><text x="197.5" y="232" fill="#bdd0e7" font-size="15" text-anchor="middle">Cloudflare Pages / Netlify</text><text x="197.5" y="254" fill="#bdd0e7" font-size="15" text-anchor="middle">GitHub Pages ตามเงื่อนไขบริการ</text><rect x="425" y="175" width="355" height="110" rx="14" fill="#102a50" stroke="#426492"/><text x="602.5" y="206" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">SSR / API / Server / Worker</text><text x="602.5" y="232" fill="#bdd0e7" font-size="15" text-anchor="middle">Vercel / Render / Railway</text><text x="602.5" y="254" fill="#bdd0e7" font-size="15" text-anchor="middle">Cloudflare Workers ตาม runtime</text><rect x="160" y="350" width="480" height="92" rx="14" fill="#0c3536" stroke="#426492"/><text x="400.0" y="381" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">Database กลาง + สิทธิ์เข้าถึง</text><text x="400.0" y="407" fill="#bdd0e7" font-size="15" text-anchor="middle">เช่น Supabase: API + Auth + RLS</text></svg></div><figcaption>เว็บ Static ส่ง HTML/CSS/JS ให้ Browser; เว็บที่ต้องรันโค้ดฝั่ง Server ต้องใช้ Runtime ที่รองรับ ทั้งสองแบบต่อ Database กลางได้ แต่ห้ามนำรหัสผ่านฐานข้อมูลไปฝังในหน้าเว็บ</figcaption></figure><div class="table-scroll" tabindex="0" role="region" aria-label="เปรียบเทียบ Hosting สำหรับคนสร้างเว็บด้วย AI"><table><caption>เปรียบเทียบ Hosting สำหรับคนสร้างเว็บด้วย AI</caption><thead><tr><th scope="col">บริการ / เว็บไซต์</th><th scope="col">ข้อดี</th><th scope="col">ข้อจำกัดที่ต้องรู้</th><th scope="col">เลือกเมื่อ</th></tr></thead><tbody><tr><th scope="row"><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer">GitHub Pages ↗</a></th><td>เหมาะกับ HTML/CSS/JS, เอกสารและ Portfolio ที่เก็บใน GitHub</td><td>ไม่รัน Node/PHP server; ไม่ใช่ที่โฮสต์ธุรกรรมสำคัญหรือทำเว็บ e-commerce/SaaS เป็นธุรกิจบนบริการนี้ ต้องอ่านข้อกำหนด</td><td>หน้าแนะนำตัว เอกสาร หรือเดโม static ที่เข้าเงื่อนไข</td></tr><tr><th scope="row"><a href="https://developers.cloudflare.com/pages/" target="_blank" rel="noopener noreferrer">Cloudflare Pages / Workers ↗</a></th><td>Pages กระจาย static assets; มี preview และเชื่อม Git; Workers ทำส่วน API ได้</td><td>runtime Workers ต่างจาก Server ทั่วไป ต้องตรวจแพ็กเกจและโควตา; Next.js SSR ต้องใช้แนวทางที่รองรับ ไม่ใช่สั่ง build เป็น dist แล้วจบ</td><td>Vite SPA ใน Lab; งาน API ที่ออกแบบสำหรับ Workers</td></tr><tr><th scope="row"><a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer">Vercel ↗</a></th><td>สะดวกกับ Next.js และการ deploy จาก Git; มี preview แยกแต่ละการเปลี่ยนแปลง</td><td>Hobby สำหรับงานส่วนตัวที่ไม่ใช่เชิงพาณิชย์ งานรับจ้างเชิงพาณิชย์ต้องเลือกแผนที่อนุญาต; ตรวจค่าใช้ compute และข้อมูล</td><td>แอป Next.js/SSR ที่ต้องการขั้นตอน deploy ตรง framework</td></tr><tr><th scope="row"><a href="https://docs.netlify.com" target="_blank" rel="noopener noreferrer">Netlify ↗</a></th><td>deploy จาก Git, preview และ Functions สำหรับงาน server บางส่วน</td><td>มีระบบเครดิตตามแผนและปริมาณใช้งาน; Functions ไม่ใช่ process รันค้างแบบ Server ทั่วไป</td><td>Frontend + API ขนาดเหมาะสมที่เข้ากับบริการ</td></tr><tr><th scope="row"><a href="https://render.com/docs" target="_blank" rel="noopener noreferrer">Render ↗</a></th><td>มี Web Service สำหรับ Backend และบริการฐานข้อมูล เลือก runtime ได้ตรงงาน</td><td>บริการฟรีมีข้อจำกัดและอาจพักเมื่อไม่มีการใช้; ตรวจ persistence, backup และแผนก่อนส่งงานจริง</td><td>Node/Python API หรือเว็บที่ต้องมี process ฝั่ง Server</td></tr><tr><th scope="row"><a href="https://docs.railway.com" target="_blank" rel="noopener noreferrer">Railway ↗</a></th><td>จัดแอป Backend และ Database ในโปรเจกต์เดียว เหมาะกับ Docker/บริการหลายตัว</td><td>ค่าใช้จ่ายผูกกับแผนและ resource ที่ใช้; ต้องดู memory, CPU, storage, network และตั้งการเฝ้าระวัง</td><td>งานที่มี Backend จริงและผู้ดูแลเข้าใจ runtime กับค่าใช้จ่าย</td></tr></tbody></table></div><h3>ชุดที่ใช้ใน Workshop นี้</h3><p><b>React + Vite → Cloudflare Pages สำหรับหน้าเว็บ และ Supabase สำหรับ Auth + Database</b> เหมาะกับการฝึกเพราะเห็นชัดว่า Hosting กับฐานข้อมูลเป็นคนละส่วน ไม่ต้องเปิดเครื่องของคุณค้างไว้ และเริ่มด้วย URL ที่ผู้ให้บริการให้มาได้ก่อนซื้อ Domain</p><h3>แล้วถ้าลูกค้าอยากทำแอปมือถือ?</h3><p>บทเขียนโค้ดในคอร์สนี้ทำ <b>Web App ที่ใช้ผ่าน Browser</b> และออกแบบให้เหมาะกับมือถือ การทำ PWA หรือแอปลง App Store / Google Play มีเรื่องติดตั้ง การแจ้งเตือน การอนุญาตใช้อุปกรณ์ และการตรวจร้านค้าเพิ่ม ไม่ควรสัญญาว่าการ deploy เว็บครั้งเดียวเท่ากับได้ native app พร้อมลงร้าน</p><div class="callout"><b>ไม่ซื้อบริการก่อนรู้สถาปัตยกรรม:</b> Domain คือชื่อเว็บ Hosting คือที่รัน/ส่งเว็บ ส่วน Database คือข้อมูล ตรวจทั้งโควตา ข้อกำหนดเชิงพาณิชย์ และค่าใช้จ่ายเมื่อโต ไม่มีคำว่า “ฟรีทุกอย่างตลอดไป” ในแผนสอนนี้</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 36</span><b>ให้ AI แนะนำ Hosting จากโค้ดจริง</b></div><button class="copy" type="button">คัดลอก</button></div><pre>อ่าน package.json, build scripts, framework และการใช้ server ของโปรเจกต์นี้
-บอกว่าเป็น Static / SPA / SSR / Backend และหลักฐานจากไฟล์
-เปรียบเทียบ Cloudflare Pages/Workers, Vercel, Netlify, Render, Railway และ GitHub Pages เฉพาะตัวที่รันได้จริง
-ฉันทำ [งานฝึกส่วนตัว / งานรับจ้างเชิงพาณิชย์ — เลือกให้ตรง]
-ระบุ build command, output directory, runtime, environment และข้อจำกัดแผน
-ถ้าใช้ Vercel ให้ตรวจเงื่อนไข Hobby ก่อนแนะนำงานเชิงพาณิชย์
-ถ้าเป็นเว็บ Static อย่าเพิ่ม Server โดยไม่มีเหตุผล ถ้ามี SSR อย่าบอกให้อัปโหลด HTML อย่างเดียว
-เสนอหนึ่งเส้นทาง deploy และวิธีย้อนกลับ ไม่ deploy หรือเปิดบริการคิดเงินแทนฉัน</pre></div><p class="source-line">เงื่อนไขที่ควรเปิดดู: <a href="https://vercel.com/docs/plans/hobby" target="_blank" rel="noopener noreferrer">Vercel Hobby ↗</a> · <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits" target="_blank" rel="noopener noreferrer">GitHub Pages limits ↗</a> · <a href="https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-credit-based-plans/how-credits-work/" target="_blank" rel="noopener noreferrer">Netlify credits ↗</a> · <a href="https://render.com/docs/free" target="_blank" rel="noopener noreferrer">Render free services ↗</a> · <a href="https://docs.railway.com/pricing/plans" target="_blank" rel="noopener noreferrer">Railway plans ↗</a></p></section>
-<section class="section extension" id="deploy-lab"><div class="section-head"><span class="secno">30</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Lab: เผยแพร่เว็บ + ต่อ Database บน URL จริง</h2><p class="intro">ทำหลัง CRUD และสิทธิ์ผ่านในเครื่องแล้ว เส้นทางนี้ใช้ React/Vite SPA ที่ไม่มี SSR ชื่อเมนูใน Dashboard อาจเปลี่ยน แต่ค่าที่ต้องตรวจยังเหมือนเดิม</p></div></div><figure class="visual-card technical-diagram"><div class="visual-top"><span>แผนภาพระบบ</span><b>จากเครื่องลูกค้า ไปสู่ URL ที่เปิดได้จริง</b></div><div class="visual-canvas" tabindex="0" role="region" aria-label="จากเครื่องลูกค้า ไปสู่ URL ที่เปิดได้จริง — เลื่อนแนวนอนเพื่อดูภาพบนจอเล็ก"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380" role="img" aria-labelledby="deploy-flow-title deploy-flow-desc"><title id="deploy-flow-title">จากเครื่องลูกค้า ไปสู่ URL ที่เปิดได้จริง</title><desc id="deploy-flow-desc">แก้โค้ดในเครื่อง ทดสอบ build แล้ว push ไป GitHub ให้ Cloudflare Pages build เป็น dist และเผยแพร่ URL ค่า Supabase URL/publishable key ถูกใส่ตอน build ส่วนข้อมูลและบัญชีอยู่ที่ Supabase แยกจาก source code</desc><defs><marker id="deploy-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#8fc2ff"/></marker></defs><path d="M317 80 H482" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#deploy-flow-arrow)"/><text x="400" y="68" fill="#b9cbe3" font-size="14" text-anchor="middle">push</text><path d="M628 132 V238" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#deploy-flow-arrow)"/><text x="682" y="186" fill="#b9cbe3" font-size="14" text-anchor="middle">build + deploy</text><path d="M483 292 H317" fill="none" stroke="#8fc2ff" stroke-width="2" marker-end="url(#deploy-flow-arrow)"/><text x="400" y="280" fill="#b9cbe3" font-size="14" text-anchor="middle">เผยแพร่</text><rect x="25" y="30" width="290" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="170.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">1 · เครื่องลูกค้า</text><text x="170.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">แก้โค้ด → npm run build</text><text x="170.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">ตรวจหน้าจอและข้อมูล</text><rect x="485" y="30" width="290" height="100" rx="14" fill="#102a50" stroke="#426492"/><text x="630.0" y="61" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">2 · GitHub repository</text><text x="630.0" y="87" fill="#bdd0e7" font-size="15" text-anchor="middle">เก็บ source + package-lock</text><text x="630.0" y="109" fill="#bdd0e7" font-size="15" text-anchor="middle">ไม่ส่ง .env หรือ node_modules</text><rect x="485" y="240" width="290" height="105" rx="14" fill="#142b4b" stroke="#426492"/><text x="630.0" y="271" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">3 · Cloudflare Pages</text><text x="630.0" y="297" fill="#bdd0e7" font-size="15" text-anchor="middle">npm run build → dist</text><text x="630.0" y="319" fill="#bdd0e7" font-size="15" text-anchor="middle">ตั้งค่า VITE_* เฉพาะค่าที่เปิดเผยได้</text><rect x="25" y="240" width="290" height="105" rx="14" fill="#0c3536" stroke="#426492"/><text x="170.0" y="271" fill="#f4f8ff" font-size="19" font-weight="700" text-anchor="middle">4 · URL จริง / Browser</text><text x="170.0" y="297" fill="#bdd0e7" font-size="15" text-anchor="middle">HTTPS → ล็อกอิน → สร้างคำขอ</text><text x="170.0" y="319" fill="#bdd0e7" font-size="15" text-anchor="middle">ข้อมูลยังอยู่ใน Supabase</text></svg></div><figcaption>แก้โค้ดในเครื่อง ทดสอบ build แล้ว push ไป GitHub ให้ Cloudflare Pages build เป็น dist และเผยแพร่ URL ค่า Supabase URL/publishable key ถูกใส่ตอน build ส่วนข้อมูลและบัญชีอยู่ที่ Supabase แยกจาก source code</figcaption></figure><h3>A. ตรวจในเครื่องก่อนอัปโหลด</h3><ol class="lesson-steps"><li><b>ใช้โฟลเดอร์ Lab แยก</b> ให้ AI ตรวจ Node.js ตามข้อกำหนดของ Vite เวอร์ชันที่ใช้ ถ้าสร้างใหม่ให้ทำในโฟลเดอร์ว่าง ไม่รันทับเว็บไซต์เดิม</li><li><b>ทดสอบบัญชี A/B</b> สร้าง แก้ ลบ รีเฟรช และออกจากระบบ ให้แน่ใจว่าไม่ใช่ข้อมูลจำลอง แล้วอ่าน Error ที่ยังเหลือ</li><li><b>รัน build</b> ใช้ <code>npm run build</code> และ <code>npm run preview</code> ตาม scripts ของโปรเจกต์นี้ ตรวจ output ที่ชื่อ <code>dist</code> จริง ถ้า build ไม่ผ่านให้แก้ก่อน deploy</li><li><b>ตรวจ Git</b> เก็บ source, package.json, lockfile และ README ไม่อัปโหลด node_modules หรือรหัสลับ ถ้าไฟล์เคยถูกติดตามใน Git แล้ว การเพิ่ม .gitignore อย่างเดียวไม่ลบประวัติเดิม</li></ol><div class="prompt code-example"><div class="prompt-head"><div><span>GIT</span><b>.gitignore สำหรับโปรเจกต์ Lab ใหม่</b></div><button class="copy" type="button">คัดลอก</button></div><pre>node_modules/
-dist/
-.env
-.env.*
-!.env.example
-*.log</pre></div><p><code>.env.example</code> ใส่แค่ชื่อค่ากับ placeholder สำหรับผู้ดูแลคนถัดไป หากมี secret เคยอยู่ใน repository ต้องหมุน/ยกเลิกกุญแจที่หลุด และแก้ประวัติหรือสิทธิ์เข้าถึงตามกรณี ก่อนเปิดใช้งานจริง</p><h3>B. เชื่อม GitHub กับ Cloudflare Pages</h3><ol class="lesson-steps"><li><b>Push โปรเจกต์ Lab ไป GitHub</b> ใช้ repository ของเจ้าของงาน สาขาที่เลือก deploy ต้องมีโค้ดที่ตรวจแล้ว เช่น main และมี package-lock ที่ตรงกับ dependencies</li><li><b>เปิด Cloudflare Dashboard → Workers &amp; Pages</b> เลือกเส้นทางสร้าง Pages project และเชื่อม Git repository เลือก repository กับ branch ให้ถูก ไม่ต้องสร้าง Worker ใหม่สำหรับ Lab static นี้</li><li><b>ตั้ง build</b> Framework เลือก React/Vite หรือกำหนดเอง Build command: <code>npm run build</code>; Output directory: <code>dist</code>; Root directory ใช้โฟลเดอร์ที่มี package.json ถ้าอยู่ราก repo ให้ใช้ค่าราก</li><li><b>ตั้ง Environment ของ Production และ Preview</b> ใส่ <code>VITE_SUPABASE_URL</code> และ <code>VITE_SUPABASE_PUBLISHABLE_KEY</code> สำหรับ environment นั้น ค่าสองตัวนี้เปิดเผยต่อ Browser ได้ ต้องไม่ใส่ service_role หรือรหัสฐานข้อมูล</li><li><b>เริ่ม Deploy และอ่าน Build log</b> เมื่อสำเร็จจะได้ชื่อเว็บภายใต้ pages.dev ถ้าล้มเหลวให้ดู error แรกที่เป็นต้นเหตุ ไม่กด retry ซ้ำโดยไม่แก้</li><li><b>ตั้ง Supabase Auth ให้ตรง URL จริง</b> เปลี่ยน Site URL เป็น HTTPS ของ production และเพิ่ม redirect URL ที่ใช้จริง ถ้าทดสอบ preview ให้เพิ่มเฉพาะ URL ที่ควบคุม ไม่เปิด redirect กว้างโดยไม่จำเป็น</li><li><b>เปิด URL จากมือถือ</b> ใช้คนละเครือข่ายกับเครื่องสอน ล็อกอินบัญชี A สร้างข้อมูล แล้วกลับมาเปิดบนคอม ต้องเห็นรายการเดียวกัน จากนั้นตรวจบัญชี B ว่าไม่เห็นของ A</li></ol><h3>C. ตรวจหลัง deploy และก่อนผูก Domain</h3><div class="table-scroll" tabindex="0" role="region" aria-label="Acceptance หลังเปิดเว็บออนไลน์"><table><caption>Acceptance หลังเปิดเว็บออนไลน์</caption><thead><tr><th scope="col">รายการ</th><th scope="col">ผลที่ต้องได้</th></tr></thead><tbody><tr><th scope="row">URL และ HTTPS</th><td>เปิดได้จริงโดยไม่ต้องเปิด dev server ในเครื่องของคุณ</td></tr><tr><th scope="row">Refresh / เส้นทางย่อย</th><td>ถ้าใช้ React Router ให้เปิด URL ย่อยโดยตรงและ refresh; Pages มีพฤติกรรม SPA fallback เมื่อไม่มี top-level 404.html แต่ต้องทดสอบ config จริง</td></tr><tr><th scope="row">Login / Email confirmation</th><td>ลิงก์อีเมลกลับมาที่เว็บจริง ไม่พาไป localhost ของผู้เรียน</td></tr><tr><th scope="row">Database</th><td>ข้อมูลยังอยู่หลังรีเฟรชและเมื่อเปิดอีกเครื่อง ไม่ใช่ localStorage</td></tr><tr><th scope="row">Environment</th><td>เปลี่ยนค่าแล้ว build/deploy ใหม่ เพราะ Vite ใส่ค่าในไฟล์ที่ build</td></tr><tr><th scope="row">Domain</th><td>เพิ่ม Custom domain ผ่านขั้นตอนของ Hosting แล้วตั้ง DNS ตามค่าที่ระบบให้ รอ DNS/TLS และอัปเดต Auth URLs อีกรอบ</td></tr><tr><th scope="row">ค่าใช้จ่ายและการดูแล</th><td>ตรวจ usage, alert, backup และเจ้าของบัญชี บางบริการมีแจ้งเตือนโดยไม่ได้หยุดใช้เงินอัตโนมัติ</td></tr></tbody></table></div><div class="callout green"><b>Rollback โค้ด ≠ ย้อนข้อมูล:</b> กลับไป deployment ก่อนหน้าแก้หน้าเว็บได้ แต่ไม่ได้คืนตารางหรือข้อมูลที่ลบไป การแก้ schema ต้องมี migration และแผนสำรองข้อมูลแยกต่างหาก สำหรับ Lab เริ่มจากข้อมูลสมมติแล้วฝึก export/restore ก่อนมีลูกค้าจริง</div><div class="prompt"><div class="prompt-head"><div><span>Prompt 37</span><b>เตรียม Deploy ให้ตรวจทีละขั้น</b></div><button class="copy" type="button">คัดลอก</button></div><pre>โปรเจกต์นี้เป็น React/Vite SPA ใช้ Supabase Auth และ Database
-ช่วยตรวจว่า npm run build ผ่านและ output เป็น dist จริง
-ทำรายการสิ่งที่ต้องตั้งบน Cloudflare Pages: repo, branch, root, build command, output และ environment
-client ใช้เพียง VITE_SUPABASE_URL กับ VITE_SUPABASE_PUBLISHABLE_KEY
-ตรวจ .gitignore และไฟล์ที่ Git ติดตามอยู่ โดยอย่าพิมพ์ค่า secret ลงรายงาน
-อธิบายวิธีตั้ง Supabase Site URL / redirect สำหรับ localhost และ production
-ทำ checklist: deep-link refresh, signup/login/logout, CRUD, A/B ownership, mobile, network error
-อธิบายวิธีย้อน deployment และเตือนว่าข้อมูล DB ไม่ได้ย้อนตาม
-ยังไม่กด deploy แทนฉัน รอเจ้าของงานทำตามและส่ง log ที่ลบข้อมูลลับแล้วมาให้ตรวจ</pre></div><p class="source-line">คู่มือ: <a href="https://developers.cloudflare.com/pages/framework-guides/deploy-a-vite3-project/" target="_blank" rel="noopener noreferrer">Vite บน Pages ↗</a> · <a href="https://developers.cloudflare.com/pages/configuration/build-configuration/" target="_blank" rel="noopener noreferrer">Build settings ↗</a> · <a href="https://developers.cloudflare.com/pages/configuration/serving-pages/" target="_blank" rel="noopener noreferrer">SPA routing ↗</a></p></section>
-<section class="section extension" id="production-debug"><div class="section-head"><span class="secno">31</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>แก้อาการยอดฮิต: หน้าเว็บสวย แต่ใช้งานไม่ได้</h2><p class="intro">ให้ลูกค้าฝึกแยกว่าปัญหาอยู่ที่ UI, Login, API, สิทธิ์ หรือ Hosting ก่อนสั่ง AI แก้ จะไม่จบด้วยการรื้อทั้งเว็บ</p></div></div><div class="table-scroll" tabindex="0" role="region" aria-label="ตารางแยกอาการก่อนสั่ง AI แก้"><table><caption>ตารางแยกอาการก่อนสั่ง AI แก้</caption><thead><tr><th scope="col">อาการ</th><th scope="col">ตรวจอะไร</th><th scope="col">แนวแก้ที่เหมาะสม</th></tr></thead><tbody><tr><th scope="row">บันทึกแล้วหายเมื่อ refresh</th><td>ข้อมูลอยู่ใน array/localStorage หรือเรียก API จริง? Network มีคำขอไหม?</td><td>ต่อ Database และโหลดจากข้อมูลจริง; ไม่ให้ alert สำเร็จมาแทนการบันทึก</td></tr><tr><th scope="row">401 / ยังไม่ได้เข้าสู่ระบบ</th><td>session มีอยู่ไหม, token หมดอายุหรือมาจากคนละ project?</td><td>แก้ flow login/session; ไม่ใส่ service_role ใน client เพื่อข้ามขั้นตอน</td></tr><tr><th scope="row">403 / RLS error ตอนบันทึก</th><td>authenticated role, owner_id, policy WITH CHECK และสิทธิ์ตาราง</td><td>ทำให้ข้อมูลตรงกับผู้ใช้และกฎที่ออกแบบ ไม่ปิด RLS</td></tr><tr><th scope="row">อ่านไม่เจอ แต่ไม่มี error</th><td>ล็อกอินคนใด, อยู่ environment ไหน, RLS กรองแถวออกหรือไม่?</td><td>ใช้ข้อมูลทดสอบของบัญชีนั้น ตรวจผ่าน client ปกติ SQL Editor อาจเห็นมากกว่าผู้ใช้จริง</td></tr><tr><th scope="row">A เห็นข้อมูล B หรือออกระบบแล้วยังเห็น</th><td>RLS เปิดครบหรือไม่; cache/UI ล้างเมื่อเปลี่ยนบัญชีไหม?</td><td>ถือเป็นบั๊กสิทธิ์ หยุดใช้ข้อมูลจริงจนแก้ Backend และ state ที่ค้าง</td></tr><tr><th scope="row">Local ใช้ได้ แต่ production หน้าขาว</th><td>Build log, Console, JS asset path, env และรุ่น runtime</td><td>แก้ต้นเหตุแล้ว build/deploy ใหม่; ไม่เผย token ใน screenshot</td></tr><tr><th scope="row">ลิงก์ยืนยันอีเมลไป localhost</th><td>Site URL และ redirect ของ Supabase</td><td>ใส่ URL production ให้ตรง ทดลองสมัครด้วยบัญชีทดสอบใหม่</td></tr><tr><th scope="row">เปิดลิงก์ย่อยแล้ว 404</th><td>โครงสร้าง static/SPA/SSR และ fallback ของ host</td><td>ตั้ง router/fallback ตามชนิดแอป ห้ามแก้ด้วยการ redirect ทุก API ไป index.html</td></tr><tr><th scope="row">กดหลายครั้งได้ข้อมูลซ้ำ</th><td>ปุ่มถูกปิดขณะรอหรือไม่; มี retry หรือ handler ซ้ำไหม?</td><td>กัน double submit; งานสำคัญเพิ่ม idempotency/unique rule ฝั่ง server</td></tr><tr><th scope="row">ขึ้น CORS / Network error</th><td>URL, HTTPS, Origin, endpoint ที่เรียก และ log ฝั่ง server</td><td>อนุญาต origin ที่ใช้งานจริง; อย่าใส่ no-cors แล้วถือว่าแก้ได้</td></tr><tr><th scope="row">เปิดครั้งแรกช้า / 429 / quota</th><td>บริการพัก, rate limit, query ซ้ำ, รูปใหญ่ หรือ usage เกิน?</td><td>ลดการเรียกซ้ำและตรวจแผน; แสดงสถานะรอ/ลองใหม่ ไม่อ้างว่าเพิ่ม animation แล้วจะเร็ว</td></tr></tbody></table></div><div class="prompt"><div class="prompt-head"><div><span>Prompt 38</span><b>รายงานบั๊กพร้อมหลักฐาน โดยไม่ส่งรหัสลับ</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ปัญหาที่พบ: [อาการที่เห็น]
-คาดหวัง: [สิ่งที่ควรเกิด]
-ทำซ้ำได้โดย: [1 → 2 → 3]
-เกิดบน: [localhost / URL production], Browser: [ชื่อ], บัญชีทดสอบ: [A/B ไม่ต้องส่งรหัส]
-Error: [ข้อความที่ลบ token, password, key และข้อมูลส่วนตัวแล้ว]
-เปลี่ยนล่าสุด: [ไฟล์หรือการตั้งค่าที่แก้]
-
-ก่อนแก้ ให้อธิบายสมมติฐานแยก UI / Auth / API / RLS / Hosting และหลักฐานที่ยังต้องตรวจ
-แก้เฉพาะต้นเหตุ ไม่รื้อดีไซน์ ไม่ปิด RLS ไม่ใช้ secret key ใน Browser ไม่ทำข้อมูลจำลองแทนข้อมูลจริง
-หลังแก้ บอกไฟล์ที่เปลี่ยน วิธีทดสอบซ้ำ และสิ่งที่ยังไม่ได้ทดสอบ
-ห้ามอ้างว่าทดสอบบน Cloudflare หรือ Supabase แล้ว ถ้าไม่ได้เข้าถึงบริการนั้นจริง</pre></div></section>
-<section class="section extension" id="claude-practice"><div class="section-head"><span class="secno">32</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>ลงมือใช้ Claude Code: จาก Prompt ไปสู่ชิ้นงาน</h2><p class="intro">ใช้บัญชีและโปรเจกต์ฝึกของคุณเอง ทำทีละขั้น อ่านสิ่งที่ AI จะเปลี่ยน แล้วตรวจใน Browser ก่อนทำขั้นต่อไป</p></div></div><h3>เตรียมตัวก่อนเริ่ม</h3><ol class="lesson-steps"><li><b>เลือกชิ้นงานหนึ่งอย่าง</b> ถ้าอยากเริ่มง่ายเลือก Forms + Sheets, หน้า Notion หรือเว็บ Static ก่อน ถ้าทำหน้าเว็บได้แล้วค่อยต่อ Apps Script หรือ Database</li><li><b>เปิดโฟลเดอร์ Lab แยก</b> ไม่รันทับเว็บที่ใช้งานอยู่ เก็บไฟล์ก่อนแก้หรือ commit รุ่นที่เปิดได้ไว้ เพื่อกลับมาดูความต่างเมื่อ AI แก้ผิด</li><li><b>ตรวจว่า Claude Code ใช้งานได้</b> ต้องมีสิทธิ์ตามบัญชี/ช่องทางที่รองรับ ถ้าไม่มี ให้ใช้ AI ที่คุณเข้าถึงได้ช่วยวาง Prompt และอ่านโค้ด โดยไม่อ้างว่ารันผ่าน Claude Code แล้ว</li><li><b>เริ่มใน Plan mode</b> ให้เครื่องมืออ่านโครงสร้างและเสนอแผนก่อนแก้ อย่าคิดว่าทุกโหมดจะถามก่อนรันเสมอ ตรวจสิทธิ์ที่เครื่องมือตั้งไว้และจำกัดงานในโฟลเดอร์ Lab</li></ol><div class="prompt code-example"><div class="prompt-head"><div><span>POWERSHELL</span><b>ตัวอย่าง CLI บน Windows ที่มี WinGet — ถ้าติดตั้งแล้วให้ข้าม</b></div><button class="copy" type="button">คัดลอก</button></div><pre>winget install Anthropic.ClaudeCode
-
-# เปิด terminal ใหม่หลังติดตั้ง
-claude --version
-
-# เปิด terminal ในโฟลเดอร์โปรเจกต์ฝึก แล้วเริ่ม
-claude</pre></div><p>ล็อกอินผ่านขั้นตอนที่เครื่องมือเปิดให้ด้วยบัญชีของคุณเอง ใช้ <code>/help</code> ดูคำสั่งปัจจุบัน และ <code>/login</code> เมื่อต้องยืนยันบัญชีใหม่ ถ้าเครื่องไม่รองรับวิธีนี้ ให้ใช้วิธีติดตั้งที่ตรงระบบจากเอกสารทางการ</p><div class="prompt"><div class="prompt-head"><div><span>Prompt 39</span><b>เริ่มโปรเจกต์อย่างมีขั้นตอนด้วย Claude Code</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ฉันเป็นผู้เรียนมือใหม่ กำลังทำโปรเจกต์ฝึกของตัวเอง
-เริ่มใน Plan mode: อ่านโครงสร้างและคำแนะนำใน repository ก่อน ยังไม่แก้ไฟล์
-บอกว่าโปรเจกต์เป็นเว็บแบบใด ใช้เครื่องมืออะไร เปิดดูในเครื่องอย่างไร และข้อมูลอยู่ที่ไหน
-เป้าหมายรอบนี้คือ [หน้าเว็บ Static / ฟอร์ม Apps Script / Web App กับ Supabase — เลือกหนึ่ง]
-เสนอแผนสั้น ๆ พร้อมผลที่ฉันต้องตรวจหลังแต่ละขั้น
-คงสีและฟอนต์เดิม ทำทีละ flow ไม่รื้อส่วนที่ไม่เกี่ยวข้อง
-อย่าอ่านหรือแสดง .env/รหัสลับ อย่าสมัครบริการหรือ deploy แทนฉัน
-หลังแก้ให้สรุปไฟล์ที่เปลี่ยน วิธีทดสอบ และสิ่งที่ยังไม่ได้ทดสอบตามจริง</pre></div><h3>วงรอบที่ใช้ทุกครั้ง</h3><div class="simple-grid"><div class="term"><b>1 · บอกเป้าหมาย</b><span>ระบุผู้ใช้ สิ่งที่ต้องทำ ข้อมูล และหน้าตาแนวที่ต้องการ</span></div><div class="term"><b>2 · อ่านแผน</b><span>ดูไฟล์และผลกระทบก่อนเริ่ม เลือกทำเพียงหนึ่งส่วน</span></div><div class="term"><b>3 · เปิดดูผล</b><span>ตรวจ diff แล้วกดใช้งานจริง ทดสอบมือถือและข้อมูลที่บันทึก</span></div><div class="term"><b>4 · แก้เป็นจุด</b><span>บอกอาการพร้อมหลักฐาน ถ้าผ่านให้บันทึกรุ่นแล้วไปขั้นต่อไป</span></div></div><h3>ถ้าใช้เครื่องมือไม่ได้ระหว่างฝึก</h3><p>ถ้า Login/โควตามีปัญหา ให้เก็บข้อความ Error ที่ไม่ติดข้อมูลลับ แล้วฝึกจากตัวอย่างในบทเรียนหรือเครื่องมือที่คุณมีสิทธิ์ใช้ต่อได้ ถ้าไม่มีอินเทอร์เน็ต ให้ตรวจหน้าเว็บและข้อมูลจำลองในเครื่องก่อน ส่วนการบันทึกบนบริการและ URL ออนไลน์ต้องกลับมาทดสอบเมื่อเชื่อมต่อได้</p><h3>เช็กความเข้าใจของตัวเอง</h3><ul><li>ไฟล์ใดทำหน้าจอ และข้อมูลบันทึกอยู่ที่ไหน?</li><li>เมื่อเปิดจากอีกเครื่องจะเห็นข้อมูลเดิมหรือไม่ เพราะอะไร?</li><li>URL ของ repository ต่างจาก URL เว็บไซต์อย่างไร?</li><li>ใครเข้าถึงข้อมูลได้ และสิทธิ์ถูกบังคับที่ใด?</li><li>ถ้าสิ่งที่ AI ทำผิด จะย้อนกลับและทดสอบซ้ำอย่างไร?</li></ul><p class="source-line">เอกสารทางการ: <a href="https://code.claude.com/docs/en/quickstart" target="_blank" rel="noopener noreferrer">Claude Code เริ่มต้น ↗</a> · <a href="https://code.claude.com/docs/en/authentication" target="_blank" rel="noopener noreferrer">บัญชีและสิทธิ์ ↗</a> · <a href="https://code.claude.com/docs/en/permission-modes" target="_blank" rel="noopener noreferrer">โหมดการทำงาน ↗</a></p></section>
-<section class="section extension" id="acceptance"><div class="section-head"><span class="secno">33</span><div><span class="tag">BUILD → DATA → ONLINE</span><h2>Prompt ส่งงาน + Checklist ที่ใช้ตรวจได้จริง</h2><p class="intro">เลือก Prompt ให้ตรงกับเครื่องมือและขอบเขตงาน แล้วนำผลไปทดสอบทีละขั้น เป้าหมายคือส่งมอบสิ่งที่อธิบาย ทดสอบ และดูแลต่อได้</p></div></div><div class="prompt"><div class="prompt-head"><div><span>Prompt 40</span><b>Master Prompt ต่อยอด: จากเว็บสวยสู่ระบบข้อมูลจริง</b></div><button class="copy" type="button">คัดลอก</button></div><pre>ต่อยอด Service Request Dashboard เดิม ห้ามรื้อดีไซน์หรือเขียนทับโปรเจกต์อื่น
-
-เป้าหมาย Phase B:
-- Web App ภาษาไทยบน React/Vite ใช้มือถือได้ดี
-- Supabase Auth + PostgreSQL; ตาราง service_requests ตาม schema ที่ให้
-- ผู้ใช้แต่ละคน CRUD ข้อมูลตัวเองเท่านั้น บังคับด้วย RLS ทั้งอ่าน/เพิ่ม/แก้/ลบ
-- เจ้าของแก้ status ได้ใน Lab; บทบาท Support/Admin เป็นงานถัดไป ไม่แอบเปิดทุกข้อมูล
-- Cloudflare Pages ให้บริการ Frontend; ไม่มี SSR ในขอบเขตนี้
-
-หน้าจอ:
-- หน้าเข้าสู่ระบบ/สมัคร, Dashboard, รายการคำขอ, ฟอร์มสร้าง/แก้ และยืนยันลบ
-- คงสีและฟอนต์เดิม ความกว้างอ่านง่าย สถานะไม่ใช้สีอย่างเดียว
-- Loading, Empty, Error, Success ต้องตรงผล API
-- กดด้วยคีย์บอร์ดได้ มี label และแจ้ง Error ข้างช่อง
-
-ข้อกำหนดข้อมูล:
-- ใช้ข้อมูลสมมติในโปรเจกต์ฝึกก่อน ไม่มีข้อมูลลูกค้าจริง
-- ใช้ publishable key ใน client ได้ แต่ห้าม secret/service_role/DB password/AI API key
-- ไม่มี success ปลอม ไม่มี fallback localStorage แทน DB โดยไม่แจ้ง
-- ล้างข้อมูลในหน้าจอเมื่อ logout/เปลี่ยนบัญชี
-- ไม่ render ข้อความผู้ใช้เป็น HTML
-
-วิธีทำ:
-1. อ่าน repo และสรุปแผน/จุดที่เป็น mock ก่อนแก้
-2. ทำทีละ flow: Auth → Create/Read → Update/Delete → A/B permissions → Deploy
-3. เสนอ migration ก่อนเปลี่ยน schema ห้าม DROP หรือทำลายข้อมูลเดิม
-4. ตรวจ build, mobile, deep-link refresh, Auth redirects และ Error state
-5. สรุปไฟล์ที่แก้ ค่าที่เจ้าของต้องตั้ง และผลทดสอบจริง
-
-การส่งมอบ:
-- README วิธีเปิดในเครื่อง, ชื่อ environment ที่ต้องตั้ง, build/output และวิธี deploy
-- .env.example มี placeholder เท่านั้น; .gitignore กันไฟล์ local และ dependencies
-- Checklist หลักฐาน A/B ownership, rollback โค้ด และ backup/restore ข้อมูล
-- รายการค่าใช้จ่ายที่ต้องเฝ้าดูและข้อจำกัดของแผนที่เลือก
-- แยกสิ่งที่ผ่าน ไม่ผ่าน ยังไม่ได้ทดสอบ และส่วนที่ยังเป็นเดโม
-ก่อนรัน migration, deploy หรือเปิดบริการคิดเงิน ให้เจ้าของงานตรวจและดำเนินการอย่างรู้ผล</pre></div><h3>โจทย์ฝึกต่อ 3 ระดับ</h3><div class="simple-grid"><div class="term"><b>ระดับ 1 · ข้อมูลของฉัน</b><span>ทำ CRUD ครบพร้อม RLS ทดสอบ A/B และเปิด production URL ได้ นี่คือเป้าหมายหลักของ Lab</span></div><div class="term"><b>ระดับ 2 · ทีม Support</b><span>เพิ่มบทบาทที่ server ควบคุม ผู้แจ้งอ่านของตนเอง เจ้าหน้าที่ดูงานตามขอบเขต เก็บประวัติการเปลี่ยนสถานะ แล้วทดสอบสิทธิ์ใหม่ทั้งหมด</span></div><div class="term"><b>ระดับ 3 · ไฟล์แนบ Private</b><span>เก็บไฟล์ใน private storage ใส่ owner และ policy ออก signed URL ที่หมดอายุ ตรวจสิทธิ์ก่อนแจก URL การซ่อนลิงก์ใน HTML อย่างเดียวไม่พอ</span></div><div class="term"><b>ก่อนใช้กับลูกค้าจริง</b><span>เพิ่มการดูแลบัญชี การกู้รหัสผ่าน การสำรองข้อมูล การติดตาม error และแผนตอบปัญหา ให้ผู้ดูแลรับผิดชอบต่อได้</span></div></div><div class="download-row"><button class="lesson-button" type="button" data-download="checklist">ดาวน์โหลด Checklist (.txt)</button><button class="lesson-button secondary" type="button" data-download="prompts">ดาวน์โหลด Prompt ทั้งหมด (.txt)</button></div><div class="acceptance-list"><label><input type="checkbox"> <span>หน้าเว็บอ่านง่ายบนมือถือ ฟอร์มมีสถานะครบและไม่แจ้งสำเร็จปลอม</span></label><label><input type="checkbox"> <span>ข้อมูลบันทึกจริง รีเฟรชและเปิดอีกเครื่องแล้วยังอยู่</span></label><label><input type="checkbox"> <span>บัญชี A/B เข้าถึงเฉพาะข้อมูลตนเอง รวมถึงเมื่อเรียก API โดยตรง</span></label><label><input type="checkbox"> <span>ไม่มีรหัสฐานข้อมูลหรือกุญแจลับใน client และ repository</span></label><label><input type="checkbox"> <span>URL จริงเปิดได้ Auth redirect ถูกต้องและ refresh ลิงก์ย่อยได้</span></label><label><input type="checkbox"> <span>เจ้าของงานรู้วิธีดูแล ค่าใช้จ่าย สำรองข้อมูล และย้อน deployment</span></label></div><p class="source-line">ช่องติ๊กเป็นตัวช่วยระหว่างอ่าน ไม่ได้ตรวจระบบหรือบันทึกข้ามเครื่องให้ ดาวน์โหลด Checklist เพื่อเก็บหลักฐานและข้อที่ยังต้องแก้</p><div class="prompt code-example"><div class="prompt-head"><div><span>CHECKLIST</span><b>Checklist ฉบับเต็ม</b></div><button class="copy" type="button">คัดลอก</button></div><pre id="lab-checklist">AI Web &amp; App Builder — Checklist ส่งงานฝึก
-ชื่อโปรเจกต์: __________________  วันที่: __________________
-URL ทดสอบ: ____________________  ผู้ตรวจ: __________________
-ใส่ ผ่าน / ไม่ผ่าน / ยังไม่ทดสอบ และหลักฐานในแต่ละข้อ
-
-หน้าจอและการใช้งาน
-[ ] ขอบเขตงานและผู้ใช้ตรง Requirement
-[ ] มือถืออ่านง่าย ไม่มีข้อความล้น ปุ่ม/ฟอร์มใช้งานได้
-[ ] Loading / Empty / Error / Success แสดงตรงผลจริง
-[ ] ไม่กดบันทึกซ้ำขณะรอ; ลบต้องยืนยัน; Error แล้วลองใหม่ได้
-
-ข้อมูลและสิทธิ์ (โปรเจกต์ฝึกเท่านั้น)
-[ ] สมัคร/ยืนยันอีเมล/ล็อกอิน/ล็อกเอาต์ครบ
-[ ] สร้าง อ่าน แก้ ลบข้อมูลของตนเองได้
-[ ] Refresh และเปิดอีกเครื่องแล้วข้อมูลยังอยู่
-[ ] บัญชี A ไม่เห็น/แก้/ลบข้อมูล B และกลับกัน
-[ ] เปลี่ยน owner_id เป็นของคนอื่นไม่ได้
-[ ] ออกระบบแล้วข้อมูลส่วนตัวหายจาก UI และอ่านผ่าน API ไม่ได้
-[ ] ไม่ใช้ service_role, secret, DB password หรือ AI API key ใน client
-[ ] หน้าเว็บแสดงข้อความผู้ใช้เป็นข้อความ ไม่รัน HTML/script ที่กรอก
-
-Hosting และส่งมอบ
-[ ] Build ผ่าน และ URL production เปิดได้จากมือถืออีกเครือข่าย
-[ ] เปิดลิงก์ย่อยและ Refresh ได้ ไม่มี asset หาย
-[ ] Auth Site URL/redirect ตรงเว็บจริง ไม่ไป localhost
-[ ] Git ไม่มี secret; กุญแจที่เคยหลุดถูกหมุนแล้ว
-[ ] มีวิธีย้อน deployment และวิธีสำรอง/กู้ข้อมูล DB แยกกัน
-[ ] เจ้าของงานถือบัญชี Domain/Hosting/Database และรู้ค่าใช้จ่าย
-[ ] ตรวจเงื่อนไขแพ็กเกจว่าอนุญาตงานเชิงพาณิชย์ถ้าเป็นงานรับจ้าง
-[ ] ระบุฟังก์ชันที่ยังเป็นเดโมและสิ่งที่ยังไม่ทดสอบตามจริง
-
-ข้อที่ยังไม่ผ่าน + ผู้รับผิดชอบ + ขั้นตอนถัดไป:
-_________________________________________________________
-หมายเหตุ: Lab นี้เป็น owner-only ยังไม่ใช่ระบบ Support/Admin หลายบทบาทครบวงจร</pre></div><h3>แหล่งอ้างอิงและการอัปเดตข้อมูล</h3><p>ตรวจเอกสารผู้ให้บริการวันที่ <time datetime="2026-09-11">11 กันยายน 2569</time> ลิงก์ทางการอยู่ใต้บทที่เกี่ยวข้อง ตารางนี้อธิบายแนวเลือกเครื่องมือ ไม่ใช่ใบเสนอราคา ก่อนสมัครให้เปิดหน้าแพ็กเกจปัจจุบันตรวจโควตา เงื่อนไขเชิงพาณิชย์ และการคิดเงินอีกครั้ง ภาพในส่วนเสริมเป็นแผนภาพอธิบายระบบ ไม่ใช่ภาพ Dashboard ของผู้ให้บริการ</p></section>
 <section class="section" id="finish">
-  <div class="section-head"><span class="secno">✓</span><div><span class="tag">หลังเรียน</span><h2>สิ่งที่ควรทำได้หลังเรียนและฝึกครบ</h2></div></div>
+  <div class="section-head"><span class="secno">✓</span><div><span class="tag">หลังเรียน</span><h2>ถ้าทำ 8 อย่างนี้ได้ ถือว่าใช้ AI สร้างเว็บได้เป็นแล้ว</h2></div></div>
   <div class="final-grid">
     <div>✓ อธิบายไอเดียให้ AI เข้าใจ</div>
     <div>✓ ให้ AI ช่วยถามสิ่งที่ยังขาด</div>
@@ -1546,7 +1075,7 @@ _________________________________________________________
     <div>✓ สั่งสร้างทีละส่วน</div>
     <div>✓ สั่งแก้เป็นจุด ไม่รื้อทั้งเว็บ</div>
     <div>✓ ตรวจมือถือและหน้าจอหลายขนาด</div>
-    <div>✓ อธิบายบั๊กเป็นอาการและให้ AI หาต้นเหตุ</div><div>✓ เลือก Database/Hosting พร้อมอธิบายข้อจำกัด</div><div>✓ ต่อ Auth และทดสอบสิทธิ์ข้อมูลสองบัญชี</div><div>✓ เปิดเว็บบน URL จริงและตรวจผลหลัง deploy</div><div>✓ ใช้ Claude Code กับโปรเจกต์ของตัวเองและตรวจผลเป็นรอบ</div>
+    <div>✓ อธิบายบั๊กเป็นอาการและให้ AI หาต้นเหตุ</div>
   </div>
   <div class="callout green"><b>หัวใจของคอร์ส:</b> ไม่ต้องเป็นโปรแกรมเมอร์ก่อน ถึงจะเริ่มใช้ AI ช่วยสร้างเว็บได้ แต่ต้อง “อธิบายสิ่งที่ต้องการให้ชัด” และ “ตรวจงานเป็นรอบ ๆ”</div>
 </section>
@@ -1554,104 +1083,24 @@ _________________________________________________________
 </div>
 
 <footer class="footer">AI Web & App Builder · Pond Natdanai · Beginner System Building Workshop</footer>
-<div id="copy-status" class="copy-status" role="status" aria-live="polite" aria-atomic="true"></div>
-<script>(() => {
-  'use strict';
-  const status = document.getElementById('copy-status');
-  let statusTimer;
-  function announce(message) {
-    clearTimeout(statusTimer);
-    status.textContent = message;
-    statusTimer = setTimeout(() => { status.textContent = ''; }, 4500);
-  }
-  async function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      try { await navigator.clipboard.writeText(text); return; } catch (_) { /* Try local-file fallback. */ }
-    }
-    const previousFocus = document.activeElement;
-    const area = document.createElement('textarea');
-    area.value = text;
-    area.setAttribute('readonly', '');
-    area.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
-    document.body.append(area);
-    area.select();
-    try { if (!document.execCommand('copy')) throw new Error('Copy unavailable'); }
-    finally { area.remove(); if (previousFocus && previousFocus.focus) previousFocus.focus({ preventScroll: true }); }
-  }
-  document.querySelectorAll('.copy').forEach(button => {
-    const block = button.closest('.prompt');
-    const title = block.querySelector('.prompt-head b').textContent;
-    button.setAttribute('aria-label', 'คัดลอก: ' + title);
-    let resetTimer;
-    button.addEventListener('click', async () => {
-      clearTimeout(resetTimer);
-      button.disabled = true;
-      try {
-        await copyText(block.querySelector('pre').textContent);
-        button.textContent = 'คัดลอกแล้ว';
-        announce('คัดลอกแล้ว: ' + title);
-      } catch (_) {
-        button.textContent = 'คัดลอกไม่ได้';
-        announce('Browser ไม่อนุญาตให้คัดลอก กรุณาเลือกข้อความในกล่องแล้วคัดลอกด้วยตนเอง');
-      } finally {
-        button.disabled = false;
-        resetTimer = setTimeout(() => { button.textContent = 'คัดลอก'; }, 2400);
-      }
-    });
+<script>
+document.querySelectorAll('.copy').forEach(btn=>{
+  btn.addEventListener('click', async()=>{
+    const pre=btn.closest('.prompt').querySelector('pre').innerText;
+    try{await navigator.clipboard.writeText(pre);btn.textContent='COPIED';setTimeout(()=>btn.textContent='COPY',1200)}catch(e){}
   });
-  document.querySelectorAll('[data-download]').forEach(button => {
-    button.addEventListener('click', () => {
-      const kind = button.dataset.download;
-      let content, filename;
-      if (kind === 'sql') {
-        content = document.getElementById('lab-sql').textContent;
-        filename = 'service-requests-lab.sql';
-      } else if (kind === 'checklist') {
-        content = document.getElementById('lab-checklist').textContent;
-        filename = 'ai-web-app-checklist.txt';
-      } else {
-        content = [...document.querySelectorAll('.prompt:not(.code-example)')].map(block =>
-          block.querySelector('.prompt-head').innerText.replace(/คัดลอกแล้ว|คัดลอกไม่ได้|คัดลอก/g, '').trim() + '\n\n' + block.querySelector('pre').textContent
-        ).join('\n\n' + '='.repeat(48) + '\n\n');
-        filename = 'ai-web-app-prompts.txt';
-      }
-      let url, anchor;
-      try {
-        url = URL.createObjectURL(new Blob([kind === 'sql' ? '' : '\uFEFF', content], {type:'text/plain;charset=utf-8'}));
-        anchor = document.createElement('a');
-        anchor.href = url; anchor.download = filename;
-        document.body.append(anchor); anchor.click();
-        announce('ส่งไฟล์ให้ Browser ดาวน์โหลดแล้ว: ' + filename);
-      } catch (_) { announce('ดาวน์โหลดไม่ได้ กรุณาคัดลอกจากกล่องข้อความในบทเรียน'); }
-      finally {
-        if (anchor) anchor.remove();
-        if (url) setTimeout(() => URL.revokeObjectURL(url), 30000);
-      }
-    });
-  });
-  const progress = document.getElementById('progress');
-  const links = [...document.querySelectorAll('.side a, .mobile-course-toc a')];
-  const sections = [...document.querySelectorAll('main .section')];
-  let scheduled = false;
-  function update() {
-    scheduled = false;
-    const height = document.documentElement.scrollHeight - innerHeight;
-    progress.style.width = Math.max(0, Math.min(100, height > 0 ? scrollY / height * 100 : 0)) + '%';
-    let current = sections.length ? sections[0].id : '';
-    for (const section of sections) {
-      if (section.getBoundingClientRect().top < 160) current = section.id;
-    }
-    links.forEach(a => {
-      const active = a.getAttribute('href') === '#' + current;
-      a.classList.toggle('active', active);
-      if (active) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-    });
-  }
-  function scheduleUpdate() { if (!scheduled) { scheduled = true; requestAnimationFrame(update); } }
-  addEventListener('scroll', scheduleUpdate, {passive:true});
-  addEventListener('resize', scheduleUpdate, {passive:true});
-  addEventListener('load', scheduleUpdate, {once:true});
-  update();
-})();</script>
+});
+const p=document.getElementById('progress');
+const links=[...document.querySelectorAll('.side a')];
+const sections=[...document.querySelectorAll('main .section')];
+function update(){
+ const h=document.documentElement.scrollHeight-innerHeight;
+ p.style.width=(h>0?scrollY/h*100:0)+'%';
+ let current='';
+ for(const s of sections){if(s.getBoundingClientRect().top<150)current=s.id}
+ links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+}
+addEventListener('scroll',update,{passive:true});update();
+</script>
 </body>
 </html>

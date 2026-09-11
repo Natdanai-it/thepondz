@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Claude Code for Procurement System — Consult, GitHub & Deploy</title>
+<meta name="description" content="คอร์ส 2 ชั่วโมงแบบ Consult สำหรับระบบจัดซื้อที่ทำอยู่แล้ว ใช้ Claude Code วิเคราะห์ระบบ เพิ่ม Feature, GitHub และ Deploy บน GitHub/AWS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#020817;--bg2:#041027;--card:#07182f;--card2:#0a2144;--line:rgba(132,179,255,.17);--ink:#f4f8ff;--muted:#a7b7cf;--blue:#4f8cff;--blue2:#8fc2ff;--green:#73d8b8;--red:#ff8c94;--max:1320px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2) 48%,var(--bg));color:var(--ink);font-family:'Noto Sans Thai',sans-serif;line-height:1.75}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(2,8,23,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}.topbar-in{height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;font-family:'Sora',sans-serif;font-weight:800}.brandmark{width:40px;height:40px;border-radius:12px;background:#245ec9;display:grid;place-items:center}.brand small{display:block;color:#758aaa;font:600 9px 'JetBrains Mono';letter-spacing:.14em}.home-btn{border:1px solid var(--line);background:#07182f;color:#dbeaff;padding:9px 14px;border-radius:999px}.progress{height:3px;background:#09152a}.progress i{display:block;height:100%;width:0;background:#4f8cff}
+.hero{padding:64px 0 38px}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:34px;align-items:center}.eyebrow,.tag{font:700 10px 'JetBrains Mono';letter-spacing:.14em;color:var(--blue2);text-transform:uppercase}.hero h1{font:800 clamp(42px,5.2vw,70px)/1.08 'Sora','Noto Sans Thai';letter-spacing:-.04em;margin:12px 0 18px}.hero h1 span{color:var(--blue2)}.lead{font-size:17px;color:var(--muted);max-width:760px}.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.pill{border:1px solid var(--line);background:#07162d;color:#bfd1eb;padding:7px 11px;border-radius:999px;font-size:12px}
+.hero-card{border:1px solid var(--line);background:#06152d;border-radius:25px;padding:22px;min-height:350px}.terminal{background:#020b1c;border:1px solid #174075;border-radius:16px;overflow:hidden}.terminal .bar{height:38px;background:#071a37;display:flex;align-items:center;gap:7px;padding:0 13px}.terminal .bar i{width:8px;height:8px;border-radius:50%;background:#597394}.terminal pre{margin:0;padding:22px;color:#c9d9ed;font:500 13px/1.8 'JetBrains Mono','Noto Sans Thai';white-space:pre-wrap}.terminal .ok{color:#7ce0bc}
+.course-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;padding-bottom:80px}.side{position:sticky;top:90px;align-self:start;border:1px solid var(--line);background:#06152d;border-radius:18px;padding:14px;max-height:calc(100vh - 110px);overflow:auto}.side strong{display:block;color:#7186a8;font:700 10px 'JetBrains Mono';letter-spacing:.13em;padding:8px 10px}.side a{display:block;color:#97aac8;padding:9px 10px;border-radius:10px;font-size:13px}.side a:hover,.side a.active{background:#0c2448;color:white}
+.section{background:#06152d;border:1px solid var(--line);border-radius:24px;padding:32px;margin-bottom:22px}.section-head{display:grid;grid-template-columns:52px 1fr;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:22px}.secno{width:48px;height:48px;border-radius:13px;background:#245ec9;display:grid;place-items:center;font:800 16px 'Sora'}.section h2{font:700 clamp(25px,3vw,36px)/1.35 'Sora','Noto Sans Thai';margin:3px 0 7px}.intro{color:var(--muted);margin:0}
+.timeline,.term-grid,.data-grid,.check-grid,.final-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.timeline div,.term-grid div,.data-grid div,.check-grid div,.final-grid div{border:1px solid var(--line);background:#081c39;border-radius:14px;padding:15px}.timeline b,.data-grid b,.term-grid b{display:block;color:var(--blue2)}.timeline span,.term-grid span,.data-grid span{color:var(--muted);font-size:13px}
+.visual-card{margin:22px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#041126}.visual-top{display:flex;gap:10px;align-items:center;padding:12px 15px;border-bottom:1px solid var(--line)}.visual-top span{font:700 9px 'JetBrains Mono';color:var(--blue2);letter-spacing:.13em}.visual-top b{font-size:14px}.visual-canvas{padding:12px;overflow:auto}.visual-canvas svg{display:block;width:100%;min-width:680px;height:auto}figcaption{padding:0 16px 15px;color:#8fa2c0;font-size:13px}
+.prompt{margin:20px 0;border:1px solid rgba(132,179,255,.22);background:#020b1b;border-radius:17px;overflow:hidden}.prompt-head{display:flex;justify-content:space-between;align-items:center;gap:15px;background:#071a38;padding:12px 14px;border-bottom:1px solid var(--line)}.prompt-head>div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.prompt-head span{color:var(--blue2);font:700 10px 'JetBrains Mono';letter-spacing:.1em}.prompt-head b{font-size:14px}.copy{border:1px solid rgba(132,179,255,.28);background:#0a2854;color:#eaf3ff;border-radius:9px;padding:6px 10px;font:700 10px 'JetBrains Mono';cursor:pointer}.prompt pre{white-space:pre-wrap;word-break:break-word;color:#cbd9ed;font:500 13px/1.75 'JetBrains Mono','Noto Sans Thai';margin:0;padding:18px}.prompt-note{border-top:1px solid var(--line);color:#91a5c4;padding:10px 16px;background:#06152d;font-size:12px}
+.callout{margin:18px 0;padding:15px 17px;border-left:4px solid var(--blue);background:#082147;border-radius:0 13px 13px 0;color:#c6d5e9}.callout.green{border-left-color:var(--green);background:#092a2d}.role-table,.deploy-table{display:grid;gap:8px}.role,.deploy{display:grid;grid-template-columns:160px 1fr 1.2fr;gap:14px;border:1px solid var(--line);background:#081c39;border-radius:13px;padding:13px 15px}.role.head,.deploy.head{font-weight:700;color:var(--blue2);background:#0a2449}.role b,.deploy b{color:#e9f2ff}
+.mini-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:20px 0}.mini-flow span{border:1px solid var(--line);background:#081c39;border-radius:999px;padding:9px 14px}.mini-flow i{color:var(--blue2)}.command-grid{display:grid;grid-template-columns:260px 1fr;gap:8px;margin:20px 0}.command-grid code,.command-grid span{border:1px solid var(--line);background:#081c39;padding:11px 13px}.command-grid code{color:#8fc2ff;font:600 12px 'JetBrains Mono'}.command-grid span{color:#a8bad4}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{border:1px solid var(--line);background:#081c39;border-radius:16px;padding:18px}.box.bad{border-top:3px solid var(--red)}.box.good{border-top:3px solid var(--green)}.box pre{white-space:pre-wrap;color:#dce9fb;background:#031025;padding:12px;border-radius:10px;overflow:auto}.box span{color:#9fb2cf;font-size:13px}
+.consult-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.consult-grid>div{border:1px solid var(--line);background:#081c39;border-radius:16px;padding:16px}.consult-grid span{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#245ec9;font:800 13px 'Sora';margin-bottom:9px}.consult-grid b{display:block}.consult-grid p{color:var(--muted);font-size:12px;margin-bottom:0}.master{background:#07204a;border-color:rgba(143,194,255,.31)}.footer{padding:28px 0 50px;color:#7186a7;text-align:center;font-size:12px}
+@media(max-width:1000px){.hero-grid{grid-template-columns:1fr}.course-layout{grid-template-columns:1fr}.side{display:none}.consult-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.wrap{width:min(100% - 24px,var(--max))}.hero{padding-top:38px}.hero h1{font-size:37px}.section{padding:22px 16px;border-radius:18px}.section-head{grid-template-columns:42px 1fr;gap:11px}.secno{width:40px;height:40px}.timeline,.term-grid,.data-grid,.check-grid,.final-grid,.compare,.consult-grid{grid-template-columns:1fr}.role,.deploy{grid-template-columns:1fr;gap:4px}.role.head,.deploy.head{display:none}.command-grid{grid-template-columns:1fr}.visual-canvas{overflow-x:auto;padding:8px}.prompt pre{font-size:12px;padding:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-in">
+<a class="brand" href="index.html"><span class="brandmark">P</span><span>Pond Natdanai<small>PRIVATE IT TRAINING</small></span></a>
+<a class="home-btn" href="index.html">← กลับหน้าเว็บหลัก</a>
+</div><div class="progress"><i id="progress"></i></div></div>
+
+<header class="hero"><div class="wrap hero-grid">
+<div><div class="eyebrow">CLAUDE CODE · PROCUREMENT SYSTEM · 2 HOURS</div>
+<h1>Claude Code for Procurement System<br><span>Consult · GitHub · Deploy</span></h1>
+<p class="lead">คลาสต่อยอดจากระบบจัดซื้อที่ทำอยู่แล้ว เน้น Consult จาก Project จริง: อ่านโครงสร้างระบบ, ตรวจ Flow, เพิ่ม Feature อย่างปลอดภัย, Git/GitHub, Deploy และ Security แบบเข้าใจง่าย</p>
+<div class="hero-pills"><span class="pill">Project จริง</span><span class="pill">2 ชั่วโมง</span><span class="pill">13 Prompts</span><span class="pill">GitHub</span><span class="pill">AWS Deploy</span></div>
+</div>
+<div class="hero-card"><div class="terminal"><div class="bar"><i></i><i></i><i></i></div><pre>&gt; claude
+
+<span class="ok">✓</span> inspect existing project
+<span class="ok">✓</span> understand procurement flow
+<span class="ok">✓</span> plan before editing
+<span class="ok">✓</span> review git diff
+<span class="ok">✓</span> prepare deployment
+
+Ready for consult.</pre></div></div>
+</div></header>
+
+<div class="wrap course-layout">
+<aside class="side"><strong>COURSE CONTENT</strong>
+<a href="#roadmap">00 · Roadmap</a><a href="#inspect">01 · อ่าน Project</a><a href="#workflow">02 · Flow จัดซื้อ</a>
+<a href="#roles">03 · User Role</a><a href="#database">04 · Database</a><a href="#safe-build">05 · Claude Code</a>
+<a href="#git">06 · Git / GitHub</a><a href="#deploy">07 · Deploy</a><a href="#deploy-check">08 · ก่อน Deploy</a>
+<a href="#security">09 · Security</a><a href="#debug">10 · Debug Deploy</a><a href="#consult">11 · Live Consult</a>
+<a href="#master">12 · Master Prompt</a><a href="#after">✓ · หลังเรียน</a>
+</aside>
+<main>
+<section class="section" id="roadmap">
+  <div class="section-head"><span class="secno">00</span><div><span class="tag">CONSULT WORKSHOP · 2 HOURS</span><h2>คลาสนี้ไม่เริ่มจากศูนย์ แต่เริ่มจาก “ระบบจริงที่ทำอยู่”</h2><p class="intro">คุณมี่เปิด Project จริง แล้วเราจะดูว่าใช้เทคโนโลยีอะไร ระบบจัดซื้อไหลยังไง Claude Code ควรช่วยตรงไหน และควร Deploy แบบใด</p></div></div>
+  <div class="timeline">
+    <div><b>0–15 นาที</b><span>เปิด Project + ให้ Claude Code ช่วยอ่านระบบ</span></div>
+    <div><b>15–35 นาที</b><span>เข้าใจ Frontend / Backend / Database แบบง่าย</span></div>
+    <div><b>35–55 นาที</b><span>ตรวจ Flow ระบบจัดซื้อ + User Role + ข้อมูล</span></div>
+    <div><b>55–75 นาที</b><span>สั่ง Claude Code เพิ่ม Feature แบบไม่รื้อของเดิม</span></div>
+    <div><b>75–95 นาที</b><span>Git / GitHub / Commit / Push / ย้อนกลับ</span></div>
+    <div><b>95–112 นาที</b><span>Deploy: GitHub Pages vs AWS</span></div>
+    <div><b>112–120 นาที</b><span>Security + .env + Checklist งานต่อ</span></div>
+  </div>
+  <div class="callout green"><b>เป้าหมาย:</b> หลังคลาสต้องรู้ว่า “ระบบตอนนี้อยู่ตรงไหน → ขาดอะไร → ให้ Claude Code ช่วยอย่างไร → เก็บ Code ยังไง → เอาขึ้นใช้งานจริงแบบไหน”</div>
+</section>
+
+<section class="section" id="inspect">
+  <div class="section-head"><span class="secno">01</span><div><span class="tag">STEP 1 · INSPECT</span><h2>ก่อนสั่งให้ Claude Code แก้ ต้องให้มัน “อ่าน Project” ก่อน</h2><p class="intro">ถ้าเราเริ่มด้วยคำว่า “ทำ Feature นี้ให้หน่อย” ทันที AI อาจเดาโครงสร้างผิดและไปแก้หลายไฟล์เกินจำเป็น</p></div></div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 01</span><b>ให้ Claude Code สำรวจระบบปัจจุบัน</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Please inspect this project first.
+
+Do not modify any files yet.
+
+This is a procurement management system.
+
+Explain in simple language:
+1. What technology this project uses
+2. What each important folder is for
+3. Where the frontend is
+4. Whether there is a backend
+5. Whether there is a database
+6. How login currently works
+7. What main features already exist
+8. What appears unfinished
+9. Any obvious risks
+10. What you recommend I work on next
+
+Do not write code yet.</pre>
+      <div class="prompt-note">Prompt แรกของคลาส — ให้ Claude เป็นคนสำรวจ ไม่ใช่เริ่มเขียน Code</div>
+    </div>
+    
+  <div class="term-grid">
+    <div><b>Frontend</b><span>หน้าที่ผู้ใช้เห็นและกด เช่น Dashboard / Form / Table</span></div>
+    <div><b>Backend</b><span>ส่วนที่รับคำสั่ง ตรวจสิทธิ์ และประมวลผลหลังบ้าน</span></div>
+    <div><b>Database</b><span>ที่เก็บข้อมูล เช่น User, PR, Vendor, Quotation, PO</span></div>
+    <div><b>API</b><span>ทางที่ Frontend ใช้คุยกับ Backend หรือบริการอื่น</span></div>
+  </div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>ภาพระบบ Web App แบบง่าย</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1100 430" role="img" aria-label="Simple web app architecture">
+<style>.t{font:700 22px 'Noto Sans Thai',sans-serif;fill:#eff6ff}.s{font:500 15px 'Noto Sans Thai',sans-serif;fill:#9eb1ce}.b{fill:#0a2144;stroke:#2e5b95;stroke-width:2}.l{stroke:#5c8bc8;stroke-width:4;fill:none}.a{fill:#245ec9}</style>
+<rect x="60" y="55" width="250" height="120" rx="22" class="b"/><text x="185" y="105" text-anchor="middle" class="t">หน้าที่ผู้ใช้เห็น</text><text x="185" y="137" text-anchor="middle" class="s">Frontend</text>
+<rect x="425" y="55" width="250" height="120" rx="22" class="b"/><text x="550" y="105" text-anchor="middle" class="t">กติกาของระบบ</text><text x="550" y="137" text-anchor="middle" class="s">Backend / API</text>
+<rect x="790" y="55" width="250" height="120" rx="22" class="b"/><text x="915" y="105" text-anchor="middle" class="t">ที่เก็บข้อมูล</text><text x="915" y="137" text-anchor="middle" class="s">Database</text>
+<path d="M320 115h95" class="l"/><path d="M400 102l20 13-20 13" class="a"/>
+<path d="M685 115h95" class="l"/><path d="M765 102l20 13-20 13" class="a"/>
+<rect x="250" y="280" width="600" height="100" rx="22" fill="#082650" stroke="#3974bd" stroke-width="2"/>
+<text x="550" y="320" text-anchor="middle" class="t">GitHub = เก็บ Code + ประวัติการเปลี่ยนแปลง</text>
+<text x="550" y="350" text-anchor="middle" class="s">Deploy = นำระบบขึ้น Internet ให้คนใช้งานจริง</text>
+<path d="M550 180v85" class="l"/><path d="M537 248l13 20 13-20" class="a"/>
+</svg>
+</div>
+      <figcaption>ไม่ต้องจำศัพท์ลึก แค่รู้ว่าหน้าจอ กติกาของระบบ และข้อมูลอยู่คนละหน้าที่กัน</figcaption>
+    </figure>
+    
+</section>
+
+<section class="section" id="workflow">
+  <div class="section-head"><span class="secno">02</span><div><span class="tag">BUSINESS FLOW</span><h2>วาง Flow งานจัดซื้อก่อนเพิ่ม Feature</h2><p class="intro">ระบบจัดซื้อไม่ได้มีแค่ “ฟอร์มขอซื้อ” แต่มีคนหลายบทบาท สถานะหลายขั้น และประวัติที่ต้องย้อนดูได้</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>ตัวอย่าง Flow งานจัดซื้อ</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1200 300" role="img" aria-label="Procurement system flow">
+<style>.t{font:700 20px 'Noto Sans Thai',sans-serif;fill:#eef5ff}.s{font:500 14px 'Noto Sans Thai',sans-serif;fill:#9fb2cf}.b{fill:#0a2144;stroke:#2f5e9a;stroke-width:2}.a{fill:#245ec9}.l{stroke:#5d8cc7;stroke-width:4;fill:none}</style>
+<rect x="25" y="98" width="150" height="94" rx="18" class="b"/><text x="100" y="135" text-anchor="middle" class="t">ขอซื้อ</text><text x="100" y="163" text-anchor="middle" class="s">Purchase Request</text>
+<path d="M185 145h50" class="l"/><path d="M224 133l18 12-18 12" class="a"/>
+<rect x="250" y="98" width="150" height="94" rx="18" class="b"/><text x="325" y="135" text-anchor="middle" class="t">อนุมัติ</text><text x="325" y="163" text-anchor="middle" class="s">Manager Review</text>
+<path d="M410 145h50" class="l"/><path d="M449 133l18 12-18 12" class="a"/>
+<rect x="475" y="98" width="150" height="94" rx="18" class="b"/><text x="550" y="135" text-anchor="middle" class="t">ขอราคา</text><text x="550" y="163" text-anchor="middle" class="s">RFQ / Vendor</text>
+<path d="M635 145h50" class="l"/><path d="M674 133l18 12-18 12" class="a"/>
+<rect x="700" y="98" width="150" height="94" rx="18" class="b"/><text x="775" y="135" text-anchor="middle" class="t">เทียบราคา</text><text x="775" y="163" text-anchor="middle" class="s">Quotation Compare</text>
+<path d="M860 145h50" class="l"/><path d="M899 133l18 12-18 12" class="a"/>
+<rect x="925" y="98" width="150" height="94" rx="18" class="b"/><text x="1000" y="135" text-anchor="middle" class="t">ออก PO</text><text x="1000" y="163" text-anchor="middle" class="s">Purchase Order</text>
+<path d="M1085 145h50" class="l"/><path d="M1124 133l18 12-18 12" class="a"/>
+<circle cx="1165" cy="145" r="32" fill="#173d78" stroke="#4d86cf" stroke-width="2"/><text x="1165" y="152" text-anchor="middle" class="t">✓</text>
+</svg>
+</div>
+      <figcaption>แต่ละบริษัทอาจต่างกัน ให้ใช้ Flow นี้เป็นจุดเริ่มแล้วปรับตามงานจริง</figcaption>
+    </figure>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 02</span><b>ให้ Claude ช่วยตรวจ Flow งานจัดซื้อ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>This project is a procurement management system.
+
+Current workflow:
+1. User creates Purchase Request
+2. Manager reviews the request
+3. Procurement receives approved request
+4. Procurement requests quotations from vendors
+5. Quotations are compared
+6. Selected quotation is approved
+7. Purchase Order is created
+8. Delivery is tracked
+9. Purchase is completed
+
+For each step, explain:
+- Who uses it
+- What data is required
+- What status should exist
+- What actions are allowed
+- What happens next
+
+Also identify missing steps.
+
+Use simple language.
+Do not write code yet.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="roles">
+  <div class="section-head"><span class="secno">03</span><div><span class="tag">USER ROLE</span><h2>Login ได้ ไม่ได้แปลว่าทำได้ทุกอย่าง</h2><p class="intro">อธิบายง่าย ๆ: Login = “คุณคือใคร” ส่วน Permission = “คุณมีสิทธิ์ทำอะไร”</p></div></div>
+  <div class="role-table">
+    <div class="role head"><span>Role</span><span>งานหลัก</span><span>ตัวอย่างสิทธิ์</span></div>
+    <div class="role"><b>Requester</b><span>สร้างคำขอซื้อ</span><span>ดู/แก้ของตัวเองก่อนส่ง</span></div>
+    <div class="role"><b>Manager</b><span>ตรวจและอนุมัติ</span><span>ดูงานของทีม</span></div>
+    <div class="role"><b>Procurement</b><span>Vendor / RFQ / Quote / PO</span><span>จัดการงานหลังอนุมัติ PR</span></div>
+    <div class="role"><b>Finance</b><span>ตรวจงบ/เงื่อนไข</span><span>เห็นข้อมูลด้านงบที่เกี่ยวข้อง</span></div>
+    <div class="role"><b>Admin</b><span>ตั้งค่าระบบ</span><span>User / Master Data / Permission</span></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 03</span><b>ออกแบบสิทธิ์แต่ละ Role</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Help me design user roles for this procurement system.
+
+Roles:
+- Requester
+- Manager
+- Procurement
+- Finance
+- Admin
+
+Create a simple permission table showing:
+- What each role can view
+- What each role can create
+- What each role can edit
+- What each role can approve
+- What each role must not access
+
+Keep permissions simple and secure.
+Do not implement them yet.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="database">
+  <div class="section-head"><span class="secno">04</span><div><span class="tag">DATA</span><h2>Database ควรเก็บอะไรในระบบจัดซื้อ</h2><p class="intro">ไม่ต้องออกแบบฐานข้อมูลเองทั้งหมด ให้ Claude ช่วยอ่านของเดิมก่อน แล้วค่อยดูว่าขาด Table หรือข้อมูลสำคัญตรงไหน</p></div></div>
+  <div class="data-grid">
+    <div><b>users</b><span>ผู้ใช้ + Role</span></div>
+    <div><b>purchase_requests</b><span>คำขอซื้อ</span></div>
+    <div><b>approvals</b><span>ประวัติการอนุมัติ</span></div>
+    <div><b>vendors</b><span>ข้อมูลผู้ขาย</span></div>
+    <div><b>rfq / quotations</b><span>ขอราคาและใบเสนอราคา</span></div>
+    <div><b>purchase_orders</b><span>PO</span></div>
+    <div><b>attachments</b><span>ไฟล์แนบ</span></div>
+    <div><b>audit_logs</b><span>ใครทำอะไร เมื่อไร</span></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 04</span><b>ให้ Claude ตรวจ Database เดิม</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Please review the current database structure.
+
+Do not modify anything yet.
+
+Check whether it supports:
+- Users and roles
+- Purchase Requests
+- Approval history
+- Vendors
+- RFQ
+- Vendor quotations
+- Quotation comparison
+- Purchase Orders
+- Attachments
+- Delivery status
+- Audit history
+
+For each table:
+- explain what it stores
+- list important columns
+- explain how it connects to other tables
+
+Then identify:
+- missing tables
+- duplicated data
+- security risks
+- fields that should not be stored directly
+
+Use simple language.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="safe-build">
+  <div class="section-head"><span class="secno">05</span><div><span class="tag">CLAUDE CODE</span><h2>เพิ่ม Feature ทีละเรื่อง และห้ามรื้อของเดิม</h2><p class="intro">หลักสำคัญคือ Explore → Plan → Edit → Test อย่าให้ AI แก้ทั้ง Project ใน Prompt เดียว</p></div></div>
+  <div class="mini-flow"><span>อ่านของเดิม</span><i>→</i><span>วางแผน</span><i>→</i><span>แก้เฉพาะจุด</span><i>→</i><span>ทดสอบ</span></div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 05</span><b>เพิ่ม Feature แบบปลอดภัย</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>I want to add this feature:
+
+[describe the feature]
+
+Before editing:
+1. Inspect the existing implementation
+2. Identify related files
+3. Explain the current flow
+4. Explain what needs to change
+5. Avoid modifying unrelated files
+
+Rules:
+- Preserve existing working features
+- Do not rewrite the whole project
+- Do not change the database structure unless necessary
+- If database changes are needed, explain them first
+
+After implementation:
+- List changed files
+- Explain what changed
+- Explain how I can test it</pre>
+      
+    </div>
+    
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 06</span><b>ให้ Claude วาง Plan ก่อนลงมือ</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Do not edit any files yet.
+
+For this feature:
+[describe feature]
+
+Create an implementation plan with:
+- files that need to change
+- database changes, if any
+- permission changes, if any
+- API changes, if any
+- test cases
+- risks
+
+Keep the change as small as possible.
+Wait for my approval before coding.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="git">
+  <div class="section-head"><span class="secno">06</span><div><span class="tag">GIT / GITHUB</span><h2>Git = จุด Save ของ Code, GitHub = ที่เก็บ Code Online</h2><p class="intro">ก่อนให้ Claude แก้ Feature ใหญ่ ควร Commit ก่อน เพื่อย้อนกลับได้ถ้างานพัง</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>Workflow Git แบบมือใหม่</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1120 250" role="img" aria-label="Git flow">
+<style>.t{font:700 19px 'Noto Sans Thai',sans-serif;fill:#edf5ff}.s{font:500 14px 'Noto Sans Thai',sans-serif;fill:#9fb2cf}.b{fill:#0a2144;stroke:#2f5b96;stroke-width:2}.l{stroke:#5d8cc7;stroke-width:4}</style>
+<rect x="35" y="80" width="190" height="95" rx="18" class="b"/><text x="130" y="117" text-anchor="middle" class="t">แก้ Code</text><text x="130" y="146" text-anchor="middle" class="s">Claude Code / Editor</text>
+<path d="M235 127h60" class="l"/>
+<rect x="305" y="80" width="190" height="95" rx="18" class="b"/><text x="400" y="117" text-anchor="middle" class="t">ดู Diff</text><text x="400" y="146" text-anchor="middle" class="s">ตรวจว่าแก้อะไร</text>
+<path d="M505 127h60" class="l"/>
+<rect x="575" y="80" width="190" height="95" rx="18" class="b"/><text x="670" y="117" text-anchor="middle" class="t">Commit</text><text x="670" y="146" text-anchor="middle" class="s">สร้างจุดย้อนกลับ</text>
+<path d="M775 127h60" class="l"/>
+<rect x="845" y="80" width="240" height="95" rx="18" fill="#173d78" stroke="#4c84c8" stroke-width="2"/><text x="965" y="117" text-anchor="middle" class="t">Push GitHub</text><text x="965" y="146" text-anchor="middle" class="s">เก็บ Online / ใช้ Deploy</text>
+</svg>
+</div>
+      <figcaption>ดูสิ่งที่เปลี่ยนก่อน Commit ทุกครั้ง และอย่า Push รหัสผ่านหรือ Secret ขึ้น GitHub</figcaption>
+    </figure>
+    
+  <div class="command-grid">
+    <code>git status</code><span>ดูว่าไฟล์ไหนเปลี่ยน</span>
+    <code>git diff</code><span>ดูว่าเปลี่ยนอะไรบ้าง</span>
+    <code>git add .</code><span>เตรียมการเปลี่ยนแปลงสำหรับ Commit</span>
+    <code>git commit -m "message"</code><span>สร้างจุด Save</span>
+    <code>git push</code><span>ส่ง Code ขึ้น GitHub</span>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 07</span><b>ให้ Claude ช่วยตรวจ Git ก่อน Commit</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Please inspect the current Git status.
+
+Explain:
+- which files changed
+- which files are new
+- which files were deleted
+
+Do not commit yet.
+
+Then recommend a clear commit message.</pre>
+      
+    </div>
+    
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 08</span><b>เช็ก Secret ก่อน Push</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Review the current changes before I commit or push.
+
+Check for:
+- API keys
+- passwords
+- database credentials
+- .env files
+- private certificates
+- unnecessary generated files
+- large files
+
+Do not commit or push anything yet.
+
+If you find a secret, tell me the file and what I should do.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="deploy">
+  <div class="section-head"><span class="secno">07</span><div><span class="tag">DEPLOY</span><h2>GitHub Pages หรือ AWS? ต้องดูชนิดของ Project ก่อน</h2><p class="intro">อย่าเลือก Hosting จากชื่อที่คุ้น ให้ดูว่าระบบมี Backend, Database, Server-side Code และ Environment Variables หรือไม่</p></div></div>
+  
+    <figure class="visual-card">
+      <div class="visual-top"><span>ภาพประกอบ</span><b>เลือก Deploy จากโครงสร้างจริง</b></div>
+      <div class="visual-canvas">
+<svg viewBox="0 0 1120 390" role="img" aria-label="Deployment decision tree">
+<style>.t{font:700 20px 'Noto Sans Thai',sans-serif;fill:#eef5ff}.s{font:500 14px 'Noto Sans Thai',sans-serif;fill:#9fb2cf}.b{fill:#0a2144;stroke:#2f5d98;stroke-width:2}.g{fill:#123a64;stroke:#4b86c8;stroke-width:2}.l{stroke:#5e8ec9;stroke-width:4;fill:none}</style>
+<rect x="400" y="35" width="320" height="82" rx="20" class="b"/><text x="560" y="72" text-anchor="middle" class="t">โปรเจกต์ของเราเป็นแบบไหน?</text><text x="560" y="98" text-anchor="middle" class="s">ให้ดูจาก Code จริงก่อนเลือก Hosting</text>
+<path d="M560 120v58M560 178H270M560 178h290M270 178v42M850 178v42" class="l"/>
+<rect x="115" y="220" width="310" height="105" rx="20" class="g"/><text x="270" y="257" text-anchor="middle" class="t">เว็บ Static</text><text x="270" y="286" text-anchor="middle" class="s">HTML / CSS / JS ไม่มี Server</text><text x="270" y="309" text-anchor="middle" class="s">→ GitHub Pages หรือ Amplify</text>
+<rect x="695" y="220" width="310" height="105" rx="20" class="g"/><text x="850" y="257" text-anchor="middle" class="t">Web App มี Backend</text><text x="850" y="286" text-anchor="middle" class="s">Login / API / DB / Server-side</text><text x="850" y="309" text-anchor="middle" class="s">→ Amplify / App Runner / Server</text>
+</svg>
+</div>
+      <figcaption>เว็บ Static กับ Web App ไม่ควรถูก Deploy แบบเดียวกันเสมอไป</figcaption>
+    </figure>
+    
+  <div class="deploy-table">
+    <div class="deploy head"><span>ตัวเลือก</span><span>เหมาะกับ</span><span>จำง่าย</span></div>
+    <div class="deploy"><b>GitHub Pages</b><span>เว็บ Static / HTML CSS JS</span><span>ง่ายและฟรี แต่ไม่มี Backend Server ของตัวเอง</span></div>
+    <div class="deploy"><b>AWS Amplify</b><span>Frontend / SPA / Framework ที่เชื่อม Git</span><span>Push GitHub แล้ว Build/Deploy ต่อได้</span></div>
+    <div class="deploy"><b>AWS App Runner / Server</b><span>App ที่ต้องรัน Backend</span><span>ใช้เมื่อมี Server-side/API ที่ต้องทำงานตลอด</span></div>
+    <div class="deploy"><b>S3 + CloudFront</b><span>Static Site ที่ต้องการ CDN/การควบคุมมากขึ้น</span><span>เร็วและยืดหยุ่น แต่ตั้งค่ามากกว่า</span></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 09</span><b>ให้ Claude วิเคราะห์ว่า Project ควร Deploy ที่ไหน</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Please analyze this actual project and recommend the simplest deployment option.
+
+Consider:
+- GitHub Pages
+- AWS Amplify
+- AWS S3 + CloudFront
+- AWS App Runner
+- VPS / traditional server
+
+Explain:
+1. Is this a static website or a web application?
+2. Does it need a backend?
+3. Does it need a database?
+4. Does it use server-side code?
+5. Does it need environment variables?
+6. Which option is simplest?
+7. Which option is suitable for production?
+8. What would the basic architecture look like?
+
+Do not deploy anything yet.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="deploy-check">
+  <div class="section-head"><span class="secno">08</span><div><span class="tag">BEFORE DEPLOY</span><h2>ก่อนขึ้นระบบจริง ให้ตรวจ 7 จุดนี้</h2><p class="intro">หลายระบบทำงานในเครื่อง แต่พอขึ้น Hosting แล้วพังเพราะ URL, Environment Variables, CORS หรือ Build Command</p></div></div>
+  <div class="check-grid">
+    <div>✓ Build command</div><div>✓ Output folder</div><div>✓ Environment Variables</div><div>✓ API URL</div>
+    <div>✓ Database config</div><div>✓ CORS / Domain</div><div>✓ Secret ไม่อยู่ใน Source</div><div>✓ Production test</div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 10</span><b>สร้าง Deployment Checklist</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Prepare this project for deployment.
+
+Do not make changes yet.
+
+First check:
+- build command
+- output folder
+- environment variables
+- API URLs
+- database configuration
+- secrets
+- hardcoded localhost URLs
+- file paths
+- CORS settings
+- production configuration
+
+Create a checklist separated into:
+1. Must fix before deploy
+2. Recommended
+3. Optional</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="security">
+  <div class="section-head"><span class="secno">09</span><div><span class="tag">SECURITY</span><h2>.env คือที่เก็บค่าลับ ไม่ใช่ของที่ควรเอาขึ้น GitHub</h2><p class="intro">ตัวอย่างค่าที่ควรระวัง: API Key, Database Password, Secret Token, Private Key</p></div></div>
+  <div class="compare">
+    <div class="box bad"><b>ไม่ควรทำ</b><pre>const API_KEY = "my-real-secret-key";</pre><span>Secret ฝังอยู่ใน Source Code</span></div>
+    <div class="box good"><b>แนวคิดที่ควรใช้</b><pre>API_KEY=...
+DATABASE_URL=...</pre><span>เก็บใน Environment Variables / .env และไม่ Commit ค่า Secret</span></div>
+  </div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 11</span><b>Security Review ก่อน Production</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Review this project for production security.
+
+Focus on:
+- secrets and API keys
+- authentication
+- authorization / role checks
+- database access
+- file upload
+- user input
+- error messages
+- public/private data
+- audit logs
+
+For each issue:
+- explain the risk in simple language
+- assign priority: Critical / High / Medium / Low
+- recommend the safest small fix
+
+Do not change code yet.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="debug">
+  <div class="section-head"><span class="secno">10</span><div><span class="tag">DEBUG</span><h2>เวลา Deploy แล้วพัง ให้ Claude ดู Error จริง</h2><p class="intro">อย่าพิมพ์แค่ “Deploy ไม่ได้” ให้ส่ง Build Log / Error Message / ขั้นตอนที่ทำให้เกิดปัญหา</p></div></div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 12</span><b>แก้ปัญหา Deploy แบบไม่เดา</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>Deployment failed.
+
+Here is the exact error:
+[paste build/deploy error]
+
+Environment:
+- Hosting: [GitHub Pages / AWS Amplify / ...]
+- Framework: [if known]
+- Build command: [if known]
+
+Please:
+1. Explain the error in simple language
+2. Identify the most likely root cause
+3. Tell me which file/config is related
+4. Propose the smallest fix
+5. Explain how to verify the fix
+
+Do not rewrite unrelated files.</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="consult">
+  <div class="section-head"><span class="secno">11</span><div><span class="tag">LIVE CONSULT</span><h2>สิ่งที่ทำในคลาสกับ Project จริง</h2><p class="intro">ไม่จำเป็นต้องสร้างระบบใหม่ ให้เลือก 1–2 ปัญหาที่คุณมี่อยากแก้จริง แล้วทำให้เห็น Workflow ตั้งแต่คิดจน Commit/Deploy</p></div></div>
+  <div class="consult-grid">
+    <div><span>1</span><b>เปิด Project จริง</b><p>ให้ Claude สรุป Tech Stack และโครงสร้าง</p></div>
+    <div><span>2</span><b>เลือกปัญหา 1 เรื่อง</b><p>เช่น Approval, Vendor, Quotation, Dashboard</p></div>
+    <div><span>3</span><b>Plan ก่อน Code</b><p>ดูไฟล์และความเสี่ยงก่อนแก้</p></div>
+    <div><span>4</span><b>แก้ + Test</b><p>ทดสอบ Flow ที่เกี่ยวข้องจริง</p></div>
+    <div><span>5</span><b>Git Commit</b><p>เก็บจุดย้อนกลับ</p></div>
+    <div><span>6</span><b>Deploy Plan</b><p>เลือก Hosting ตามโครงสร้างจริง</p></div>
+  </div>
+</section>
+
+<section class="section master" id="master">
+  <div class="section-head"><span class="secno">12</span><div><span class="tag">MASTER PROMPT</span><h2>Prompt เปิด Session สำหรับระบบจัดซื้อ</h2><p class="intro">ใช้ตอนเริ่มคุยกับ Claude Code ใน Session ใหม่ เพื่อให้มันรู้ขอบเขตงานและไม่รีบแก้ Code</p></div></div>
+  
+    <div class="prompt">
+      <div class="prompt-head">
+        <div><span>PROMPT 13</span><b>Procurement System Master Prompt</b></div>
+        <button class="copy" type="button">COPY</button>
+      </div>
+      <pre>You are helping me continue an existing procurement management system.
+
+Important rules:
+- Inspect the project before editing
+- Do not rewrite the entire project
+- Preserve existing working features
+- Explain technical terms in simple language
+- Plan before making large changes
+- Tell me which files will change
+- Explain database changes before applying them
+- Respect existing user roles and permissions
+- Never expose secrets or credentials
+- After each change, tell me how to test it
+- Review Git diff before commit
+
+Business areas may include:
+- Purchase Request
+- Approval
+- Vendor
+- RFQ
+- Quotation
+- Quotation Comparison
+- Purchase Order
+- Delivery
+- Attachments
+- Audit History
+
+For my next request:
+1. inspect related code
+2. explain current behavior
+3. identify risks
+4. propose a plan
+5. wait for my approval if the change is large</pre>
+      
+    </div>
+    
+</section>
+
+<section class="section" id="after">
+  <div class="section-head"><span class="secno">✓</span><div><span class="tag">AFTER CLASS</span><h2>หลัง 2 ชั่วโมง ควรตอบ 8 คำถามนี้ได้</h2></div></div>
+  <div class="final-grid">
+    <div>✓ Project ใช้เทคโนโลยีอะไร</div>
+    <div>✓ Frontend / Backend / Database อยู่ตรงไหน</div>
+    <div>✓ Flow ระบบจัดซื้อของตัวเองเป็นอย่างไร</div>
+    <div>✓ Role ไหนควรทำอะไรได้บ้าง</div>
+    <div>✓ สั่ง Claude Code เพิ่ม Feature แบบปลอดภัยอย่างไร</div>
+    <div>✓ Git / Commit / Push ใช้เพื่ออะไร</div>
+    <div>✓ Project ควร Deploy บน GitHub Pages หรือ AWS แบบไหน</div>
+    <div>✓ ก่อนขึ้น Production ต้องตรวจ Security อะไรบ้าง</div>
+  </div>
+  <div class="callout"><b>หลักสำคัญ:</b> อย่าให้ AI เป็นคนตัดสินใจแทนทั้งหมด — ให้ AI ช่วย “อ่าน → เสนอ → อธิบาย → ลงมือ” แล้วเจ้าของระบบเป็นคนอนุมัติทิศทาง</div>
+</section>
+</main>
+</div>
+
+<footer class="footer">Claude Code for Procurement System · Pond Natdanai · Project Consult & Deployment</footer>
+<script>
+document.querySelectorAll('.copy').forEach(btn=>{btn.addEventListener('click',async()=>{const pre=btn.closest('.prompt').querySelector('pre').innerText;try{await navigator.clipboard.writeText(pre);btn.textContent='COPIED';setTimeout(()=>btn.textContent='COPY',1200)}catch(e){}})})
+const p=document.getElementById('progress');const links=[...document.querySelectorAll('.side a')];const secs=[...document.querySelectorAll('main .section')];
+function update(){const h=document.documentElement.scrollHeight-innerHeight;p.style.width=(h>0?scrollY/h*100:0)+'%';let current='';for(const s of secs){if(s.getBoundingClientRect().top<150)current=s.id}links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current))}
+addEventListener('scroll',update,{passive:true});update();
+</script>
+</body></html>
