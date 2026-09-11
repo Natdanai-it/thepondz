@@ -80,3 +80,17 @@ Public pages can be inspected as static HTML. Private lessons require HTTPS (Git
 - Fixed image-dialog keyboard focus, the contact teaser opening and immediately closing, and private course access failing when session storage is blocked. Network errors are distinct from incorrect passwords.
 
 Validation: 19 automated controller tests passed using simulated events/timers, JavaScript syntax checked, all 33 public HTML entrypoints and local references checked, and all 12 encrypted lesson/media payloads verified byte-for-byte against the prior ZIP. Real browser rendering and mobile performance were not measured in this maintenance pass.
+
+
+## คอร์ส AI — ฉบับผู้เรียน · 11 กันยายน 2569
+
+เปิด course-claude-code-system-building.html จากหน้าแรกหรือหน้าคอร์ส
+
+- เริ่มจาก Google Sheets, Forms, Apps Script, Notion, GitHub Pages, Google Sites และ AppSheet
+- เพิ่ม Lab พร้อมตัวอย่าง Code.gs / Index.html ในบทเรียน คัดลอกไปสร้างใน Apps Script ของตนเองได้
+- คงบท Prompt/UI, Database, Supabase Auth/RLS และ Hosting เดิม พร้อมขั้นตอนใช้ Claude Code ด้วยตัวเอง
+- รวม 40 Prompts พร้อมปุ่มคัดลอกและดาวน์โหลดชุด Prompt, SQL และ Checklist
+- เนื้อหาใช้ภาษาสำหรับผู้เรียน อ่านและลงมือทำตามลำดับได้
+- คงธีม ฟอนต์ คอร์สอื่น และระบบ Private Access เดิม รวมไฟล์เว็บไซต์ 100 ไฟล์
+- ตัวอย่างที่เชื่อมบริการต้องใช้บัญชีและข้อมูลฝึกของตนเอง ยังไม่ได้เชื่อม Google/Supabase ให้เว็บ Portfolio
+- แตก ZIP ลงโฟลเดอร์ใหม่ก่อนอัปโหลด เพื่อไม่ให้ไฟล์รุ่นเก่าปะปน
