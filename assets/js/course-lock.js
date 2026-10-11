@@ -97,7 +97,7 @@
       const asset = bundle.assets[id];
       if (!asset) throw new Error("MEDIA_UNSUPPORTED");
 
-      tag = tag.replace(source[0], `src="assets/media/private-placeholder.svg" data-private-media="${id}"`);
+      tag = tag.replace(source[0], `src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLguIHguLPguKXguLHguIfguYDguJXguKPguLXguKLguKHguKDguLLguJ7guJrguJfguYDguKPguLXguKLguJkiPgogIDxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiMwNzFhM2UiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwYzI4NTciLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjZykiLz4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2ZmE0ZmYiIHN0cm9rZS1vcGFjaXR5PSIuMjIiIHN0cm9rZS13aWR0aD0iMyI+PHJlY3QgeD0iNjEwIiB5PSIzNDAiIHdpZHRoPSIzODAiIGhlaWdodD0iMjIwIiByeD0iMjgiLz48cGF0aCBkPSJNNjgwIDUwNWw5NS05NSA3NSA3MiA1NC00OSA3MCA3MiIvPjwvZz4KICA8dGV4dCB4PSI4MDAiIHk9IjYyNSIgZmlsbD0iIzg3YTdkNCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByZXBhcmluZyBwcml2YXRlIGxlc3NvbiBtZWRpYeKApjwvdGV4dD4KPC9zdmc+Cg==" data-private-media="${id}"`);
       tag = tag.replace(/\bdata-full=(["'])__PRIVATE_MEDIA_([a-f0-9]+)__\1/i, (_match, _quote, fullId) => `data-full="" data-private-media-full="${fullId}"`);
       if (!/\bloading=/i.test(tag)) tag = tag.replace(/<img\b/i, '<img loading="lazy"');
       if (!/\bdecoding=/i.test(tag)) tag = tag.replace(/<img\b/i, '<img decoding="async"');
@@ -105,7 +105,7 @@
       return tag;
     });
     html = html.replace(/\bdata-full=(["'])__PRIVATE_MEDIA_([a-f0-9]+)__\1/gi, (_match, _quote, id) => `data-full="" data-private-media-full="${id}"`);
-    html = html.replace(/\bhref=(["'])__PRIVATE_MEDIA_[a-f0-9]+__\1/gi, 'href="assets/media/38494532f2044786.svg"');
+    html = html.replace(/\bhref=(["'])__PRIVATE_MEDIA_[a-f0-9]+__\1/gi, 'href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxkZWZzPgogIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDYxNTJmIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ii41OCIgc3RvcC1jb2xvcj0iIzFmNWJkOCIvPgogICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY4Y2ZmIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNSIgZmlsbD0idXJsKCNnKSIvPgo8cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHJ4PSIxMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGJiY2ZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE3IDQ2VjE4aDEzLjJjNy40IDAgMTIgNC4xIDEyIDEwLjQgMCA2LjUtNC44IDEwLjctMTIuMyAxMC43aC01LjFWNDZIMTd6bTcuOC0xM2g0LjZjMy40IDAgNS4yLTEuNSA1LjItNC40IDAtMi44LTEuOC00LjMtNS4yLTQuM2gtNC42VjMzeiIgZmlsbD0iI2ZmZiIvPgo8Y2lyY2xlIGN4PSI0Ny41IiBjeT0iNDUuNSIgcj0iNC41IiBmaWxsPSIjN2VlOGM3Ii8+Cjwvc3ZnPg=="');
     if (html.includes("__PRIVATE_MEDIA_")) throw new Error("MEDIA_UNSUPPORTED");
     html = html.replace(/<\/body>/i, '<script src="assets/js/private-media.js" defer><\/script></body>');
     return html;
