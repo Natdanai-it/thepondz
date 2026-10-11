@@ -1,0 +1,216 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="course-version" content="2026-10-11-R2"><title>คำสั่ง Codex ผูกกับ 10 ขั้น</title><link rel="stylesheet" href="assets/css/deploy-course-steps.css?v=2026-10-11-R2"><style>section pre{max-height:none}section input[type=checkbox]{width:20px;height:20px}.step label{display:block}</style></head><body><main><div class="hero"><a href="course-deploy-webapp.html">← บทเรียนหลัก 10 ขั้น</a><span class="version">2026-10-11-R2</span><h1>คำสั่ง Codex<br>เลือกใช้ตามขั้นที่กำลังทำ</h1><p class="lead">P01–P14 เป็นรหัสคำสั่ง ไม่ใช่ลำดับบทเรียนใหม่ แต่ละชุดด้านล่างผูกกับขั้น 1–10 ของคอร์สแล้ว</p><p class="notice">ใช้กับโปรเจกต์ทดสอบก่อน ตรวจผลจริงก่อนทำต่อ ไม่แปะกุญแจลับในคำสั่ง เก็บความคืบหน้าเฉพาะเบราว์เซอร์นี้</p><nav class="route"><a href="#stage-2"><b>02</b><span>เลือกบริการและวางงบ<small>P01</small></span></a><a href="#stage-5"><b>05</b><span>สร้างฐานข้อมูลและกฎสิทธิ์<small>P02, P03, P04, P05</small></span></a><a href="#stage-6"><b>06</b><span>เชื่อมสมาชิกและหน้าเจ้าของ<small>P06, P07</small></span></a><a href="#stage-7"><b>07</b><span>นำสื่อเข้าระบบ<small>P08, P09, P10, P11</small></span></a><a href="#stage-8"><b>08</b><span>ทดสอบและนำเว็บขึ้นออนไลน์<small>P12, P13</small></span></a><a href="#stage-10"><b>10</b><span>เปิดขายและดูแลต่อ<small>P14</small></span></a></nav><p><a href="downloads/codex-supabase-admin-prompts.txt" download>ดาวน์โหลดคำสั่งพร้อมแผนการใช้ (.txt)</a> · <a href="#commands">คำสั่งพิมพ์ในเครื่อง</a></p><div id="message" role="status"></div></div><div id="stage-2"><h2>ขั้น 2: เลือกบริการและวางงบ</h2><p><a href="course-deploy-webapp.html#step-2">อ่านคำอธิบายและตรวจผลขั้น 2 →</a></p><section class="step" id="prompt-1"><div class="kicker">ขั้น 2/10 · คำสั่ง P01</div><h2>P01 — ตรวจโปรเจกต์และวางโครงสร้าง</h2><p><b>ใช้เมื่อ:</b> เริ่มก่อนสร้างตารางหรือเปลี่ยน stack</p><button class="copy" data-copy="0">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+สำรวจ package.json, scripts, routing, env, Auth, database integration และ deployment config โดยไม่เปิด secrets ออกมา
+ทำ PROJECT-AUDIT.md บอกว่าอะไรมีแล้ว อะไรขาด และปัญหาใดกีดขวางการเปิดขาย
+เสนอโครงสร้างตาม framework เดิม เช่น src/features/auth, media, admin, attempts และ src/lib/supabase, src/services, src/types รวม supabase/migrations, scripts/import, tests/security และ docs
+ใช้ repository/service layer เฉพาะส่วนที่ช่วยแยกการอ่านข้อมูลออกจาก UI ไม่สร้าง abstraction ซ้อนโดยไม่จำเป็น
+กำหนด error/loading/empty states และวิธีตั้ง env แยก local/staging/production
+คง framework เดิมถ้าใช้งานได้ ถ้าจำเป็นต้องเปลี่ยนให้บอกเหตุผลและผลกระทบก่อนทำ
+เริ่มแก้ส่วนที่เป็น local และย้อนกลับได้ พร้อมสรุปไฟล์ที่แก้</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> มีแผนผังไฟล์และรายการ gap พร้อมคำสั่งรันจริง ไม่มีการเปลี่ยน production</p><label><input type="checkbox" data-step="0"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-2">กลับไปตรวจผลและทำต่อในขั้น 2 →</a></p></section></div><div id="stage-5"><h2>ขั้น 5: สร้างฐานข้อมูลและกฎสิทธิ์</h2><p><a href="course-deploy-webapp.html#step-5">อ่านคำอธิบายและตรวจผลขั้น 5 →</a></p><section class="step" id="prompt-2"><div class="kicker">ขั้น 5/10 · คำสั่ง P02</div><h2>P02 — ออกแบบตาราง Supabase</h2><p><b>ใช้เมื่อ:</b> หลังรู้โค้ดและ schema ปัจจุบัน</p><button class="copy" data-copy="1">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+ออกแบบ schema PostgreSQL ที่รองรับสมาชิก สิทธิ์ และสื่ออย่างเป็นระเบียบ สร้าง SCHEMA.md พร้อม ER diagram และ data dictionary
+ตารางตั้งต้น:
+profiles: id อ้าง auth.users, display_name, created_at, updated_at ไม่เก็บ password และไม่ให้แก้ role ในตารางนี้
+user_roles: user_id, role (owner/admin/member) ใช้แหล่งที่สมาชิกแก้ไม่ได้ ระบุหนึ่งหรือหลาย role ให้ชัดและใช้สม่ำเสมอ
+plans: id, code unique, name, status รุ่นแรกมี all_access แผนเดียว
+entitlements: id, user_id, plan_id, status (pending/active/revoked), expires_at nullable, granted_by, created_at, updated_at, version มี unique(user_id,plan_id) หากเลือกหนึ่งสิทธิ์ต่อแผน
+media_catalog: id, slug unique, title, category, kind, is_free, publication_status (draft/published/archived), content_version, created_at, updated_at
+media_content: media_id FK, schema_version, payload jsonb ที่มีการ validate รุ่น schema แยกเนื้อหาเสียเงินออกจาก metadata
+media_assets: id, media_id, storage_backend, object_path, mime_type, size_bytes, checksum, version ห้ามเก็บ signed URLs ถาวร
+attempts: id, user_id, media_id, score, completed_at และ submission_key ป้องกัน submit ซ้ำ
+audit_logs: actor_id, target_id, action, before/after ที่ไม่เก็บ secrets, created_at, request_id
+import_jobs: id, created_by, status, progress, manifest_version, error_summary, created_at
+เพิ่มตารางเชื่อม plan_media เมื่อมีความต้องการขายแยกชุดจริง รุ่นแรกไม่ต้องสร้างระบบแพ็กเกจเต็มรูปแบบ
+อธิบาย foreign keys, unique/check constraints, timestamps แบบ timestamptz และ deletion behavior ของทุก FK
+วาง indexes ตาม queries จริง เช่น user_id, plan_id, status, category, publication_status และ completed_at ไม่สร้าง index ทุก column
+Expired เป็นสถานะที่คำนวณจาก expires_at กับเวลาฐานข้อมูล ไม่ต้องแก้ทุกแถวด้วย cron เพื่อให้หมดสิทธิ์
+เลือกวิธี archive สื่อและเก็บ audit โดยไม่ cascade ลบประวัติสำคัญโดยไม่ตั้งใจ
+เก็บข้อมูลเด็กเท่าที่จำเป็น ให้บัญชีผู้ปกครองเป็นเจ้าของผลกิจกรรม
+ถ้ามี schema เดิม ให้ทำ mapping และ migration plan แทนการสร้างชื่อซ้ำหรือ drop tables</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> SCHEMA.md ระบุความสัมพันธ์ ชนิดข้อมูล ข้อจำกัด และ query ที่ต้องรองรับ</p><label><input type="checkbox" data-step="1"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-5">กลับไปตรวจผลและทำต่อในขั้น 5 →</a></p></section><section class="step" id="prompt-3"><div class="kicker">ขั้น 5/10 · คำสั่ง P03</div><h2>P03 — สร้าง SQL migrations และ seed</h2><p><b>ใช้เมื่อ:</b> หลังตกลง schema จากชุด 02</p><button class="copy" data-copy="2">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+สร้าง SQL migration files ตามลำดับ แยก schema/constraints, indexes, policies, functions และ test seed ให้ตรวจง่าย
+ตรวจฐานเดิมก่อนใช้ CREATE/ALTER ไม่ใช้ IF NOT EXISTS เพื่อซ่อนความต่างของ schema โดยไม่มีการตรวจ
+ทำ migrations แบบเพิ่มก่อนเปลี่ยนและลบ (expand/contract) เมื่อต้องรักษา app เวอร์ชันเดิม
+แยก seed กิจกรรมตัวอย่างออกจากข้อมูล production ไม่ใส่ password, tokens หรือบัญชีจริง
+ทำ dry-run หรือ review script ตาม CLI ปัจจุบัน ไม่รัน db push ไป production
+สร้าง docs/MIGRATIONS.md อธิบายวิธี local apply, staging apply, review และ production rollout พร้อม backup ก่อนงานเสี่ยง
+อธิบายว่า db reset ล้างและสร้างฐานใหม่ ใช้เฉพาะ local/test ที่ยอมทิ้งได้ ห้ามใช้ --linked หรือ --db-url กับ production
+หากต้องใช้ local Supabase ให้บอก prerequisite ของ CLI/runtime ตามเอกสาร และให้ทางเลือก SQL Editor บน test project หากไม่พร้อม
+ทดสอบ migrations กับฐานใหม่ และเส้นทาง upgrade จาก schema เดิมถ้ามี</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> สร้างฐานทดสอบได้ซ้ำ และ upgrade ไม่ทำข้อมูลเดิมหายโดยไม่ตั้งใจ</p><label><input type="checkbox" data-step="2"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-5">กลับไปตรวจผลและทำต่อในขั้น 5 →</a></p></section><section class="step" id="prompt-4"><div class="kicker">ขั้น 5/10 · คำสั่ง P04</div><h2>P04 — สร้าง RLS และตารางสิทธิ์</h2><p><b>ใช้เมื่อ:</b> ก่อนให้ frontend อ่านข้อมูลจริง</p><button class="copy" data-copy="3">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+สร้าง access matrix ก่อนเขียน policies: anonymous, member pending, active member, revoked/expired, admin, owner
+เปิด RLS และกำหนด grants ให้ครบทุกตารางที่ exposed ผ่าน API
+สมาชิกอ่าน/แก้ display_name ของตนได้ แต่แก้ user_roles, entitlements หรือ publication flags ไม่ได้ ใช้ column grants หรือ function แบบ allowlist ถ้าตารางมีหลายชนิดข้อมูล
+anonymous อ่านเฉพาะ metadata สาธารณะและกิจกรรมฟรีที่ published
+สมาชิก active อ่าน paid content ที่ published และอยู่ในขอบเขตสิทธิ์ของตนได้ ตรวจ expires_at โดย now() ฝั่ง DB
+member อ่าน/เขียน attempts ของตนตามข้อจำกัด แต่สวม user_id ผู้อื่นไม่ได้
+audit_logs ให้ผู้มีสิทธิ์ดูตามหน้าที่ แต่ห้าม client แก้หรือลบ log
+user_roles ตรวจจากตาราง trusted ฝั่ง DB ไม่เชื่อ user_metadata หรือ role ที่ส่งจาก browser
+ถ้าต้องมี helper function ตรวจ role เพื่อเลี่ยง RLS recursion ให้อยู่ใน schema ที่เหมาะสม และออกแบบสิทธิ์เรียกแบบแคบ
+ใช้ SECURITY INVOKER เป็นค่าเริ่มต้น SECURITY DEFINER เฉพาะที่จำเป็น พร้อม search_path ที่ปลอดภัยและ qualify ชื่อทุก object
+ตรวจ views/functions ไม่ bypass policies โดยไม่ตั้งใจ และตรวจ endpoint ตรงไม่ใช่เฉพาะ UI
+สร้าง tests สำหรับ read/write/delete และ self-escalation โดย session ผู้ใช้จริง ไม่ใช้ SQL Editor admin เป็นหลักฐานผ่าน</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> ผู้ไม่มีสิทธิ์เรียก API ตรงแล้วไม่ได้ paid content หรือข้อมูลผู้อื่น</p><label><input type="checkbox" data-step="3"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-5">กลับไปตรวจผลและทำต่อในขั้น 5 →</a></p></section><section class="step" id="prompt-5"><div class="kicker">ขั้น 5/10 · คำสั่ง P05</div><h2>P05 — สร้างฟังก์ชันเปิด–ปิดสิทธิ์</h2><p><b>ใช้เมื่อ:</b> ใช้เป็นช่องทางเปลี่ยนสิทธิ์เพียงจุดเดียว</p><button class="copy" data-copy="4">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+สร้าง RPC หรือ API ฝั่ง server สำหรับ grant_access, revoke_access และ set_expiry เลือกวิธีให้สอดคล้องกับโค้ดเดิม
+ทุกคำขอตรวจ auth.uid()/session จริงและ role จากตาราง trusted ไม่รับ actor_id ที่ caller เลือกเอง
+admin จัดสิทธิ์สื่อสมาชิกได้ owner จัด roles ได้ แยกสิทธิ์ตั้ง admin ออกจากสิทธิ์อนุมัติผู้ซื้อ
+validate target user, plan, expires_at และ reason จำกัดความยาวข้อมูล
+เปลี่ยน entitlement กับ append audit log ใน transaction เดียว ถ้า log ล้มเหลวให้การเปลี่ยนสิทธิ์ไม่สำเร็จ
+ใช้ expected_version หรือการล็อกที่เหมาะสมป้องกัน admin สองคนเขียนทับโดยไม่รู้
+รองรับ request_id/idempotency เพื่อกดซ้ำแล้วไม่สร้างผลซ้ำ
+หากใช้ SECURITY DEFINER ให้ revoke EXECUTE จาก PUBLIC/anon และ grant เท่าที่ต้องใช้ พร้อมตรวจ role ภายในทุกครั้ง สมาชิกที่ล็อกอินอาจเรียก function ได้แต่ต้องถูกปฏิเสธถ้าไม่ใช่ admin
+ระบบ role management ต้องป้องกันลบ/ลด owner คนสุดท้ายและ race condition โดยตรวจแบบ transactional
+อย่าตรวจ admin จากอีเมลใน frontend และอย่าใช้ service_role ใน browser
+ทำ test admin, owner, member และ unauthenticated รวมคำขอปลอมและ retry</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> สมาชิกเปิดสิทธิ์ตนเองไม่ได้ ทุกการเปลี่ยนมี audit ที่สัมพันธ์กัน</p><label><input type="checkbox" data-step="4"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-5">กลับไปตรวจผลและทำต่อในขั้น 5 →</a></p></section></div><div id="stage-6"><h2>ขั้น 6: เชื่อมสมาชิกและหน้าเจ้าของ</h2><p><a href="course-deploy-webapp.html#step-6">อ่านคำอธิบายและตรวจผลขั้น 6 →</a></p><section class="step" id="prompt-6"><div class="kicker">ขั้น 6/10 · คำสั่ง P06</div><h2>P06 — สร้าง Auth และ session flow</h2><p><b>ใช้เมื่อ:</b> หลัง policies และ functions พร้อม</p><button class="copy" data-copy="5">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+เชื่อม Supabase Auth กับ signup/login/logout/reset password ตาม SDK ปัจจุบัน
+สร้าง profile เมื่อ signup ผ่าน flow ที่ไม่รับ role จากผู้สมัครและไม่ทำให้การสมัครล้มเหลวจากข้อมูล optional
+แสดงสถานะ pending/active/revoked/expired จากแหล่งจริง ไม่ใช้ localStorage เป็นแหล่งสิทธิ์
+จัด session restoration, loading state, expired session และ error ที่ไม่แสดงข้อมูลลับ
+ใช้ route guard เพื่อ UX แต่คง enforcement ที่ DB/API
+ไม่ cache สิทธิ์โดยไม่มีกติกา refresh เมื่อ revoke ผู้ใช้ต้องอ่าน content ใหม่ไม่ได้จาก backend แม้ UI ยังไม่อัปเดต
+ตั้ง Site URL และ allowed redirects จากโค้ดจริง สร้าง docs/AUTH-SETUP.md รวม SMTP ข้อจำกัดและวิธีทดสอบ email ภายนอกทีม
+ไม่ปิด email verification เพียงเพื่อซ่อนปัญหา SMTP สรุป choice และผลต่อ flow ให้ชัด
+ไม่มี secret keys หรือ password ตัวอย่างที่ใช้จริงใน repo</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> สมัครและกู้คืนได้จริง รู้บัญชีแล้วตรวจสิทธิ์แยกทุกครั้ง</p><label><input type="checkbox" data-step="5"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-6">กลับไปตรวจผลและทำต่อในขั้น 6 →</a></p></section><section class="step" id="prompt-7"><div class="kicker">ขั้น 6/10 · คำสั่ง P07</div><h2>P07 — สร้างหน้า Admin จัดสิทธิ์ผ่านเว็บ</h2><p><b>ใช้เมื่อ:</b> หลัง Auth และ RPC ใช้งานได้</p><button class="copy" data-copy="6">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+สร้าง /admin/users, /admin/users/:id และ /admin/audit ให้เข้ากับ router เดิม
+แสดงรายชื่อแบบ server pagination/search ไม่ดาวน์โหลด auth.users ทั้งหมดมา browser
+ถ้าต้องค้น email ให้ทำผ่าน endpoint/RPC ที่ตรวจ admin และส่ง field จำเป็นเท่านั้น ไม่ grant ตาราง auth.users ให้ client และไม่ใส่ service_role ใน frontend
+สมาชิกในรายการมีชื่อ สถานะสิทธิ์ แผน วันหมดอายุ และเวลาแก้ล่าสุด
+หน้ารายคนมีเปิดสิทธิ์ ระงับสิทธิ์ ตั้งหมดอายุ พร้อม reason และ confirmation เมื่อเปลี่ยนสิทธิ์
+ทุก action เรียก RPC/API ชุด 05 เท่านั้น ไม่ update ตารางตรงจาก browser
+แสดง mutation pending, success, conflict, permission denied และ retry แบบ idempotent
+หลังสำเร็จ refresh ข้อมูลจาก server ห้ามแสดงว่าสำเร็จก่อน response จริง
+owner เท่านั้นจัด roles และป้องกันลด owner คนสุดท้าย อย่าเพิ่มปุ่ม impersonate หรือลบบัญชีถาวรในรุ่นแรก
+UI รองรับมือถือ มี labels อ่านได้ ไม่สื่อสถานะด้วยสีอย่างเดียว
+ทดสอบ unauthorized URL/direct API, admin concurrent edits และ audit</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> เจ้าของเปิด–ปิดสิทธิ์จากหน้าเว็บได้ สมาชิกเรียก action เดียวกันเองไม่ได้</p><label><input type="checkbox" data-step="6"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-6">กลับไปตรวจผลและทำต่อในขั้น 6 →</a></p></section></div><div id="stage-7"><h2>ขั้น 7: นำสื่อเข้าระบบ</h2><p><a href="course-deploy-webapp.html#step-7">อ่านคำอธิบายและตรวจผลขั้น 7 →</a></p><section class="step" id="prompt-8"><div class="kicker">ขั้น 7/10 · คำสั่ง P08</div><h2>P08 — สร้าง catalog และตัวเล่นกิจกรรม</h2><p><b>ใช้เมื่อ:</b> เชื่อมสิทธิ์เข้ากับสื่อจริง</p><button class="copy" data-copy="7">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+แยก media metadata, protected content และ assets ตาม schema
+หน้ารวมใช้ server pagination ครั้งละ 24 รายการ พร้อมค้นหา/กรอง โดยมี deterministic sort และ index ที่รองรับ
+โหลด content เฉพาะเปิดกิจกรรม ตรวจ published และ entitlement ที่ backend
+สร้าง content renderer ตาม kind และ schema_version ไม่ใช้ eval กับ payload
+validate JSON และจำกัดขนาด payload คำตอบเลือก จับคู่ และเรียงลำดับ
+เก็บ scores แบบผลฝึกเล่นจาก browser พร้อมระบุข้อจำกัด ถ้าต้องใช้คะแนนสอบให้ validate/compute server-side แยก
+บันทึกเมื่อ submit ด้วย submission_key ไม่ส่งทุก interaction
+ถ้าเป็น media HTML/JS ให้ประเมิน isolation origin/sandbox และ postMessage allowlist ไม่ให้เข้าถึง session หลัก
+มี loading/empty/error/retry และ back navigation ที่ไม่เสียผลที่ตกลงให้บันทึก</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> เปิดหน้ารวมไม่โหลด 1,000 เนื้อหาพร้อมกัน และ user ไม่มีสิทธิ์อ่าน payload ไม่ได้</p><label><input type="checkbox" data-step="7"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-7">กลับไปตรวจผลและทำต่อในขั้น 7 →</a></p></section><section class="step" id="prompt-9"><div class="kicker">ขั้น 7/10 · คำสั่ง P09</div><h2>P09 — สร้าง Private Storage และช่องทางไฟล์</h2><p><b>ใช้เมื่อ:</b> เลือก Supabase Storage หรือ R2 ตามไฟล์จริง</p><button class="copy" data-copy="8">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+ตรวจชนิดและขนาด media ก่อนเลือก backend Storage
+หากใช้ Supabase Storage ให้ private bucket และ policies ที่ตรวจ media entitlement และ publication status
+หากใช้ R2 ให้ private bucket พร้อม endpoint/Worker ตรวจ session และ entitlement ก่อน streaming หรือสร้าง signed URL ห้ามให้ caller เลือก arbitrary object_path
+แมป media_asset_id ไป object_path ที่ server อ่าน ไม่เชื่อ path จาก frontend
+กำหนด signed URL อายุสั้นตาม UX อธิบายว่า revoke ไม่ยกเลิก URL ที่ออกแล้วทันที และข้อมูลที่โหลดแล้วเรียกคืนไม่ได้
+validate upload ขนาด ชนิดไฟล์ และสิทธิ์ ไม่เชื่อ MIME ที่ client ส่งอย่างเดียว
+cache private response อย่างปลอดภัย ไม่แชร์ผลของผู้ใช้ให้ผู้อื่น หลีกเลี่ยง cache entitlements จน revoke ไม่ทำงาน
+ไม่เก็บ signed URL ถาวรใน DB เก็บ path/version/checksum
+ทำ docs/STORAGE.md รวม backup objects และการย้าย backend โดยใช้ interface เท่าที่จำเป็น</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> ไฟล์เสียเงินไม่เปิด anonymous และไม่มี arbitrary path access</p><label><input type="checkbox" data-step="8"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-7">กลับไปตรวจผลและทำต่อในขั้น 7 →</a></p></section><section class="step" id="prompt-10"><div class="kicker">ขั้น 7/10 · คำสั่ง P10</div><h2>P10 — สร้าง Import 1,000 สื่อ</h2><p><b>ใช้เมื่อ:</b> เริ่มชุดทดลองก่อนชุดเต็ม</p><button class="copy" data-copy="9">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+ทำ script/tool ฝั่ง trusted admin สำหรับ manifest import มี dry-run, validation และ resume
+ใช้ media slug/id คงที่ รองรับ create/update version อย่างชัดเจน ไม่ overwrite เงียบ
+ตรวจ schema_version, duplicate IDs, broken references, mime/size/checksum และ limits
+อัปโหลดแบบจำกัด concurrency มี exponential backoff + jitter สำหรับ transient errors และไม่ retry permission/validation errors แบบไม่สิ้นสุด
+รายงาน progress และ partial failures ให้ retry เฉพาะที่ผิด
+DB กับ object storage ไม่ใช่ transaction เดียวกัน ให้ใช้ staging/draft, job state และ reconciliation/cleanup plan
+publish หลังตรวจว่าไฟล์ครบ ออกแบบไม่ให้ orphan objects และ rows พอกพูน
+ทดลอง 10 รายการ จากนั้นข้อมูลจำลอง 1,000 รายการ โดยไม่อ้างว่าเป็น load test จริง
+ไม่ใส่ privileged key ในหน้า import ของ browser ใช้ server endpoint หรือ local tool ที่เจ้าของตั้ง env อย่างปลอดภัย</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> หยุดทำต่อได้ ไม่ซ้ำ และสื่อที่เผยแพร่มีไฟล์ครบ</p><label><input type="checkbox" data-step="9"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-7">กลับไปตรวจผลและทำต่อในขั้น 7 →</a></p></section><section class="step" id="prompt-11"><div class="kicker">ขั้น 7/10 · คำสั่ง P11</div><h2>P11 — ทำโครงสร้างที่แก้ไขและขยายได้</h2><p><b>ใช้เมื่อ:</b> หลังเส้นทางหลักทำงานจริง</p><button class="copy" data-copy="10">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+ตรวจ code coupling และ refactor เฉพาะจุดที่ขัดการแก้ไข ไม่ rewrite ทั้งเว็บ
+แยก UI, domain validation, data services, shared types และ error mapping ตาม framework เดิม
+มี typed content schema และ schema_version ทำ backward compatibility เมื่อเพิ่ม kind ใหม่
+ทำ index/query plan จาก queries จริง หลีกเลี่ยง SELECT * ในรายการและ N+1 queries
+ใช้ EXPLAIN บน staging ด้วยข้อมูลที่ใกล้งานจริง ตั้ง bounded pagination และ payload size
+หน้า catalog อาจใช้ offset ช่วงแรก เมื่อชุดใหญ่หรือเปลี่ยนบ่อยให้ประเมิน keyset pagination ตามความจำเป็น
+ถ้ามี serverless ต่อ Postgres โดยตรง ให้เลือก pooling/driver ตาม runtime และข้อจำกัด prepared statements ตาม docs ไม่ถือว่า Supabase browser SDK ใช้ TCP pool แบบเดียวกัน
+งาน import/ประมวลผลยาวให้ batch/job ไม่ทำทั้งหมดใน request เดียว
+ทำ monitoring สำหรับ latency p95, error rate, DB load, storage bandwidth และ quota
+เตรียม load-test plan ตาม user concurrency และ activity patterns ไม่รันทดสอบ provider จนมี authorization
+อธิบายจุดขยายและค่าใช้จ่าย ห้ามรับประกันว่า scale ได้ไร้ปัญหา หรือเสนอ Kubernetes โดยไม่มีเหตุผล</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> มี baseline metrics และระบุ bottleneck จริง แก้ทีละส่วนได้</p><label><input type="checkbox" data-step="10"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-7">กลับไปตรวจผลและทำต่อในขั้น 7 →</a></p></section></div><div id="stage-8"><h2>ขั้น 8: ทดสอบและนำเว็บขึ้นออนไลน์</h2><p><a href="course-deploy-webapp.html#step-8">อ่านคำอธิบายและตรวจผลขั้น 8 →</a></p><section class="step" id="prompt-12"><div class="kicker">ขั้น 8/10 · คำสั่ง P12</div><h2>P12 — ทดสอบสิทธิ์และ workflow</h2><p><b>ใช้เมื่อ:</b> ก่อน deploy หรือเปลี่ยน schema</p><button class="copy" data-copy="11">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+ทำ access matrix และ meaningful tests บน local/test/staging:
+anonymous อ่านได้เฉพาะ published free
+pending/revoked/expired อ่าน paid content/assets ไม่ได้
+active member อ่านตามสิทธิ์และ own attempts ได้
+A อ่าน/แก้ B ไม่ได้ แม้รู้ ID
+member เปลี่ยน role/entitlement/publication ไม่ได้
+user_metadata role=admin ปลอมไม่มีผล
+admin แก้สิทธิ์แล้ว audit ครบ และ transaction rollback หากขั้นหนึ่งผิด
+สอง admin ใช้ expected_version เกิด conflict ที่จัดการได้
+owner คนสุดท้ายลด role ไม่ได้ รวม concurrent cases
+signed URL ขอบเขตถูกต้องและ expiry มีผล
+import resume ไม่ซ้ำและ failed publish ไม่เปิดไฟล์ไม่ครบ
+frontend build/typecheck และ end-to-end signup/admin approval/play/revoke/refresh/reset
+ใช้ user sessions จริงหรือ test framework จำลอง role+JWT ตาม docs ไม่ใช้ service role ผ่านแล้วอ้างว่า member policies ถูกต้อง
+แยกผล passed, failed, skipped และ prerequisites ที่ขาด ถ้าไม่มี credentials ให้เตรียม tests แต่บอกว่ายังไม่ได้ทดสอบจริง
+ห้ามสร้างชุดทดสอบที่ mirror implementation อย่างเดียว</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> มีหลักฐานทดสอบ API และ policy ไม่ใช่แค่ภาพหน้าจอ</p><label><input type="checkbox" data-step="11"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-8">กลับไปตรวจผลและทำต่อในขั้น 8 →</a></p></section><section class="step" id="prompt-13"><div class="kicker">ขั้น 8/10 · คำสั่ง P13</div><h2>P13 — Deploy, migrations และการกู้คืน</h2><p><b>ใช้เมื่อ:</b> เมื่อ staging ผ่านและเลือกปลายทางแล้ว</p><button class="copy" data-copy="12">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+สร้าง docs/DEPLOY-RUNBOOK.md บอกลำดับ schema/functions/frontend ที่ compatible กับเวอร์ชันเดิม
+ทำ environment checklist สำหรับ Auth URLs, SMTP, secrets, private buckets, DNS/HTTPS และ production branch
+ก่อน schema เสี่ยงให้ backup ตรวจ project ref และ review migration ห้าม db reset กับ production
+ใช้ expand/contract เมื่อเปลี่ยน field เริ่มเพิ่ม field ใหม่ ปรับ code/backfill ตรวจผลก่อนเลิกลบ field เดิมในรอบถัดไป
+ทำ smoke tests หลัง deploy ด้วยบัญชี A/B/Admin และ API direct access
+แยก rollback frontend, migration forward-fix และ restore data/storage ห้ามอ้าง rollback UI ย้อน DB ด้วย
+ทำ backup inventory และ restore drill บน test project ระบุข้อมูลย้อนหลังที่ยอมสูญเสีย (RPO) และเวลาที่ต้องการกู้ (RTO) ที่ตกลงกับลูกค้า ไม่แต่ง SLA
+เพิ่ม spending alerts และ quota monitoring พร้อมผู้รับผิดชอบ แยก alert จาก hard caps
+ยังไม่ push/deploy ไป production หรือเรียก migration remote จนผมระบุปลายทางและยืนยัน operation ที่จะทำ</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> มี runbook ที่เจ้าของทำซ้ำและรับช่วงดูแลได้</p><label><input type="checkbox" data-step="12"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-8">กลับไปตรวจผลและทำต่อในขั้น 8 →</a></p></section></div><div id="stage-10"><h2>ขั้น 10: เปิดขายและดูแลต่อ</h2><p><a href="course-deploy-webapp.html#step-10">อ่านคำอธิบายและตรวจผลขั้น 10 →</a></p><section class="step" id="prompt-14"><div class="kicker">ขั้น 10/10 · คำสั่ง P14</div><h2>P14 — สรุปส่งมอบและเช็กลิสต์</h2><p><b>ใช้เมื่อ:</b> หลังทุกส่วนสร้างและทดสอบแล้ว</p><button class="copy" data-copy="13">คัดลอก Prompt ขั้นนี้</button><details><summary>เปิดอ่านคำสั่งฉบับเต็ม</summary><pre>บริบท: Web App ขายสื่อ interactive ประมาณ 1,000 รายการ รับโอนเงินนอกระบบ ผู้ปกครองสมัครบัญชี เจ้าของเปิดสิทธิ์ผ่านเว็บ ช่วงแรกผู้มีสิทธิ์เข้าใช้สื่อทั้งหมด โค้ดสร้างจาก AI และต้องตรวจ framework จริงก่อนแก้
+แนวทาง: ใช้ Supabase Auth + PostgreSQL + private storage ตั้งต้น ใช้ hosting ให้ตรงโค้ดเดิม แยก frontend, API/data access และ database migrations ไม่เพิ่ม VPS หรือ microservices หากไม่มีเหตุผล
+กติกา: ตรวจ repo และ schema เดิมก่อน ไม่เขียนทับงานเดิม ไม่เปลี่ยน production เอง ไม่ใช้ข้อมูลลูกค้าจริงในการทดสอบ ไม่วาง secrets ใน frontend ไม่อ้างว่ารองรับคนพร้อมกันเท่าไรจนกว่าจะวัดจริง ทำไฟล์จริงพร้อมคู่มือและการทดสอบที่สัมพันธ์กับความเสี่ยง ตรวจเอกสารทางการปัจจุบันก่อนใช้ API/CLI
+
+งานรอบนี้:
+ทำ HANDOVER.md สำหรับมือใหม่ อธิบายคำศัพท์และขั้นตอนใช้ Admin เปิดสิทธิ์ ตั้ง expiry ระงับ และดู audit
+สรุปไฟล์หลัก ตาราง/functions/policies และวิธีเพิ่ม media kind หรือ plan ในอนาคต
+ใส่เช็กลิสต์พร้อมสถานะและ evidence: schema migrations, RLS/grants, RPC authorization, profiles bootstrap, Auth/email, Admin mutations, private storage, import resume, indexes/pagination, error handling, security tests, deploy smoke test, backup restore, budget alerts และ ownership
+ระบุสิ่งที่ผ่านแล้ว ยังไม่ได้ทดสอบ และงานค้าง อย่าทำเครื่องหมายผ่านจากการมีโค้ดอย่างเดียว
+แสดงคำสั่งจริงที่ตรงโปรเจกต์และแยก local/test/staging/production พร้อมจุดที่ต้องหยุด review
+ส่งมอบ .env.example ที่ไม่มี secrets ไม่แปะ credentials ในเอกสาร
+ระบุขอบเขตรุ่นแรกกับ roadmap อย่างชัดเจน ไม่เพิ่ม payment gateway หรือ multi-tenant หากไม่อยู่ในขอบเขต</pre></details><p class="pass"><b>ตรวจว่าจบขั้นนี้แล้ว:</b> ผู้เรียนมีคู่มือ Checklist และข้อจำกัดที่ตรวจสอบได้</p><label><input type="checkbox" data-step="13"> ตรวจผลขั้นนี้แล้ว</label><p><a href="course-deploy-webapp.html#step-10">กลับไปตรวจผลและทำต่อในขั้น 10 →</a></p></section></div><section class="step" id="commands"><h2>คำสั่งในเครื่อง แยกตามขั้นที่ใช้</h2><p>CLI หมายถึงการพิมพ์คำสั่งลงในช่อง Terminal อย่ารันทุกกรอบต่อกัน เลือกกรอบตามงานและอ่านเงื่อนไขก่อน</p><details class="reading"><summary>ขั้น 4 · เปิดเว็บบนเครื่องที่มีโปรเจกต์อยู่แล้ว</summary><p>ต้องอยู่ในโฟลเดอร์โปรเจกต์ที่มี package.json และ package-lock.json; ใช้คำสั่งให้ตรง scripts ของโค้ด</p><pre>npm ci
+npm run dev</pre></details><details class="reading"><summary>ขั้น 4 · ตรวจไฟล์พร้อมใช้บนเครื่อง</summary><p>หยุด dev ด้วย Ctrl+C เมื่อจำเป็น จากนั้นตรวจไฟล์ที่ build แล้ว; preview ยังไม่ใช่เว็บขายจริง</p><pre>npm run build
+npm run preview</pre></details><details class="reading"><summary>ขั้น 5 · เตรียมเครื่องมือ Supabase</summary><p>ใช้เมื่อเลือก workflow ผ่าน CLI และติดตั้ง runtime ที่เอกสารกำหนดแล้ว เช่น Docker สำหรับฐานข้อมูล local</p><pre>npm install --save-dev supabase
+npx supabase --help
+npx supabase init
+npx supabase start</pre></details><details class="reading"><summary>ขั้น 5 · สร้างคำสั่งเปลี่ยนตาราง</summary><p>สร้างไฟล์แล้วให้ Codex เติม SQL และ review ก่อน ไม่ใช่สร้างตารางเสร็จทันที</p><pre>npx supabase migration new create_worksheet_schema</pre></details><details class="reading"><summary>ขั้น 5 · ทดลองฐานข้อมูลบนเครื่อง</summary><p>ล้างข้อมูลได้ ใช้เฉพาะฐาน local ที่ทิ้งข้อมูลได้ ห้ามเติม --linked หรือ --db-url เพื่อชี้ฐานขายจริง ตรวจและสร้างโฟลเดอร์ src/types ก่อนสร้างไฟล์ types</p><pre>npx supabase db reset
+npx supabase gen types typescript --local &gt; src/types/database.generated.ts</pre></details><details class="reading"><summary>ขั้น 5 · เชื่อมโครงการทดลองบน Supabase</summary><p>แทน YOUR_TEST_PROJECT_REF ด้วยรหัสโครงการทดลองจริง ตรวจชื่อและเป้าหมายก่อนทุกครั้ง หากเป็นฐานเดิมให้ผู้พัฒนาทบทวนการดึง schema ก่อน</p><pre>npx supabase login
+npx supabase link --project-ref YOUR_TEST_PROJECT_REF
+npx supabase migration list
+npx supabase db push --dry-run</pre></details><details class="reading"><summary>ขั้น 5 · ส่งคำสั่งตารางไปโครงการทดลอง</summary><p>ทำหลังอ่านผล dry-run และยืนยันว่า linked ไป TEST/STAGING เท่านั้น ถ้าเป็นฐานจริงให้ใช้แผนสำรองและแผนปล่อยเวอร์ชันในขั้น 8</p><pre>npx supabase db push
+npx supabase gen types typescript --linked &gt; src/types/database.generated.ts</pre></details><details class="reading"><summary>ขั้น 6 · ทางเลือก: ฟังก์ชันจัดการสิทธิ์</summary><p>ใช้เฉพาะเมื่อโครงสร้างเลือกใช้ Supabase Edge Function ไม่จำเป็นทุกโปรเจกต์ คำสั่ง serve เป็นการทดสอบบนเครื่อง</p><pre>npx supabase functions new admin-access
+npx supabase functions serve admin-access</pre></details><details class="reading"><summary>ขั้น 8 · ทางเลือก: ส่งฟังก์ชันขึ้นบริการ</summary><p>ใช้เมื่อมีฟังก์ชันนี้จริงและตรวจบัญชี เป้าหมาย สิทธิ์ และค่าตั้งแล้ว ปล่อยตามแผนพร้อมสำรอง ห้ามส่งขึ้นฐานขายจริงโดยเดาเป้าหมาย</p><pre>npx supabase functions deploy admin-access</pre></details><p>ถ้าไม่มีฐานบนเครื่อง ให้ผู้พัฒนาวางวิธีทดลองใน TEST project และเก็บ SQL กับประวัติ migration ให้ตรงกัน</p><p><a href="https://supabase.com/docs/reference/cli/introduction">คู่มือคำสั่ง Supabase</a> · <a href="https://supabase.com/docs/guides/local-development/database-migrations">คู่มือเปลี่ยนตาราง</a></p></section><section class="step" id="review"><h2>ตรวจผลก่อนส่งมอบ</h2><p><a href="deploy-checklist.html">เช็กลิสต์สำคัญ 12 ข้อตามลำดับเรียน</a></p><p>ผู้พัฒนาตรวจเพิ่มได้ใน <a href="deploy-checklist-technical.html">รายการเทคนิค</a> อย่าติ๊กผ่านเพียงเพราะมีโค้ด ต้องมีผลทดลองจริง</p></section><script src="assets/js/deploy-prompts-data.js?v=2026-10-11-R2"></script><script>const msg=document.getElementById('message');document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{const p=window.DEPLOY_PROMPTS[Number(b.dataset.copy)].prompt;try{await navigator.clipboard.writeText(p);msg.textContent='คัดลอก Prompt แล้ว ใช้ทีละขั้นและตรวจผลก่อนทำต่อ'}catch(e){msg.textContent='คัดลอกอัตโนมัติไม่ได้ เปิดคำสั่งแล้วเลือกข้อความเพื่อคัดลอก';b.nextElementSibling.open=true}});document.querySelectorAll('[data-step]').forEach(b=>{try{b.checked=localStorage.getItem('pond-prompt-step-'+b.dataset.step)==='1'}catch(e){}b.onchange=()=>{try{localStorage.setItem('pond-prompt-step-'+b.dataset.step,b.checked?'1':'0')}catch(e){msg.textContent='browser ไม่อนุญาตเก็บความคืบหน้า'}}});const printStates=[];window.addEventListener('beforeprint',()=>{document.querySelectorAll('details').forEach(d=>{printStates.push([d,d.open]);d.open=true})});window.addEventListener('afterprint',()=>{printStates.splice(0).forEach(([d,o])=>d.open=o)});</script></main></body></html>
